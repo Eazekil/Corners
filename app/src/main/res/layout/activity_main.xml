@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:contentDescription="@string/background"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:srcCompat="@drawable/chess_field" />
+
+    <TableLayout
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/whiteCh11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh12"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh13"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh14"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh15"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh16"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh17"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh18"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/whiteCh21"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh22"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh23"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh24"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh25"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh26"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh27"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh28"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/whiteCh31"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh32"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh33"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh34"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh35"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh36"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh37"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh38"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/whiteCh41"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh42"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh43"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh44"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh45"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh46"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh47"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh48"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/whiteCh51"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh52"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh53"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh54"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh55"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh56"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh57"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh58"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/whiteCh61"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh62"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh63"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh64"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh65"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh66"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh67"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh68"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/whiteCh71"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh72"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh73"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh74"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh75"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh76"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh77"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh78"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/whiteCh81"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh82"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh83"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh84"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh85"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh86"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh87"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+            <ImageView
+                android:id="@+id/whiteCh88"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_white" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/blackCh11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh12"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh13"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh14"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh15"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh16"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh17"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh18"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/blackCh21"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh22"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh23"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh24"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh25"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh26"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh27"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh28"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/blackCh31"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh32"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh33"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh34"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh35"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh36"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh37"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh38"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/blackCh41"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh42"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh43"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh44"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh45"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh46"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh47"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh48"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/blackCh51"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh52"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh53"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh54"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh55"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh56"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh57"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh58"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/blackCh61"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh62"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh63"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh64"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh65"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh66"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh67"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh68"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/blackCh71"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh72"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh73"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh74"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh75"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh76"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh77"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh78"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/blackCh81"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh82"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh83"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh84"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh85"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh86"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh87"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+            <ImageView
+                android:id="@+id/blackCh88"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/todo"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/checker_black" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="transparent"
+        app:backgroundTint="transparent"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="541dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

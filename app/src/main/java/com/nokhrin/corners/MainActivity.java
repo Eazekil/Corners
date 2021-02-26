@@ -2,15 +2,54 @@ package com.nokhrin.corners;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
+    public static  int countBlackCheckers=12;
+    public static  int countWhiteCheckers=12;
     public int[][] checkersPositions = new int[9][9];
     public ImageView[][] imageViewCheckersWhite = new ImageView[9][9];
-    public ImageView[][] imageViewCheckersBlack = new ImageView[9][9];
+    public ImageView[] imageViewCheckersBlack = new ImageView[countBlackCheckers];
     public int[][] blackCheckerPositions = new int[9][9];
+    private static  int widthDisplay=0;
+    private static int heightDisplay=0;
+    private static int stepOnField;
+
+
+
+
+
+
+
+
+    ImageView touchView2;
+    ImageView touchView;
+    //Отображает пешки согласно двумерному массиву checkersPositions
+    //0 = пешки отсутствуют    1 = белые пешки    -1 = черные пешки
+    public void drawField(){
+        int numberBlackCheckers=countBlackCheckers-1;
+        for(int i=1;i<9;i++){
+            for(int j=1;j<9;j++){
+                if(checkersPositions[i][j]==-1){
+                    imageViewCheckersBlack[numberBlackCheckers].layout((j-1)*stepOnField,(i-1)*stepOnField+264,(j-1)*stepOnField+stepOnField,(i-1)*stepOnField+264+stepOnField);
+                    imageViewCheckersBlack[numberBlackCheckers].setVisibility(View.VISIBLE);
+                    numberBlackCheckers--;
+                }
+                if(checkersPositions[i][j]==1){
+
+                }
+            }
+        }
+        //imageViewCheckersBlack[4].layout(135*7,357,135*7+135,357+135);
+
+    }
+
+
+
 
 
 
@@ -18,23 +57,119 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //touchView2 = (ImageView) findViewById(R.id.imageBlackCh4);
+        touchView = (ImageView)  findViewById(R.id.chessField);
+
+        touchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //touchView2.layout(l,t,l+100,t+100);
+                drawField();
+            }
+        });
+
+        //Определяем размер экрана
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        widthDisplay = size.x;
+        heightDisplay = size.y;
+        stepOnField = (widthDisplay-10)/8;
+        /*System.out.println(widthDisplay+"********************************************************************************8");
+        System.out.println(heightDisplay);*/
+
+        System.out.println(touchView.getLeft()+"****************************************************************");
+        System.out.println(touchView.getRight());
+
+
+
+
+        imageViewCheckersBlack[0]=findViewById(R.id.imageBlackCh1);
+        imageViewCheckersBlack[1]=findViewById(R.id.imageBlackCh2);
+        imageViewCheckersBlack[2]=findViewById(R.id.imageBlackCh3);
+        imageViewCheckersBlack[3]=findViewById(R.id.imageBlackCh4);
+        imageViewCheckersBlack[4]=findViewById(R.id.imageBlackCh5);
+        imageViewCheckersBlack[5]=findViewById(R.id.imageBlackCh6);
+        imageViewCheckersBlack[6]=findViewById(R.id.imageBlackCh7);
+        imageViewCheckersBlack[7]=findViewById(R.id.imageBlackCh8);
+        imageViewCheckersBlack[8]=findViewById(R.id.imageBlackCh9);
+        imageViewCheckersBlack[9]=findViewById(R.id.imageBlackCh10);
+        imageViewCheckersBlack[10]=findViewById(R.id.imageBlackCh11);
+        imageViewCheckersBlack[11]=findViewById(R.id.imageBlackCh12);
+
+        System.out.println(imageViewCheckersBlack[1].getRight()+"1");
+        System.out.println(imageViewCheckersBlack[1].getLeft()+"2");
+        System.out.println(imageViewCheckersBlack[1].getTop()+"3");
+        System.out.println(imageViewCheckersBlack[1].getBottom()+"4");
+        System.out.println(imageViewCheckersBlack[1].getX()+"5");
+        System.out.println(imageViewCheckersBlack[1].getY()+"6");
+
+
+
+
+
+
+
+
+       /* ImageView touchView2 = findViewById(R.id.imageView2);
+
+
+
+        touchView2.layout(100, 100, 100+48, 100+48);
+
+        //placing at center of touch
+        int viewWidth = touchView2.getWidth();
+        int viewHeight = touchView2.getHeight();
+        viewWidth = viewWidth / 2;
+        viewHeight = viewHeight / 2;
+
+        touchView2.layout(100 - viewWidth, 100 - viewHeight, 100 + viewWidth, 100 + viewHeight);*/
+
+
+
+
+        /*ConstraintLayout constraintLayout = findViewById(R.id.ConstrainLayout1);
+
+
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+                (ConstraintLayout.LayoutParams.WRAP_CONTENT , ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        // установка внешних отступов
+        layoutParams.setMargins(200, 400, 60, 50);
+        // позиционирование в левом верхнем угду контейнера
+        // эквивалент app:layout_constraintLeft_toLeftOf="parent"
+        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        // эквивалент app:layout_constraintTop_toTopOf="parent"
+        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        // устанавливаем размеры
+        touchView2.setLayoutParams(layoutParams);*/
+        // установка внутренних отступов
+        //touchView2.setPadding(40,40,40,40);
+        // добавляем TextView в ConstraintLayout
+        //constraintLayout.addView(touchView2);
+        //setContentView(constraintLayout);
+
+
+
         for(int i=1;i<9;i++){
             for(int j=1;j<9;j++){
                 checkersPositions[i][j]=0;
             }
         }
+        //изначальное расположение белых пешек
         for(int i=6;i<9;i++){
             for(int j=1;j<5;j++){
                 checkersPositions[i][j]=1;
             }
         }
+        //изначальное расположение черных пешек
         for(int i=1;i<4;i++){
             for(int j=5;j<9;j++){
                 checkersPositions[i][j]=-1;
             }
         }
 
-        imageViewCheckersWhite[1][1]=findViewById(R.id.whiteCh11);
+        /*imageViewCheckersWhite[1][1]=findViewById(R.id.whiteCh11);
         imageViewCheckersWhite[1][2]=findViewById(R.id.whiteCh12);
         imageViewCheckersWhite[1][3]=findViewById(R.id.whiteCh13);
         imageViewCheckersWhite[1][4]=findViewById(R.id.whiteCh14);
@@ -178,24 +313,24 @@ public class MainActivity extends AppCompatActivity {
         imageViewCheckersBlack[8][5]=findViewById(R.id.blackCh85);
         imageViewCheckersBlack[8][6]=findViewById(R.id.blackCh86);
         imageViewCheckersBlack[8][7]=findViewById(R.id.blackCh87);
-        imageViewCheckersBlack[8][8]=findViewById(R.id.blackCh88);
+        imageViewCheckersBlack[8][8]=findViewById(R.id.blackCh88);*/
 
 
-        for(int i=1;i<9;i++){
+        /*for(int i=1;i<9;i++){
             for(int j=1;j<9;j++){
                 if(checkersPositions[i][j]==1){
                     imageViewCheckersWhite[i][j].setVisibility(View.VISIBLE);
                 }
             }
-        }
+        }*/
 
-        for(int i=1;i<9;i++){
+        /*for(int i=1;i<9;i++){
             for(int j=1;j<9;j++){
                 if(checkersPositions[i][j]==-1){
                     imageViewCheckersBlack[i][j].setVisibility(View.VISIBLE);
                 }
             }
-        }
+        }*/
         /*imageViewCheckersBlack[1][8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,5 +349,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
 }

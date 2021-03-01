@@ -1,7 +1,6 @@
 package com.nokhrin.corners;
 
 import android.graphics.Point;
-import android.view.View;
 
 public class GameMatrix {
     private static Point size;
@@ -16,6 +15,7 @@ public class GameMatrix {
     private static boolean playerMove;
     int choiceI = 0;
     int choiceJ = 0;
+    public static MoveForBot moveForBot = new MoveForBot();
 
     //add start position
     public void setSize(Point size) {
@@ -105,6 +105,7 @@ public class GameMatrix {
 
 
     public void moveAdd(int i, int j){
+
         right(i, j+1);
         left(i, j-1);
         top(i-1, j);
@@ -116,18 +117,18 @@ public class GameMatrix {
             if(checkersPositions[i][j] == 0){
                 possibleMoves[i][j] = 1;
                 if(j+2 < 9){
-                    if(checkersPositions[i][j+1] == 1){
-                        right(i,j+2);
+                    if(checkersPositions[i][j+1] != 0){
+                        right(i,j+1);
                     }
                 }
                 if(i-2 >0){
-                    if(checkersPositions[i-1][j] == 1){
-                        top(i-2, j);
+                    if(checkersPositions[i-1][j] != 0){
+                        top(i-1, j);
                     }
                 }
                 if(i+2 < 9){
-                    if(checkersPositions[i+1][j] == 1){
-                        bottom(i+2, j);
+                    if(checkersPositions[i+1][j] != 0){
+                        bottom(i+1, j);
                     }
                 }
             }else{
@@ -145,18 +146,18 @@ public class GameMatrix {
             if(checkersPositions[i][j] == 0){
                 possibleMoves[i][j] = 1;
                 if(j-2 > 0){
-                    if(checkersPositions[i][j-1] == 1){
-                        left(i, j-2);
+                    if(checkersPositions[i][j-1] != 0){
+                        left(i, j-1);
                     }
                 }
                 if(i-2 >0){
-                    if(checkersPositions[i-1][j] == 1){
-                        top(i-2, j);
+                    if(checkersPositions[i-1][j] != 0){
+                        top(i-1, j);
                     }
                 }
                 if(i+2 < 9){
-                    if(checkersPositions[i+1][j] == 1){
-                        bottom(i+2, j);
+                    if(checkersPositions[i+1][j] != 0){
+                        bottom(i+1, j);
                     }
                 }
             }else{
@@ -174,18 +175,18 @@ public class GameMatrix {
             if(checkersPositions[i][j] == 0){
                 possibleMoves[i][j] = 1;
                 if(i-2 >0){
-                    if(checkersPositions[i-1][j] == 1){
-                        top(i-2, j);
+                    if(checkersPositions[i-1][j] != 0){
+                        top(i-1, j);
                     }
                 }
                 if(j-2 > 0){
-                    if(checkersPositions[i][j-1] == 1){
-                        left(i, j-2);
+                    if(checkersPositions[i][j-1] != 0){
+                        left(i, j-1);
                     }
                 }
                 if(j+2 < 9){
-                    if(checkersPositions[i][j+1] == 1){
-                        right(i,j+2);
+                    if(checkersPositions[i][j+1] != 0){
+                        right(i,j+1);
                     }
                 }
             }else{
@@ -203,18 +204,18 @@ public class GameMatrix {
             if(checkersPositions[i][j] == 0){
                 possibleMoves[i][j] = 1;
                 if(i+2 < 9){
-                    if(checkersPositions[i+1][j] == 1){
-                        bottom(i+2, j);
+                    if(checkersPositions[i+1][j] != 0){
+                        bottom(i+1, j);
                     }
                 }
                 if(j-2 > 0){
-                    if(checkersPositions[i][j-1] == 1){
-                        left(i, j-2);
+                    if(checkersPositions[i][j-1] != 0){
+                        left(i, j-1);
                     }
                 }
                 if(j+2 < 9){
-                    if(checkersPositions[i][j+1] == 1){
-                        right(i,j+2);
+                    if(checkersPositions[i][j+1] != 0){
+                        right(i,j+1);
                     }
                 }
             }else{
@@ -231,22 +232,47 @@ public class GameMatrix {
     public static class BotThread extends Thread{
         @Override
         public void run() {
+
+
+            moveForBot.setPositions(checkersPositions);
+
             try {
-                sleep(500);
+                sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(checkersPositions[1][5] == -1){
+
+
+            int result[] = moveForBot.getResult();
+            int newPos[][] = moveForBot.getPositionsToMove();
+
+            for(int i=1;i<9;i++){
+                for(int j=1;j<9;j++){
+                    checkersPositions[i][j] = newPos[i][j];
+                }
+            }
+
+            /*checkersPositions[result[0]][result[1]]=0;
+            checkersPositions[result[2]][result[3]]=-1;*/
+
+
+
+
+            /*if(checkersPositions[1][5] == -1){
                 checkersPositions[1][4] = -1;
                 checkersPositions[1][5] = 0;
             }else{
                 checkersPositions[1][4] = 0;
                 checkersPositions[1][5] = -1;
-            }
+            }*/
             playerMove = true;
             MainActivity.drawField();
         }
     }
+
+
+
+
 
 
 

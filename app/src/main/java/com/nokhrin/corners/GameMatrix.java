@@ -12,7 +12,7 @@ public class GameMatrix {
     private static int touchX;
     private static int touchY;
     private static int[][] possibleMoves = new int[9][9];
-    private static boolean playerMove;
+    public static boolean playerMove;
     int choiceI = 0;
     int choiceJ = 0;
     public static MoveForBot moveForBot = new MoveForBot();
@@ -237,13 +237,14 @@ public class GameMatrix {
             moveForBot.setPositions(checkersPositions);
 
             try {
-                sleep(300);
+                sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
 
-            int result[] = moveForBot.getResult();
+
+
             int newPos[][] = moveForBot.getPositionsToMove();
 
             for(int i=1;i<9;i++){
@@ -252,8 +253,7 @@ public class GameMatrix {
                 }
             }
 
-            /*checkersPositions[result[0]][result[1]]=0;
-            checkersPositions[result[2]][result[3]]=-1;*/
+
 
 
 
@@ -265,6 +265,7 @@ public class GameMatrix {
                 checkersPositions[1][4] = 0;
                 checkersPositions[1][5] = -1;
             }*/
+
             playerMove = true;
             MainActivity.drawField();
         }

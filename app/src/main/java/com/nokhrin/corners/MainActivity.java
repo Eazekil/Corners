@@ -12,8 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
-    private static  int countBlackCheckers=12;
-    private static  int countWhiteCheckers=12;
+    public static int countBlackCheckers=12;
+    public static int countWhiteCheckers=12;
+    public static int sizeOfField = 9;
     private static ImageView[] imageViewCheckersWhite = new ImageView[countWhiteCheckers];
     private static ImageView[] imageViewCheckersBlack = new ImageView[countBlackCheckers];
     private static Button buttonStart;
@@ -33,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         checkMark.setVisibility(View.INVISIBLE);
 
 
-        for(int i=1;i<9;i++){
-            for(int j=1;j<9;j++){
+        for(int i=1;i<sizeOfField;i++){
+            for(int j=1;j<sizeOfField;j++){
 
                 //draw black checkers
                 if(GameMatrix.checkersPositions[i][j]==-1){

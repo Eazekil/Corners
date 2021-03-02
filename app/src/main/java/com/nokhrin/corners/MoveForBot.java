@@ -18,7 +18,6 @@ public class MoveForBot {
     //start here
     public static void setPositions() {
 
-
         //find positions all black checkers
         for(int i=1;i<sizeOfField;i++){
             for(int j=1;j<sizeOfField;j++){
@@ -28,7 +27,7 @@ public class MoveForBot {
             }
         }
 
-        //upgrade positions before bot go move
+        //upgrade positions after bot go move
         for(int i=1;i<sizeOfField;i++){
             for(int j=1;j<sizeOfField;j++){
                 checkersPositions[i][j] = endPositions[i][j];
@@ -54,9 +53,6 @@ public class MoveForBot {
         jumpLeft(i,j);
         jumpBottom(i,j);
         jumpTop(i,j);
-
-
-
 
     }
 

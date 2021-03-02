@@ -1,32 +1,22 @@
 package com.nokhrin.corners;
 
-import android.graphics.Point;
+import static com.nokhrin.corners.DrawField.drawField;
 import static com.nokhrin.corners.MainActivity.sizeOfField;
+import static com.nokhrin.corners.MainActivity.touchI;
+import static com.nokhrin.corners.MainActivity.touchJ;
 import static com.nokhrin.corners.MoveForBot.setPositions;
+import static com.nokhrin.corners.PossibleMoves.possibleMoves;
 
 
 public class GameMatrix {
-    private static Point size;
-    public static  int widthDisplay=0;
-    public static int heightDisplay=0;
-    public static int stepOnField; // step on chess field and size of checkers
-    public static int top; //indent of thr top of the display
-    public static int[][] checkersPositions = new int[sizeOfField][sizeOfField];
-    private static int touchX;
-    private static int touchY;
-    private static int[][] possibleMoves = new int[sizeOfField][sizeOfField];
-    public static boolean playerMove;
-    int choiceI = 0;
-    int choiceJ = 0;
-    //public static MoveForBot moveForBot = new MoveForBot();
+    public static int[][] checkersPositions = new int[sizeOfField][sizeOfField];//positions all checkers on field
+    public static boolean playerMove;//can player to move
+    public static int choiceI = 0;//coordinate I of player's chosen checker
+    public static int choiceJ = 0;//coordinate J of player's chosen checker
 
-    //add start position
-    public void setSize(Point size) {
-        this.size = size;
-        widthDisplay = size.x;
-        heightDisplay = size.y;
-        stepOnField = (widthDisplay)/8;
-        top=heightDisplay/20;
+
+    //add checkers on a start positions
+    public static void startPositions() {
 
         //added checkers position like 0
         for(int i=1;i<sizeOfField;i++){
@@ -35,208 +25,93 @@ public class GameMatrix {
             }
         }
 
-        //start white checkers position
+        //start white(1) checkers position
         for(int i=6;i<sizeOfField;i++){
             for(int j=1;j<5;j++){
                 checkersPositions[i][j]=1;
             }
         }
 
-        //start black checkers position
+        //start black(-1) checkers position
         for(int i=1;i<4;i++){
             for(int j=5;j<sizeOfField;j++){
                 checkersPositions[i][j]=-1;
             }
         }
+
+        //player can move
         playerMove = true;
+
     }
 
 
-    public  void setTouch(int touchX, int touchY) {
-        this.touchX = touchX;
-        this.touchY = touchY;
-        int touchI = touchY/stepOnField+1;
-        int touchJ = touchX/stepOnField+1;
+    //start move on the field
+    public static void touchOnField() {
 
+        //check can player move
         if(playerMove){
 
-            //check can a move
+            //check player choice checker
             if(choiceI != 0 && choiceJ != 0){
 
+                //check player update chosen checker
                 if(checkersPositions[touchI][touchJ] == 1){
-                    checkersPositions[touchI][touchJ] = 2;//choice checker
+
+                    //update chosen checker
+                    checkersPositions[touchI][touchJ] = 2;
+
+                    //update old chosen
                     checkersPositions[choiceI][choiceJ] = 1;
+
+                    //update chosen coordinate
                     choiceI = touchI;
                     choiceJ = touchJ;
-                    for(int i=1;i<9;i++) {
-                        for (int j = 1; j < 9; j++) {
-                            possibleMoves[i][j] = 0;
-                        }
-                    }
-                    moveAdd(choiceI, choiceJ);
                 }
 
-                if(possibleMoves[touchI][touchJ] == 1){
+                //check can move on touch coordinate
+                if(possibleMoves(touchI,touchJ)){
+
+                    //update checkers positions on field
                     checkersPositions[touchI][touchJ] = 1;
                     checkersPositions[choiceI][choiceJ] = 0;
+
+                    //clear chosen coordinate
                     choiceI = 0;
                     choiceJ = 0;
-                    for(int i=1;i<9;i++) {
-                        for (int j = 1; j < 9; j++) {
-                            possibleMoves[i][j] = 0;
-                        }
-                    }
+
+                    //mark player can not move
                     playerMove = false;
 
+                    //bot start move
                     new BotThread().start();
 
                 }
 
+
             }else if(checkersPositions[touchI][touchJ] == 1){
-                checkersPositions[touchI][touchJ] = 2;//choice checker
+
+                //mark chosen checker
+                checkersPositions[touchI][touchJ] = 2;
+
+                //update chosen coordinate
                 choiceI = touchI;
                 choiceJ = touchJ;
-                moveAdd(choiceI, choiceJ);
+
             }
 
-            MainActivity.drawField();
-            //MainActivity.checkMark.setVisibility(View.INVISIBLE);
-            /*System.out.println("touchX = "+touchX+"   touchY = "+touchY+"   step = "+stepOnField);
-            System.out.println("my j = "+touchJ+"    i = "+touchI);*/
+            //update draw field
+            drawField();
+
         }
     }
 
 
-    public void moveAdd(int i, int j){
-
-        right(i, j+1);
-        left(i, j-1);
-        top(i-1, j);
-        bottom(i+1,j);
-    }
-
-    public void right(int i, int j){
-        if(j<sizeOfField){
-            if(checkersPositions[i][j] == 0){
-                possibleMoves[i][j] = 1;
-                if(j+2 < sizeOfField){
-                    if(checkersPositions[i][j+1] != 0){
-                        right(i,j+1);
-                    }
-                }
-                if(i-2 >0){
-                    if(checkersPositions[i-1][j] != 0){
-                        top(i-1, j);
-                    }
-                }
-                if(i+2 < sizeOfField){
-                    if(checkersPositions[i+1][j] != 0){
-                        bottom(i+1, j);
-                    }
-                }
-            }else{
-                if(j+1 < sizeOfField){
-                    if(checkersPositions[i][j+1] == 0){
-                        right(i,j+1);
-                    }
-                }
-            }
-        }
-    }
-
-    public void left(int i, int j){
-        if(j>0){
-            if(checkersPositions[i][j] == 0){
-                possibleMoves[i][j] = 1;
-                if(j-2 > 0){
-                    if(checkersPositions[i][j-1] != 0){
-                        left(i, j-1);
-                    }
-                }
-                if(i-2 >0){
-                    if(checkersPositions[i-1][j] != 0){
-                        top(i-1, j);
-                    }
-                }
-                if(i+2 < sizeOfField){
-                    if(checkersPositions[i+1][j] != 0){
-                        bottom(i+1, j);
-                    }
-                }
-            }else{
-                if(j-1 > 0){
-                    if(checkersPositions[i][j-1] == 0){
-                        left(i, j-1);
-                    }
-                }
-            }
-        }
-    }
-
-    public void top(int i, int j){
-        if(i>0){
-            if(checkersPositions[i][j] == 0){
-                possibleMoves[i][j] = 1;
-                if(i-2 >0){
-                    if(checkersPositions[i-1][j] != 0){
-                        top(i-1, j);
-                    }
-                }
-                if(j-2 > 0){
-                    if(checkersPositions[i][j-1] != 0){
-                        left(i, j-1);
-                    }
-                }
-                if(j+2 < sizeOfField){
-                    if(checkersPositions[i][j+1] != 0){
-                        right(i,j+1);
-                    }
-                }
-            }else{
-                if(i-1 > 0){
-                    if(checkersPositions[i-1][j] == 0){
-                        top(i-1, j);
-                    }
-                }
-            }
-        }
-    }
-
-    public void bottom(int i, int j){
-        if(i<sizeOfField){
-            if(checkersPositions[i][j] == 0){
-                possibleMoves[i][j] = 1;
-                if(i+2 < sizeOfField){
-                    if(checkersPositions[i+1][j] != 0){
-                        bottom(i+1, j);
-                    }
-                }
-                if(j-2 > 0){
-                    if(checkersPositions[i][j-1] != 0){
-                        left(i, j-1);
-                    }
-                }
-                if(j+2 < sizeOfField){
-                    if(checkersPositions[i][j+1] != 0){
-                        right(i,j+1);
-                    }
-                }
-            }else{
-                if(i+1 < sizeOfField){
-                    if(checkersPositions[i+1][j] == 0){
-                        bottom(i+1,j);
-                    }
-                }
-            }
-        }
-    }
-
-
+    //bot start move
     public static class BotThread extends Thread{
         @Override
         public void run() {
 
-            //start find best move for bot
+            //find best move for bot
             setPositions();
 
             //create game pause
@@ -246,26 +121,11 @@ public class GameMatrix {
                 e.printStackTrace();
             }
 
-
-
-
-
-            /*//update positions with new move
-            EvaluationFunction.addResultPositions();*/
-
-            /*if(checkersPositions[1][5] == -1){
-                checkersPositions[1][4] = -1;
-                checkersPositions[1][5] = 0;
-            }else{
-                checkersPositions[1][4] = 0;
-                checkersPositions[1][5] = -1;
-            }*/
-
             //player can move
             playerMove = true;
 
             //draw field
-            MainActivity.drawField();
+            drawField();
         }
     }
 

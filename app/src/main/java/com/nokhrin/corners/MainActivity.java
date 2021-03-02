@@ -11,72 +11,27 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static com.nokhrin.corners.DrawField.drawField;
+import static com.nokhrin.corners.GameMatrix.startPositions;
+import static com.nokhrin.corners.GameMatrix.touchOnField;
+
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
     public static int countBlackCheckers=12;
     public static int countWhiteCheckers=12;
     public static int sizeOfField = 9;
-    private static ImageView[] imageViewCheckersWhite = new ImageView[countWhiteCheckers];
-    private static ImageView[] imageViewCheckersBlack = new ImageView[countBlackCheckers];
-    private static Button buttonStart;
-    private static ImageView chessField;
+    public static ImageView[] imageViewCheckersWhite = new ImageView[countWhiteCheckers];
+    public static ImageView[] imageViewCheckersBlack = new ImageView[countBlackCheckers];
+    Button buttonStart;
+    public static ImageView chessField;
     public static ImageView checkMark;
-    private static TextView textForTest;
-
-
-    GameMatrix gameMatrix = new GameMatrix();
-
-    //Отображает пешки согласно двумерному массиву checkersPositions
-    //0 = пешки отсутствуют    1 = белые пешки    -1 = черные пешки
-    public static void drawField(){
-        int numberBlackCheckers=countBlackCheckers-1;
-        int numberWhiteCheckers=countWhiteCheckers-1;
-        chessField.layout(0,GameMatrix.top,GameMatrix.widthDisplay,GameMatrix.widthDisplay+GameMatrix.top);
-        checkMark.setVisibility(View.INVISIBLE);
-
-
-        for(int i=1;i<sizeOfField;i++){
-            for(int j=1;j<sizeOfField;j++){
-
-                //draw black checkers
-                if(GameMatrix.checkersPositions[i][j]==-1){
-                    imageViewCheckersBlack[numberBlackCheckers].layout((j-1)*GameMatrix.stepOnField,
-                            (i-1)*GameMatrix.stepOnField+GameMatrix.top,
-                            (j-1)*GameMatrix.stepOnField+GameMatrix.stepOnField,
-                            (i-1)*GameMatrix.stepOnField+GameMatrix.top+GameMatrix.stepOnField);
-                    imageViewCheckersBlack[numberBlackCheckers].setVisibility(View.VISIBLE);
-                    numberBlackCheckers--;
-                }
-
-                //draw white checkers
-                if(GameMatrix.checkersPositions[i][j]==1){
-                    imageViewCheckersWhite[numberWhiteCheckers].layout((j-1)*GameMatrix.stepOnField,
-                            (i-1)*GameMatrix.stepOnField+GameMatrix.top,
-                            (j-1)*GameMatrix.stepOnField+GameMatrix.stepOnField,
-                            (i-1)*GameMatrix.stepOnField+GameMatrix.top+GameMatrix.stepOnField);
-                    imageViewCheckersWhite[numberWhiteCheckers].setVisibility(View.VISIBLE);
-                    numberWhiteCheckers--;
-                }
-
-                //draw white check
-                //draw check mark on checker
-                if(GameMatrix.checkersPositions[i][j]==2){
-                    imageViewCheckersWhite[numberWhiteCheckers].layout((j-1)*GameMatrix.stepOnField,
-                            (i-1)*GameMatrix.stepOnField+GameMatrix.top,
-                            (j-1)*GameMatrix.stepOnField+GameMatrix.stepOnField,
-                            (i-1)*GameMatrix.stepOnField+GameMatrix.top+GameMatrix.stepOnField);
-                    imageViewCheckersWhite[numberWhiteCheckers].setVisibility(View.VISIBLE);
-                    numberWhiteCheckers--;
-
-                    checkMark.layout((j-1)*GameMatrix.stepOnField,
-                            (i-1)*GameMatrix.stepOnField+GameMatrix.top,
-                            (j-1)*GameMatrix.stepOnField+GameMatrix.stepOnField,
-                            (i-1)*GameMatrix.stepOnField+GameMatrix.top+GameMatrix.stepOnField);
-                    checkMark.setVisibility(View.VISIBLE);
-                }
-
-            }
-        }
-    }
+    TextView textForTest;
+    public static  int widthDisplay;
+    public static int heightDisplay;
+    public static int stepOnField; // step on chess field and size of checkers
+    public static int indentTop; //indent of the top of the display
+    int partValueOfDisplay = 20; //for indent
+    public static int touchI;//coordinates of touch on chess field
+    public static int touchJ;//coordinates of touch on chess field
 
 
     @Override
@@ -84,26 +39,37 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //find all element and save in variables
         chessField = findViewById(R.id.chessField);
         checkMark = findViewById(R.id.checkMark);
         buttonStart=findViewById(R.id.buttonStart);
         textForTest=findViewById(R.id.textForTest);
 
+        //button start game
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //add checkers on a start positions
+                startPositions();
+
                 drawField();
                 chessField.setVisibility(View.VISIBLE);
             }
         });
 
+        //read touch on field
         chessField.setOnTouchListener(this);
 
         //discover size of the display
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        gameMatrix.setSize(size);
+        widthDisplay = size.x;
+        heightDisplay = size.y;
+        stepOnField = (widthDisplay)/(sizeOfField-1);
+        indentTop =heightDisplay/partValueOfDisplay;
+
 
         //added black checkers
         imageViewCheckersBlack[0]=findViewById(R.id.imageBlackCh1);
@@ -138,8 +104,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        gameMatrix.setTouch((int) event.getX(), (int) event.getY());
-        //drawField();
+
+        //get coordinates of touch
+        int touchX = (int) event.getX();
+        int touchY = (int) event.getY();
+
+        //convert coordinates X,Y in step on chess field
+        touchI = touchY/stepOnField+1;
+        touchJ = touchX/stepOnField+1;
+
+        //start move on the field
+        touchOnField();
+
         return false;
     }
 }

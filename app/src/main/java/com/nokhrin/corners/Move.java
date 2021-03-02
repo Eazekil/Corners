@@ -1,6 +1,5 @@
 package com.nokhrin.corners;
 
-import java.util.ArrayList;
 
 import static com.nokhrin.corners.EvaluationFunction.setNewPositions;
 import static com.nokhrin.corners.MainActivity.sizeOfField;
@@ -148,9 +147,5 @@ public class Move {
         }
         return result;
     }
-
-
-
-
 
 }

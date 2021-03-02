@@ -1,8 +1,8 @@
 package com.nokhrin.corners;
 
 import android.graphics.Point;
-
 import static com.nokhrin.corners.MainActivity.sizeOfField;
+import static com.nokhrin.corners.MoveForBot.setPositions;
 
 
 public class GameMatrix {
@@ -18,7 +18,7 @@ public class GameMatrix {
     public static boolean playerMove;
     int choiceI = 0;
     int choiceJ = 0;
-    public static MoveForBot moveForBot = new MoveForBot();
+    //public static MoveForBot moveForBot = new MoveForBot();
 
     //add start position
     public void setSize(Point size) {
@@ -87,7 +87,7 @@ public class GameMatrix {
                         }
                     }
                     playerMove = false;
-                    //botMove();
+
                     new BotThread().start();
 
                 }
@@ -237,17 +237,21 @@ public class GameMatrix {
         public void run() {
 
             //start find best move for bot
-            moveForBot.setPositions(checkersPositions);
+            setPositions();
 
             //create game pause
             try {
-                sleep(500);
+                sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            //update positions with new move
-            EvaluationFunction.addResultPositions();
+
+
+
+
+            /*//update positions with new move
+            EvaluationFunction.addResultPositions();*/
 
             /*if(checkersPositions[1][5] == -1){
                 checkersPositions[1][4] = -1;

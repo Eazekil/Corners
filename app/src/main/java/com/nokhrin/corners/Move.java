@@ -1,96 +1,87 @@
 package com.nokhrin.corners;
 
+import java.util.ArrayList;
+
+import static com.nokhrin.corners.EvaluationFunction.setNewPositions;
 import static com.nokhrin.corners.MainActivity.sizeOfField;
+import static com.nokhrin.corners.GameMatrix.checkersPositions;
 
 public class Move {
-    private int currentI;
-    private int currentJ;
-    private int currentPositions[][] = new int [sizeOfField][sizeOfField];
-    public static EvaluationFunction evaluationFunction = new EvaluationFunction();
-    int count=1;
+    private static int currentI = -1;
+    private static int currentJ = -1;
 
-    public void setCurrentPositions(int[][] setCurrentPositions) {
-        for(int i=1;i<sizeOfField;i++){
-            for(int j=1;j<sizeOfField;j++){
-                currentPositions[i][j] = setCurrentPositions[i][j];
-            }
-        }
+
+    public static void setCurrentIJ(int setCurrentI, int setCurrentJ) {
+        currentI = setCurrentI;
+        currentJ = setCurrentJ;
     }
-
-    public void setCurrentIJ(int currentI, int currentJ) {
-        this.currentI = currentI;
-        this.currentJ = currentJ;
-    }
-
-
 
     //can step on right
-    public boolean stepRight(int i, int j){
+    public static boolean stepRight(int i, int j){
 
         boolean result = false;
         if(j+1 < sizeOfField){
-            if(currentPositions[i][j+1] == 0){
+            if(checkersPositions[i][j+1] == 0){
                 result = true;
 
                 //calculate evaluation function for this position
-                evaluationFunction.setNewPositions(currentPositions, currentI, currentJ, currentI, currentJ +1);
+                setNewPositions(currentI, currentJ, i, j +1);
             }
         }
         return result;
     }
 
     //can step on left
-    public boolean stepLeft(int i, int j){
+    public static boolean stepLeft(int i, int j){
         boolean result = false;
         if(j-1 > 0){
-            if(currentPositions[i][j-1] == 0){
-                count++;
+            if(checkersPositions[i][j-1] == 0){
                 result = true;
 
                 //calculate evaluation function for this position
-                evaluationFunction.setNewPositions(currentPositions, currentI, currentJ, currentI, currentJ -1);
+                setNewPositions(currentI, currentJ, i, j -1);
             }
         }
         return result;
     }
 
     //can step on bottom
-    public boolean stepBottom(int i, int j){
+    public static boolean stepBottom(int i, int j){
         boolean result = false;
         if(i+1 < sizeOfField){
-            if(currentPositions[i+1][j] == 0){
+            if(checkersPositions[i+1][j] == 0){
                 result = true;
 
                 //calculate evaluation function for this position
-                evaluationFunction.setNewPositions(currentPositions, currentI, currentJ, currentI + 1, currentJ);
+                setNewPositions(currentI, currentJ, i + 1, j);
             }
         }
         return result;
     }
 
     //can step on top
-    public boolean stepTop(int i, int j){
+    public static boolean stepTop(int i, int j){
         boolean result = false;
         if(i-1 > 0){
-            if(currentPositions[i-1][j] == 0){
+            if(checkersPositions[i-1][j] == 0){
                 result = true;
 
                 //calculate evaluation function for this position
-                evaluationFunction.setNewPositions(currentPositions, currentI, currentJ, currentI - 1, currentJ);
+                setNewPositions(currentI, currentJ, i - 1, j);
             }
         }
         return result;
     }
 
     //can two step on right
-    public boolean jumpRight(int i, int j){
+    public static boolean jumpRight(int i, int j){
         boolean result = false;
         if(j+2 < sizeOfField){
-            if(currentPositions[i][j+1] != 0 && currentPositions[i][j+2] == 0){
+            if(checkersPositions[i][j+1] != 0 && checkersPositions[i][j+2] == 0){
                 result = true;
 
                 //calculate evaluation function for this position
-                evaluationFunction.setNewPositions(currentPositions, currentI, currentJ, currentI, currentJ + 2);
+                setNewPositions(currentI, currentJ, i, j + 2);
 
                 //can jump more
                 jumpRight(i,j+2);
@@ -102,14 +93,14 @@ public class Move {
     }
 
     //can two step on left
-    public boolean jumpLeft(int i, int j){
+    public static boolean jumpLeft(int i, int j){
         boolean result = false;
         if(j-2 > 0){
-            if(currentPositions[i][j-1] != 0 && currentPositions[i][j-2] == 0){
+            if(checkersPositions[i][j-1] != 0 && checkersPositions[i][j-2] == 0){
                 result = true;
 
                 //calculate evaluation function for this position
-                evaluationFunction.setNewPositions(currentPositions, currentI, currentJ, currentI, currentJ - 2);
+                setNewPositions(currentI, currentJ, i, j - 2);
 
                 //can jump more
                 jumpLeft(i,j-2);
@@ -121,14 +112,14 @@ public class Move {
     }
 
     //can two step on bottom
-    public boolean jumpBottom(int i, int j){
+    public static boolean jumpBottom(int i, int j){
         boolean result = false;
         if(i+2 < sizeOfField){
-            if(currentPositions[i+1][j] != 0 && currentPositions[i+2][j] == 0){
+            if(checkersPositions[i+1][j] != 0 && checkersPositions[i+2][j] == 0){
                 result = true;
 
                 //calculate evaluation function for this position
-                evaluationFunction.setNewPositions(currentPositions, currentI, currentJ, currentI + 2, currentJ);
+                setNewPositions(currentI, currentJ, i + 2, j);
 
                 //can jump more
                 jumpBottom(i+2, j);
@@ -140,14 +131,14 @@ public class Move {
     }
 
     //can two step on top
-    public boolean jumpTop(int i, int j){
+    public static boolean jumpTop(int i, int j){
         boolean result = false;
         if(i-2 > 0){
-            if(currentPositions[i-1][j] != 0 && currentPositions[i-2][j] == 0){
+            if(checkersPositions[i-1][j] != 0 && checkersPositions[i-2][j] == 0){
                 result = true;
 
                 //calculate evaluation function for this position
-                evaluationFunction.setNewPositions(currentPositions, currentI, currentJ, currentI - 2, currentJ);
+                setNewPositions(currentI, currentJ, i - 2, j);
 
                 //can jump more
                 jumpTop(i-2,j);

@@ -1,23 +1,37 @@
 package com.nokhrin.corners;
 
+import static com.nokhrin.corners.EvaluationFunction.endPositions;
+import static com.nokhrin.corners.MainActivity.sizeOfField;
+import static com.nokhrin.corners.GameMatrix.checkersPositions;
+import static com.nokhrin.corners.Move.jumpBottom;
+import static com.nokhrin.corners.Move.jumpLeft;
+import static com.nokhrin.corners.Move.jumpRight;
+import static com.nokhrin.corners.Move.jumpTop;
+import static com.nokhrin.corners.Move.setCurrentIJ;
+import static com.nokhrin.corners.Move.stepBottom;
+import static com.nokhrin.corners.Move.stepLeft;
+import static com.nokhrin.corners.Move.stepRight;
+import static com.nokhrin.corners.Move.stepTop;
+
 public class MoveForBot {
-    private int positionsForBot[][];
-    private Move move = new Move();
-    int count=1;
 
     //start here
-    public void setPositions(int[][] positions) {
-        this.positionsForBot = positions;
+    public static void setPositions() {
 
-        //add positions for class Move
-        move.setCurrentPositions(positionsForBot);
 
         //find positions all black checkers
-        for(int i=1;i<9;i++){
-            for(int j=1;j<9;j++){
-                if(positionsForBot[i][j] == -1){
-                    moveAdd(i,j);
+        for(int i=1;i<sizeOfField;i++){
+            for(int j=1;j<sizeOfField;j++){
+                if(checkersPositions[i][j] == -1){
+                    moveSteps(i,j);
                 }
+            }
+        }
+
+        //upgrade positions before bot go move
+        for(int i=1;i<sizeOfField;i++){
+            for(int j=1;j<sizeOfField;j++){
+                checkersPositions[i][j] = endPositions[i][j];
             }
         }
 
@@ -25,21 +39,25 @@ public class MoveForBot {
 
 
     //find all move for this checker
-    public void moveAdd(int i, int j){
+    public static void moveSteps(int i, int j){
 
         //add choice checker
-        move.setCurrentIJ(i,j);
+        setCurrentIJ(i,j);
 
         //find all move for choice checker
-        move.stepRight(i,j);
-        move.stepLeft(i,j);
-        move.stepBottom(i,j);
-        move.stepTop(i,j);
+        stepRight(i,j);
+        stepLeft(i,j);
+        stepBottom(i,j);
+        stepTop(i,j);
 
-        move.jumpRight(i,j);
-        move.jumpLeft(i,j);
-        move.jumpBottom(i,j);
-        move.jumpTop(i,j);
+        jumpRight(i,j);
+        jumpLeft(i,j);
+        jumpBottom(i,j);
+        jumpTop(i,j);
+
+
+
+
     }
 
 }

@@ -1,18 +1,18 @@
 package com.nokhrin.corners;
 
-import static com.nokhrin.corners.GameMatrix.checkersPositions;
 import static com.nokhrin.corners.MainActivity.sizeOfField;
+import static com.nokhrin.corners.GameMatrix.checkersPositions;
 
 public class EvaluationFunction {
-    private int resultOfFunction = 0;
-    private int minOfFunction = 999;
-    private static int endPositions[][] = new int [sizeOfField][sizeOfField];
+    public static int resultOfFunction = 0;
+    private static int minOfFunction = 999;
+    public static int endPositions[][] = new int [sizeOfField][sizeOfField];
     private static int newPositions[][] = new int [sizeOfField][sizeOfField];
 
-    public void setNewPositions(int[][] oldPositions, int currentI, int currentJ, int newI, int newJ) {
+    public static void setNewPositions( int currentI, int currentJ, int newI, int newJ) {
         for(int i=1;i<sizeOfField;i++){
             for(int j=1;j<sizeOfField;j++){
-                newPositions[i][j] = oldPositions[i][j];
+                newPositions[i][j] = checkersPositions[i][j];
             }
         }
 
@@ -22,14 +22,15 @@ public class EvaluationFunction {
         newPositions[currentI][currentJ] = 0;
 
 
-        /*//add start value
-        resultOfFunction = 0;
-        minOfFunction = 999;*/
+
+
 
         //find all black checkers
+        resultOfFunction = 0;
         for(int i=1;i<sizeOfField;i++){
             for(int j=1;j<sizeOfField;j++){
                 if(newPositions[i][j] == -1){
+
                     //sum of length to point(8,1)
                     resultOfFunction = resultOfFunction + Math.abs(8-i)+Math.abs(1-j);
                 }
@@ -37,9 +38,19 @@ public class EvaluationFunction {
         }
 
 
+
+
         //find minimum of evaluation function
         if(resultOfFunction < minOfFunction){
             minOfFunction = resultOfFunction;
+
+            for(int i=1;i<sizeOfField;i++){
+                System.out.println();
+                for(int j=1;j<sizeOfField;j++){
+                    System.out.print(newPositions[i][j]+"   ");
+                }
+            }
+            System.out.println("_______ resultOfFunction = "+ resultOfFunction);
 
             //save result positions in endPositions
             for(int i=1;i<sizeOfField;i++){
@@ -49,16 +60,6 @@ public class EvaluationFunction {
             }
         }
 
-    }
-
-    public static void addResultPositions(){
-        for(int i=1;i<sizeOfField;i++){
-            System.out.println();
-            for(int j=1;j<sizeOfField;j++){
-                System.out.print(endPositions[i][j]+"   ");
-                checkersPositions[i][j] = endPositions[i][j];
-            }
-        }
     }
 
 

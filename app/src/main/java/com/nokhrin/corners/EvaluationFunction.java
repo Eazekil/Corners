@@ -5,11 +5,11 @@ import static com.nokhrin.corners.GameMatrix.checkersPositions;
 
 public class EvaluationFunction {
     public static int resultOfFunction = 0;
-    private static int minOfFunction = 999;
+    public static int minOfFunction = 999;
     public static int[][] endPositions = new int [sizeOfField][sizeOfField];
-    private static int[][] newPositions = new int [sizeOfField][sizeOfField];
-    public static int targetPositionI = 8;//
-    public static int targetPositionJ = 1;
+    private static  int[][] newPositions = new int [sizeOfField][sizeOfField];
+    public static int targetPositionI = 8;//target position I
+    public static int targetPositionJ = 1;//target position J
 
     public static void setNewPositions( int currentI, int currentJ, int newI, int newJ) {
         for(int i=1;i<sizeOfField;i++){
@@ -29,11 +29,14 @@ public class EvaluationFunction {
             for(int j=1;j<sizeOfField;j++){
                 if(newPositions[i][j] == -1){
 
-                    //sum of length to point(8,1)
+                    //sum of length to target position
                     resultOfFunction = resultOfFunction + Math.abs(targetPositionI-i)+Math.abs(targetPositionJ-j);
                 }
             }
         }
+
+        System.out.println("EvaluationFunction_______"+resultOfFunction);
+        System.out.println("minOfFunction_____________________"+minOfFunction);
 
 
         //find minimum of evaluation function
@@ -48,13 +51,17 @@ public class EvaluationFunction {
             }
 
 
-              for(int i=1;i<sizeOfField;i++){
+            for(int i=1;i<sizeOfField;i++){
                 System.out.println();
                 for(int j=1;j<sizeOfField;j++){
                     System.out.print(newPositions[i][j]+"   ");
                 }
             }
-            System.out.println("_______ resultOfFunction = "+ resultOfFunction);
+            System.out.println("_______ resultOfFunction = "+ resultOfFunction+"   targetPositionI and J = "+targetPositionI+","+targetPositionJ);
+        }
+
+        if(endPositions[targetPositionI][targetPositionJ] == -1){
+
         }
 
     }

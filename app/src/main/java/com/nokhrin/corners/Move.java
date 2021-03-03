@@ -8,7 +8,7 @@ import static com.nokhrin.corners.GameMatrix.checkersPositions;
 public class Move {
     private static int currentI = -1;
     private static int currentJ = -1;
-    private static boolean[][] lastPositions = new boolean[9][9];
+    private static  boolean[][] lastPositions = new boolean[9][9];
 
 
     public static void setCurrentIJ(int setCurrentI, int setCurrentJ) {

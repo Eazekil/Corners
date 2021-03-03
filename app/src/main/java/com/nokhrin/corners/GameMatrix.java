@@ -6,6 +6,7 @@ import static com.nokhrin.corners.MainActivity.touchI;
 import static com.nokhrin.corners.MainActivity.touchJ;
 import static com.nokhrin.corners.MoveForBot.setPositions;
 import static com.nokhrin.corners.PossibleMoves.possibleMoves;
+import static com.nokhrin.corners.PossibleMoves.possibleStep;
 
 
 public class GameMatrix {
@@ -13,7 +14,6 @@ public class GameMatrix {
     public static boolean playerMove;//can player to move
     public static int choiceI = 0;//coordinate I of player's chosen checker
     public static int choiceJ = 0;//coordinate J of player's chosen checker
-    //private static BotThread botThread = new BotThread();
 
 
     //add checkers on a start positions
@@ -67,25 +67,41 @@ public class GameMatrix {
                     //update chosen coordinate
                     choiceI = touchI;
                     choiceJ = touchJ;
-                }
 
-                //check can move on touch coordinate
-                if(possibleMoves(touchI,touchJ)){
+                    //find all move for choice checker
+                    possibleStep();
+                }else {
 
-                    //update checkers positions on field
-                    checkersPositions[touchI][touchJ] = 1;
-                    checkersPositions[choiceI][choiceJ] = 0;
+                    //check can move on touch coordinate
+                    if(possibleMoves(touchI,touchJ)){
 
-                    //clear chosen coordinate
-                    choiceI = 0;
-                    choiceJ = 0;
+                        //update checkers positions on field
+                        checkersPositions[touchI][touchJ] = 1;
+                        checkersPositions[choiceI][choiceJ] = 0;
 
-                    //mark player can not move
-                    playerMove = false;
+                        //clear chosen coordinate
+                        choiceI = 0;
+                        choiceJ = 0;
 
-                    //bot start move
-                    BotThread botThread = new BotThread();
-                    botThread.start();
+                        //mark player can not move
+                        playerMove = false;
+
+                        /*//bot start move
+                        BotThread botThread = new BotThread();
+                        botThread.start();*/
+
+
+                        //find best move for bot
+                        setPositions();
+
+                        //player can move
+                        playerMove = true;
+
+                        //draw field
+                        drawField();
+
+
+                    }
 
                 }
 
@@ -98,6 +114,9 @@ public class GameMatrix {
                 //update chosen coordinate
                 choiceI = touchI;
                 choiceJ = touchJ;
+
+                //find all move for choice checker
+                possibleStep();
 
             }
 
@@ -118,7 +137,7 @@ public class GameMatrix {
 
             //create game pause
             try {
-                sleep(400);
+                sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -128,6 +147,9 @@ public class GameMatrix {
 
             //draw field
             drawField();
+
+
+            //i
             this.interrupt();
         }
     }

@@ -7,9 +7,10 @@ import static com.nokhrin.corners.MainActivity.sizeOfField;
 
 public class PossibleMoves {
     private static boolean[][] resultPossibleMoves = new boolean[sizeOfField][sizeOfField];
+    private static  boolean[][] lastPlayerPositions = new boolean[9][9];
 
     public static boolean possibleMoves(int endI, int endJ){
-        possibleStep();
+        //possibleStep();
         return resultPossibleMoves[endI][endJ];
     }
 
@@ -21,6 +22,13 @@ public class PossibleMoves {
         for(int i=1;i<sizeOfField;i++){
             for(int j=1;j<sizeOfField;j++){
                 resultPossibleMoves[i][j] = false;
+            }
+        }
+
+        //clear last Player moves matrix
+        for(int i=1;i<sizeOfField;i++){
+            for(int j=1;j<sizeOfField;j++){
+                lastPlayerPositions[i][j] = false;
             }
         }
 
@@ -68,8 +76,11 @@ public class PossibleMoves {
     //can two step on right
     public static void jumpRightWhite(int i, int j){
         if(j+2 < sizeOfField){
-            if(checkersPositions[i][j+1] != 0 && checkersPositions[i][j+2] == 0){
+            if(checkersPositions[i][j+1] != 0 && checkersPositions[i][j+2] == 0 && !lastPlayerPositions[i][j+2]){
                 resultPossibleMoves[i][j+2] = true;
+
+                //mark this position like last position
+                lastPlayerPositions[i][j+2] = true;
 
                 //can jump more
                 jumpRightWhite(i,j+2);
@@ -83,8 +94,11 @@ public class PossibleMoves {
     public static void jumpLeftWhite(int i, int j){
         boolean result = false;
         if(j-2 > 0){
-            if(checkersPositions[i][j-1] != 0 && checkersPositions[i][j-2] == 0){
+            if(checkersPositions[i][j-1] != 0 && checkersPositions[i][j-2] == 0 && !lastPlayerPositions[i][j-2]){
                 resultPossibleMoves[i][j-2] = true;
+
+                //mark this position like last position
+                lastPlayerPositions[i][j-2] = true;
 
                 //can jump more
                 jumpLeftWhite(i,j-2);
@@ -98,8 +112,11 @@ public class PossibleMoves {
     public static void jumpBottomWhite(int i, int j){
         boolean result = false;
         if(i+2 < sizeOfField){
-            if(checkersPositions[i+1][j] != 0 && checkersPositions[i+2][j] == 0){
+            if(checkersPositions[i+1][j] != 0 && checkersPositions[i+2][j] == 0 && !lastPlayerPositions[i+2][j]){
                 resultPossibleMoves[i+2][j] = true;
+
+                //mark this position like last position
+                lastPlayerPositions[i+2][j] = true;
 
                 //can jump more
                 jumpBottomWhite(i+2, j);
@@ -113,8 +130,11 @@ public class PossibleMoves {
     public static void jumpTopWhite(int i, int j){
         boolean result = false;
         if(i-2 > 0){
-            if(checkersPositions[i-1][j] != 0 && checkersPositions[i-2][j] == 0){
+            if(checkersPositions[i-1][j] != 0 && checkersPositions[i-2][j] == 0 && !lastPlayerPositions[i-2][j]){
                 resultPossibleMoves[i-2][j] = true;
+
+                //mark this position like last position
+                lastPlayerPositions[i-2][j] = true;
 
                 //can jump more
                 jumpTopWhite(i-2,j);

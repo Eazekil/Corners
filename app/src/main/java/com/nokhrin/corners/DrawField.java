@@ -2,11 +2,13 @@ package com.nokhrin.corners;
 
 import android.view.View;
 
+import static com.nokhrin.corners.GameMatrix.checkersPositions;
 import static com.nokhrin.corners.MainActivity.checkMark;
 import static com.nokhrin.corners.MainActivity.chessField;
 import static com.nokhrin.corners.MainActivity.countBlackCheckers;
 import static com.nokhrin.corners.MainActivity.countWhiteCheckers;
 import static com.nokhrin.corners.MainActivity.imageViewCheckersBlack;
+import static com.nokhrin.corners.MainActivity.imageViewCheckersInHome;
 import static com.nokhrin.corners.MainActivity.imageViewCheckersWhite;
 import static com.nokhrin.corners.MainActivity.indentTop;
 import static com.nokhrin.corners.MainActivity.sizeOfField;
@@ -20,6 +22,7 @@ public class DrawField {
     public static void drawField(){
         int numberBlackCheckers = countBlackCheckers - 1;
         int numberWhiteCheckers = countWhiteCheckers - 1;
+        int numberHome = countBlackCheckers - 1;
         chessField.layout(0, indentTop,widthDisplay, widthDisplay+ indentTop);
         checkMark.setVisibility(View.INVISIBLE);
 
@@ -27,8 +30,8 @@ public class DrawField {
         for(int i=1;i<sizeOfField;i++){
             for(int j=1;j<sizeOfField;j++){
 
-                //draw black checkers
-                if(GameMatrix.checkersPositions[i][j]==-1){
+                //draw black checker
+                if(checkersPositions[i][j] == -1 || checkersPositions[i][j] == 3){
                     imageViewCheckersBlack[numberBlackCheckers].layout((j-1)* stepOnField,
                             (i-1)*stepOnField+indentTop,
                             (j-1)* stepOnField+ stepOnField,
@@ -37,19 +40,9 @@ public class DrawField {
                     numberBlackCheckers--;
                 }
 
-                //draw white checkers
-                if(GameMatrix.checkersPositions[i][j]==1){
-                    imageViewCheckersWhite[numberWhiteCheckers].layout((j-1)* stepOnField,
-                            (i-1)* stepOnField+ indentTop,
-                            (j-1)* stepOnField+ stepOnField,
-                            (i-1)* stepOnField+ indentTop + stepOnField);
-                    imageViewCheckersWhite[numberWhiteCheckers].setVisibility(View.VISIBLE);
-                    numberWhiteCheckers--;
-                }
-
-                //draw white check
+                //draw white checker
                 //and draw check mark on checker
-                if(GameMatrix.checkersPositions[i][j]==2){
+                if(checkersPositions[i][j]==2){
                     imageViewCheckersWhite[numberWhiteCheckers].layout((j-1)* stepOnField,
                             (i-1)* stepOnField+ indentTop,
                             (j-1)* stepOnField+ stepOnField,
@@ -62,6 +55,16 @@ public class DrawField {
                             (j-1)* stepOnField+ stepOnField,
                             (i-1)* stepOnField+ indentTop + stepOnField);
                     checkMark.setVisibility(View.VISIBLE);
+                }
+
+                //draw white checker
+                if(checkersPositions[i][j]==1){
+                    imageViewCheckersWhite[numberWhiteCheckers].layout((j-1)* stepOnField,
+                            (i-1)* stepOnField+ indentTop,
+                            (j-1)* stepOnField+ stepOnField,
+                            (i-1)* stepOnField+ indentTop + stepOnField);
+                    imageViewCheckersWhite[numberWhiteCheckers].setVisibility(View.VISIBLE);
+                    numberWhiteCheckers--;
                 }
 
             }

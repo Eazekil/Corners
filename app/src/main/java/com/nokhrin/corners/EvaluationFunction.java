@@ -8,6 +8,8 @@ public class EvaluationFunction {
     private static int minOfFunction = 999;
     public static int[][] endPositions = new int [sizeOfField][sizeOfField];
     private static int[][] newPositions = new int [sizeOfField][sizeOfField];
+    public static int targetPositionI = 8;//
+    public static int targetPositionJ = 1;
 
     public static void setNewPositions( int currentI, int currentJ, int newI, int newJ) {
         for(int i=1;i<sizeOfField;i++){
@@ -28,7 +30,7 @@ public class EvaluationFunction {
                 if(newPositions[i][j] == -1){
 
                     //sum of length to point(8,1)
-                    resultOfFunction = resultOfFunction + Math.abs(8-i)+Math.abs(1-j);
+                    resultOfFunction = resultOfFunction + Math.abs(targetPositionI-i)+Math.abs(targetPositionJ-j);
                 }
             }
         }
@@ -38,20 +40,21 @@ public class EvaluationFunction {
         if(resultOfFunction < minOfFunction){
             minOfFunction = resultOfFunction;
 
-           /* for(int i=1;i<sizeOfField;i++){
-                System.out.println();
-                for(int j=1;j<sizeOfField;j++){
-                    System.out.print(newPositions[i][j]+"   ");
-                }
-            }
-            System.out.println("_______ resultOfFunction = "+ resultOfFunction);*/
-
             //save result positions in endPositions
             for(int i=1;i<sizeOfField;i++){
                 for(int j=1;j<sizeOfField;j++){
                     endPositions[i][j] = newPositions[i][j];
                 }
             }
+
+
+              for(int i=1;i<sizeOfField;i++){
+                System.out.println();
+                for(int j=1;j<sizeOfField;j++){
+                    System.out.print(newPositions[i][j]+"   ");
+                }
+            }
+            System.out.println("_______ resultOfFunction = "+ resultOfFunction);
         }
 
     }

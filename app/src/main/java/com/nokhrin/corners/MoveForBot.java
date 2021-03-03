@@ -15,6 +15,7 @@ import static com.nokhrin.corners.Move.stepTop;
 
 public class MoveForBot {
 
+
     //start here
     public static void setPositions() {
 
@@ -33,6 +34,8 @@ public class MoveForBot {
                 checkersPositions[i][j] = endPositions[i][j];
             }
         }
+
+        //upgrade values for evaluation function
 
     }
 

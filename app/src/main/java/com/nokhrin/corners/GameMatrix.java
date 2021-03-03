@@ -13,6 +13,7 @@ public class GameMatrix {
     public static boolean playerMove;//can player to move
     public static int choiceI = 0;//coordinate I of player's chosen checker
     public static int choiceJ = 0;//coordinate J of player's chosen checker
+    //private static BotThread botThread = new BotThread();
 
 
     //add checkers on a start positions
@@ -83,7 +84,8 @@ public class GameMatrix {
                     playerMove = false;
 
                     //bot start move
-                    new BotThread().start();
+                    BotThread botThread = new BotThread();
+                    botThread.start();
 
                 }
 
@@ -116,7 +118,7 @@ public class GameMatrix {
 
             //create game pause
             try {
-                sleep(1000);
+                sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -126,6 +128,7 @@ public class GameMatrix {
 
             //draw field
             drawField();
+            this.interrupt();
         }
     }
 

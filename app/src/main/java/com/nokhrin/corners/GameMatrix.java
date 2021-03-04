@@ -4,7 +4,11 @@ import static com.nokhrin.corners.DrawField.drawField;
 import static com.nokhrin.corners.MainActivity.sizeOfField;
 import static com.nokhrin.corners.MainActivity.touchI;
 import static com.nokhrin.corners.MainActivity.touchJ;
+import static com.nokhrin.corners.EvaluationFunction.targetPositionI;
+import static com.nokhrin.corners.EvaluationFunction.targetPositionJ;
 import static com.nokhrin.corners.MoveForBot.setPositions;
+import static com.nokhrin.corners.GameOver.gameIsOver;
+import static com.nokhrin.corners.GameOver.gameOver;
 import static com.nokhrin.corners.PossibleMoves.possibleMoves;
 import static com.nokhrin.corners.PossibleMoves.possibleStep;
 
@@ -40,8 +44,34 @@ public class GameMatrix {
             }
         }
 
+
+        //////////////////////////////start position for test
+
+        /*//start white(1) checkers position
+        for(int i=2;i<5;i++){
+            for(int j=5;j<sizeOfField;j++){
+                checkersPositions[i][j] = 1;
+            }
+        }
+
+        //start black(-1) checkers position
+        for(int i=5;i<sizeOfField-1;i++){
+            for(int j=1;j<5;j++){
+                checkersPositions[i][j] = -1;
+            }
+        }*/
+
+        //////////////////////////////start position for test
+
+        //update target position for bot
+        targetPositionI = 8;
+        targetPositionJ = 1;
+
         //player can move
         playerMove = true;
+
+        //mark game to start
+        gameOver = false;
 
     }
 
@@ -50,7 +80,7 @@ public class GameMatrix {
     public static void touchOnField() {
 
         //check can player move
-        if(playerMove){
+        if(playerMove && !gameOver){
 
             //check player choice checker
             if(choiceI != 0 && choiceJ != 0){
@@ -86,19 +116,13 @@ public class GameMatrix {
                         //mark player can not move
                         playerMove = false;
 
-                        /*//bot start move
-                        BotThread botThread = new BotThread();
-                        botThread.start();*/
+                        gameIsOver();
 
-
-                        //find best move for bot
-                        setPositions();
-
-                        //player can move
-                        playerMove = true;
-
-                        //draw field
-                        drawField();
+                        if(!gameOver){
+                            //bot start move
+                            BotThread botThread = new BotThread();
+                            botThread.start();
+                        }
 
 
                     }
@@ -124,6 +148,11 @@ public class GameMatrix {
             drawField();
 
         }
+
+        if(gameOver){
+
+        }
+
     }
 
 
@@ -145,9 +174,9 @@ public class GameMatrix {
             //player can move
             playerMove = true;
 
+
             //draw field
             drawField();
-
 
             //i
             this.interrupt();

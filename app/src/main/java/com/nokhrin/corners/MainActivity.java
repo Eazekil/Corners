@@ -22,10 +22,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public static ImageView[] imageViewCheckersWhite = new ImageView[countWhiteCheckers];
     public static ImageView[] imageViewCheckersBlack = new ImageView[countBlackCheckers];
     public static ImageView[] imageViewCheckersInHome = new ImageView[countBlackCheckers];
-    Button buttonStart;
+    public static Button buttonStart;
     public static ImageView chessField;
     public static ImageView checkMark;
-    TextView textForTest;
+    public static ImageView playerWin;
+    public static ImageView playerLoose;
+    public static ImageView winWin;
+    public static TextView textForTest;
     public static  int widthDisplay;
     public static int heightDisplay;
     public static int stepOnField; // step on chess field and size of checkers
@@ -44,12 +47,22 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         chessField = findViewById(R.id.chessField);
         checkMark = findViewById(R.id.checkMark);
         buttonStart=findViewById(R.id.buttonStart);
-        textForTest=findViewById(R.id.textForTest);
+        textForTest=findViewById(R.id.textInform);
+        playerWin=findViewById(R.id.imagePlayerWin);
+        playerLoose=findViewById(R.id.imagePlayerLoose);
+        winWin=findViewById(R.id.imageWinWin);
 
         //button start game
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //set invisible other view
+                textForTest.setVisibility(View.INVISIBLE);
+                buttonStart.setVisibility(View.INVISIBLE);
+                playerWin.setVisibility(View.INVISIBLE);
+                playerLoose.setVisibility(View.INVISIBLE);
+                winWin.setVisibility(View.INVISIBLE);
 
                 //add checkers on a start positions
                 startPositions();

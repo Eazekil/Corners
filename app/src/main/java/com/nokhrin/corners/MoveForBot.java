@@ -75,7 +75,6 @@ public class MoveForBot {
 
     //find all move for this checker
     public static void moveSteps(int i, int j){
-        System.out.println("***********"+countH++);
 
         //add choice checker
         setCurrentIJ(i,j);

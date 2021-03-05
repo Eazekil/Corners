@@ -2,6 +2,7 @@ package com.nokhrin.corners;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import static android.app.PendingIntent.getActivity;
 import static com.nokhrin.corners.DrawField.drawField;
 import static com.nokhrin.corners.GameMatrix.startPositions;
 import static com.nokhrin.corners.GameMatrix.touchOnField;
@@ -19,10 +22,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public static int countBlackCheckers=12;
     public static int countWhiteCheckers=13;
     public static int sizeOfField = 9;
+    public static int whitePlayer = 1; //1 - just checker,  4 - Bart Simpson
     public static ImageView[] imageViewCheckersWhite = new ImageView[countWhiteCheckers];
     public static ImageView[] imageViewCheckersBlack = new ImageView[countBlackCheckers];
-    public static ImageView[] imageViewCheckersInHome = new ImageView[countBlackCheckers];
+    //public static ImageView[] imageViewCheckersInHome = new ImageView[countBlackCheckers];
+    public static ImageView[] imageViewCheckersBart = new ImageView[countBlackCheckers];
     public static Button buttonStart;
+    public static Button buttonLevel;
     public static ImageView chessField;
     public static ImageView checkMark;
     public static ImageView playerWin;
@@ -38,15 +44,24 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public static int touchJ;//coordinates of touch on chess field
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*// remove title
+        requestWindowFeature(Window.FEATURE_NO_TITLE); // for hiding title
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
+
         setContentView(R.layout.activity_main);
 
         //find all element and save in variables
         chessField = findViewById(R.id.chessField);
         checkMark = findViewById(R.id.checkMark);
         buttonStart=findViewById(R.id.buttonStart);
+        buttonLevel=findViewById(R.id.buttonLevel);
         textForTest=findViewById(R.id.textInform);
         playerWin=findViewById(R.id.imagePlayerWin);
         playerLoose=findViewById(R.id.imagePlayerLoose);
@@ -69,6 +84,17 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
                 drawField();
                 chessField.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+
+        buttonLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ActivityTwo.class);
+                startActivity(intent);
+
             }
         });
 
@@ -100,22 +126,44 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         imageViewCheckersBlack[11]=findViewById(R.id.imageBlackCh12);
 
         //added white checkers
-        imageViewCheckersWhite[0]=findViewById(R.id.imageEror1);
-        imageViewCheckersWhite[1]=findViewById(R.id.imageWhiteCh1);
-        imageViewCheckersWhite[2]=findViewById(R.id.imageWhiteCh2);
-        imageViewCheckersWhite[3]=findViewById(R.id.imageWhiteCh3);
-        imageViewCheckersWhite[4]=findViewById(R.id.imageWhiteCh4);
-        imageViewCheckersWhite[5]=findViewById(R.id.imageWhiteCh5);
-        imageViewCheckersWhite[6]=findViewById(R.id.imageWhiteCh6);
-        imageViewCheckersWhite[7]=findViewById(R.id.imageWhiteCh7);
-        imageViewCheckersWhite[8]=findViewById(R.id.imageWhiteCh8);
-        imageViewCheckersWhite[9]=findViewById(R.id.imageWhiteCh9);
-        imageViewCheckersWhite[10]=findViewById(R.id.imageWhiteCh10);
-        imageViewCheckersWhite[11]=findViewById(R.id.imageWhiteCh11);
-        imageViewCheckersWhite[12]=findViewById(R.id.imageWhiteCh12);
+        if(whitePlayer == 1){
+
+            imageViewCheckersWhite[0]=findViewById(R.id.imageEror1);
+            imageViewCheckersWhite[1]=findViewById(R.id.imageWhiteCh1);
+            imageViewCheckersWhite[2]=findViewById(R.id.imageWhiteCh2);
+            imageViewCheckersWhite[3]=findViewById(R.id.imageWhiteCh3);
+            imageViewCheckersWhite[4]=findViewById(R.id.imageWhiteCh4);
+            imageViewCheckersWhite[5]=findViewById(R.id.imageWhiteCh5);
+            imageViewCheckersWhite[6]=findViewById(R.id.imageWhiteCh6);
+            imageViewCheckersWhite[7]=findViewById(R.id.imageWhiteCh7);
+            imageViewCheckersWhite[8]=findViewById(R.id.imageWhiteCh8);
+            imageViewCheckersWhite[9]=findViewById(R.id.imageWhiteCh9);
+            imageViewCheckersWhite[10]=findViewById(R.id.imageWhiteCh10);
+            imageViewCheckersWhite[11]=findViewById(R.id.imageWhiteCh11);
+            imageViewCheckersWhite[12]=findViewById(R.id.imageWhiteCh12);
+
+        }else if(whitePlayer == 4){
+
+            imageViewCheckersWhite[0]=findViewById(R.id.imageEror1);
+            imageViewCheckersWhite[1]=findViewById(R.id.imageBart1);
+            imageViewCheckersWhite[2]=findViewById(R.id.imageBart2);
+            imageViewCheckersWhite[3]=findViewById(R.id.imageBart3);
+            imageViewCheckersWhite[4]=findViewById(R.id.imageBart4);
+            imageViewCheckersWhite[5]=findViewById(R.id.imageBart5);
+            imageViewCheckersWhite[6]=findViewById(R.id.imageBart6);
+            imageViewCheckersWhite[7]=findViewById(R.id.imageBart7);
+            imageViewCheckersWhite[8]=findViewById(R.id.imageBart8);
+            imageViewCheckersWhite[9]=findViewById(R.id.imageBart9);
+            imageViewCheckersWhite[10]=findViewById(R.id.imageBart10);
+            imageViewCheckersWhite[11]=findViewById(R.id.imageBart11);
+            imageViewCheckersWhite[12]=findViewById(R.id.imageBart12);
+        }
 
 
-        //added home checkers
+
+
+
+        /*//added home checkers
         imageViewCheckersInHome[0]=findViewById(R.id.imageHome1);
         imageViewCheckersInHome[1]=findViewById(R.id.imageHome2);
         imageViewCheckersInHome[2]=findViewById(R.id.imageHome3);
@@ -127,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         imageViewCheckersInHome[8]=findViewById(R.id.imageHome9);
         imageViewCheckersInHome[9]=findViewById(R.id.imageHome10);
         imageViewCheckersInHome[10]=findViewById(R.id.imageHome11);
-        imageViewCheckersInHome[11]=findViewById(R.id.imageHome12);
+        imageViewCheckersInHome[11]=findViewById(R.id.imageHome12);*/
 
     }
 

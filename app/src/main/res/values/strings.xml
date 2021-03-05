@@ -2,6 +2,12 @@
     <string name="app_name">Corners</string>
     <string name="background">background</string>
     <string name="todo">TODO</string>
-    <string name="start_and_enjoy">Start and enjoy!</string>
+    <string name="start_and_enjoy">Start</string>
     <string name="textonview">Hello from Dmitriy Nokhrin</string>
+    <string name="greeting">Стартовый экран</string>
+    <string name="title_activity_two">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="button_level">Выбор уровня</string>
+    <string name="choise_level">Выбор уровня</string>
 </resources>

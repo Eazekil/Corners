@@ -8,7 +8,6 @@ import static com.nokhrin.corners.MainActivity.chessField;
 import static com.nokhrin.corners.MainActivity.countBlackCheckers;
 import static com.nokhrin.corners.MainActivity.countWhiteCheckers;
 import static com.nokhrin.corners.MainActivity.imageViewCheckersBlack;
-import static com.nokhrin.corners.MainActivity.imageViewCheckersInHome;
 import static com.nokhrin.corners.MainActivity.imageViewCheckersWhite;
 import static com.nokhrin.corners.MainActivity.indentTop;
 import static com.nokhrin.corners.MainActivity.sizeOfField;
@@ -16,6 +15,7 @@ import static com.nokhrin.corners.MainActivity.stepOnField;
 import static com.nokhrin.corners.MainActivity.widthDisplay;
 
 public class DrawField {
+
 
     //Отображает пешки согласно двумерному массиву checkersPositions
     //0 = пешки отсутствуют    1 = белые пешки    -1 = черные пешки

@@ -9,5 +9,16 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="button_level">Выбор уровня</string>
+    <string name="button_multi_player">Совместная игра</string>
+    <string name="button_corners">Классические уголки</string>
+    <string name="button_shop">Магазин</string>
+    <string name="button_settings">Настройки</string>
+    <string name="button_menu">Меню</string>
+    <string name="button_restart">Рестарт</string>
     <string name="choise_level">Выбор уровня</string>
+    <string name="title_activity_classic">FullscreenActivity</string>
+    <string name="title_activity_start">FullscreenActivity</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="title_activity_levels">FullscreenActivity</string>
+    <string name="text_in_level_layout">Скоро здесь появятся уровни</string>
 </resources>

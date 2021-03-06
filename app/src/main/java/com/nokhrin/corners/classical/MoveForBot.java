@@ -1,20 +1,20 @@
-package com.nokhrin.corners;
+package com.nokhrin.corners.classical;
 
-import static com.nokhrin.corners.EvaluationFunction.endPositions;
-import static com.nokhrin.corners.EvaluationFunction.minOfFunction;
-import static com.nokhrin.corners.EvaluationFunction.targetPositionI;
-import static com.nokhrin.corners.EvaluationFunction.targetPositionJ;
-import static com.nokhrin.corners.MainActivity.sizeOfField;
-import static com.nokhrin.corners.GameMatrix.checkersPositions;
-import static com.nokhrin.corners.Move.jumpBottom;
-import static com.nokhrin.corners.Move.jumpLeft;
-import static com.nokhrin.corners.Move.jumpRight;
-import static com.nokhrin.corners.Move.jumpTop;
-import static com.nokhrin.corners.Move.setCurrentIJ;
-import static com.nokhrin.corners.Move.stepBottom;
-import static com.nokhrin.corners.Move.stepLeft;
-import static com.nokhrin.corners.Move.stepRight;
-import static com.nokhrin.corners.Move.stepTop;
+import static com.nokhrin.corners.classical.EvaluationFunction.endPositions;
+import static com.nokhrin.corners.classical.EvaluationFunction.minOfFunction;
+import static com.nokhrin.corners.classical.EvaluationFunction.targetPositionI;
+import static com.nokhrin.corners.classical.EvaluationFunction.targetPositionJ;
+import static com.nokhrin.corners.classical.GameMatrix.checkersPositions;
+import static com.nokhrin.corners.classical.ActivityClassic.sizeOfField;
+import static com.nokhrin.corners.classical.Move.jumpBottom;
+import static com.nokhrin.corners.classical.Move.jumpLeft;
+import static com.nokhrin.corners.classical.Move.jumpRight;
+import static com.nokhrin.corners.classical.Move.jumpTop;
+import static com.nokhrin.corners.classical.Move.setCurrentIJ;
+import static com.nokhrin.corners.classical.Move.stepBottom;
+import static com.nokhrin.corners.classical.Move.stepLeft;
+import static com.nokhrin.corners.classical.Move.stepRight;
+import static com.nokhrin.corners.classical.Move.stepTop;
 
 public class MoveForBot {
     static int countH=1;

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstrainLayoutStart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yelow_background"
+    android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
+    tools:context=".ActivityStart" >
+
+
+    <Button
+        android:id="@+id/buttonLevel"
+        android:layout_width="218dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/red_button11"
+        android:fontFamily="sans-serif"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_level"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonMultiPlayer"
+        android:layout_width="218dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/red_button11"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/button_multi_player"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLevel" />
+
+    <Button
+        android:id="@+id/buttonClassic"
+        android:layout_width="218dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/red_button11"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/button_corners"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMultiPlayer" />
+
+    <Button
+        android:id="@+id/buttonShop"
+        android:layout_width="218dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/red_button11"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/button_shop"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonClassic" />
+
+    <Button
+        android:id="@+id/buttonStartClassic"
+        android:layout_width="218dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/red_button11"
+        android:fontFamily="@font/comfortaa_bold"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_settings"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonShop" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

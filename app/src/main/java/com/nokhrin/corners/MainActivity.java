@@ -2,7 +2,6 @@ package com.nokhrin.corners;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -13,10 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import static android.app.PendingIntent.getActivity;
-import static com.nokhrin.corners.DrawField.drawField;
-import static com.nokhrin.corners.GameMatrix.startPositions;
-import static com.nokhrin.corners.GameMatrix.touchOnField;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
     public static int countBlackCheckers=12;
@@ -80,23 +76,23 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 winWin.setVisibility(View.INVISIBLE);
 
                 //add checkers on a start positions
-                startPositions();
+                //startPositions();
 
-                drawField();
+                //drawField();
                 chessField.setVisibility(View.VISIBLE);
             }
         });
 
 
 
-        buttonLevel.setOnClickListener(new View.OnClickListener() {
+        /*buttonLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ActivityTwo.class);
                 startActivity(intent);
 
             }
-        });
+        });*/
 
         //read touch on field
         chessField.setOnTouchListener(this);
@@ -193,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         touchJ = touchX/stepOnField+1;
 
         //start move on the field
-        touchOnField();
+        //touchOnField();
 
         return false;
     }

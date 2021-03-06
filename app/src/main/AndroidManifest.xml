@@ -10,10 +10,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Corners">
         <activity
-            android:name=".ActivityTwo"
+            android:name=".classical.ActivityClassic"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_two"
+            android:label="@string/title_activity_classic"
             android:theme="@style/Theme.Corners.Fullscreen"></activity>
+        <activity
+            android:name=".levels.ActivityLevels"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_levels"
+            android:theme="@style/Theme.Corners.Fullscreen" />
+        <activity
+            android:name=".ActivityStart"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_start"
+            android:theme="@style/Theme.Corners.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--
+<activity
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/Theme.Corners.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        -->
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

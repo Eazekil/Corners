@@ -1,16 +1,16 @@
-package com.nokhrin.corners;
+package com.nokhrin.corners.classical;
 
-import static com.nokhrin.corners.DrawField.drawField;
-import static com.nokhrin.corners.MainActivity.sizeOfField;
-import static com.nokhrin.corners.MainActivity.touchI;
-import static com.nokhrin.corners.MainActivity.touchJ;
-import static com.nokhrin.corners.EvaluationFunction.targetPositionI;
-import static com.nokhrin.corners.EvaluationFunction.targetPositionJ;
-import static com.nokhrin.corners.MoveForBot.setPositions;
-import static com.nokhrin.corners.GameOver.gameIsOver;
-import static com.nokhrin.corners.GameOver.gameOver;
-import static com.nokhrin.corners.PossibleMoves.possibleMoves;
-import static com.nokhrin.corners.PossibleMoves.possibleStep;
+import static com.nokhrin.corners.classical.DrawField.drawField;
+import static com.nokhrin.corners.classical.EvaluationFunction.targetPositionI;
+import static com.nokhrin.corners.classical.EvaluationFunction.targetPositionJ;
+import static com.nokhrin.corners.classical.GameOver.gameIsOver;
+import static com.nokhrin.corners.classical.GameOver.gameOver;
+import static com.nokhrin.corners.classical.ActivityClassic.sizeOfField;
+import static com.nokhrin.corners.classical.ActivityClassic.touchI;
+import static com.nokhrin.corners.classical.ActivityClassic.touchJ;
+import static com.nokhrin.corners.classical.MoveForBot.setPositions;
+import static com.nokhrin.corners.classical.PossibleMoves.possibleMoves;
+import static com.nokhrin.corners.classical.PossibleMoves.possibleStep;
 
 
 public class GameMatrix {

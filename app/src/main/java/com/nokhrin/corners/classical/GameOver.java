@@ -1,14 +1,14 @@
-package com.nokhrin.corners;
+package com.nokhrin.corners.classical;
 
 import android.view.View;
 
-import static com.nokhrin.corners.GameMatrix.checkersPositions;
-import static com.nokhrin.corners.MainActivity.buttonStart;
-import static com.nokhrin.corners.MainActivity.playerLoose;
-import static com.nokhrin.corners.MainActivity.playerWin;
-import static com.nokhrin.corners.MainActivity.sizeOfField;
-import static com.nokhrin.corners.MainActivity.textForTest;
-import static com.nokhrin.corners.MainActivity.winWin;
+import static com.nokhrin.corners.classical.GameMatrix.checkersPositions;
+import static com.nokhrin.corners.classical.ActivityClassic.buttonStart;
+import static com.nokhrin.corners.classical.ActivityClassic.playerLoose;
+import static com.nokhrin.corners.classical.ActivityClassic.playerWin;
+import static com.nokhrin.corners.classical.ActivityClassic.sizeOfField;
+import static com.nokhrin.corners.classical.ActivityClassic.textForTest;
+import static com.nokhrin.corners.classical.ActivityClassic.winWin;
 
 public class GameOver {
     public static boolean gameOver = false;

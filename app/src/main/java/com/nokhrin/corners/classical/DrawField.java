@@ -1,18 +1,18 @@
-package com.nokhrin.corners;
+package com.nokhrin.corners.classical;
 
 import android.view.View;
 
-import static com.nokhrin.corners.GameMatrix.checkersPositions;
-import static com.nokhrin.corners.MainActivity.checkMark;
-import static com.nokhrin.corners.MainActivity.chessField;
-import static com.nokhrin.corners.MainActivity.countBlackCheckers;
-import static com.nokhrin.corners.MainActivity.countWhiteCheckers;
-import static com.nokhrin.corners.MainActivity.imageViewCheckersBlack;
-import static com.nokhrin.corners.MainActivity.imageViewCheckersWhite;
-import static com.nokhrin.corners.MainActivity.indentTop;
-import static com.nokhrin.corners.MainActivity.sizeOfField;
-import static com.nokhrin.corners.MainActivity.stepOnField;
-import static com.nokhrin.corners.MainActivity.widthDisplay;
+import static com.nokhrin.corners.classical.GameMatrix.checkersPositions;
+import static com.nokhrin.corners.classical.ActivityClassic.checkMark;
+import static com.nokhrin.corners.classical.ActivityClassic.chessField;
+import static com.nokhrin.corners.classical.ActivityClassic.countBlackCheckers;
+import static com.nokhrin.corners.classical.ActivityClassic.countWhiteCheckers;
+import static com.nokhrin.corners.classical.ActivityClassic.imageViewCheckersBlack;
+import static com.nokhrin.corners.classical.ActivityClassic.imageViewCheckersWhite;
+import static com.nokhrin.corners.classical.ActivityClassic.indentTop;
+import static com.nokhrin.corners.classical.ActivityClassic.sizeOfField;
+import static com.nokhrin.corners.classical.ActivityClassic.stepOnField;
+import static com.nokhrin.corners.classical.ActivityClassic.widthDisplay;
 
 public class DrawField {
 
@@ -22,7 +22,6 @@ public class DrawField {
     public static void drawField(){
         int numberBlackCheckers = countBlackCheckers - 1;
         int numberWhiteCheckers = countWhiteCheckers - 1;
-        int numberHome = countBlackCheckers - 1;
         chessField.layout(0, indentTop,widthDisplay, widthDisplay+ indentTop);
         checkMark.setVisibility(View.INVISIBLE);
 

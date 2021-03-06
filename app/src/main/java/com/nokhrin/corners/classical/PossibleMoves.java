@@ -1,9 +1,9 @@
-package com.nokhrin.corners;
+package com.nokhrin.corners.classical;
 
-import static com.nokhrin.corners.GameMatrix.checkersPositions;
-import static com.nokhrin.corners.GameMatrix.choiceI;
-import static com.nokhrin.corners.GameMatrix.choiceJ;
-import static com.nokhrin.corners.MainActivity.sizeOfField;
+import static com.nokhrin.corners.classical.GameMatrix.checkersPositions;
+import static com.nokhrin.corners.classical.GameMatrix.choiceI;
+import static com.nokhrin.corners.classical.GameMatrix.choiceJ;
+import static com.nokhrin.corners.classical.ActivityClassic.sizeOfField;
 
 public class PossibleMoves {
     private static boolean[][] resultPossibleMoves = new boolean[sizeOfField][sizeOfField];

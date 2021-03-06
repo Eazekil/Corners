@@ -1,7 +1,7 @@
-package com.nokhrin.corners;
+package com.nokhrin.corners.classical;
 
-import static com.nokhrin.corners.MainActivity.sizeOfField;
-import static com.nokhrin.corners.GameMatrix.checkersPositions;
+import static com.nokhrin.corners.classical.GameMatrix.checkersPositions;
+import static com.nokhrin.corners.classical.ActivityClassic.sizeOfField;
 
 public class EvaluationFunction {
     public static int resultOfFunction = 0;

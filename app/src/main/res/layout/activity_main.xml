@@ -23,16 +23,7 @@
         app:layout_constraintVertical_bias="0.105"
         app:srcCompat="@drawable/chess_field" />
 
-    <ImageView
-        android:id="@+id/imageGrassField"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/chessField"
-        app:layout_constraintEnd_toEndOf="@+id/chessField"
-        app:layout_constraintStart_toStartOf="@+id/chessField"
-        app:layout_constraintTop_toTopOf="@+id/chessField"
-        app:srcCompat="@drawable/grass_field" />
+
 
     <ImageView
         android:id="@+id/imageBlackCh4"

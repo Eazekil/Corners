@@ -15,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 
+
+import static com.nokhrin.corners.ActivityStart.heightDisplay;
+import static com.nokhrin.corners.ActivityStart.widthDisplay;
 import static com.nokhrin.corners.classical.GameMatrix.touchOnField;
 import static com.nokhrin.corners.classical.DrawField.drawField;
 import static com.nokhrin.corners.classical.GameMatrix.startPositions;
@@ -36,8 +39,8 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
     public static ImageView playerLoose;
     public static ImageView winWin;
     public static TextView textForTest;
-    public static  int widthDisplay;
-    public static int heightDisplay;
+    /*public static  int widthDisplay;
+    public static int heightDisplay;*/
     public static int stepOnField; // step on chess field and size of checkers
     public static int indentTop; //indent of the top of the display
     int partValueOfDisplay = 20; //for indent
@@ -100,12 +103,12 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         //read touch on field
         chessField.setOnTouchListener(this);
 
-        //discover size of the display
+       /* //discover size of the display
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         widthDisplay = size.x;
-        heightDisplay = size.y;
+        heightDisplay = size.y;*/
         stepOnField = (widthDisplay)/(sizeOfField-1);
         indentTop =(heightDisplay - widthDisplay)/2;
 

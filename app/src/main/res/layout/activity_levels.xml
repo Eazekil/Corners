@@ -9,6 +9,54 @@
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".levels.ActivityLevels" >
 
+    <Button
+        android:id="@+id/buttonLevel3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/button_number_level"
+        android:fontFamily="@font/aclonica"
+        android:freezesText="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_number_level3"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="45sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <Button
+        android:id="@+id/buttonLevel2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/button_number_level"
+        android:fontFamily="@font/aclonica"
+        android:freezesText="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_number_level2"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="45sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -16,6 +64,7 @@
         android:text="@string/text_in_level_layout"
         android:textColor="@color/white"
         android:textSize="24sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,10 +76,13 @@
         android:layout_height="55dp"
         android:background="@drawable/red_button11"
         android:fontFamily="@font/comfortaa_bold"
+        android:freezesText="false"
         android:hapticFeedbackEnabled="false"
         android:text="@string/button_menu"
         android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
         android:textSize="24sp"
         android:visibility="visible"
         app:backgroundTint="@color/white"
@@ -41,4 +93,370 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.917" />
+
+    <Button
+        android:id="@+id/buttonLevel1"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/button_number_level"
+        android:fontFamily="@font/aclonica"
+        android:freezesText="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_number_level1"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="45sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <ImageView
+        android:id="@+id/imageField4x4"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:contentDescription="@string/image_field_4x4"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chess_field_4x4" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="imageBlackChecker"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="imageBlackChecker"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.142"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.14"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.142"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.14"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh12"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="imageBlackChecker"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.282"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh10"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.282"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.354"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageBlackCh11"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="0.28"
+        app:srcCompat="@drawable/checker_black" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh10"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chessField"
+        app:layout_constraintEnd_toEndOf="@+id/chessField"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="@+id/chessField"
+        app:layout_constraintTop_toTopOf="@+id/chessField"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/checker_white" />
+
+
+    <ImageView
+        android:id="@+id/imageWhiteCh11"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.603"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/imageWhiteCh12"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.634"
+        app:srcCompat="@drawable/checker_white" />
+
+    <ImageView
+        android:id="@+id/checkMark"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.778"
+        app:srcCompat="@drawable/check_mark" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,9 @@ package com.nokhrin.corners;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,6 +17,8 @@ public class ActivityStart extends AppCompatActivity {
     private View startLayout;
     public static Button buttonLevel;
     public static Button buttonClassic;
+    public static int widthDisplay;
+    public static int heightDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,14 @@ public class ActivityStart extends AppCompatActivity {
         //find all element
         buttonLevel=findViewById(R.id.buttonLevel);
         buttonClassic=findViewById(R.id.buttonClassic);
+
+
+        //discover size of the display
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        widthDisplay = size.x;
+        heightDisplay = size.y;
 
 
         buttonLevel.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,7 @@ package com.nokhrin.corners.classical;
 
 import android.view.View;
 
+import static com.nokhrin.corners.ActivityStart.widthDisplay;
 import static com.nokhrin.corners.classical.GameMatrix.checkersPositions;
 import static com.nokhrin.corners.classical.ActivityClassic.checkMark;
 import static com.nokhrin.corners.classical.ActivityClassic.chessField;
@@ -12,7 +13,6 @@ import static com.nokhrin.corners.classical.ActivityClassic.imageViewCheckersWhi
 import static com.nokhrin.corners.classical.ActivityClassic.indentTop;
 import static com.nokhrin.corners.classical.ActivityClassic.sizeOfField;
 import static com.nokhrin.corners.classical.ActivityClassic.stepOnField;
-import static com.nokhrin.corners.classical.ActivityClassic.widthDisplay;
 
 public class DrawField {
 

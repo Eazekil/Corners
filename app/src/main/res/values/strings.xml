@@ -15,6 +15,10 @@
     <string name="button_settings">Настройки</string>
     <string name="button_menu">Меню</string>
     <string name="button_restart">Рестарт</string>
+    <string name="button_number_level1">1</string>
+    <string name="button_number_level2">2</string>
+    <string name="button_number_level3">3</string>
+    <string name="image_field_4x4">chess field on 4x4</string>
     <string name="choise_level">Выбор уровня</string>
     <string name="title_activity_classic">FullscreenActivity</string>
     <string name="title_activity_start">FullscreenActivity</string>

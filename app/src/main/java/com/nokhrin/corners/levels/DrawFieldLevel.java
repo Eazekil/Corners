@@ -1,6 +1,9 @@
 package com.nokhrin.corners.levels;
 
+
 import android.view.View;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import static com.nokhrin.corners.levels.ActivityLevels.indentLeft;
 import static com.nokhrin.corners.levels.ActivityLevels.indentTop;
@@ -21,10 +24,15 @@ public class DrawFieldLevel {
     //Отображает пешки согласно двумерному массиву checkersPositions
     //0 = пешки отсутствуют    1 = белые пешки    -1 = черные пешки
     public static void drawField(){
+
         int numberBlackCheckers = countBlackCheckers - 1;
         int numberWhiteCheckers = countWhiteCheckers - 1;
         field4x4.layout(indentLeft, indentTop, indentLeft+sizeFieldOfPx, sizeFieldOfPx+ indentTop);
         checkMark.setVisibility(View.INVISIBLE);
+
+
+
+
 
 
         for(int i=1;i<sizeOfField;i++){

@@ -2,7 +2,9 @@ package com.nokhrin.corners.levels;
 
 
 
+
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
+import static com.nokhrin.corners.levels.ActivityLevels.countToMove;
 import static com.nokhrin.corners.levels.ActivityLevels.gameOver;
 import static com.nokhrin.corners.levels.ActivityLevels.touchI;
 import static com.nokhrin.corners.levels.ActivityLevels.touchJ;
@@ -15,6 +17,7 @@ public class PlayerMove {
     public static int choiceI = 0;//coordinate I of player's chosen checker
     public static int choiceJ = 0;//coordinate J of player's chosen checker
 
+
     //add checkers on a start positions
     public static void playerStartMove() {
         //player can move
@@ -22,6 +25,8 @@ public class PlayerMove {
 
         //mark game to start
         gameOver = false;
+
+
     }
 
 
@@ -29,13 +34,13 @@ public class PlayerMove {
     public static void touchOnField() {
 
         //check can player move
-        if(playerMove && !gameOver){
+        if (countToMove > 0 && !gameOver) {
 
             //check player choice checker
-            if(choiceI != 0 && choiceJ != 0){
+            if (choiceI != 0 && choiceJ != 0) {
 
                 //check player update chosen checker
-                if(checkersPositions[touchI][touchJ] == 1){
+                if (checkersPositions[touchI][touchJ] == 1) {
 
                     //update chosen checker
                     checkersPositions[touchI][touchJ] = 2;
@@ -49,10 +54,10 @@ public class PlayerMove {
 
                     //find all move for choice checker
                     possibleStep();
-                }else {
+                } else {
 
                     //check can move on touch coordinate
-                    if(possibleMoves(touchI,touchJ)){
+                    if (possibleMoves(touchI, touchJ)) {
 
                         //update checkers positions on field
                         checkersPositions[touchI][touchJ] = 1;
@@ -62,15 +67,12 @@ public class PlayerMove {
                         choiceI = 0;
                         choiceJ = 0;
 
-                        //mark player can not move
-                        playerMove = false;
 
-                        //gameIsOver();
+                        //countMove.setText("Осталось ходов : "+(--countToMove));
 
-                        if(!gameOver){
-                            //bot start move
 
-                        }
+                        //updateText();
+
 
 
                     }
@@ -78,7 +80,7 @@ public class PlayerMove {
                 }
 
 
-            }else if(checkersPositions[touchI][touchJ] == 1){
+            } else if (checkersPositions[touchI][touchJ] == 1) {
 
                 //mark chosen checker
                 checkersPositions[touchI][touchJ] = 2;

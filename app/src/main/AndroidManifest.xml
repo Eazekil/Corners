@@ -13,7 +13,7 @@
             android:name=".classical.ActivityClassic"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_classic"
-            android:theme="@style/Theme.Corners.Fullscreen"></activity>
+            android:theme="@style/Theme.Corners.Fullscreen" />
         <activity
             android:name=".levels.ActivityLevels"
             android:configChanges="orientation|keyboardHidden|screenSize"

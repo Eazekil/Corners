@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -33,11 +34,19 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
     public static int sizeFieldOfPx;
     public static int touchI;//coordinates of touch on chess field
     public static int touchJ;//coordinates of touch on chess field
+    public static int countToMove;
     public static int[][] checkersPositions = new int[sizeOfField][sizeOfField];//positions all checkers on field
     public static ArrayList<Button> buttonsLevelList = new ArrayList<>();
     public static ImageView[] imageViewCheckersWhite = new ImageView[countWhiteCheckers];
     public static ImageView[] imageViewCheckersBlack = new ImageView[countBlackCheckers];
     public static boolean gameOver = false;
+    public static DrawView drawView;
+    public static ViewGroup frameLayoutLevels;
+    public static int widthLayout = 100;
+    public static int heightLayout = 100;
+
+
+
 
 
     @Override
@@ -58,6 +67,19 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         buttonMenu = findViewById(R.id.buttonMenu);
         field4x4 = findViewById(R.id.imageField4x4);
         checkMark = findViewById(R.id.checkMark);
+        frameLayoutLevels = findViewById(R.id.frameLayoutLevels);
+
+
+
+
+
+
+
+
+
+
+
+
 
         //read touch on field
         field4x4.setOnTouchListener(this);
@@ -67,6 +89,9 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         indentTop = (heightDisplay - widthDisplay)/2;
         indentLeft = widthDisplay/12;
         stepOnField = sizeFieldOfPx / (sizeOfField - 1);
+        widthLayout = frameLayoutLevels.getWidth();
+        heightLayout = frameLayoutLevels.getHeight();
+
 
 
         //added black checkers
@@ -116,12 +141,17 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         buttonsLevelList.add(findViewById(R.id.buttonLevel2));
         buttonsLevelList.add(findViewById(R.id.buttonLevel3));
 
+
         buttonsLevelList.get(0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //startLevel1();
+                drawView = new DrawView(getApplicationContext());
+                frameLayoutLevels.addView(drawView);
                 startLevel1();
             }
         });
+
 
     }
 
@@ -138,8 +168,18 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         System.out.println("_____touch I and J : "+touchI+","+touchJ);
 
         //start move on the field
+
         touchOnField();
+
 
         return false;
     }
+
+    /*public void moveToMenu(){
+        Intent intent = new Intent(this, ActivityStart.class);
+        startActivity(intent);
+    }*/
+
+
+
 }

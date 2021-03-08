@@ -25,4 +25,5 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="title_activity_levels">FullscreenActivity</string>
     <string name="text_in_level_layout">Скоро здесь появятся уровни</string>
+    <string name="text_count_move">Осталось ходов : 5</string>
 </resources>

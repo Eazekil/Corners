@@ -4,11 +4,12 @@ package com.nokhrin.corners.levels;
 
 
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
+import static com.nokhrin.corners.levels.ActivityLevels.countMoveView;
 import static com.nokhrin.corners.levels.ActivityLevels.countToMove;
-import static com.nokhrin.corners.levels.ActivityLevels.gameOver;
+import static com.nokhrin.corners.levels.ActivityLevels.drawView;
 import static com.nokhrin.corners.levels.ActivityLevels.touchI;
 import static com.nokhrin.corners.levels.ActivityLevels.touchJ;
-import static com.nokhrin.corners.levels.DrawFieldLevel.drawField;
+import static com.nokhrin.corners.levels.GameOver.gameIsOver;
 import static com.nokhrin.corners.levels.PossibleMoves.possibleMoves;
 import static com.nokhrin.corners.levels.PossibleMoves.possibleStep;
 
@@ -23,9 +24,6 @@ public class PlayerMove {
         //player can move
         playerMove = true;
 
-        //mark game to start
-        gameOver = false;
-
 
     }
 
@@ -34,7 +32,7 @@ public class PlayerMove {
     public static void touchOnField() {
 
         //check can player move
-        if (countToMove > 0 && !gameOver) {
+        if (!gameIsOver()) {
 
             //check player choice checker
             if (choiceI != 0 && choiceJ != 0) {
@@ -58,7 +56,6 @@ public class PlayerMove {
 
                     //check can move on touch coordinate
                     if (possibleMoves(touchI, touchJ)) {
-
                         //update checkers positions on field
                         checkersPositions[touchI][touchJ] = 1;
                         checkersPositions[choiceI][choiceJ] = 0;
@@ -68,12 +65,10 @@ public class PlayerMove {
                         choiceJ = 0;
 
 
-                        //countMove.setText("Осталось ходов : "+(--countToMove));
 
-
-                        //updateText();
-
-
+                        //
+                        String s = "Ходов осталось : "+(--countToMove);
+                        countMoveView.setText(s);
 
                     }
 
@@ -81,7 +76,6 @@ public class PlayerMove {
 
 
             } else if (checkersPositions[touchI][touchJ] == 1) {
-
                 //mark chosen checker
                 checkersPositions[touchI][touchJ] = 2;
 
@@ -91,15 +85,11 @@ public class PlayerMove {
 
                 //find all move for choice checker
                 possibleStep();
-
             }
 
             //update draw field
-            drawField();
+            drawView.invalidate();
 
         }
-
     }
-
-
 }

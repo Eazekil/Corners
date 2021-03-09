@@ -47,20 +47,14 @@ public class ActivityStart extends AppCompatActivity {
         heightDisplay = size.y;
 
 
-        buttonLevel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityStart.this, ActivityLevels.class);
-                startActivity(intent);
-            }
+        buttonLevel.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityStart.this, ActivityLevels.class);
+            startActivity(intent);
         });
 
-        buttonClassic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityStart.this, ActivityClassic.class);
-                startActivity(intent);
-            }
+        buttonClassic.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityStart.this, ActivityClassic.class);
+            startActivity(intent);
         });
 
 

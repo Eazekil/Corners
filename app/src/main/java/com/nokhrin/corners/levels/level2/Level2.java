@@ -1,7 +1,7 @@
-package com.nokhrin.corners.levels.level1;
-
+package com.nokhrin.corners.levels.level2;
 
 import android.view.View;
+
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.countMoveView;
 import static com.nokhrin.corners.levels.ActivityLevels.countPointInLevel;
@@ -10,13 +10,13 @@ import static com.nokhrin.corners.levels.ActivityLevels.marksPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.sizeOfField;
 import static com.nokhrin.corners.levels.PlayerMove.playerStartMove;
 
-public class Level1 {
+public class Level2 {
 
-    public static void startLevel1() {
+    public static void startLevel2() {
         //add start parameters
         sizeOfField = 5; //size field + 1
-        countToMove = 9; //count of move player can
-        countPointInLevel = 2; //count target point
+        countToMove = 10; //count of move player can
+        countPointInLevel = 3; //count target point
 
         //add text
         countMoveView.setVisibility(View.VISIBLE);
@@ -27,6 +27,7 @@ public class Level1 {
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
                 checkersPositions[i][j] = 0;
+                marksPositions[i][j] = 0;
             }
         }
 
@@ -34,13 +35,13 @@ public class Level1 {
         //for white checkers
         checkersPositions[4][1] = 1;
         checkersPositions[4][2] = 1;
+        checkersPositions[3][1] = 1;
         //for target points
         marksPositions[1][3] = 31;
         marksPositions[1][4] = 31;
-
+        marksPositions[2][4] = 31;
 
         //start game
         playerStartMove();
     }
-
 }

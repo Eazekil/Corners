@@ -1,43 +1,39 @@
 package com.nokhrin.corners.levels;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.nokhrin.corners.ActivityStart;
-import com.nokhrin.corners.R;
+import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
+import static com.nokhrin.corners.levels.ActivityLevels.marksPositions;
+import static com.nokhrin.corners.levels.ActivityLevels.sizeOfField;
+import static com.nokhrin.corners.levels.ActivityLevels.sizePoint;
+import static com.nokhrin.corners.levels.ActivityLevels.stepOnField;
+import static com.nokhrin.corners.levels.ActivityLevels.touchI;
+import static com.nokhrin.corners.levels.ActivityLevels.touchJ;
+import static com.nokhrin.corners.levels.GameOver.gameIsOver;
+import static com.nokhrin.corners.levels.GameOver.playerWin;
+import static com.nokhrin.corners.levels.PlayerMove.touchOnField;
+import static com.nokhrin.corners.levels.ResourcesBitmap.checkMarkBitmap;
+import static com.nokhrin.corners.levels.ResourcesBitmap.field4x4Bitmap;
+import static com.nokhrin.corners.levels.ResourcesBitmap.playerLoseBitmap;
+import static com.nokhrin.corners.levels.ResourcesBitmap.playerWinBitmap;
+import static com.nokhrin.corners.levels.ResourcesBitmap.targetPointBitmap;
+import static com.nokhrin.corners.levels.ResourcesBitmap.whiteCheckerBitmap;
 
-import static android.app.PendingIntent.getActivity;
-import static androidx.core.content.ContextCompat.startActivity;
-import static com.nokhrin.corners.ActivityStart.heightDisplay;
-import static com.nokhrin.corners.ActivityStart.widthDisplay;
-import static com.nokhrin.corners.levels.ActivityLevels.heightLayout;
-import static com.nokhrin.corners.levels.ActivityLevels.widthLayout;
 
 public class DrawView extends View implements View.OnTouchListener {
-    private Paint mPaint = new Paint();
-    public static Bitmap fieldBitmap;
     public static Resources resourcesForDraw;
-    Context copyContext;
+    private Paint mPaint = new Paint();
 
     public DrawView(Context context) {
         super(context);
 
-        copyContext = context;
-
         //find pictures in resources
         resourcesForDraw = this.getResources();
-        /*//background
-        Bitmap bitmap = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.yelow_background);
-        backgroundBitmap = Bitmap.createScaledBitmap(bitmap, widthDisplay, widthDisplay, true);*/
-
 
         //add touch listener
         setOnTouchListener(this);
@@ -47,21 +43,39 @@ public class DrawView extends View implements View.OnTouchListener {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        /*//discover size of display
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();*/
-
         //draw background
-        canvas.drawBitmap(fieldBitmap, 0, 0, mPaint);
+        canvas.drawBitmap(field4x4Bitmap, 0, 0, mPaint);
+
+        //draw checkers and marks
+        for (int i = 1; i < sizeOfField; i++) {
+            for (int j = 1; j < sizeOfField; j++) {
+                //white checkers
+                if (checkersPositions[i][j] == 1) {
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                }
+
+                //white checkers with mark
+                if (checkersPositions[i][j] == 2) {
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                }
+
+                //target point
+                if (marksPositions[i][j] == 31) {
+                    canvas.drawBitmap(targetPointBitmap, (j - 1) * stepOnField + sizePoint, (i - 1) * stepOnField + sizePoint, mPaint);
+                }
+
+            }
+        }
 
 
-        /*// draw text
-        mPaint.setColor(Color.WHITE);
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setAntiAlias(true);
-        mPaint.setTextSize(100);
-        canvas.drawText("Наконецто", 100, 200, mPaint);*/
-
+        if(gameIsOver()){
+            if(playerWin){
+                canvas.drawBitmap(playerWinBitmap, 0, 0, mPaint);
+            }else{
+                canvas.drawBitmap(playerLoseBitmap, 0, 0, mPaint);
+            }
+        }
 
 
     }
@@ -73,15 +87,14 @@ public class DrawView extends View implements View.OnTouchListener {
         int touchX = (int) event.getX();
         int touchY = (int) event.getY();
 
-        System.out.printf("_______________touch X and Y : %d,%d", touchX, touchY);
-        System.out.println("                           SSSSSSSSSSSSSSSSSSSS");
+        //convert coordinates X,Y in step on chess field
+        touchI = touchY / stepOnField + 1;
+        touchJ = touchX / stepOnField + 1;
 
+        System.out.printf("_______________touch I and J : %d,%d", touchI, touchJ);
+        System.out.println();
 
-
-        /*//convert coordinates X,Y in step on chess field
-        touchI = touchY/stepOnField+1;
-        touchJ = touchX/stepOnField+1;*/
-
+        touchOnField();
         return false;
     }
 }

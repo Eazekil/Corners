@@ -1,9 +1,7 @@
 package com.nokhrin.corners.classical;
 
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 
-
 import static com.nokhrin.corners.ActivityStart.heightDisplay;
 import static com.nokhrin.corners.ActivityStart.widthDisplay;
-import static com.nokhrin.corners.classical.GameMatrix.touchOnField;
 import static com.nokhrin.corners.classical.DrawField.drawField;
 import static com.nokhrin.corners.classical.GameMatrix.startPositions;
+import static com.nokhrin.corners.classical.GameMatrix.touchOnField;
 
 
 public class ActivityClassic extends AppCompatActivity implements View.OnTouchListener {
@@ -39,8 +36,6 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
     public static ImageView playerLoose;
     public static ImageView winWin;
     public static TextView textForTest;
-    /*public static  int widthDisplay;
-    public static int heightDisplay;*/
     public static int stepOnField; // step on chess field and size of checkers
     public static int indentTop; //indent of the top of the display
     int partValueOfDisplay = 20; //for indent
@@ -113,46 +108,36 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         indentTop =(heightDisplay - widthDisplay)/2;
 
         //button start game
-        buttonStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonStart.setOnClickListener(v -> {
+            //set invisible other view
+            buttonStart.setVisibility(View.INVISIBLE);
+            buttonMenu.setVisibility(View.VISIBLE);
+            buttonRestart.setVisibility(View.VISIBLE);
+            buttonStart.setVisibility(View.INVISIBLE);
+            playerWin.setVisibility(View.INVISIBLE);
+            playerLoose.setVisibility(View.INVISIBLE);
+            winWin.setVisibility(View.INVISIBLE);
 
-                //set invisible other view
-                buttonStart.setVisibility(View.INVISIBLE);
-                buttonMenu.setVisibility(View.VISIBLE);
-                buttonRestart.setVisibility(View.VISIBLE);
-                buttonStart.setVisibility(View.INVISIBLE);
-                playerWin.setVisibility(View.INVISIBLE);
-                playerLoose.setVisibility(View.INVISIBLE);
-                winWin.setVisibility(View.INVISIBLE);
+            //add checkers on a start positions
+            startPositions();
 
-                //add checkers on a start positions
-                startPositions();
-
-                drawField();
-                chessField.setVisibility(View.VISIBLE);
-            }
+            drawField();
+            chessField.setVisibility(View.VISIBLE);
         });
 
         //button return to Menu
-        buttonMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityClassic.this, ActivityStart.class);
-                startActivity(intent);
-            }
+        buttonMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityClassic.this, ActivityStart.class);
+            startActivity(intent);
         });
 
         //button restart this game
-        buttonRestart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //add checkers on a start positions
-                startPositions();
+        buttonRestart.setOnClickListener(v -> {
+            //add checkers on a start positions
+            startPositions();
 
-                //update
-                drawField();
-            }
+            //update
+            drawField();
         });
 
 

@@ -2,11 +2,10 @@ package com.nokhrin.corners.levels;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,16 +16,16 @@ import java.util.ArrayList;
 
 import static com.nokhrin.corners.ActivityStart.heightDisplay;
 import static com.nokhrin.corners.ActivityStart.widthDisplay;
-import static com.nokhrin.corners.levels.PlayerMove.touchOnField;
+import static com.nokhrin.corners.levels.ResourcesBitmap.createBitmap;
 import static com.nokhrin.corners.levels.level1.Level1.startLevel1;
+import static com.nokhrin.corners.levels.level2.Level2.startLevel2;
 
-public class ActivityLevels extends AppCompatActivity implements View.OnTouchListener {
+public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchListener*/ {
     private View levelsLayout;
     public static Button buttonMenu;
-    public static ImageView field4x4;
-    public static ImageView checkMark;
-    public static int countWhiteCheckers = 12;
-    public static int countBlackCheckers = 12;
+    public static Button buttonLevel1;
+    public static Button buttonLevel2;
+    public static Button buttonLevel3;
     public static int sizeOfField = 5;
     public static int stepOnField; // step on chess field and size of checkers
     public static int indentTop; //indent of the top of the display
@@ -35,15 +34,24 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
     public static int touchI;//coordinates of touch on chess field
     public static int touchJ;//coordinates of touch on chess field
     public static int countToMove;
+    public static TextView countMoveView;
     public static int[][] checkersPositions = new int[sizeOfField][sizeOfField];//positions all checkers on field
-    public static ArrayList<Button> buttonsLevelList = new ArrayList<>();
-    public static ImageView[] imageViewCheckersWhite = new ImageView[countWhiteCheckers];
-    public static ImageView[] imageViewCheckersBlack = new ImageView[countBlackCheckers];
+    public static int[][] marksPositions = new int[sizeOfField][sizeOfField];//positions all marks on field
     public static boolean gameOver = false;
     public static DrawView drawView;
     public static ViewGroup frameLayoutLevels;
-    public static int widthLayout = 100;
-    public static int heightLayout = 100;
+    public static int widthLayout;
+    public static int heightLayout;
+    public static int sizePoint;
+    public static int markOfGameMatrix = 30;
+    public static int countPointInLevel;
+    public static ArrayList<Button> buttonLevelList = new ArrayList<>();
+    // 1   - checker white
+    // 2   - checker white with mark
+    // -1  - checker black
+    // 0 - this nothing
+    // 31  - target point
+    // 32  - checker white with target point
 
 
 
@@ -65,120 +73,65 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
 
         //find all element and save in variables
         buttonMenu = findViewById(R.id.buttonMenu);
-        field4x4 = findViewById(R.id.imageField4x4);
-        checkMark = findViewById(R.id.checkMark);
         frameLayoutLevels = findViewById(R.id.frameLayoutLevels);
+        countMoveView = findViewById(R.id.textViewCountMove);
+        //add levels
+        buttonLevel1 = findViewById(R.id.buttonLevel1);
+        buttonLevel2 = findViewById(R.id.buttonLevel2);
+        buttonLevel3 = findViewById(R.id.buttonLevel3);
+        buttonLevelList.add(buttonLevel1);
+        buttonLevelList.add(buttonLevel2);
+        buttonLevelList.add(buttonLevel3);
 
 
 
-
-
-
-
-
-
-
-
-
-
-        //read touch on field
-        field4x4.setOnTouchListener(this);
 
         //
         sizeFieldOfPx = widthDisplay - widthDisplay/6;
         indentTop = (heightDisplay - widthDisplay)/2;
         indentLeft = widthDisplay/12;
-        stepOnField = sizeFieldOfPx / (sizeOfField - 1);
+        stepOnField = widthDisplay / (sizeOfField - 1);
+        sizePoint = stepOnField /3;
+        /*System.out.println("*********************************************************** stepOnField = "+stepOnField);*/
+
+        //create view for draw
+        drawView = new DrawView(getApplicationContext());
+        frameLayoutLevels.addView(drawView);
+
         widthLayout = frameLayoutLevels.getWidth();
         heightLayout = frameLayoutLevels.getHeight();
 
+        createBitmap();
 
-
-        //added black checkers
-        imageViewCheckersBlack[0]=findViewById(R.id.imageBlackCh1);
-        imageViewCheckersBlack[1]=findViewById(R.id.imageBlackCh2);
-        imageViewCheckersBlack[2]=findViewById(R.id.imageBlackCh3);
-        imageViewCheckersBlack[3]=findViewById(R.id.imageBlackCh4);
-        imageViewCheckersBlack[4]=findViewById(R.id.imageBlackCh5);
-        imageViewCheckersBlack[5]=findViewById(R.id.imageBlackCh6);
-        imageViewCheckersBlack[6]=findViewById(R.id.imageBlackCh7);
-        imageViewCheckersBlack[7]=findViewById(R.id.imageBlackCh8);
-        imageViewCheckersBlack[8]=findViewById(R.id.imageBlackCh9);
-        imageViewCheckersBlack[9]=findViewById(R.id.imageBlackCh10);
-        imageViewCheckersBlack[10]=findViewById(R.id.imageBlackCh11);
-        imageViewCheckersBlack[11]=findViewById(R.id.imageBlackCh12);
-
-        //added white checkers
-        imageViewCheckersWhite[0]=findViewById(R.id.imageWhiteCh1);
-        imageViewCheckersWhite[1]=findViewById(R.id.imageWhiteCh2);
-        imageViewCheckersWhite[2]=findViewById(R.id.imageWhiteCh3);
-        imageViewCheckersWhite[3]=findViewById(R.id.imageWhiteCh4);
-        imageViewCheckersWhite[4]=findViewById(R.id.imageWhiteCh5);
-        imageViewCheckersWhite[5]=findViewById(R.id.imageWhiteCh6);
-        imageViewCheckersWhite[6]=findViewById(R.id.imageWhiteCh7);
-        imageViewCheckersWhite[7]=findViewById(R.id.imageWhiteCh8);
-        imageViewCheckersWhite[8]=findViewById(R.id.imageWhiteCh9);
-        imageViewCheckersWhite[9]=findViewById(R.id.imageWhiteCh10);
-        imageViewCheckersWhite[10]=findViewById(R.id.imageWhiteCh11);
-        imageViewCheckersWhite[11]=findViewById(R.id.imageWhiteCh12);
 
         //button return to Menu
-        buttonMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ActivityLevels.this, ActivityStart.class);
-                startActivity(intent);
-            }
+        buttonMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityLevels.this, ActivityStart.class);
+            startActivity(intent);
         });
 
-
-
-
-
-
-        //add levels
-        buttonsLevelList.add(findViewById(R.id.buttonLevel1));
-        buttonsLevelList.add(findViewById(R.id.buttonLevel2));
-        buttonsLevelList.add(findViewById(R.id.buttonLevel3));
-
-
-        buttonsLevelList.get(0).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startLevel1();
-                drawView = new DrawView(getApplicationContext());
-                frameLayoutLevels.addView(drawView);
-                startLevel1();
+        //level 1
+        buttonLevel1.setOnClickListener(v -> {
+            frameLayoutLevels.setVisibility(View.VISIBLE);
+            for(Button button : buttonLevelList){
+                button.setVisibility(View.INVISIBLE);
             }
+
+            startLevel1();
+        });
+
+        //level 2
+        buttonLevel2.setOnClickListener(v -> {
+            frameLayoutLevels.setVisibility(View.VISIBLE);
+            for(Button button : buttonLevelList){
+                button.setVisibility(View.INVISIBLE);
+            }
+
+            startLevel2();
         });
 
 
     }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        //get coordinates of touch
-        int touchX = (int) event.getX();
-        int touchY = (int) event.getY();
-
-        //convert coordinates X,Y in step on chess field
-        touchI = touchY/stepOnField+1;
-        touchJ = touchX/stepOnField+1;
-
-        System.out.println("_____touch I and J : "+touchI+","+touchJ);
-
-        //start move on the field
-
-        touchOnField();
-
-
-        return false;
-    }
-
-    /*public void moveToMenu(){
-        Intent intent = new Intent(this, ActivityStart.class);
-        startActivity(intent);
-    }*/
 
 
 

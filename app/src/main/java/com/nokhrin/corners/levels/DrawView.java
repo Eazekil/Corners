@@ -19,6 +19,7 @@ import static com.nokhrin.corners.levels.GameOver.playerWin;
 import static com.nokhrin.corners.levels.PlayerMove.touchOnField;
 import static com.nokhrin.corners.levels.ResourcesBitmap.checkMarkBitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.field4x4Bitmap;
+import static com.nokhrin.corners.levels.ResourcesBitmap.field5x5Bitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.playerLoseBitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.playerWinBitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.targetPointBitmap;
@@ -43,8 +44,13 @@ public class DrawView extends View implements View.OnTouchListener {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        //draw background
-        canvas.drawBitmap(field4x4Bitmap, 0, 0, mPaint);
+        //draw chess field
+        if(sizeOfField == 5){
+            canvas.drawBitmap(field4x4Bitmap, 0, 0, mPaint);
+        }else if(sizeOfField == 6){
+            canvas.drawBitmap(field5x5Bitmap, 0, 0, mPaint);
+        }
+
 
         //draw checkers and marks
         for (int i = 1; i < sizeOfField; i++) {

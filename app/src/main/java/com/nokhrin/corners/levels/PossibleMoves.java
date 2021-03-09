@@ -2,7 +2,6 @@ package com.nokhrin.corners.levels;
 
 
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
-import static com.nokhrin.corners.levels.ActivityLevels.markOfGameMatrix;
 import static com.nokhrin.corners.levels.ActivityLevels.sizeOfField;
 import static com.nokhrin.corners.levels.PlayerMove.choiceI;
 import static com.nokhrin.corners.levels.PlayerMove.choiceJ;

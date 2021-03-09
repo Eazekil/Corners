@@ -14,36 +14,31 @@ import com.nokhrin.corners.R;
 
 import java.util.ArrayList;
 
-import static com.nokhrin.corners.ActivityStart.heightDisplay;
-import static com.nokhrin.corners.ActivityStart.widthDisplay;
-import static com.nokhrin.corners.levels.ResourcesBitmap.createBitmap;
 import static com.nokhrin.corners.levels.level1.Level1.startLevel1;
 import static com.nokhrin.corners.levels.level2.Level2.startLevel2;
+import static com.nokhrin.corners.levels.level3.Level3.startLevel3;
+import static com.nokhrin.corners.levels.level4.Level4.startLevel4;
 
-public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchListener*/ {
+public class ActivityLevels extends AppCompatActivity {
     private View levelsLayout;
-    public static Button buttonMenu;
-    public static Button buttonLevel1;
-    public static Button buttonLevel2;
-    public static Button buttonLevel3;
-    public static int sizeOfField = 5;
+    public Button buttonMenu;
+    public Button buttonLevel1;
+    public Button buttonLevel2;
+    public Button buttonLevel3;
+    public Button buttonLevel4;
+    public Button buttonLevel5;
+    public Button buttonLevel6;
+    public static int sizeOfField;
     public static int stepOnField; // step on chess field and size of checkers
-    public static int indentTop; //indent of the top of the display
-    public static int indentLeft; //indent of the left of the display
-    public static int sizeFieldOfPx;
     public static int touchI;//coordinates of touch on chess field
     public static int touchJ;//coordinates of touch on chess field
     public static int countToMove;
     public static TextView countMoveView;
-    public static int[][] checkersPositions = new int[sizeOfField][sizeOfField];//positions all checkers on field
-    public static int[][] marksPositions = new int[sizeOfField][sizeOfField];//positions all marks on field
-    public static boolean gameOver = false;
+    public static int[][] checkersPositions; //= new int[sizeOfField][sizeOfField];//positions all checkers on field
+    public static int[][] marksPositions; // = new int[sizeOfField][sizeOfField];//positions all marks on field
     public static DrawView drawView;
     public static ViewGroup frameLayoutLevels;
-    public static int widthLayout;
-    public static int heightLayout;
     public static int sizePoint;
-    public static int markOfGameMatrix = 30;
     public static int countPointInLevel;
     public static ArrayList<Button> buttonLevelList = new ArrayList<>();
     // 1   - checker white
@@ -51,9 +46,6 @@ public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchL
     // -1  - checker black
     // 0 - this nothing
     // 31  - target point
-    // 32  - checker white with target point
-
-
 
 
 
@@ -79,29 +71,20 @@ public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchL
         buttonLevel1 = findViewById(R.id.buttonLevel1);
         buttonLevel2 = findViewById(R.id.buttonLevel2);
         buttonLevel3 = findViewById(R.id.buttonLevel3);
+        buttonLevel4 = findViewById(R.id.buttonLevel4);
+        buttonLevel5 = findViewById(R.id.buttonLevel5);
+        buttonLevel6 = findViewById(R.id.buttonLevel6);
         buttonLevelList.add(buttonLevel1);
         buttonLevelList.add(buttonLevel2);
         buttonLevelList.add(buttonLevel3);
+        buttonLevelList.add(buttonLevel4);
+        buttonLevelList.add(buttonLevel5);
+        buttonLevelList.add(buttonLevel6);
 
-
-
-
-        //
-        sizeFieldOfPx = widthDisplay - widthDisplay/6;
-        indentTop = (heightDisplay - widthDisplay)/2;
-        indentLeft = widthDisplay/12;
-        stepOnField = widthDisplay / (sizeOfField - 1);
-        sizePoint = stepOnField /3;
-        /*System.out.println("*********************************************************** stepOnField = "+stepOnField);*/
 
         //create view for draw
         drawView = new DrawView(getApplicationContext());
         frameLayoutLevels.addView(drawView);
-
-        widthLayout = frameLayoutLevels.getWidth();
-        heightLayout = frameLayoutLevels.getHeight();
-
-        createBitmap();
 
 
         //button return to Menu
@@ -116,7 +99,6 @@ public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchL
             for(Button button : buttonLevelList){
                 button.setVisibility(View.INVISIBLE);
             }
-
             startLevel1();
         });
 
@@ -126,8 +108,25 @@ public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchL
             for(Button button : buttonLevelList){
                 button.setVisibility(View.INVISIBLE);
             }
-
             startLevel2();
+        });
+
+        //level 3
+        buttonLevel3.setOnClickListener(v -> {
+            frameLayoutLevels.setVisibility(View.VISIBLE);
+            for(Button button : buttonLevelList){
+                button.setVisibility(View.INVISIBLE);
+            }
+            startLevel3();
+        });
+
+        //level 4
+        buttonLevel4.setOnClickListener(v -> {
+            frameLayoutLevels.setVisibility(View.VISIBLE);
+            for(Button button : buttonLevelList){
+                button.setVisibility(View.INVISIBLE);
+            }
+            startLevel4();
         });
 
 

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Corners</string>
+    <string name="app_name2">Cool Game</string>
     <string name="background">background</string>
     <string name="todo">TODO</string>
     <string name="start_and_enjoy">Start</string>
@@ -18,10 +19,14 @@
     <string name="button_number_level1">1</string>
     <string name="button_number_level2">2</string>
     <string name="button_number_level3">3</string>
+    <string name="button_number_level4">4</string>
+    <string name="button_number_level5">5</string>
+    <string name="button_number_level6">6</string>
+    <string name="button_number_level7">7</string>
     <string name="image_field_4x4">chess field on 4x4</string>
     <string name="choise_level">Выбор уровня</string>
     <string name="title_activity_classic">FullscreenActivity</string>
-    <string name="title_activity_start">FullscreenActivity</string>
+    <string name="title_activity_start">Corners</string>
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="title_activity_levels">FullscreenActivity</string>
     <string name="text_in_level_layout">Скоро здесь появятся уровни</string>

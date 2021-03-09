@@ -9,6 +9,19 @@
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".levels.ActivityLevels" >
 
+    <FrameLayout
+        android:id="@+id/frameLayoutLevels"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
     <Button
         android:id="@+id/buttonLevel3"
         android:layout_width="90dp"
@@ -32,6 +45,78 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.115" />
+
+    <Button
+        android:id="@+id/buttonLevel4"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/button_number_level"
+        android:fontFamily="@font/aclonica"
+        android:freezesText="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_number_level4"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="45sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304" />
+
+    <Button
+        android:id="@+id/buttonLevel5"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/button_number_level"
+        android:fontFamily="@font/aclonica"
+        android:freezesText="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_number_level5"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="45sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304" />
+
+    <Button
+        android:id="@+id/buttonLevel6"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/button_number_level"
+        android:fontFamily="@font/aclonica"
+        android:freezesText="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_number_level6"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="45sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304" />
 
     <Button
         android:id="@+id/buttonLevel2"
@@ -121,18 +206,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.041" />
-
-    <FrameLayout
-        android:id="@+id/frameLayoutLevels"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

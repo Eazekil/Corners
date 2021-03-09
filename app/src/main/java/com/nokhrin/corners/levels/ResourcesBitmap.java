@@ -12,6 +12,7 @@ import static com.nokhrin.corners.levels.DrawView.resourcesForDraw;
 
 public class ResourcesBitmap {
     public static Bitmap field4x4Bitmap;
+    public static Bitmap field5x5Bitmap;
     public static Bitmap whiteCheckerBitmap;
     public static Bitmap checkMarkBitmap;
     public static Bitmap targetPointBitmap;
@@ -23,6 +24,11 @@ public class ResourcesBitmap {
         //create field 4x4
         Bitmap bitmap = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.chess_field_4x4);
         field4x4Bitmap = Bitmap.createScaledBitmap(bitmap, widthDisplay, widthDisplay, true);
+
+        //create field 5x5
+        field5x5Bitmap = Bitmap.createScaledBitmap(
+                BitmapFactory.decodeResource(resourcesForDraw, R.drawable.chess_field_5x5), widthDisplay, widthDisplay, true);
+
         //create checker white
         Bitmap bitmap2 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_white);
         whiteCheckerBitmap = Bitmap.createScaledBitmap(bitmap2, stepOnField, stepOnField, true);

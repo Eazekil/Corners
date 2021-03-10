@@ -17,9 +17,11 @@ import static com.nokhrin.corners.levels.ActivityLevels.touchJ;
 import static com.nokhrin.corners.levels.GameOver.gameIsOver;
 import static com.nokhrin.corners.levels.GameOver.playerWin;
 import static com.nokhrin.corners.levels.PlayerMove.touchOnField;
+import static com.nokhrin.corners.levels.ResourcesBitmap.blackCheckerBitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.checkMarkBitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.field4x4Bitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.field5x5Bitmap;
+import static com.nokhrin.corners.levels.ResourcesBitmap.field6x6Bitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.playerLoseBitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.playerWinBitmap;
 import static com.nokhrin.corners.levels.ResourcesBitmap.targetPointBitmap;
@@ -45,10 +47,12 @@ public class DrawView extends View implements View.OnTouchListener {
         super.onDraw(canvas);
 
         //draw chess field
-        if(sizeOfField == 5){
+        if (sizeOfField == 5) {
             canvas.drawBitmap(field4x4Bitmap, 0, 0, mPaint);
-        }else if(sizeOfField == 6){
+        } else if (sizeOfField == 6) {
             canvas.drawBitmap(field5x5Bitmap, 0, 0, mPaint);
+        } else if (sizeOfField == 7) {
+            canvas.drawBitmap(field6x6Bitmap, 0, 0, mPaint);
         }
 
 
@@ -58,6 +62,11 @@ public class DrawView extends View implements View.OnTouchListener {
                 //white checkers
                 if (checkersPositions[i][j] == 1) {
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                }
+
+                //black checkers
+                if (checkersPositions[i][j] == 3) {
+                    canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //white checkers with mark
@@ -75,10 +84,10 @@ public class DrawView extends View implements View.OnTouchListener {
         }
 
 
-        if(gameIsOver()){
-            if(playerWin){
+        if (gameIsOver()) {
+            if (playerWin) {
                 canvas.drawBitmap(playerWinBitmap, 0, 0, mPaint);
-            }else{
+            } else {
                 canvas.drawBitmap(playerLoseBitmap, 0, 0, mPaint);
             }
         }

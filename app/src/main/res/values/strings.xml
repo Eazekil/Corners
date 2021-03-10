@@ -16,6 +16,8 @@
     <string name="button_settings">Настройки</string>
     <string name="button_menu">Меню</string>
     <string name="button_restart">Рестарт</string>
+    <string name="button_return_levels">Выбрать уровень</string>
+    <string name="button_restart_level">Рестарт</string>
     <string name="button_number_level1">1</string>
     <string name="button_number_level2">2</string>
     <string name="button_number_level3">3</string>
@@ -23,6 +25,12 @@
     <string name="button_number_level5">5</string>
     <string name="button_number_level6">6</string>
     <string name="button_number_level7">7</string>
+    <string name="button_number_level8">8</string>
+    <string name="button_number_level9">9</string>
+    <string name="button_number_level10">10</string>
+    <string name="button_number_level11">11</string>
+    <string name="button_number_level12">12</string>
+    <string name="button_number_level13">13</string>
     <string name="image_field_4x4">chess field on 4x4</string>
     <string name="choise_level">Выбор уровня</string>
     <string name="title_activity_classic">FullscreenActivity</string>

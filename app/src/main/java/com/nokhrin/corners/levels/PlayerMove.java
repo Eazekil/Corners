@@ -3,10 +3,14 @@ package com.nokhrin.corners.levels;
 
 
 
+import android.view.View;
+import android.widget.TextView;
+
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.countMoveView;
 import static com.nokhrin.corners.levels.ActivityLevels.countToMove;
 import static com.nokhrin.corners.levels.ActivityLevels.drawView;
+import static com.nokhrin.corners.levels.ActivityLevels.elementSetVisibleList;
 import static com.nokhrin.corners.levels.ActivityLevels.touchI;
 import static com.nokhrin.corners.levels.ActivityLevels.touchJ;
 import static com.nokhrin.corners.levels.GameOver.gameIsOver;
@@ -15,16 +19,14 @@ import static com.nokhrin.corners.levels.PossibleMoves.possibleStep;
 
 public class PlayerMove {
     public static boolean playerMove;//can player to move
-    public static int choiceI = 0;//coordinate I of player's chosen checker
-    public static int choiceJ = 0;//coordinate J of player's chosen checker
+    public static int choiceI;//coordinate I of player's chosen checker
+    public static int choiceJ;//coordinate J of player's chosen checker
 
 
     //add checkers on a start positions
     public static void playerStartMove() {
         //player can move
         playerMove = true;
-
-
     }
 
 
@@ -65,9 +67,9 @@ public class PlayerMove {
                         choiceJ = 0;
 
 
-
                         //
                         String s = "Ходов осталось : "+(--countToMove);
+                        countMoveView.setVisibility(View.VISIBLE);
                         countMoveView.setText(s);
 
                     }

@@ -11,42 +11,39 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
+import com.nokhrin.corners.levels.level1.Level1;
+import com.nokhrin.corners.levels.level10.Level10;
+import com.nokhrin.corners.levels.level2.Level2;
+import com.nokhrin.corners.levels.level3.Level3;
+import com.nokhrin.corners.levels.level4.Level4;
+import com.nokhrin.corners.levels.level5.Level5;
+import com.nokhrin.corners.levels.level6.Level6;
+import com.nokhrin.corners.levels.level7.Level7;
+import com.nokhrin.corners.levels.level8.Level8;
+import com.nokhrin.corners.levels.level9.Level9;
 
 import java.util.ArrayList;
 
-import static com.nokhrin.corners.levels.level1.Level1.startLevel1;
-import static com.nokhrin.corners.levels.level2.Level2.startLevel2;
-import static com.nokhrin.corners.levels.level3.Level3.startLevel3;
-import static com.nokhrin.corners.levels.level4.Level4.startLevel4;
-
 public class ActivityLevels extends AppCompatActivity {
-    private View levelsLayout;
-    public Button buttonMenu;
-    public Button buttonLevel1;
-    public Button buttonLevel2;
-    public Button buttonLevel3;
-    public Button buttonLevel4;
-    public Button buttonLevel5;
-    public Button buttonLevel6;
     public static int sizeOfField;
     public static int stepOnField; // step on chess field and size of checkers
     public static int touchI;//coordinates of touch on chess field
     public static int touchJ;//coordinates of touch on chess field
     public static int countToMove;
-    public static TextView countMoveView;
     public static int[][] checkersPositions; //= new int[sizeOfField][sizeOfField];//positions all checkers on field
     public static int[][] marksPositions; // = new int[sizeOfField][sizeOfField];//positions all marks on field
-    public static DrawView drawView;
-    public static ViewGroup frameLayoutLevels;
+    public static DrawView drawView; //view for game field
     public static int sizePoint;
     public static int countPointInLevel;
-    public static ArrayList<Button> buttonLevelList = new ArrayList<>();
+    public static ArrayList<Button> buttonSetInvisibleList = new ArrayList<>();
+    public static ArrayList<View> elementSetVisibleList = new ArrayList<>();
+    public static TextView countMoveView;
+    public int numberLevel;
     // 1   - checker white
     // 2   - checker white with mark
-    // -1  - checker black
+    // 3  - checker black
     // 0 - this nothing
     // 31  - target point
-
 
 
     @Override
@@ -55,7 +52,7 @@ public class ActivityLevels extends AppCompatActivity {
 
         //this all for make full screen
         setContentView(R.layout.activity_levels);
-        levelsLayout = findViewById(R.id.ConstrainLayoutLevels);
+        View levelsLayout = findViewById(R.id.ConstrainLayoutLevels);
         levelsLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -63,28 +60,53 @@ public class ActivityLevels extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
-        //find all element and save in variables
-        buttonMenu = findViewById(R.id.buttonMenu);
-        frameLayoutLevels = findViewById(R.id.frameLayoutLevels);
-        countMoveView = findViewById(R.id.textViewCountMove);
-        //add levels
-        buttonLevel1 = findViewById(R.id.buttonLevel1);
-        buttonLevel2 = findViewById(R.id.buttonLevel2);
-        buttonLevel3 = findViewById(R.id.buttonLevel3);
-        buttonLevel4 = findViewById(R.id.buttonLevel4);
-        buttonLevel5 = findViewById(R.id.buttonLevel5);
-        buttonLevel6 = findViewById(R.id.buttonLevel6);
-        buttonLevelList.add(buttonLevel1);
-        buttonLevelList.add(buttonLevel2);
-        buttonLevelList.add(buttonLevel3);
-        buttonLevelList.add(buttonLevel4);
-        buttonLevelList.add(buttonLevel5);
-        buttonLevelList.add(buttonLevel6);
 
+        //find all element and save in variables
+        Button buttonMenu = findViewById(R.id.buttonMenu);
+        Button buttonReturnLevels = findViewById(R.id.buttonReturnLevel);
+        Button buttonRestartLevel = findViewById(R.id.buttonRestartLevel);
+        ViewGroup frameLayoutLevels = findViewById(R.id.frameLayoutLevels);
+        countMoveView = findViewById(R.id.textViewCountMove);
 
         //create view for draw
         drawView = new DrawView(getApplicationContext());
         frameLayoutLevels.addView(drawView);
+
+        //add levels
+        Button buttonLevel1 = findViewById(R.id.buttonLevel1);
+        Button buttonLevel2 = findViewById(R.id.buttonLevel2);
+        Button buttonLevel3 = findViewById(R.id.buttonLevel3);
+        Button buttonLevel4 = findViewById(R.id.buttonLevel4);
+        Button buttonLevel5 = findViewById(R.id.buttonLevel5);
+        Button buttonLevel6 = findViewById(R.id.buttonLevel6);
+        Button buttonLevel7 = findViewById(R.id.buttonLevel7);
+        Button buttonLevel8 = findViewById(R.id.buttonLevel8);
+        Button buttonLevel9 = findViewById(R.id.buttonLevel9);
+        Button buttonLevel10 = findViewById(R.id.buttonLevel10);
+        Button buttonLevel11 = findViewById(R.id.buttonLevel11);
+        Button buttonLevel12 = findViewById(R.id.buttonLevel12);
+
+
+        //add element for invisible
+        buttonSetInvisibleList.add(buttonMenu);
+        buttonSetInvisibleList.add(buttonLevel1);
+        buttonSetInvisibleList.add(buttonLevel2);
+        buttonSetInvisibleList.add(buttonLevel3);
+        buttonSetInvisibleList.add(buttonLevel4);
+        buttonSetInvisibleList.add(buttonLevel5);
+        buttonSetInvisibleList.add(buttonLevel6);
+        buttonSetInvisibleList.add(buttonLevel7);
+        buttonSetInvisibleList.add(buttonLevel8);
+        buttonSetInvisibleList.add(buttonLevel9);
+        buttonSetInvisibleList.add(buttonLevel10);
+        buttonSetInvisibleList.add(buttonLevel11);
+        buttonSetInvisibleList.add(buttonLevel12);
+
+        //add element for visible
+        elementSetVisibleList.add(countMoveView);
+        elementSetVisibleList.add(frameLayoutLevels);
+        elementSetVisibleList.add(buttonReturnLevels);
+        elementSetVisibleList.add(buttonRestartLevel);
 
 
         //button return to Menu
@@ -93,45 +115,90 @@ public class ActivityLevels extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //button return to menu levels
+        buttonReturnLevels.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityLevels.this, ActivityLevels.class);
+            startActivity(intent);
+        });
+
+        //button restart level
+        buttonRestartLevel.setOnClickListener(v -> {
+
+            if (numberLevel == 1) {
+                Level1.startLevel();
+            } else if (numberLevel == 2){
+                Level2.startLevel();
+            } else if (numberLevel == 3){
+                Level3.startLevel();
+            } else if (numberLevel == 4){
+                Level4.startLevel();
+            } else if (numberLevel == 5){
+                Level5.startLevel();
+            } else if (numberLevel == 6){
+                Level6.startLevel();
+            } else if (numberLevel == 7){
+                Level7.startLevel();
+            } else if (numberLevel == 8){
+                Level8.startLevel();
+            } else if (numberLevel == 9){
+                Level9.startLevel();
+            } else if (numberLevel == 10){
+                Level10.startLevel();
+            }
+            drawView.invalidate();
+        });
+
         //level 1
         buttonLevel1.setOnClickListener(v -> {
-            frameLayoutLevels.setVisibility(View.VISIBLE);
-            for(Button button : buttonLevelList){
-                button.setVisibility(View.INVISIBLE);
-            }
-            startLevel1();
+            numberLevel = 1;
+            Level1.startLevel();
         });
-
         //level 2
         buttonLevel2.setOnClickListener(v -> {
-            frameLayoutLevels.setVisibility(View.VISIBLE);
-            for(Button button : buttonLevelList){
-                button.setVisibility(View.INVISIBLE);
-            }
-            startLevel2();
+            numberLevel = 2;
+            Level2.startLevel();
         });
-
         //level 3
         buttonLevel3.setOnClickListener(v -> {
-            frameLayoutLevels.setVisibility(View.VISIBLE);
-            for(Button button : buttonLevelList){
-                button.setVisibility(View.INVISIBLE);
-            }
-            startLevel3();
+            numberLevel = 3;
+            Level3.startLevel();
         });
-
         //level 4
         buttonLevel4.setOnClickListener(v -> {
-            frameLayoutLevels.setVisibility(View.VISIBLE);
-            for(Button button : buttonLevelList){
-                button.setVisibility(View.INVISIBLE);
-            }
-            startLevel4();
+            numberLevel = 4;
+            Level4.startLevel();
+        });
+        //level 5
+        buttonLevel5.setOnClickListener(v -> {
+            numberLevel = 5;
+            Level5.startLevel();
+        });
+        //level 6
+        buttonLevel6.setOnClickListener(v -> {
+            numberLevel = 6;
+            Level6.startLevel();
+        });
+        //level 7
+        buttonLevel7.setOnClickListener(v -> {
+            numberLevel = 7;
+            Level7.startLevel();
+        });
+        //level 8
+        buttonLevel8.setOnClickListener(v -> {
+            numberLevel = 8;
+            Level8.startLevel();
+        });
+        //level 9
+        buttonLevel9.setOnClickListener(v -> {
+            numberLevel = 9;
+            Level9.startLevel();
+        });
+        //level 10
+        buttonLevel10.setOnClickListener(v -> {
+            numberLevel = 10;
+            Level10.startLevel();
         });
 
 
     }
-
-
-
 }

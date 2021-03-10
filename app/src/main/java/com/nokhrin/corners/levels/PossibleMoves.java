@@ -7,8 +7,8 @@ import static com.nokhrin.corners.levels.PlayerMove.choiceI;
 import static com.nokhrin.corners.levels.PlayerMove.choiceJ;
 
 public class PossibleMoves {
-    private static boolean[][] resultPossibleMoves = new boolean[sizeOfField][sizeOfField];
-    private static  boolean[][] lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
+    public static boolean[][] resultPossibleMoves;   //= new boolean[sizeOfField][sizeOfField];
+    public static  boolean[][] lastPlayerPositions;  // = new boolean[sizeOfField][sizeOfField];
 
     public static boolean possibleMoves(int endI, int endJ){
         //possibleStep();

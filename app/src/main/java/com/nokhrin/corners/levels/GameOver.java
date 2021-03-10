@@ -1,5 +1,7 @@
 package com.nokhrin.corners.levels;
 
+import android.view.View;
+
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.countMoveView;
 import static com.nokhrin.corners.levels.ActivityLevels.countPointInLevel;
@@ -9,6 +11,7 @@ import static com.nokhrin.corners.levels.ActivityLevels.sizeOfField;
 
 public class GameOver {
     public static boolean playerWin;
+
     public static boolean gameIsOver(){
         boolean result = false;
 
@@ -25,11 +28,13 @@ public class GameOver {
             result = true;
             playerWin = true;
             String s = "Уровень пройден";
+            countMoveView.setVisibility(View.VISIBLE);
             countMoveView.setText(s);
         }else if(countToMove == 0){
             result = true;
             playerWin = false;
             String s = "Увы и ах, ходы кончились";
+            countMoveView.setVisibility(View.VISIBLE);
             countMoveView.setText(s);
         }
 

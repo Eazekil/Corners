@@ -1,4 +1,4 @@
-package com.nokhrin.corners.levels.level3;
+package com.nokhrin.corners.levels.level6;
 
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.countPointInLevel;
@@ -8,11 +8,11 @@ import static com.nokhrin.corners.levels.ActivityLevels.sizeOfField;
 import static com.nokhrin.corners.levels.PlayerMove.playerStartMove;
 import static com.nokhrin.corners.levels.start.StartForLevel.addStartParameters;
 
-public class Level3 {
+public class Level6 {
     public static void startLevel() {
         //add start parameters
         sizeOfField = 6; //size field + 1
-        countToMove = 8; //count of move player can
+        countToMove = 14; //count of move player can
         countPointInLevel = 4; //count target point
 
         //add start parameters
@@ -24,6 +24,9 @@ public class Level3 {
         checkersPositions[5][2] = 1;
         checkersPositions[4][1] = 1;
         checkersPositions[4][2] = 1;
+        checkersPositions[3][3] = 3;
+        checkersPositions[2][3] = 3;
+        checkersPositions[3][4] = 3;
         //for target points
         marksPositions[1][4] = 31;
         marksPositions[1][5] = 31;

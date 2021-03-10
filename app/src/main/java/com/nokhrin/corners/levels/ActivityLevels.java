@@ -13,6 +13,8 @@ import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.levels.level1.Level1;
 import com.nokhrin.corners.levels.level10.Level10;
+import com.nokhrin.corners.levels.level11.Level11;
+import com.nokhrin.corners.levels.level12.Level12;
 import com.nokhrin.corners.levels.level2.Level2;
 import com.nokhrin.corners.levels.level3.Level3;
 import com.nokhrin.corners.levels.level4.Level4;
@@ -144,6 +146,10 @@ public class ActivityLevels extends AppCompatActivity {
                 Level9.startLevel();
             } else if (numberLevel == 10){
                 Level10.startLevel();
+            } else if (numberLevel == 11){
+                Level11.startLevel();
+            } else if (numberLevel == 12){
+                Level12.startLevel();
             }
             drawView.invalidate();
         });
@@ -197,6 +203,16 @@ public class ActivityLevels extends AppCompatActivity {
         buttonLevel10.setOnClickListener(v -> {
             numberLevel = 10;
             Level10.startLevel();
+        });
+        //level 11
+        buttonLevel11.setOnClickListener(v -> {
+            numberLevel = 11;
+            Level11.startLevel();
+        });
+        //level 12
+        buttonLevel12.setOnClickListener(v -> {
+            numberLevel = 12;
+            Level12.startLevel();
         });
 
 

@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Corners">
         <activity
+            android:name=".multiplayer.ActivityMulti3Game"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_multi3_game"
+            android:theme="@style/Theme.Corners.Fullscreen"></activity>
+        <activity
+            android:name=".multiplayer.ActivityMulti2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_multi2"
+            android:theme="@style/Theme.Corners.Fullscreen" />
+        <activity
+            android:name=".multiplayer.ActivityMultiplayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_multiplayer"
+            android:theme="@style/Theme.Corners.Fullscreen" />
+        <activity
             android:name=".classical.ActivityClassic"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_classic"
@@ -30,7 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <meta-data
             android:name="preloaded_fonts"

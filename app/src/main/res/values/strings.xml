@@ -39,4 +39,12 @@
     <string name="title_activity_levels">FullscreenActivity</string>
     <string name="text_in_level_layout">Скоро здесь появятся уровни</string>
     <string name="text_count_move">Осталось ходов : 5</string>
+    <string name="text_multi_1">Начинаем че та делать</string>
+    <string name="text_player_Name">Введите имя игрока</string>
+    <string name="button_multi_1">Мульти 1</string>
+    <string name="button_multi_2">Мульти 2</string>
+    <string name="button_multi_3">Мульти 3</string>
+    <string name="title_activity_multiplayer">FullscreenActivity</string>
+    <string name="title_activity_multi2">FullscreenActivity</string>
+    <string name="title_activity_multi3_game">FullscreenActivity</string>
 </resources>

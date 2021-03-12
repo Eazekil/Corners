@@ -10,17 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Corners">
         <activity
-            android:name=".multiplayer.ActivityMulti3Game"
+            android:name=".multiplayer.ActivityMultiplayerGame"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_multi3_game"
             android:theme="@style/Theme.Corners.Fullscreen"></activity>
         <activity
-            android:name=".multiplayer.ActivityMulti2"
+            android:name=".multiplayer.ActivityRooms"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_multi2"
             android:theme="@style/Theme.Corners.Fullscreen" />
         <activity
-            android:name=".multiplayer.ActivityMultiplayer"
+            android:name=".multiplayer.ActivityCreatePlayer"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_multiplayer"
             android:theme="@style/Theme.Corners.Fullscreen" />

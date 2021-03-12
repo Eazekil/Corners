@@ -11,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.classical.ActivityClassic;
 import com.nokhrin.corners.levels.ActivityLevels;
-import com.nokhrin.corners.multiplayer.ActivityMultiplayer;
+import com.nokhrin.corners.multiplayer.ActivityCreatePlayer;
+
 
 
 public class ActivityStart extends AppCompatActivity {
@@ -49,6 +50,8 @@ public class ActivityStart extends AppCompatActivity {
         widthDisplay = size.x;
         heightDisplay = size.y;
 
+
+
         //go to choice level activity
         buttonLevel.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityLevels.class);
@@ -61,7 +64,7 @@ public class ActivityStart extends AppCompatActivity {
         });
         //go to activity for play with friends
         buttonMultiPlayer.setOnClickListener(v -> {
-            Intent intent = new Intent(ActivityStart.this, ActivityMultiplayer.class);
+            Intent intent = new Intent(ActivityStart.this, ActivityCreatePlayer.class);
             startActivity(intent);
         });
 

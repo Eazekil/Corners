@@ -67,7 +67,7 @@ public class ActivityLevels extends AppCompatActivity {
         Button buttonMenu = findViewById(R.id.buttonMenu);
         Button buttonReturnLevels = findViewById(R.id.buttonReturnLevel);
         Button buttonRestartLevel = findViewById(R.id.buttonRestartLevel);
-        ViewGroup frameLayoutLevels = findViewById(R.id.frameLayoutLevels);
+        ViewGroup frameLayoutLevels = findViewById(R.id.frameLayoutLevel);
         countMoveView = findViewById(R.id.textViewCountMove);
 
         //create view for draw

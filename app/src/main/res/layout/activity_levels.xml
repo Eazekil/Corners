@@ -10,7 +10,7 @@
     tools:context=".levels.ActivityLevels" >
 
     <FrameLayout
-        android:id="@+id/frameLayoutLevels"
+        android:id="@+id/frameLayoutLevel"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="invisible"

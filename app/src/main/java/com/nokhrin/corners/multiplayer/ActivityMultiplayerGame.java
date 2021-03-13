@@ -6,6 +6,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.multiplayer.game.StepOn;
 import com.nokhrin.corners.multiplayer.start.DrawViewMG;
-
-import java.util.ArrayList;
 
 import static com.nokhrin.corners.multiplayer.game.SecondPlayer.updatePosition;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.addStartParameters;
@@ -37,8 +35,9 @@ public class ActivityMultiplayerGame extends AppCompatActivity {
     TextView tvPlayers;
 
     String roomName;
+    public static String role;
     static String firstPlayerName;
-    String secondPlayerName;
+    static String secondPlayerName;
     private static String moveTo;
 
 
@@ -60,12 +59,13 @@ public class ActivityMultiplayerGame extends AppCompatActivity {
         tvRoomName = findViewById(R.id.textViewRoomName);
         tvPlayers = findViewById(R.id.textViewPlayers);
 
-        //get roomName and Names of players
+        //get roomName, Names of players and his role
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             roomName = extras.getString("roomName");
             firstPlayerName = extras.getString("firstPlayerName");
             secondPlayerName = extras.getString("secondPlayerName");
+            role = extras.getString("role");
         }
 
         //set room Name and Names of players
@@ -98,21 +98,22 @@ public class ActivityMultiplayerGame extends AppCompatActivity {
         drawView = new DrawViewMG(getApplicationContext());
         flMultiplayerGame.addView(drawView);
 
-        //listen to incoming moveTo
-        moveToRef = database.getReference("rooms/"+roomName+"/moveTo");
+
+        moveToRef = database.getReference("rooms/"+roomName+"/mess");
         addRoomEventListener();
 
     }
 
     public static void makeStep(String sendM){
-        moveTo = sendM+" "+firstPlayerName;
-        /*moveTo.setStartI(startI);
-        moveTo.setStartJ(startJ);
-        moveTo.setEndI(endI);
-        moveTo.setEndJ(endJ);*/
+        if(role.equals("host")){
+            moveTo = sendM+" "+firstPlayerName;
+        }else {
+            moveTo = sendM+" "+secondPlayerName;
+        }
 
         // update list in database
         moveToRef.setValue(moveTo);
+        System.out.println("____ отправили сообщение "+ moveTo);
     }
 
     private void addRoomEventListener(){
@@ -122,13 +123,22 @@ public class ActivityMultiplayerGame extends AppCompatActivity {
                 //moveTo received
                 String moveIn;
                 moveIn = snapshot.getValue(String.class);
-                System.out.println("_____________________________ "+moveIn);
+                System.out.println("____ получили сообщение "+moveIn);
                 if(moveIn != null){
                     String player = moveIn.split(" ")[4];
-                    System.out.println("----------------- "+ player);
-                    if(!player.equals(firstPlayerName)){
-                        updatePosition(moveIn);
+                    System.out.println("____ player Name "+ player);
+                    System.out.println("____ role of player "+ role);
+                    if(role.equals("host")){
+                        if(!player.equals(firstPlayerName)){
+                            updatePosition(moveIn);
+                        }
+                    }else{
+                        if(!player.equals(secondPlayerName)){
+                            updatePosition(moveIn);
+                            System.out.println("обновляем позиции");
+                        }
                     }
+
                 }
 
 
@@ -137,6 +147,7 @@ public class ActivityMultiplayerGame extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //error - retry
+                Toast.makeText(ActivityMultiplayerGame.this, "ошибка!!!!!!!!!!!!!!!!!", Toast.LENGTH_SHORT).show();
                 moveToRef.setValue(moveTo);
             }
         });

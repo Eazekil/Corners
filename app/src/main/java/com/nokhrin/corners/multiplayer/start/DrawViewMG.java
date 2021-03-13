@@ -6,9 +6,11 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.role;
 import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.widthDisplay;
 import static com.nokhrin.corners.multiplayer.game.GameOver.gameIsOver;
 import static com.nokhrin.corners.multiplayer.game.PlayerMove.touchOnField;
+import static com.nokhrin.corners.multiplayer.game.SecondPlayerMove.touchOnFieldSecondPlayer;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checkersPositions;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.marksPositions;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.playerWin;
@@ -17,6 +19,10 @@ import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizePoi
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.stepOnField;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.touchI;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.touchJ;
+import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
+import static com.nokhrin.corners.resources.Constants.MARK_ON_BLACK_CHECKER;
+import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 import static com.nokhrin.corners.resources.ResourcesBitmap.blackCheckerBitmap;
 import static com.nokhrin.corners.resources.ResourcesBitmap.checkMarkBitmap;
 import static com.nokhrin.corners.resources.ResourcesBitmap.createBitmap;
@@ -65,18 +71,24 @@ public class DrawViewMG extends View implements View.OnTouchListener {
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
                 //white checkers
-                if (checkersPositions[i][j] == 1) {
+                if (checkersPositions[i][j] == WHITE_CHECKER) {
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //black checkers
-                if (checkersPositions[i][j] == 3) {
+                if (checkersPositions[i][j] == BLACK_CHECKER) {
                     canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //white checkers with mark
-                if (checkersPositions[i][j] == 2) {
+                if (checkersPositions[i][j] == MARK_ON_WHITE_CHECKER) {
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                }
+
+                //black checkers with mark
+                if (checkersPositions[i][j] == MARK_ON_BLACK_CHECKER) {
+                    canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                     canvas.drawBitmap(checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
@@ -109,7 +121,13 @@ public class DrawViewMG extends View implements View.OnTouchListener {
         System.out.printf("_______________touch I and J : %d,%d", touchI, touchJ);
         System.out.println();
 
-        touchOnField();
+        if(role.equals("host")){
+            touchOnField();
+        }else {
+            touchOnFieldSecondPlayer();
+        }
+
+
         return false;
     }
 }

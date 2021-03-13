@@ -1,8 +1,8 @@
 package com.nokhrin.corners.multiplayer.game;
 
 
-import static com.nokhrin.corners.multiplayer.game.PlayerMove.choiceI;
-import static com.nokhrin.corners.multiplayer.game.PlayerMove.choiceJ;
+import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.choiceI;
+import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.choiceJ;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizeOfField;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checkersPositions;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;

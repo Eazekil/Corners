@@ -9,25 +9,12 @@
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".multiplayer.ActivityMultiplayerGame" >
 
-    <Button
-        android:id="@+id/buttonOnMulti3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:text="@string/button_multi_3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.934" />
-
     <TextView
         android:id="@+id/textViewRoomName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_view_room_name"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,10 +31,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintVertical_bias="0.941" />
 
     <FrameLayout
         android:id="@+id/frameLayoutMultiplayerGame"

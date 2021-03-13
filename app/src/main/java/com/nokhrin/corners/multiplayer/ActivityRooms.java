@@ -23,6 +23,9 @@ import com.nokhrin.corners.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nokhrin.corners.resources.Constants.ROLE_GUEST;
+import static com.nokhrin.corners.resources.Constants.ROLE_HOST;
+
 
 public class ActivityRooms extends AppCompatActivity {
     ListView lvRooms;
@@ -37,6 +40,7 @@ public class ActivityRooms extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference roomRef;
     DatabaseReference roomsRef;
+    int role;
 
     ///////////////////////////////////////////
 
@@ -65,16 +69,18 @@ public class ActivityRooms extends AppCompatActivity {
             playerName = extras.getString("playerName");
         }
 
+        //find all element on view
         buttonCreateRoom = findViewById(R.id.buttonCreateRoom);
         buttonJoinRoom = findViewById(R.id.buttonJoinRoom);
         etCreateRoom = findViewById(R.id.editTextCreateRoom);
         lvRooms = findViewById(R.id.listViewRooms);
 
+        //find database
         database = FirebaseDatabase.getInstance();
 
         roomsList = new ArrayList<>();
 
-
+        //button create new game and add this user as player1
         buttonCreateRoom.setOnClickListener(v -> {
             roomName = etCreateRoom.getText().toString();
 
@@ -82,6 +88,7 @@ public class ActivityRooms extends AppCompatActivity {
                 buttonCreateRoom.setText("Создание игры...");
                 buttonCreateRoom.setEnabled(false);
                 roomRef = database.getReference("rooms/" + roomName + "/player1");
+                role = ROLE_HOST;
                 addEventListener();
                 roomRef.setValue(playerName);
             } else {
@@ -99,27 +106,39 @@ public class ActivityRooms extends AppCompatActivity {
             addRoomsEventListener();
         });
 
+        //join an existing room and add yourself as player2
         lvRooms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 roomName = roomsList.get(position);
                 roomRef = database.getReference("rooms/" + roomName + "/player2");
-                addRoomEventListener();
+                role = ROLE_GUEST;
+                addEventListener();
                 roomRef.setValue(playerName);
             }
         });
 
-
+        //show if new room is available
+        addRoomsEventListener();
     }
+
 
     public void addEventListener() {
         roomRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //go to multiplayer game activity
+                //go to multiplayer game activity player as host
                 Intent intent = new Intent(getApplicationContext(), ActivityMultiplayerGame.class);
-                intent.putExtra("firstPlayerName", playerName);
-                intent.putExtra("roomName", roomName);
+                if(role == ROLE_HOST){
+                    intent.putExtra("firstPlayerName", playerName);
+                    intent.putExtra("roomName", roomName);
+                    intent.putExtra("role", "host");
+                }else{
+                    intent.putExtra("secondPlayerName", playerName);
+                    intent.putExtra("roomName", roomName);
+                    intent.putExtra("role", "guest");
+                }
+
                 startActivity(intent);
                 //finish();
             }
@@ -131,7 +150,6 @@ public class ActivityRooms extends AppCompatActivity {
             }
         });
     }
-
 
     public void addRoomsEventListener(){
         roomsRef = database.getReference("rooms");
@@ -156,20 +174,5 @@ public class ActivityRooms extends AppCompatActivity {
         });
     }
 
-    public void addRoomEventListener(){
-        roomsRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Intent intent = new Intent(getApplicationContext(), ActivityMultiplayerGame.class);
-                intent.putExtra("secondPlayerName", playerName);
-                intent.putExtra("roomName", roomName);
-                startActivity(intent);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ActivityRooms.this, "какая то ошибка", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }

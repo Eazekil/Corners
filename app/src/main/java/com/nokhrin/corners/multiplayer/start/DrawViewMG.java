@@ -22,6 +22,7 @@ import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.touchJ;
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.MARK_ON_BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.ROLE_HOST;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 import static com.nokhrin.corners.resources.ResourcesBitmap.blackCheckerBitmap;
 import static com.nokhrin.corners.resources.ResourcesBitmap.checkMarkBitmap;
@@ -121,7 +122,7 @@ public class DrawViewMG extends View implements View.OnTouchListener {
         System.out.printf("_______________touch I and J : %d,%d", touchI, touchJ);
         System.out.println();
 
-        if(role.equals("host")){
+        if(role == ROLE_HOST){
             touchOnField();
         }else {
             touchOnFieldSecondPlayer();

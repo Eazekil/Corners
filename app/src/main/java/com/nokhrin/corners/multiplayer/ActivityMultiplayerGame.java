@@ -21,6 +21,14 @@ import com.nokhrin.corners.multiplayer.start.DrawViewMG;
 
 import static com.nokhrin.corners.multiplayer.game.SecondPlayer.updatePosition;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.addStartParameters;
+import static com.nokhrin.corners.resources.Constants.MESSAGE;
+import static com.nokhrin.corners.resources.Constants.PLAYER_1;
+import static com.nokhrin.corners.resources.Constants.PLAYER_2;
+import static com.nokhrin.corners.resources.Constants.PLAYER_NAME;
+import static com.nokhrin.corners.resources.Constants.ROLE;
+import static com.nokhrin.corners.resources.Constants.ROLE_HOST;
+import static com.nokhrin.corners.resources.Constants.ROOMS;
+import static com.nokhrin.corners.resources.Constants.ROOM_NAME;
 
 
 public class ActivityMultiplayerGame extends AppCompatActivity {
@@ -28,18 +36,28 @@ public class ActivityMultiplayerGame extends AppCompatActivity {
     public static boolean playerMove;//can player to move
     public static int widthDisplay; //size width of display
     public static int heightDisplay; //size height of display
-
+    public static int role; //role this player
+    static String playerName;
+    static String anotherPlayerName;
+    private static String moveTo; //message move to
+    private static DatabaseReference moveToRef; //reference to database
+    private static DatabaseReference anotherPlayerRef; //reference to name another player
     FirebaseDatabase database;
-    private static DatabaseReference moveToRef;
     TextView tvRoomName;
     TextView tvPlayers;
-
     String roomName;
-    public static String role;
-    static String firstPlayerName;
-    static String secondPlayerName;
-    private static String moveTo;
 
+    // update message in database
+    public static void makeStep(String sendM) {
+        /*if (role == ROLE_HOST) {
+            moveTo = sendM + " " + playerName;
+        } else {
+            moveTo = sendM + " " + player2Name;
+        }*/
+
+        moveTo = sendM + " " + playerName;
+        moveToRef.setValue(moveTo);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,24 +80,18 @@ public class ActivityMultiplayerGame extends AppCompatActivity {
         //get roomName, Names of players and his role
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            roomName = extras.getString("roomName");
-            firstPlayerName = extras.getString("firstPlayerName");
-            secondPlayerName = extras.getString("secondPlayerName");
-            role = extras.getString("role");
+            roomName = extras.getString(ROOM_NAME);
+            playerName = extras.getString(PLAYER_NAME);
+            role = extras.getInt(ROLE);
         }
 
         //set room Name and Names of players
         tvRoomName.setText(roomName);
-        String s = firstPlayerName + " против: ожидаем игрока...";
+        String s = "ожидаем игрока...";
         tvPlayers.setText(s);
 
         //find database
         database = FirebaseDatabase.getInstance();
-
-
-
-
-        /////////////////////////////////////////////////////////////////////
 
         //find frame layout
         ViewGroup flMultiplayerGame = findViewById(R.id.frameLayoutMultiplayerGame);
@@ -98,56 +110,66 @@ public class ActivityMultiplayerGame extends AppCompatActivity {
         drawView = new DrawViewMG(getApplicationContext());
         flMultiplayerGame.addView(drawView);
 
+        //get reference to message move to
+        moveToRef = database.getReference(ROOMS + "/" + roomName + "/" + MESSAGE);
 
-        moveToRef = database.getReference("rooms/"+roomName+"/mess");
-        addRoomEventListener();
-
-    }
-
-    public static void makeStep(String sendM){
-        if(role.equals("host")){
-            moveTo = sendM+" "+firstPlayerName;
-        }else {
-            moveTo = sendM+" "+secondPlayerName;
+        //get reference to another player Name
+        if (role == ROLE_HOST) {
+            anotherPlayerRef = database.getReference(ROOMS + "/" + roomName + "/" + PLAYER_2);
+        } else {
+            anotherPlayerRef = database.getReference(ROOMS + "/" + roomName + "/" + PLAYER_1);
         }
 
-        // update list in database
-        moveToRef.setValue(moveTo);
-        System.out.println("____ отправили сообщение "+ moveTo);
+        addRoomEventListener();
+
+        if(anotherPlayerName == null){
+            addAnotherPlayerEventListener();
+        }
+
+
     }
 
-    private void addRoomEventListener(){
+    public void addAnotherPlayerEventListener() {
+        anotherPlayerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                anotherPlayerName = snapshot.getValue(String.class);
+                if(anotherPlayerName != null){
+                    String s = "вы играете против: " + anotherPlayerName;
+                    tvPlayers.setText(s);
+                    String strToast = String.format("игрок: %s присоеденился к игре", anotherPlayerName);
+                    Toast.makeText(ActivityMultiplayerGame.this, strToast, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //error - nothing
+            }
+        });
+    }
+
+    ////////////////////////////////////////////send message to database
+    private void addRoomEventListener() {
         moveToRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //moveTo received
-                String moveIn;
-                moveIn = snapshot.getValue(String.class);
-                System.out.println("____ получили сообщение "+moveIn);
-                if(moveIn != null){
-                    String player = moveIn.split(" ")[4];
-                    System.out.println("____ player Name "+ player);
-                    System.out.println("____ role of player "+ role);
-                    if(role.equals("host")){
-                        if(!player.equals(firstPlayerName)){
-                            updatePosition(moveIn);
-                        }
-                    }else{
-                        if(!player.equals(secondPlayerName)){
-                            updatePosition(moveIn);
-                            System.out.println("обновляем позиции");
-                        }
+                String message;
+                message = snapshot.getValue(String.class);
+                if (message != null) {
+                    String player = message.split(" ")[4];
+
+                    if (!player.equals(playerName)) {
+                        updatePosition(message);
+                        Toast.makeText(ActivityMultiplayerGame.this, "Ваш ход", Toast.LENGTH_LONG).show();
                     }
-
                 }
-
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //error - retry
-                Toast.makeText(ActivityMultiplayerGame.this, "ошибка!!!!!!!!!!!!!!!!!", Toast.LENGTH_SHORT).show();
                 moveToRef.setValue(moveTo);
             }
         });

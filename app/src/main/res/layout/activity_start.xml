@@ -40,7 +40,7 @@
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:backgroundTint="@color/material_on_background_emphasis_medium"
+        app:backgroundTint="@color/white"
         app:backgroundTintMode="multiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

@@ -19,12 +19,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nokhrin.corners.R;
+import com.nokhrin.corners.multiplayer.Room.Room;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nokhrin.corners.resources.Constants.PLAYER_2;
+import static com.nokhrin.corners.resources.Constants.PLAYER_NAME;
+import static com.nokhrin.corners.resources.Constants.ROLE;
 import static com.nokhrin.corners.resources.Constants.ROLE_GUEST;
 import static com.nokhrin.corners.resources.Constants.ROLE_HOST;
+import static com.nokhrin.corners.resources.Constants.ROOMS;
+import static com.nokhrin.corners.resources.Constants.ROOM_NAME;
 
 
 public class ActivityRooms extends AppCompatActivity {
@@ -42,12 +48,6 @@ public class ActivityRooms extends AppCompatActivity {
     DatabaseReference roomsRef;
     int role;
 
-    ///////////////////////////////////////////
-
-
-    //DatabaseReference roomRef;
-    //DatabaseReference roomsRef;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +64,10 @@ public class ActivityRooms extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
 
+        //get playerName
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            playerName = extras.getString("playerName");
+            playerName = extras.getString(PLAYER_NAME);
         }
 
         //find all element on view
@@ -80,17 +81,18 @@ public class ActivityRooms extends AppCompatActivity {
 
         roomsList = new ArrayList<>();
 
-        //button create new game and add this user as player1
+        ////////////////button create new game and add this user as player1
         buttonCreateRoom.setOnClickListener(v -> {
             roomName = etCreateRoom.getText().toString();
 
             if (!roomName.isEmpty()) {
                 buttonCreateRoom.setText("Создание игры...");
                 buttonCreateRoom.setEnabled(false);
-                roomRef = database.getReference("rooms/" + roomName + "/player1");
+                roomRef = database.getReference(ROOMS + "/" + roomName + "/");
+                Room room = new Room(null, null, playerName, null);
                 role = ROLE_HOST;
                 addEventListener();
-                roomRef.setValue(playerName);
+                roomRef.setValue(room);
             } else {
                 Toast.makeText(this, "Пожалуйста придумайте и введите Имя игры", Toast.LENGTH_SHORT).show();
             }
@@ -106,15 +108,17 @@ public class ActivityRooms extends AppCompatActivity {
             addRoomsEventListener();
         });
 
-        //join an existing room and add yourself as player2
+
+        ////////////////join an existing room and add yourself as player2
         lvRooms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 roomName = roomsList.get(position);
-                roomRef = database.getReference("rooms/" + roomName + "/player2");
+                roomRef = database.getReference(ROOMS + "/" + roomName + "/");
+
                 role = ROLE_GUEST;
                 addEventListener();
-                roomRef.setValue(playerName);
+                roomRef.child(PLAYER_2).setValue(playerName);
             }
         });
 
@@ -123,20 +127,27 @@ public class ActivityRooms extends AppCompatActivity {
     }
 
 
+    //go to multiplayer game activity
     public void addEventListener() {
         roomRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //go to multiplayer game activity player as host
+
                 Intent intent = new Intent(getApplicationContext(), ActivityMultiplayerGame.class);
-                if(role == ROLE_HOST){
-                    intent.putExtra("firstPlayerName", playerName);
-                    intent.putExtra("roomName", roomName);
-                    intent.putExtra("role", "host");
-                }else{
-                    intent.putExtra("secondPlayerName", playerName);
-                    intent.putExtra("roomName", roomName);
-                    intent.putExtra("role", "guest");
+                if (role == ROLE_HOST) {
+                    intent.putExtra(PLAYER_NAME, playerName);
+                    intent.putExtra(ROOM_NAME, roomName);
+                    intent.putExtra(ROLE, ROLE_HOST);
+
+                    //if this listener not remove be bad
+                    roomRef.removeEventListener(this);
+                } else {
+                    intent.putExtra(PLAYER_NAME, playerName);
+                    intent.putExtra(ROOM_NAME, roomName);
+                    intent.putExtra(ROLE, ROLE_GUEST);
+
+                    //if this listener not remove be bad
+                    roomRef.removeEventListener(this);
                 }
 
                 startActivity(intent);
@@ -151,19 +162,24 @@ public class ActivityRooms extends AppCompatActivity {
         });
     }
 
-    public void addRoomsEventListener(){
-        roomsRef = database.getReference("rooms");
+
+    //get list of rooms
+    public void addRoomsEventListener() {
+        roomsRef = database.getReference(ROOMS);
         roomsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 roomsList.clear();
                 Iterable<DataSnapshot> rooms = snapshot.getChildren();
-                for(DataSnapshot dataSnapshot : rooms){
-                    roomsList.add(dataSnapshot.getKey());
+                for (DataSnapshot dataSnapshot : rooms) {
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(ActivityRooms.this,
-                            android.R.layout.simple_list_item_1, roomsList);
-                    lvRooms.setAdapter(adapter);
+                    if (dataSnapshot.child(PLAYER_2).getValue() == null) {
+                        roomsList.add(dataSnapshot.getKey());
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(ActivityRooms.this,
+                                android.R.layout.simple_list_item_1, roomsList);
+                        lvRooms.setAdapter(adapter);
+                    }
+
                 }
             }
 

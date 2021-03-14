@@ -10,6 +10,13 @@ public class Constants {
     public static final int TARGET_POINT_FOR_BLACK_CHECKER = 33;
     public static final int ROLE_HOST = 1;
     public static final int ROLE_GUEST = 2;
+    public static final String ROLE = "role";
+    public static final String PLAYER_NAME = "playerName";
+    public static final String ROOM_NAME = "roomName";
+    public static final String ROOMS = "rooms";
+    public static final String PLAYER_1 = "player1";
+    public static final String PLAYER_2 = "player2";
+    public static final String MESSAGE = "messageMoveTo";
 
 
 

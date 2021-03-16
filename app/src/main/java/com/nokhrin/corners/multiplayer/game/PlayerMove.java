@@ -5,6 +5,8 @@ package com.nokhrin.corners.multiplayer.game;
 
 import android.annotation.SuppressLint;
 
+import com.nokhrin.corners.multiplayer.animation.Animation;
+
 import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.drawView;
 import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.makeStep;
 import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.playerMove;
@@ -52,12 +54,13 @@ public class PlayerMove {
                     //check can move on touch coordinate
                     if (possibleMoves(touchI, touchJ)) {
                         //update checkers positions on field
-                        checkersPositions[touchI][touchJ] = WHITE_CHECKER;
-                        checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
+                        //checkersPositions[touchI][touchJ] = WHITE_CHECKER;
+                        //checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
 
-
+                        Animation.step(choiceJ,choiceI,touchJ,touchI);
 
                         playerMove = false;
+                        //send this move to database
                         @SuppressLint("DefaultLocale") String s =String.format("%d %d %d %d",choiceI, choiceJ, touchI, touchJ);
                         makeStep(s);
 

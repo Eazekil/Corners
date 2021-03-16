@@ -1,6 +1,5 @@
 package com.nokhrin.corners.multiplayer.game;
 
-
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.choiceI;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.choiceJ;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizeOfField;
@@ -8,8 +7,9 @@ import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checker
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 
 public class PossibleMoves {
-    public static boolean[][] resultPossibleMoves;   //= new boolean[sizeOfField][sizeOfField];
-    public static  boolean[][] lastPlayerPositions;  // = new boolean[sizeOfField][sizeOfField];
+    public static boolean[][] resultPossibleMoves;
+    public static  boolean[][] lastPlayerPositions;
+    //public static  int[] steps;  //
 
     public static boolean possibleMoves(int endI, int endJ){
         //possibleStep();
@@ -19,6 +19,7 @@ public class PossibleMoves {
 
     //find all move for choice checker
     public static void possibleStep(){
+
 
         //clear resultPossibleMoves matrix
         for(int i=1;i<sizeOfField;i++){
@@ -33,6 +34,9 @@ public class PossibleMoves {
                 lastPlayerPositions[i][j] = false;
             }
         }
+
+
+
 
         stepRightWhite();
         stepLeftWhite();
@@ -80,6 +84,7 @@ public class PossibleMoves {
         if(j+2 < sizeOfField){
             if(checkersPositions[i][j+1] != FREE_POSITION_ON_FIELD && checkersPositions[i][j+2] == FREE_POSITION_ON_FIELD && !lastPlayerPositions[i][j+2]){
                 resultPossibleMoves[i][j+2] = true;
+
 
                 //mark this position like last position
                 lastPlayerPositions[i][j+2] = true;

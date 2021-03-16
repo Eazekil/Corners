@@ -9,6 +9,16 @@
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".multiplayer.ActivityMultiplayerGame" >
 
+    <FrameLayout
+        android:id="@+id/frameLayoutIndent"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
     <TextView
         android:id="@+id/textViewRoomName"
         android:layout_width="wrap_content"
@@ -41,11 +51,25 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndent">
 
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageViewWhiteCheckerAn"
+        android:layout_width="107dp"
+        android:layout_height="97dp"
+        android:contentDescription="@string/todo"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayoutMultiplayerGame"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayoutMultiplayerGame"
+        app:layout_constraintStart_toStartOf="@+id/frameLayoutMultiplayerGame"
+        app:layout_constraintTop_toTopOf="@+id/frameLayoutMultiplayerGame"
+        app:srcCompat="@drawable/checker_white" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

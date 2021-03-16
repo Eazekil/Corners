@@ -119,7 +119,9 @@ public class DrawViewMG extends View implements View.OnTouchListener {
         touchI = touchY / stepOnField + 1;
         touchJ = touchX / stepOnField + 1;
 
-        System.out.printf("_______________touch I and J : %d,%d", touchI, touchJ);
+        System.out.printf("_______________ touch I and J : %d,%d", touchI, touchJ);
+        System.out.println();
+        System.out.printf("_______________touch in pixel : %d,%d", touchY, touchX);
         System.out.println();
 
         if(role == ROLE_HOST){

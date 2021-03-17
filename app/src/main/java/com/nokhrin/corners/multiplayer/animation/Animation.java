@@ -2,16 +2,12 @@ package com.nokhrin.corners.multiplayer.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.graphics.Path;
 import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.RequiresApi;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.drawView;
 import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.indentTop;

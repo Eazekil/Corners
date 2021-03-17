@@ -16,12 +16,6 @@ import com.nokhrin.corners.multiplayer.ActivityCreatePlayer;
 
 
 public class ActivityStart extends AppCompatActivity {
-    public static Button buttonLevel;
-    public static Button buttonClassic;
-    public static Button buttonMultiPlayer;
-    public static int widthDisplay;
-    public static int heightDisplay;
-    private View startLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +23,12 @@ public class ActivityStart extends AppCompatActivity {
 
         //this all for make full screen
         setContentView(R.layout.activity_start);
-        startLayout = findViewById(R.id.ConstrainLayoutStart);
+        /*//public static Button buttonLevel;
+    public static Button buttonClassic;
+    public static Button buttonMultiPlayer;
+    public static int widthDisplay;
+    public static int heightDisplay;*/
+        View startLayout = findViewById(R.id.ConstrainLayoutStart);
         startLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -38,19 +37,17 @@ public class ActivityStart extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         //find all element
-        buttonLevel = findViewById(R.id.buttonLevel);
-        buttonClassic = findViewById(R.id.buttonClassic);
-        buttonMultiPlayer = findViewById(R.id.buttonMultiPlayer);
+        Button buttonLevel = findViewById(R.id.buttonLevel);
+        Button buttonClassic = findViewById(R.id.buttonClassic);
+        Button buttonMultiPlayer = findViewById(R.id.buttonMultiPlayer);
 
 
         //discover size of the display
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        widthDisplay = size.x;
-        heightDisplay = size.y;
-
-
+        int widthDisplay = size.x;
+        int heightDisplay = size.y;
 
         //go to choice level activity
         buttonLevel.setOnClickListener(v -> {

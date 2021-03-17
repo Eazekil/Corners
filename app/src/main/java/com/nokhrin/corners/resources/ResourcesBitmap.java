@@ -69,7 +69,7 @@ public class ResourcesBitmap {
         Bitmap bitmap4 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.red_circle);
         targetPointBitmap = Bitmap.createScaledBitmap(bitmap4, sizePoint, sizePoint, true);
         //create player to lose
-        Bitmap bitmap5 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer_lose);
+        Bitmap bitmap5 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer);
         playerLoseBitmap = Bitmap.createScaledBitmap(bitmap5, widthDisplay, widthDisplay, true);
         //create player win
         Bitmap bitmap6 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer);

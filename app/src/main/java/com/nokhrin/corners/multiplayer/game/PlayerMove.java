@@ -4,6 +4,9 @@ package com.nokhrin.corners.multiplayer.game;
 
 
 import android.annotation.SuppressLint;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.multiplayer.animation.Animation;
 
@@ -26,6 +29,7 @@ import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 public class PlayerMove {
 
     //start move on the field
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void touchOnField() {
 
         //check can player move

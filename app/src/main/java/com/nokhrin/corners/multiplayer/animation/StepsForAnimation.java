@@ -4,6 +4,14 @@ package com.nokhrin.corners.multiplayer.animation;
 import java.util.ArrayList;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
+import static com.nokhrin.corners.resources.Constants.JUMP_BOTTOM;
+import static com.nokhrin.corners.resources.Constants.JUMP_LEFT;
+import static com.nokhrin.corners.resources.Constants.JUMP_RIGHT;
+import static com.nokhrin.corners.resources.Constants.JUMP_TOP;
+import static com.nokhrin.corners.resources.Constants.STEP_BOTTOM;
+import static com.nokhrin.corners.resources.Constants.STEP_LEFT;
+import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
+import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 
 public class StepsForAnimation {
     private int[][] checkersPositions;
@@ -13,7 +21,6 @@ public class StepsForAnimation {
     private int endJ;
     private int sizeOfField;
     private boolean[][] lastPlayerPositions;
-    private ArrayList<Integer> resultSteps;
     private ArrayList<Integer> steps;
 
     public StepsForAnimation(int[][] checkersPositions, int startI, int startJ, int endI, int endJ, int sizeOfField) {
@@ -26,30 +33,45 @@ public class StepsForAnimation {
     }
 
     public int[] steps() {
-        resultSteps = new ArrayList<>();
         steps = new ArrayList<>();
+
+
+        lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
+        //clear last Player moves matrix
+        for(int i=1;i<sizeOfField;i++){
+            for(int j=1;j<sizeOfField;j++){
+                lastPlayerPositions[i][j] = false;
+            }
+        }
 
         stepRight();
         stepLeft();
         stepBottom();
         stepTop();
 
-        if (resultSteps.size() < 1) {
+
+        if (steps.size() < 1) {
             jumpRight(startI, startJ);
-            steps = new ArrayList<>();
+        }
+        if(steps.size() < 1){
+            lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
             jumpLeft(startI, startJ);
-            steps = new ArrayList<>();
+        }
+        if(steps.size() < 1){
+            lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
             jumpBottom(startI, startJ);
-            steps = new ArrayList<>();
+        }
+        if(steps.size() < 1){
+            lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
             jumpTop(startI, startJ);
         }
 
-        int[] steps = new int[resultSteps.size()];
-        for(int i = 0; i<resultSteps.size();i++){
-            steps[i] = resultSteps.get(i);
+        int[] stepsL = new int[steps.size()];
+        for(int i = 0; i< steps.size(); i++){
+            stepsL[i] = steps.get(i);
         }
 
-        return steps;
+        return stepsL;
     }
 
     private boolean end(int i, int j) {
@@ -61,7 +83,7 @@ public class StepsForAnimation {
         if (startJ + 1 < sizeOfField) {
             if (checkersPositions[startI][startJ + 1] == FREE_POSITION_ON_FIELD
                     && end(startI, startJ + 1)) {
-                resultSteps.add(1);
+                steps.add(STEP_RIGHT);
             }
         }
     }
@@ -71,7 +93,7 @@ public class StepsForAnimation {
         if (startJ - 1 > 0) {
             if (checkersPositions[startI][startJ - 1] == FREE_POSITION_ON_FIELD
                     && end(startI, startJ - 1)) {
-                resultSteps.add(2);
+                steps.add(STEP_LEFT);
             }
         }
     }
@@ -81,7 +103,7 @@ public class StepsForAnimation {
         if (startI + 1 < sizeOfField) {
             if (checkersPositions[startI + 1][startJ] == FREE_POSITION_ON_FIELD
                     && end(startI + 1, startJ)) {
-                resultSteps.add(3);
+                steps.add(STEP_BOTTOM);
             }
         }
     }
@@ -91,7 +113,7 @@ public class StepsForAnimation {
         if (startI - 1 < sizeOfField) {
             if (checkersPositions[startI - 1][startJ] == FREE_POSITION_ON_FIELD
                     && end(startI - 1, startJ)) {
-                resultSteps.add(4);
+                steps.add(STEP_TOP);
             }
         }
     }
@@ -103,10 +125,10 @@ public class StepsForAnimation {
                     && checkersPositions[i][j + 2] == FREE_POSITION_ON_FIELD
                     && !lastPlayerPositions[i][j + 2]) {
 
-                steps.add(5);
+                steps.add(JUMP_RIGHT);
 
-                if (end(startI, startJ + 2)) {
-                    resultSteps.addAll(steps);
+                if (end(i, j + 2)) {
+                    return;
                 }
 
                 //mark this position like last position
@@ -127,10 +149,10 @@ public class StepsForAnimation {
                     && checkersPositions[i][j - 2] == FREE_POSITION_ON_FIELD
                     && !lastPlayerPositions[i][j - 2]) {
 
-                steps.add(6);
+                steps.add(JUMP_LEFT);
 
-                if (end(startI, startJ - 2)) {
-                    resultSteps.addAll(steps);
+                if (end(i, j - 2)) {
+                    return;
                 }
 
                 //mark this position like last position
@@ -151,10 +173,10 @@ public class StepsForAnimation {
                     && checkersPositions[i + 2][j] == FREE_POSITION_ON_FIELD
                     && !lastPlayerPositions[i + 2][j]) {
 
-                steps.add(7);
+                steps.add(JUMP_BOTTOM);
 
-                if (end(startI + 2, startJ)) {
-                    resultSteps.addAll(steps);
+                if (end(i + 2, j)) {
+                    return;
                 }
 
                 //mark this position like last position
@@ -175,10 +197,10 @@ public class StepsForAnimation {
                     && checkersPositions[i - 2][j] == FREE_POSITION_ON_FIELD
                     && !lastPlayerPositions[i - 2][j]) {
 
-                steps.add(8);
+                steps.add(JUMP_TOP);
 
-                if (end(startI - 2, startJ)) {
-                    resultSteps.addAll(steps);
+                if (end(i - 2, j)) {
+                    return;
                 }
 
                 //mark this position like last position

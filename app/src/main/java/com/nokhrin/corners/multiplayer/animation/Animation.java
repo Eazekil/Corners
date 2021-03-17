@@ -3,9 +3,12 @@ package com.nokhrin.corners.multiplayer.animation;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
-import android.animation.AnimatorSet.Builder;
 import android.animation.ObjectAnimator;
+import android.graphics.Path;
+import android.os.Build;
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,95 +20,68 @@ import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checker
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizeOfField;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.stepOnField;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
+import static com.nokhrin.corners.resources.Constants.JUMP_BOTTOM;
+import static com.nokhrin.corners.resources.Constants.JUMP_LEFT;
+import static com.nokhrin.corners.resources.Constants.JUMP_RIGHT;
+import static com.nokhrin.corners.resources.Constants.JUMP_TOP;
+import static com.nokhrin.corners.resources.Constants.STEP_BOTTOM;
+import static com.nokhrin.corners.resources.Constants.STEP_LEFT;
+import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
+import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class Animation {
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void step(int x, int y, int endX, int endY) {
+
+        //get steps for animate checker
+        StepsForAnimation stepsForAnimation = new StepsForAnimation(checkersPositions, y, x, endY, endX, sizeOfField);
+        int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker
         checkersPositions[y][x] = FREE_POSITION_ON_FIELD;
         drawView.invalidate();
 
         //add checker on start position and set visible
-        ivChecker.layout((x - 2) * stepOnField, (y - 1) * stepOnField + indentTop, (x - 2) * stepOnField + stepOnField, (y - 1) * stepOnField + stepOnField + indentTop);
+        ivChecker.layout((x - 2) * stepOnField,
+                (y - 1) * stepOnField + indentTop,
+                (x - 2) * stepOnField + stepOnField,
+                (y - 1) * stepOnField + stepOnField + indentTop);
         ivChecker.setVisibility(View.VISIBLE);
 
-        StepsForAnimation stepsForAnimation = new StepsForAnimation(checkersPositions, y, x, endY, endX, sizeOfField);
-        int[] steps = stepsForAnimation.steps();
-
-        List<Animator> animList = new ArrayList<>();
+        //create animation
+        int mX = stepOnField;
+        int mY = 0;
+        ObjectAnimator objectAnimator;
+        Path path = new Path();
+        path.moveTo(mX, mY);
         for (int step : steps) {
-            ObjectAnimator objectAnimator = null;
-            System.out.println("______ step = " +step);
+            if (step == STEP_RIGHT) mX += stepOnField;
+            if (step == STEP_LEFT) mX -= stepOnField;
+            if (step == STEP_BOTTOM) mY += stepOnField;
+            if (step == STEP_TOP) mY -= stepOnField;
+            if (step == JUMP_RIGHT) mX += stepOnField * 2;
+            if (step == JUMP_LEFT) mX -= stepOnField * 2;
+            if (step == JUMP_BOTTOM) mY += stepOnField * 2;
+            if (step == JUMP_TOP) mY -= stepOnField * 2;
 
-           /* if(step == 1){
-                objectAnimator = ObjectAnimator.ofFloat(ivChecker, "translationX", stepOnField, stepOnField * 2); //stepOnField, stepOnField * 2
-            }
-            if(step == 2){
-                objectAnimator = ObjectAnimator.ofFloat(ivChecker, "translationX", stepOnField, 0 );
-            }*/
-            if(step == 3){
-                objectAnimator = ObjectAnimator.ofFloat(ivChecker, "translationY", 0, 0, stepOnField,stepOnField*2);
-            }
-
-            objectAnimator.setDuration(1600);
-            animList.add(objectAnimator);
+            path.lineTo(mX, mY);
         }
+        objectAnimator = ObjectAnimator.ofFloat(ivChecker, "translationX", "translationY", path);
+        objectAnimator.setDuration(600*steps.length);
+        objectAnimator.start();
 
-        AnimatorSet s = new AnimatorSet();
-        s.playSequentially(animList);
-        s.start();
-        s.addListener(new AnimatorListenerAdapter() {
+
+        //after end of animation draw checker on field and set invisible view
+        objectAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation, boolean isReverse) {
                 checkersPositions[endY][endX] = WHITE_CHECKER;
                 drawView.invalidate();
                 ivChecker.setVisibility(View.INVISIBLE);
-
             }
         });
-
-
-
-
-       /* //start animation
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(ivChecker, "translationX", stepOnField, stepOnField * 2);
-        objectAnimator.setDuration(1000);
-        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(ivChecker, "translationY", 0, stepOnField );
-        objectAnimator2.setDuration(1000);
-        //objectAnimator.start();
-        List<Animator> animList = new ArrayList<>();
-        animList.add(objectAnimator);
-        animList.add(objectAnimator2);
-
-        AnimatorSet s = new AnimatorSet();
-        //s.play(objectAnimator).with(objectAnimator2);
-        //s.play(objectAnimator).before(objectAnimator2);
-        //s.play(objectAnimator2).after(objectAnimator);
-        s.playSequentially(animList);
-        s.start();*/
-        //AnimatorSet.play(Animator)
-
-        /*//before end animation draw checker on field and set invisible view
-        objectAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation, boolean isReverse) {
-                objectAnimator2.start();
-
-            }
-        });
-
-        objectAnimator2.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation, boolean isReverse) {
-                checkersPositions[endY+1][endX] = WHITE_CHECKER;
-                drawView.invalidate();
-                ivChecker.setVisibility(View.INVISIBLE);
-            }
-        });*/
-
 
     }
-
 }

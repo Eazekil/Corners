@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "650844152887",
+    "project_id": "corners-ebb33",
+    "storage_bucket": "corners-ebb33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650844152887:android:8f829942e61c63fb8f8bb2",
+        "android_client_info": {
+          "package_name": "com.nokhrin.corners"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "650844152887-i0k2mcp9nfef4ghbthhbrg11nm1nk98r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwq6KHAhs9SABASNC89z8BL17CngHpxGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "650844152887-i0k2mcp9nfef4ghbthhbrg11nm1nk98r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

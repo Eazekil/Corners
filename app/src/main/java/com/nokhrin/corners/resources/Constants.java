@@ -18,6 +18,9 @@ public class Constants {
     public static final int JUMP_LEFT = 6;
     public static final int JUMP_BOTTOM = 7;
     public static final int JUMP_TOP = 8;
+    public static final int PLAYER_WIN = 1;
+    public static final int BOT_WIN = 2;
+    public static final int WIN_WIN = 3;
     public static final String ROLE = "role";
     public static final String PLAYER_NAME = "playerName";
     public static final String ROOM_NAME = "roomName";

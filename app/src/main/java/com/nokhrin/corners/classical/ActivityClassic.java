@@ -1,6 +1,5 @@
 package com.nokhrin.corners.classical;
 
-import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -8,18 +7,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.draw.DrawView;
 
 
-
 public class ActivityClassic extends AppCompatActivity implements View.OnTouchListener {
     public static DrawView drawView;
+    public static int indentTop;
+    public static ImageView ivChecker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
         //find element
         View flClassic = findViewById(R.id.frameLayoutClassic);
-        //ivChecker = findViewById(R.id.imageViewWhiteCheckerAn);
+        ivChecker = findViewById(R.id.imageViewCheckerWhite);
 
         //discover size of the display
         Display display = getWindowManager().getDefaultDisplay();
@@ -45,11 +45,12 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         display.getSize(size);
         int widthDisplay = size.x;
         int heightDisplay = size.y;
-        int indentTop = (heightDisplay - widthDisplay) / 2;
+        indentTop = (heightDisplay - widthDisplay) / 2;
 
         //set indent of top
         FrameLayout flIntent = findViewById(R.id.frameLayoutIndentClassic);
-        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.height = indentTop;
         flIntent.setLayoutParams(params);
 
@@ -105,7 +106,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         int touchJ = touchX / StartClassic.stepOnField + 1;
 
         //start move on the field
-        new PlayerMove(touchI,touchJ);
+        new PlayerMove(touchI, touchJ);
 
         return false;
     }

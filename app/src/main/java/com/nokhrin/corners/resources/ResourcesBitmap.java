@@ -19,6 +19,7 @@ public class ResourcesBitmap {
     public static Bitmap targetPointBitmap;
     public static Bitmap playerWinBitmap;
     public static Bitmap playerLoseBitmap;
+    public static Bitmap winWinBitmap;
     private static Resources resourcesForDraw;
     private static int stepOnField;
     private static int sizePoint;
@@ -66,13 +67,17 @@ public class ResourcesBitmap {
         Bitmap bitmap3 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.check_mark);
         checkMarkBitmap = Bitmap.createScaledBitmap(bitmap3, stepOnField, stepOnField, true);
         //create target point
-        Bitmap bitmap4 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.red_circle);
-        targetPointBitmap = Bitmap.createScaledBitmap(bitmap4, sizePoint, sizePoint, true);
+        targetPointBitmap = Bitmap.createScaledBitmap(
+                BitmapFactory.decodeResource(resourcesForDraw, R.drawable.red_circle), sizePoint, sizePoint, true);
         //create player to lose
-        Bitmap bitmap5 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer);
-        playerLoseBitmap = Bitmap.createScaledBitmap(bitmap5, widthDisplay, widthDisplay, true);
+        playerLoseBitmap = Bitmap.createScaledBitmap(
+                BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer_lose), widthDisplay, widthDisplay, true);
         //create player win
-        Bitmap bitmap6 = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer);
-        playerWinBitmap = Bitmap.createScaledBitmap(bitmap6, widthDisplay, widthDisplay, true);
+        playerWinBitmap = Bitmap.createScaledBitmap(
+                BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer), widthDisplay, widthDisplay, true);
+        //create win win
+        winWinBitmap = Bitmap.createScaledBitmap(
+                BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer), widthDisplay, widthDisplay, true);
+
     }
 }

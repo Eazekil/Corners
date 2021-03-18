@@ -12,7 +12,6 @@ import static com.nokhrin.corners.multiplayer.game.GameOver.gameIsOver;
 import static com.nokhrin.corners.multiplayer.game.PlayerMove.touchOnField;
 import static com.nokhrin.corners.multiplayer.game.SecondPlayerMove.touchOnFieldSecondPlayer;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checkersPositions;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.marksPositions;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.playerWin;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizeOfField;
 import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizePoint;

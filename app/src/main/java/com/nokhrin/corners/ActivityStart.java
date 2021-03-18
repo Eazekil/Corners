@@ -16,6 +16,8 @@ import com.nokhrin.corners.multiplayer.ActivityCreatePlayer;
 
 
 public class ActivityStart extends AppCompatActivity {
+    public static int widthDisplay;
+    public static int heightDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,8 @@ public class ActivityStart extends AppCompatActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int widthDisplay = size.x;
-        int heightDisplay = size.y;
+        widthDisplay = size.x;
+        heightDisplay = size.y;
 
         //go to choice level activity
         buttonLevel.setOnClickListener(v -> {

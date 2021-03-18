@@ -5,10 +5,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.classical.animation.Animation;
-import com.nokhrin.corners.classical.bots.bot1.BotMitya;
 import com.nokhrin.corners.game.PossibleMoves;
 
-import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
@@ -37,32 +35,10 @@ public class PlayerMove {
                 //check can move on touch coordinate
                 PossibleMoves move = new PossibleMoves(StartClassic.checkersPositions, choiceI, choiceJ);
                 if (move.isPossible(touchI, touchJ)) {
-                    /*//update position for white checker
-                    StartClassic.checkersPositions[touchI][touchJ] = WHITE_CHECKER;
-                    StartClassic.checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
-
-                    //update draw field
-                    ActivityClassic.drawView.setCheckersPositions(StartClassic.checkersPositions);
-                    ActivityClassic.drawView.invalidate();*/
 
                     //animate this move
-
                     Animation animation = new Animation();
                     animation.step(choiceJ, choiceI, touchJ, touchI, WHITE_CHECKER);
-
-                    /*//after player move bot can move
-                    BotMitya bot = new BotMitya();
-                    bot.moveMitya(StartClassic.checkersPositions);*/
-                    //bot.start();
-
-                   /* //update position for black checker
-                    StartClassic.checkersPositions[bot.getStartI()][bot.getStartJ()] = FREE_POSITION_ON_FIELD;
-                    StartClassic.checkersPositions[bot.getEndI()][bot.getEndJ()] = BLACK_CHECKER;
-
-                    //update draw field
-                    ActivityClassic.drawView.setCheckersPositions(StartClassic.checkersPositions);
-                    ActivityClassic.drawView.invalidate();*/
-
 
                     //check game is over
                     GameOver game = new GameOver();

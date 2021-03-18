@@ -1,6 +1,7 @@
 package com.nokhrin.corners.classical;
 
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -20,6 +22,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
     public static DrawView drawView;
     public static int indentTop;
     public static ImageView ivChecker;
+    public static ImageView ivCheckerBlack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         //find element
         View flClassic = findViewById(R.id.frameLayoutClassic);
         ivChecker = findViewById(R.id.imageViewCheckerWhite);
+        ivCheckerBlack = findViewById(R.id.imageViewCheckerBlack);
 
         //discover size of the display
         Display display = getWindowManager().getDefaultDisplay();
@@ -95,6 +99,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         //get coordinates of touch
@@ -104,6 +109,8 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         //convert coordinates X,Y in step on chess field
         int touchI = touchY / StartClassic.stepOnField + 1;
         int touchJ = touchX / StartClassic.stepOnField + 1;
+
+        System.out.println("_______________________ " + touchI + "," + touchJ);
 
         //start move on the field
         new PlayerMove(touchI, touchJ);

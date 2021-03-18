@@ -40,6 +40,18 @@
         app:layout_constraintTop_toTopOf="@+id/frameLayoutClassic"
         app:srcCompat="@drawable/checker_white" />
 
+    <ImageView
+        android:id="@+id/imageViewCheckerBlack"
+        android:layout_width="107dp"
+        android:layout_height="97dp"
+        android:contentDescription="@string/todo"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayoutClassic"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayoutClassic"
+        app:layout_constraintStart_toStartOf="@+id/frameLayoutClassic"
+        app:layout_constraintTop_toTopOf="@+id/frameLayoutClassic"
+        app:srcCompat="@drawable/checker_black" />
+
     <Button
         android:id="@+id/buttonStartClassic"
         android:layout_width="218dp"

@@ -10,9 +10,8 @@ import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.classical.ActivityClassic;
 import com.nokhrin.corners.classical.StartClassic;
-import com.nokhrin.corners.classical.bots.bot1.BotMitya;
+import com.nokhrin.corners.classical.bots.Bots;
 
-import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.JUMP_BOTTOM;
 import static com.nokhrin.corners.resources.Constants.JUMP_LEFT;
@@ -22,11 +21,9 @@ import static com.nokhrin.corners.resources.Constants.STEP_BOTTOM;
 import static com.nokhrin.corners.resources.Constants.STEP_LEFT;
 import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
 import static com.nokhrin.corners.resources.Constants.STEP_TOP;
+import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class Animation {
-
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startJ, int startI, int endJ, int endI, int checker) {
@@ -35,16 +32,31 @@ public class Animation {
         StepsForAnimation stepsForAnimation = new StepsForAnimation(StartClassic.checkersPositions, startI, startJ, endI, endJ, StartClassic.sizeOfField);
         int[] steps = stepsForAnimation.steps();
 
+        for(int ss: steps){
+            System.out.println("************************************  "+ ss);
+        }
+        System.out.println("__________________________________________________________");
+
+
         //draw field without move checker
         StartClassic.checkersPositions[startI][startJ] = FREE_POSITION_ON_FIELD;
         ActivityClassic.drawView.invalidate();
 
         //add checker on start position and set visible
-        ActivityClassic.ivChecker.layout((startJ - 2) * StartClassic.stepOnField,
-                (startI - 1) * StartClassic.stepOnField + ActivityClassic.indentTop,
-                (startJ - 2) * StartClassic.stepOnField + StartClassic.stepOnField,
-                (startI - 1) * StartClassic.stepOnField + StartClassic.stepOnField + ActivityClassic.indentTop);
-        ActivityClassic.ivChecker.setVisibility(View.VISIBLE);
+        if(checker == WHITE_CHECKER){
+            ActivityClassic.ivChecker.layout((startJ - 2) * StartClassic.stepOnField,
+                    (startI - 1) * StartClassic.stepOnField + ActivityClassic.indentTop,
+                    (startJ - 2) * StartClassic.stepOnField + StartClassic.stepOnField,
+                    (startI - 1) * StartClassic.stepOnField + StartClassic.stepOnField + ActivityClassic.indentTop);
+            ActivityClassic.ivChecker.setVisibility(View.VISIBLE);
+        }else{
+            ActivityClassic.ivCheckerBlack.layout((startJ - 2) * StartClassic.stepOnField,
+                    (startI - 1) * StartClassic.stepOnField + ActivityClassic.indentTop,
+                    (startJ - 2) * StartClassic.stepOnField + StartClassic.stepOnField,
+                    (startI - 1) * StartClassic.stepOnField + StartClassic.stepOnField + ActivityClassic.indentTop);
+            ActivityClassic.ivCheckerBlack.setVisibility(View.VISIBLE);
+        }
+
 
         //create animation
         int mX = StartClassic.stepOnField;
@@ -64,7 +76,13 @@ public class Animation {
 
             path.lineTo(mX, mY);
         }
-        objectAnimator = ObjectAnimator.ofFloat(ActivityClassic.ivChecker, "translationX", "translationY", path);
+
+        if(checker == WHITE_CHECKER){
+            objectAnimator = ObjectAnimator.ofFloat(ActivityClassic.ivChecker, "translationX", "translationY", path);
+        }else {
+            objectAnimator = ObjectAnimator.ofFloat(ActivityClassic.ivCheckerBlack, "translationX", "translationY", path);
+        }
+
         objectAnimator.setDuration(600*steps.length);
         objectAnimator.start();
 
@@ -76,13 +94,22 @@ public class Animation {
                 StartClassic.checkersPositions[endI][endJ] = checker;
                 ActivityClassic.drawView.invalidate();
                 ActivityClassic.ivChecker.setVisibility(View.INVISIBLE);
+                ActivityClassic.ivCheckerBlack.setVisibility(View.INVISIBLE);
 
                 //after player move bot can move
-                BotMitya bot = new BotMitya();
-                bot.moveMitya(StartClassic.checkersPositions);
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-                /*Animation animationBot = new Animation();
-                animationBot.step(bot.getStartJ(), bot.getStartI(), bot.getEndJ(), bot.getEndI(), BLACK_CHECKER);*/
+                if(checker == WHITE_CHECKER){
+                    Bots bot = new Bots();
+                    bot.botMove();
+                }
+
+
+
             }
         });
 

@@ -13,12 +13,13 @@ import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 public class Bots {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void botMove(){
+        //create new bot end he start move
         BotMitya bot = new BotMitya();
         bot.moveMitya(StartClassic.checkersPositions);
 
+        //animate bot move
         Animation animation = new Animation();
         animation.step(bot.getStartJ(), bot.getStartI(), bot.getEndJ(), bot.getEndI(), BLACK_CHECKER);
-
 
     }
 }

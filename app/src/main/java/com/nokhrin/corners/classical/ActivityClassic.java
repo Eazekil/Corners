@@ -1,5 +1,6 @@
 package com.nokhrin.corners.classical;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -14,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.draw.DrawView;
 
@@ -42,6 +45,8 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         View flClassic = findViewById(R.id.frameLayoutClassic);
         ivChecker = findViewById(R.id.imageViewCheckerWhite);
         ivCheckerBlack = findViewById(R.id.imageViewCheckerBlack);
+        Button buttonMenu = findViewById(R.id.buttonMenu);
+        Button buttonRestart = findViewById(R.id.buttonRestart);
 
         //discover size of the display
         Display display = getWindowManager().getDefaultDisplay();
@@ -76,12 +81,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         flClassic.setOnTouchListener(this);
 
 
-
-
-
-
-
-        /*//button return to Menu
+        //button return to Menu
         buttonMenu.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityClassic.this, ActivityStart.class);
             startActivity(intent);
@@ -89,12 +89,9 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
         //button restart this game
         buttonRestart.setOnClickListener(v -> {
-            //add checkers on a start positions
-            startPositions();
-
-            //update
-            drawField();
-        });*/
+            Intent intent = new Intent(ActivityClassic.this, ActivityClassic.class);
+            startActivity(intent);
+        });
 
 
     }
@@ -112,8 +109,12 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
         System.out.println("_______________________ " + touchI + "," + touchJ);
 
-        //start move on the field
-        new PlayerMove(touchI, touchJ);
+        //check game is over
+        if(StartClassic.win == 0 && StartClassic.playerMove){
+            //start move on the field
+            new PlayerMove(touchI, touchJ);
+        }
+
 
         return false;
     }

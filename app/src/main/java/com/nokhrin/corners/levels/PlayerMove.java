@@ -1,21 +1,20 @@
 package com.nokhrin.corners.levels;
 
 
-
-
 import android.view.View;
-import android.widget.TextView;
 
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.countMoveView;
 import static com.nokhrin.corners.levels.ActivityLevels.countToMove;
 import static com.nokhrin.corners.levels.ActivityLevels.drawView;
-import static com.nokhrin.corners.levels.ActivityLevels.elementSetVisibleList;
 import static com.nokhrin.corners.levels.ActivityLevels.touchI;
 import static com.nokhrin.corners.levels.ActivityLevels.touchJ;
 import static com.nokhrin.corners.levels.GameOver.gameIsOver;
 import static com.nokhrin.corners.levels.PossibleMoves.possibleMoves;
 import static com.nokhrin.corners.levels.PossibleMoves.possibleStep;
+import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
+import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class PlayerMove {
     public static boolean playerMove;//can player to move
@@ -40,13 +39,13 @@ public class PlayerMove {
             if (choiceI != 0 && choiceJ != 0) {
 
                 //check player update chosen checker
-                if (checkersPositions[touchI][touchJ] == 1) {
+                if (checkersPositions[touchI][touchJ] == WHITE_CHECKER) {
 
                     //update chosen checker
-                    checkersPositions[touchI][touchJ] = 2;
+                    checkersPositions[touchI][touchJ] = MARK_ON_WHITE_CHECKER;
 
                     //update old chosen
-                    checkersPositions[choiceI][choiceJ] = 1;
+                    checkersPositions[choiceI][choiceJ] = WHITE_CHECKER;
 
                     //update chosen coordinate
                     choiceI = touchI;
@@ -59,8 +58,8 @@ public class PlayerMove {
                     //check can move on touch coordinate
                     if (possibleMoves(touchI, touchJ)) {
                         //update checkers positions on field
-                        checkersPositions[touchI][touchJ] = 1;
-                        checkersPositions[choiceI][choiceJ] = 0;
+                        checkersPositions[touchI][touchJ] = WHITE_CHECKER;
+                        checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
 
                         //clear chosen coordinate
                         choiceI = 0;
@@ -68,7 +67,7 @@ public class PlayerMove {
 
 
                         //
-                        String s = "Ходов осталось : "+(--countToMove);
+                        String s = "Ходов осталось : " + (--countToMove);
                         countMoveView.setVisibility(View.VISIBLE);
                         countMoveView.setText(s);
 
@@ -77,9 +76,9 @@ public class PlayerMove {
                 }
 
 
-            } else if (checkersPositions[touchI][touchJ] == 1) {
+            } else if (checkersPositions[touchI][touchJ] == WHITE_CHECKER) {
                 //mark chosen checker
-                checkersPositions[touchI][touchJ] = 2;
+                checkersPositions[touchI][touchJ] = MARK_ON_WHITE_CHECKER;
 
                 //update chosen coordinate
                 choiceI = touchI;

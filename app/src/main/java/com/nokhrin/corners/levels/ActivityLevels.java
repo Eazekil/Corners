@@ -41,11 +41,6 @@ public class ActivityLevels extends AppCompatActivity {
     public static ArrayList<View> elementSetVisibleList = new ArrayList<>();
     public static TextView countMoveView;
     public int numberLevel;
-    // 1   - checker white
-    // 2   - checker white with mark
-    // 3  - checker black
-    // 0 - this nothing
-    // 31  - target point
 
 
     @Override
@@ -128,27 +123,27 @@ public class ActivityLevels extends AppCompatActivity {
 
             if (numberLevel == 1) {
                 Level1.startLevel();
-            } else if (numberLevel == 2){
+            } else if (numberLevel == 2) {
                 Level2.startLevel();
-            } else if (numberLevel == 3){
+            } else if (numberLevel == 3) {
                 Level3.startLevel();
-            } else if (numberLevel == 4){
+            } else if (numberLevel == 4) {
                 Level4.startLevel();
-            } else if (numberLevel == 5){
+            } else if (numberLevel == 5) {
                 Level5.startLevel();
-            } else if (numberLevel == 6){
+            } else if (numberLevel == 6) {
                 Level6.startLevel();
-            } else if (numberLevel == 7){
+            } else if (numberLevel == 7) {
                 Level7.startLevel();
-            } else if (numberLevel == 8){
+            } else if (numberLevel == 8) {
                 Level8.startLevel();
-            } else if (numberLevel == 9){
+            } else if (numberLevel == 9) {
                 Level9.startLevel();
-            } else if (numberLevel == 10){
+            } else if (numberLevel == 10) {
                 Level10.startLevel();
-            } else if (numberLevel == 11){
+            } else if (numberLevel == 11) {
                 Level11.startLevel();
-            } else if (numberLevel == 12){
+            } else if (numberLevel == 12) {
                 Level12.startLevel();
             }
             drawView.invalidate();

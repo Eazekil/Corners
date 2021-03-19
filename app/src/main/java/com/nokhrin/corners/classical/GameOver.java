@@ -38,6 +38,7 @@ public class GameOver {
             return true;
         } else if (countPointWhite == StartClassic.countTargetPoint) {
             StartClassic.win = PLAYER_WIN;
+            System.out.println("wiiiinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn player");
             return true;
         } else if (countPointBlack == StartClassic.countTargetPoint) {
             StartClassic.win = BOT_WIN;

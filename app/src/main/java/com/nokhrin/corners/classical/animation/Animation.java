@@ -9,6 +9,7 @@ import android.view.View;
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.classical.GameOver;
 import com.nokhrin.corners.classical.StartClassic;
 import com.nokhrin.corners.classical.bots.Bots;
 
@@ -106,9 +107,17 @@ public class Animation {
                 if(checker == WHITE_CHECKER){
                     Bots bot = new Bots();
                     bot.botMove();
+
+                    //check game is over
+                    GameOver game = new GameOver();
+                    if (game.isOver()) {
+                        //set winner and update draw field
+                        ActivityClassic.drawView.setWin(StartClassic.win);
+                        ActivityClassic.drawView.invalidate();
+                    }
+                }else {
+                    StartClassic.playerMove = true;
                 }
-
-
 
             }
         });

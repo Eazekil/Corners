@@ -13,12 +13,14 @@ public class StartClassic {
     public static int stepOnField; // step on chess field and size of checkers
     public static int[][] checkersPositions; //positions all checkers on field
     public static int win;
+    public static boolean playerMove;
 
 
     public void addStartParameters(int widthDisplay, int heightDisplay, int indentTop) {
         //update variables for this game
         stepOnField = widthDisplay / (sizeOfField - 1);
         int sizePoint = stepOnField / 3;
+        playerMove = true;
 
         //set variables for create bitmap
         ResourcesBitmap.setStepOnField(stepOnField);
@@ -36,7 +38,7 @@ public class StartClassic {
         }
 
         //add checker on start positions
-        //start white checkers position
+       /* //start white checkers position
         for (int i = 6; i < sizeOfField; i++) {
             for (int j = 1; j < 5; j++) {
                 checkersPositions[i][j] = WHITE_CHECKER;
@@ -48,7 +50,25 @@ public class StartClassic {
             for (int j = 5; j < sizeOfField; j++) {
                 checkersPositions[i][j] = BLACK_CHECKER;
             }
+        }*/
+
+
+        //////////////////////////////////////////////////////////////////////////////
+        //start white checkers position
+        for (int i = 5; i < sizeOfField - 1; i++) {
+            for (int j = 1; j < 5; j++) {
+                checkersPositions[i][j] = BLACK_CHECKER;
+            }
         }
+
+
+        //start black checkers position
+        for (int i = 1; i < 4; i++) {
+            for (int j = 4; j < sizeOfField-1; j++) {
+                checkersPositions[i][j] = WHITE_CHECKER;
+            }
+        }
+        //////////////////////////////////////////////////////////////////////////////
 
 
     }

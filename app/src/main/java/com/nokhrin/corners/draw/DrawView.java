@@ -32,7 +32,7 @@ public class DrawView extends View {
         win = 0;
 
         //find pictures in resources
-        ResourcesBitmap.createBitmap();
+        ResourcesBitmap.createBitmapForChessField();
 
     }
 
@@ -58,7 +58,7 @@ public class DrawView extends View {
 
         //draw chess field
         if (sizeOfField == 9) {
-            canvas.drawBitmap(ResourcesBitmap.field8x8Bitmap, 0, 0, mPaint);
+            canvas.drawBitmap(ResourcesBitmap.stoneField8x8Bitmap, 0, 0, mPaint);
         }
 
         //draw checkers and marks

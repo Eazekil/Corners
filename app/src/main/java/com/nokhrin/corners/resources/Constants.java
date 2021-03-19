@@ -30,10 +30,4 @@ public class Constants {
     public static final String MESSAGE = "messageMoveTo";
 
 
-
 }
-// 1   - checker white
-// 2   - checker white with mark
-// 3  - checker black
-// 0 - this nothing
-// 31  - target point

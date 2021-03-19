@@ -36,18 +36,12 @@ public class PlayerMove {
                 PossibleMoves move = new PossibleMoves(StartClassic.checkersPositions, choiceI, choiceJ);
                 if (move.isPossible(touchI, touchJ)) {
 
+                    //mark player can't move more
+                    StartClassic.playerMove = false;
+
                     //animate this move
                     Animation animation = new Animation();
                     animation.step(choiceJ, choiceI, touchJ, touchI, WHITE_CHECKER);
-
-                    //check game is over
-                    GameOver game = new GameOver();
-                    if (game.isOver()) {
-                        //set winner and update draw field
-                        ActivityClassic.drawView.setWin(StartClassic.win);
-                        ActivityClassic.drawView.invalidate();
-                    }
-
                 }
             }
 

@@ -22,7 +22,6 @@ public class StepsForAnimation {
     private int sizeOfField;
     private boolean[][] lastPlayerPositions;
     private ArrayList<Integer> steps;
-    private ArrayList<Integer> allSteps;
 
     public StepsForAnimation(int[][] checkersPositions, int startI, int startJ, int endI, int endJ, int sizeOfField) {
         this.checkersPositions = checkersPositions;
@@ -36,45 +35,43 @@ public class StepsForAnimation {
     public int[] steps() {
         steps = new ArrayList<>();
 
-
+        //update last Player moves matrix
         lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
-        //clear last Player moves matrix
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
                 lastPlayerPositions[i][j] = false;
             }
         }
 
+        //can step
         stepRight();
         stepLeft();
         stepBottom();
         stepTop();
 
+        //check if we can jump then steps added like reverse
         boolean reverse = false;
         if (steps.size() < 1) {
-            allSteps = new ArrayList<>();
             jumpRight(startI, startJ);
             reverse = true;
         }
         if (steps.size() < 1) {
             lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
-            allSteps = new ArrayList<>();
             jumpLeft(startI, startJ);
             reverse = true;
         }
         if (steps.size() < 1) {
             lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
-            allSteps = new ArrayList<>();
             jumpBottom(startI, startJ);
             reverse = true;
         }
         if (steps.size() < 1) {
             lastPlayerPositions = new boolean[sizeOfField][sizeOfField];
-            allSteps = new ArrayList<>();
             jumpTop(startI, startJ);
             reverse = true;
         }
 
+        //save result
         int[] stepsResult = new int[steps.size()];
         if (reverse) {
             for (int i = 0; i < steps.size(); i++) {
@@ -86,10 +83,10 @@ public class StepsForAnimation {
             }
         }
 
-
         return stepsResult;
     }
 
+    //check if current coordinate is end coordinate
     private boolean end(int i, int j) {
         return i == endI && j == endJ;
     }
@@ -126,7 +123,7 @@ public class StepsForAnimation {
 
     //can step on top
     private void stepTop() {
-        if (startI - 1 < sizeOfField) {
+        if (startI - 1 > 0) {
             if (checkersPositions[startI - 1][startJ] == FREE_POSITION_ON_FIELD
                     && end(startI - 1, startJ)) {
                 steps.add(STEP_TOP);
@@ -142,19 +139,16 @@ public class StepsForAnimation {
                     && checkersPositions[i][j + 2] == FREE_POSITION_ON_FIELD
                     && !lastPlayerPositions[i][j + 2]) {
 
-
+                //check is end coordinate
                 if (end(i, j + 2)) {
                     steps.add(JUMP_RIGHT);
-                    for (int ss : allSteps) {
-                        //steps.add(ss);
-                    }
                     result = true;
                 }
 
                 //mark this position like last position
                 lastPlayerPositions[i][j + 2] = true;
 
-                //can jump more
+                //check can jump more
                 if (jumpRight(i, j + 2)) {
                     result = true;
                     steps.add(JUMP_RIGHT);
@@ -171,7 +165,6 @@ public class StepsForAnimation {
                     jumpTop(i, j + 2);
                 }
 
-
             }
         }
         return result;
@@ -185,13 +178,10 @@ public class StepsForAnimation {
                     && checkersPositions[i][j - 2] == FREE_POSITION_ON_FIELD
                     && !lastPlayerPositions[i][j - 2]) {
 
-
+                //check is end coordinate
                 if (end(i, j - 2)) {
                     steps.add(JUMP_LEFT);
                     result = true;
-                    for (int ss : allSteps) {
-                        //steps.add(ss);
-                    }
                 }
 
                 //mark this position like last position
@@ -227,13 +217,10 @@ public class StepsForAnimation {
                     && checkersPositions[i + 2][j] == FREE_POSITION_ON_FIELD
                     && !lastPlayerPositions[i + 2][j]) {
 
-
+                //check is end coordinate
                 if (end(i + 2, j)) {
                     steps.add(JUMP_BOTTOM);
                     result = true;
-                    for (int ss : allSteps) {
-                        //steps.add(ss);
-                    }
                 }
 
                 //mark this position like last position
@@ -269,13 +256,10 @@ public class StepsForAnimation {
                     && checkersPositions[i - 2][j] == FREE_POSITION_ON_FIELD
                     && !lastPlayerPositions[i - 2][j]) {
 
-
+                //check is end coordinate
                 if (end(i - 2, j)) {
                     steps.add(JUMP_TOP);
                     result = true;
-                    for (int ss : allSteps) {
-                        //steps.add(ss);
-                    }
                 }
 
                 //mark this position like last position

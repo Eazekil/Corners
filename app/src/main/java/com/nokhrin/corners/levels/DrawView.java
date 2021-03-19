@@ -7,25 +7,21 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.nokhrin.corners.resources.ResourcesBitmap;
+
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.marksPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.sizeOfField;
-import static com.nokhrin.corners.levels.ActivityLevels.sizePoint;
 import static com.nokhrin.corners.levels.ActivityLevels.stepOnField;
 import static com.nokhrin.corners.levels.ActivityLevels.touchI;
 import static com.nokhrin.corners.levels.ActivityLevels.touchJ;
 import static com.nokhrin.corners.levels.GameOver.gameIsOver;
 import static com.nokhrin.corners.levels.GameOver.playerWin;
 import static com.nokhrin.corners.levels.PlayerMove.touchOnField;
-import static com.nokhrin.corners.levels.ResourcesBitmap.blackCheckerBitmap;
-import static com.nokhrin.corners.levels.ResourcesBitmap.checkMarkBitmap;
-import static com.nokhrin.corners.levels.ResourcesBitmap.field4x4Bitmap;
-import static com.nokhrin.corners.levels.ResourcesBitmap.field5x5Bitmap;
-import static com.nokhrin.corners.levels.ResourcesBitmap.field6x6Bitmap;
-import static com.nokhrin.corners.levels.ResourcesBitmap.playerLoseBitmap;
-import static com.nokhrin.corners.levels.ResourcesBitmap.playerWinBitmap;
-import static com.nokhrin.corners.levels.ResourcesBitmap.targetPointBitmap;
-import static com.nokhrin.corners.levels.ResourcesBitmap.whiteCheckerBitmap;
+import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
+import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 
 public class DrawView extends View implements View.OnTouchListener {
@@ -48,36 +44,36 @@ public class DrawView extends View implements View.OnTouchListener {
 
         //draw chess field
         if (sizeOfField == 5) {
-            canvas.drawBitmap(field4x4Bitmap, 0, 0, mPaint);
+            canvas.drawBitmap(ResourcesBitmap.stoneField4x4Bitmap, 0, 0, mPaint);
         } else if (sizeOfField == 6) {
-            canvas.drawBitmap(field5x5Bitmap, 0, 0, mPaint);
+            canvas.drawBitmap(ResourcesBitmap.stoneField5x5Bitmap, 0, 0, mPaint);
         } else if (sizeOfField == 7) {
-            canvas.drawBitmap(field6x6Bitmap, 0, 0, mPaint);
+            canvas.drawBitmap(ResourcesBitmap.stoneField6x6Bitmap, 0, 0, mPaint);
         }
 
 
         //draw checkers and marks
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
+                //target point
+                if (marksPositions[i][j] == TARGET_POINT_FOR_WHITE_CHECKER) {
+                    canvas.drawBitmap(ResourcesBitmap.targetPointBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                }
+
                 //white checkers
-                if (checkersPositions[i][j] == 1) {
-                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                if (checkersPositions[i][j] == WHITE_CHECKER) {
+                    canvas.drawBitmap(ResourcesBitmap.woodmanCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //black checkers
-                if (checkersPositions[i][j] == 3) {
-                    canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                if (checkersPositions[i][j] == BLACK_CHECKER) {
+                    canvas.drawBitmap(ResourcesBitmap.vikingCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //white checkers with mark
-                if (checkersPositions[i][j] == 2) {
-                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
-                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
-                }
-
-                //target point
-                if (marksPositions[i][j] == 31) {
-                    canvas.drawBitmap(targetPointBitmap, (j - 1) * stepOnField + sizePoint, (i - 1) * stepOnField + sizePoint, mPaint);
+                if (checkersPositions[i][j] == MARK_ON_WHITE_CHECKER) {
+                    canvas.drawBitmap(ResourcesBitmap.woodmanSelectCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    //canvas.drawBitmap(ResourcesBitmap.checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
             }
@@ -86,9 +82,9 @@ public class DrawView extends View implements View.OnTouchListener {
 
         if (gameIsOver()) {
             if (playerWin) {
-                canvas.drawBitmap(playerWinBitmap, 0, 0, mPaint);
+                canvas.drawBitmap(ResourcesBitmap.playerWinBitmap, 0, 0, mPaint);
             } else {
-                canvas.drawBitmap(playerLoseBitmap, 0, 0, mPaint);
+                canvas.drawBitmap(ResourcesBitmap.playerLoseBitmap, 0, 0, mPaint);
             }
         }
 

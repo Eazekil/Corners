@@ -25,8 +25,8 @@ import static com.nokhrin.corners.resources.Constants.ROLE_HOST;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 import static com.nokhrin.corners.resources.ResourcesBitmap.blackCheckerBitmap;
 import static com.nokhrin.corners.resources.ResourcesBitmap.checkMarkBitmap;
-import static com.nokhrin.corners.resources.ResourcesBitmap.createBitmap;
-import static com.nokhrin.corners.resources.ResourcesBitmap.field8x8Bitmap;
+import static com.nokhrin.corners.resources.ResourcesBitmap.createBitmapForChessField;
+import static com.nokhrin.corners.resources.ResourcesBitmap.chessField8x8Bitmap;
 import static com.nokhrin.corners.resources.ResourcesBitmap.playerLoseBitmap;
 import static com.nokhrin.corners.resources.ResourcesBitmap.playerWinBitmap;
 import static com.nokhrin.corners.resources.ResourcesBitmap.setResourcesForDraw;
@@ -51,7 +51,7 @@ public class DrawViewMG extends View implements View.OnTouchListener {
         setSizePoint(sizePoint);
 
         //find pictures in resources
-        createBitmap();
+        createBitmapForChessField();
 
         //add touch listener
         setOnTouchListener(this);
@@ -63,7 +63,7 @@ public class DrawViewMG extends View implements View.OnTouchListener {
 
         //draw chess field
         if(sizeOfField == 9){
-            canvas.drawBitmap(field8x8Bitmap, 0, 0, mPaint);
+            canvas.drawBitmap(chessField8x8Bitmap, 0, 0, mPaint);
         }
 
 

@@ -23,16 +23,18 @@ public class DrawView extends View {
     private int[][] checkersPositions;
     private Paint mPaint = new Paint();
     private int win;
+    private ResourcesBitmap resourcesBitmap;
 
-    public DrawView(Context context) {
+    public DrawView(Context context, ResourcesBitmap resourcesBitmap) {
         super(context);
+        this.resourcesBitmap = resourcesBitmap;
 
         //set variables
-        ResourcesBitmap.setResourcesForDraw(this.getResources());
+        resourcesBitmap.setResourcesForDraw(this.getResources());
         win = 0;
 
         //find pictures in resources
-        ResourcesBitmap.createBitmapForChessField();
+        resourcesBitmap.createBitmapForChessField();
 
     }
 
@@ -48,6 +50,7 @@ public class DrawView extends View {
         this.checkersPositions = checkersPositions;
     }
 
+
     public void setWin(int win) {
         this.win = win;
     }
@@ -58,7 +61,7 @@ public class DrawView extends View {
 
         //draw chess field
         if (sizeOfField == 9) {
-            canvas.drawBitmap(ResourcesBitmap.stoneField8x8Bitmap, 0, 0, mPaint);
+            canvas.drawBitmap(resourcesBitmap.stoneField8x8Bitmap, 0, 0, mPaint);
         }
 
         //draw checkers and marks
@@ -66,29 +69,29 @@ public class DrawView extends View {
             for (int j = 1; j < sizeOfField; j++) {
                 //white checkers
                 if (checkersPositions[i][j] == WHITE_CHECKER) {
-                    canvas.drawBitmap(ResourcesBitmap.whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(resourcesBitmap.whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //black checkers
                 if (checkersPositions[i][j] == BLACK_CHECKER) {
-                    canvas.drawBitmap(ResourcesBitmap.blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(resourcesBitmap.blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //white checkers with mark
                 if (checkersPositions[i][j] == MARK_ON_WHITE_CHECKER) {
-                    canvas.drawBitmap(ResourcesBitmap.whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
-                    canvas.drawBitmap(ResourcesBitmap.checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(resourcesBitmap.whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(resourcesBitmap.checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //black checkers with mark
                 if (checkersPositions[i][j] == MARK_ON_BLACK_CHECKER) {
-                    canvas.drawBitmap(ResourcesBitmap.blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
-                    canvas.drawBitmap(ResourcesBitmap.checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(resourcesBitmap.blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(resourcesBitmap.checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                 }
 
                 //target point
                 if (checkersPositions[i][j] == TARGET_POINT_FOR_BLACK_CHECKER) {
-                    canvas.drawBitmap(ResourcesBitmap.targetPointBitmap, (j - 1) * stepOnField + 50, (i - 1) * stepOnField + 50, mPaint);
+                    canvas.drawBitmap(resourcesBitmap.targetPointBitmap, (j - 1) * stepOnField + 50, (i - 1) * stepOnField + 50, mPaint);
                 }
             }
         }
@@ -96,11 +99,11 @@ public class DrawView extends View {
         //check we have winner
         if (win != 0) {
             if (win == PLAYER_WIN) {
-                canvas.drawBitmap(ResourcesBitmap.playerWinBitmap, 0, 0, mPaint);
+                canvas.drawBitmap(resourcesBitmap.playerWinBitmap, 0, 0, mPaint);
             } else if (win == BOT_WIN) {
-                canvas.drawBitmap(ResourcesBitmap.playerLoseBitmap, 0, 0, mPaint);
+                canvas.drawBitmap(resourcesBitmap.playerLoseBitmap, 0, 0, mPaint);
             } else if (win == WIN_WIN) {
-                canvas.drawBitmap(ResourcesBitmap.winWinBitmap, 0, 0, mPaint);
+                canvas.drawBitmap(resourcesBitmap.winWinBitmap, 0, 0, mPaint);
             }
 
         }

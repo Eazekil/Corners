@@ -8,9 +8,19 @@ import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WIN_WIN;
 
 public class GameOver {
+    private int[][] checkersPositions;
+    private int countTargetPoint;
+    private int win;
+
+    public GameOver(int[][] checkersPositions, int countTargetPoint, int win) {
+        this.checkersPositions = checkersPositions;
+        this.countTargetPoint = countTargetPoint;
+        this.win = win;
+    }
+
     public boolean isOver() {
 
-        int sizeOfField = StartClassic.checkersPositions.length;
+        int sizeOfField = checkersPositions.length;
         int countPointWhite = 0;
         int countPointBlack = 0;
 

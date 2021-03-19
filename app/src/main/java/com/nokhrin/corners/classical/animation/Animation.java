@@ -12,6 +12,7 @@ import com.nokhrin.corners.classical.ActivityClassic;
 import com.nokhrin.corners.classical.GameOver;
 import com.nokhrin.corners.classical.StartClassic;
 import com.nokhrin.corners.classical.bots.Bots;
+import com.nokhrin.corners.draw.DrawView;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.JUMP_BOTTOM;
@@ -25,6 +26,10 @@ import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class Animation {
+    private int[][] checkersPositions;
+    private int sizeOfField;
+    private DrawView drawView;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startJ, int startI, int endJ, int endI, int checker) {
@@ -32,12 +37,6 @@ public class Animation {
         //get steps for animate checker
         StepsForAnimation stepsForAnimation = new StepsForAnimation(StartClassic.checkersPositions, startI, startJ, endI, endJ, StartClassic.sizeOfField);
         int[] steps = stepsForAnimation.steps();
-
-        for(int ss: steps){
-            System.out.println("************************************  "+ ss);
-        }
-        System.out.println("__________________________________________________________");
-
 
         //draw field without move checker
         StartClassic.checkersPositions[startI][startJ] = FREE_POSITION_ON_FIELD;

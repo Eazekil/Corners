@@ -5,7 +5,6 @@ import android.widget.Button;
 
 import com.nokhrin.corners.resources.ResourcesBitmap;
 
-import static com.nokhrin.corners.ActivityStart.widthDisplay;
 import static com.nokhrin.corners.levels.ActivityLevels.buttonSetInvisibleList;
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.countMoveView;
@@ -38,12 +37,6 @@ public class StartForLevel {
         //update variables for this level
         stepOnField = widthDisplay / (sizeOfField - 1);
         sizePoint = stepOnField / 3;
-
-        System.out.println("************************************************************");
-        System.out.println(stepOnField);
-        System.out.println(widthDisplay);
-        System.out.println(sizePoint);
-        System.out.println(resourcesForDraw == null);
 
         //set variables for create bitmap
         ResourcesBitmap.setStepOnField(stepOnField);

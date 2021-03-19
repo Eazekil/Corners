@@ -8,24 +8,26 @@ import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class StartClassic {
-    public static int sizeOfField = 9; //size of field +1
-    public static int countTargetPoint = 12; //count of checker
-    public static int stepOnField; // step on chess field and size of checkers
-    public static int[][] checkersPositions; //positions all checkers on field
-    public static int win;
-    public static boolean playerMove;
+    private int sizeOfField = 9; //size of field +1
+    private int countTargetPoint = 12; //count of checker
+    private int stepOnField; // step on chess field and size of checkers
+    private int[][] checkersPositions; //positions all checkers on field
+    private int win;
+    private boolean playerMove;
 
 
-    public void addStartParameters(int widthDisplay, int heightDisplay, int indentTop) {
+
+    public void addStartParameters(int widthDisplay, int heightDisplay, int indentTop, ResourcesBitmap resourcesBitmap) {
         //update variables for this game
         stepOnField = widthDisplay / (sizeOfField - 1);
         int sizePoint = stepOnField / 3;
         playerMove = true;
 
         //set variables for create bitmap
-        ResourcesBitmap.setStepOnField(stepOnField);
-        ResourcesBitmap.setWidthDisplay(widthDisplay);
-        ResourcesBitmap.setSizePoint(sizePoint);
+
+        resourcesBitmap.setStepOnField(stepOnField);
+        resourcesBitmap.setWidthDisplay(widthDisplay);
+        resourcesBitmap.setSizePoint(sizePoint);
 
         //create matrix
         checkersPositions = new int[sizeOfField][sizeOfField];
@@ -64,12 +66,39 @@ public class StartClassic {
 
         //start black checkers position
         for (int i = 1; i < 4; i++) {
-            for (int j = 4; j < sizeOfField-1; j++) {
+            for (int j = 4; j < sizeOfField - 1; j++) {
                 checkersPositions[i][j] = WHITE_CHECKER;
             }
         }
         //////////////////////////////////////////////////////////////////////////////
 
+    }
 
+    public int getSizeOfField() {
+        return sizeOfField;
+    }
+
+    public int getStepOnField() {
+        return stepOnField;
+    }
+
+    public int[][] getCheckersPositions() {
+        return checkersPositions;
+    }
+
+    public int getCountTargetPoint() {
+        return countTargetPoint;
+    }
+
+    public int getWin() {
+        return win;
+    }
+
+    public boolean isPlayerMove() {
+        return playerMove;
+    }
+
+    public void setPlayerMove(boolean playerMove) {
+        this.playerMove = playerMove;
     }
 }

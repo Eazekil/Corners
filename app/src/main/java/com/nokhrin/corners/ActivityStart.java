@@ -16,8 +16,6 @@ import com.nokhrin.corners.multiplayer.ActivityCreatePlayer;
 
 
 public class ActivityStart extends AppCompatActivity {
-    public static int widthDisplay;
-    public static int heightDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,23 +46,26 @@ public class ActivityStart extends AppCompatActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        widthDisplay = size.x;
-        heightDisplay = size.y;
+        int widthDisplay = size.x;
+        int heightDisplay = size.y;
 
         //go to choice level activity
         buttonLevel.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityLevels.class);
             startActivity(intent);
+            finish();
         });
         //go to classic game activity
         buttonClassic.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityClassic.class);
             startActivity(intent);
+            finish();
         });
         //go to activity for play with friends
         buttonMultiPlayer.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityCreatePlayer.class);
             startActivity(intent);
+            finish();
         });
 
 

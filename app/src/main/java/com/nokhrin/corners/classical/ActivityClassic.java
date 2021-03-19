@@ -19,13 +19,17 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.resources.ResourcesBitmap;
 
 
 public class ActivityClassic extends AppCompatActivity implements View.OnTouchListener {
-    public static DrawView drawView;
-    public static int indentTop;
-    public static ImageView ivChecker;
-    public static ImageView ivCheckerBlack;
+    //public static DrawView drawView;
+    //public static int indentTop;
+    //public static ImageView ivChecker;
+    //public static ImageView ivCheckerBlack;
+    private StartClassic startClassic;
+    private DrawView drawView;
+    private ResourcesBitmap resourcesBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +47,8 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
         //find element
         View flClassic = findViewById(R.id.frameLayoutClassic);
-        ivChecker = findViewById(R.id.imageViewCheckerWhite);
-        ivCheckerBlack = findViewById(R.id.imageViewCheckerBlack);
+        ImageView ivChecker = findViewById(R.id.imageViewCheckerWhite);
+        ImageView ivCheckerBlack = findViewById(R.id.imageViewCheckerBlack);
         Button buttonMenu = findViewById(R.id.buttonMenu);
         Button buttonRestart = findViewById(R.id.buttonRestart);
 
@@ -54,7 +58,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         display.getSize(size);
         int widthDisplay = size.x;
         int heightDisplay = size.y;
-        indentTop = (heightDisplay - widthDisplay) / 2;
+        int indentTop = (heightDisplay - widthDisplay) / 2;
 
         //set indent of top
         FrameLayout flIntent = findViewById(R.id.frameLayoutIndentClassic);
@@ -64,18 +68,24 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         flIntent.setLayoutParams(params);
 
 
+        resourcesBitmap = new ResourcesBitmap();
+
         //add start parameters for game field
-        new StartClassic().addStartParameters(widthDisplay, heightDisplay, indentTop);
+        startClassic = new StartClassic();
+        startClassic.addStartParameters(widthDisplay, heightDisplay, indentTop, resourcesBitmap);
 
 
         //create view for draw and add in layout
-        drawView = new DrawView(getApplicationContext());
+        drawView = new DrawView(getApplicationContext(),resourcesBitmap);
         ((ViewGroup) flClassic).addView(drawView);
 
+
+
+
         //set parameters for bitmap
-        drawView.setSizeOfField(StartClassic.sizeOfField);
-        drawView.setStepOnField(StartClassic.stepOnField);
-        drawView.setCheckersPositions(StartClassic.checkersPositions);
+        drawView.setSizeOfField(startClassic.getSizeOfField());
+        drawView.setStepOnField(startClassic.getStepOnField());
+        drawView.setCheckersPositions(startClassic.getCheckersPositions());
 
         //set on touch listener
         flClassic.setOnTouchListener(this);
@@ -104,15 +114,15 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         int touchY = (int) event.getY();
 
         //convert coordinates X,Y in step on chess field
-        int touchI = touchY / StartClassic.stepOnField + 1;
-        int touchJ = touchX / StartClassic.stepOnField + 1;
+        int touchI = touchY / startClassic.getStepOnField() + 1;
+        int touchJ = touchX / startClassic.getStepOnField() + 1;
 
         System.out.println("_______________________ " + touchI + "," + touchJ);
 
         //check game is over
-        if(StartClassic.win == 0 && StartClassic.playerMove){
+        if(startClassic.getWin() == 0 && startClassic.isPlayerMove()){
             //start move on the field
-            new PlayerMove(touchI, touchJ);
+            new PlayerMove(touchI, touchJ, startClassic, drawView);
         }
 
 

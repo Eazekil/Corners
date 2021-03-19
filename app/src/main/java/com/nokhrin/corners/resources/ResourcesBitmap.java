@@ -8,47 +8,47 @@ import com.nokhrin.corners.R;
 
 
 public class ResourcesBitmap {
-    public static Bitmap chessField4x4Bitmap;
-    public static Bitmap chessField5x5Bitmap;
-    public static Bitmap chessField6x6Bitmap;
-    public static Bitmap chessField8x8Bitmap;
-    public static Bitmap stoneField8x8Bitmap;
-    public static Bitmap stoneField4x4Bitmap;
-    public static Bitmap stoneField5x5Bitmap;
-    public static Bitmap stoneField6x6Bitmap;
-    public static Bitmap whiteCheckerBitmap;
-    public static Bitmap blackCheckerBitmap;
-    public static Bitmap woodmanCheckerBitmap;
-    public static Bitmap woodmanSelectCheckerBitmap;
-    public static Bitmap vikingCheckerBitmap;
-    public static Bitmap vikingSelectCheckerBitmap;
-    public static Bitmap checkMarkBitmap;
-    public static Bitmap targetPointBitmap;
-    public static Bitmap playerWinBitmap;
-    public static Bitmap playerLoseBitmap;
-    public static Bitmap winWinBitmap;
-    private static Resources resourcesForDraw;
-    private static int stepOnField;
-    private static int sizePoint;
-    private static int widthDisplay;
+    public Bitmap chessField4x4Bitmap;
+    public Bitmap chessField5x5Bitmap;
+    public Bitmap chessField6x6Bitmap;
+    public Bitmap chessField8x8Bitmap;
+    public Bitmap stoneField8x8Bitmap;
+    public Bitmap stoneField4x4Bitmap;
+    public Bitmap stoneField5x5Bitmap;
+    public Bitmap stoneField6x6Bitmap;
+    public Bitmap whiteCheckerBitmap;
+    public Bitmap blackCheckerBitmap;
+    public Bitmap woodmanCheckerBitmap;
+    public Bitmap woodmanSelectCheckerBitmap;
+    public Bitmap vikingCheckerBitmap;
+    public Bitmap vikingSelectCheckerBitmap;
+    public Bitmap checkMarkBitmap;
+    public Bitmap targetPointBitmap;
+    public Bitmap playerWinBitmap;
+    public Bitmap playerLoseBitmap;
+    public Bitmap winWinBitmap;
+    private Resources resourcesForDraw;
+    private int stepOnField;
+    private int sizePoint;
+    private int widthDisplay;
 
-    public static void setResourcesForDraw(Resources resourcesForDraw) {
-        ResourcesBitmap.resourcesForDraw = resourcesForDraw;
+    public void setResourcesForDraw(Resources resourcesForDraw) {
+        this.resourcesForDraw = resourcesForDraw;
     }
 
-    public static void setStepOnField(int stepOnField) {
-        ResourcesBitmap.stepOnField = stepOnField;
+    public void setStepOnField(int stepOnField) {
+        this.stepOnField = stepOnField;
     }
 
-    public static void setWidthDisplay(int widthDisplay) {
-        ResourcesBitmap.widthDisplay = widthDisplay;
+    public void setWidthDisplay(int widthDisplay) {
+        this.widthDisplay = widthDisplay;
     }
 
-    public static void setSizePoint(int sizePoint) {
-        ResourcesBitmap.sizePoint = sizePoint;
+    public void setSizePoint(int sizePoint) {
+        this.sizePoint = sizePoint;
     }
 
-    public static void createBitmapForChessField() {
+    public void createBitmapForChessField() {
         //create chess field 4x4
         chessField4x4Bitmap = Bitmap.createScaledBitmap(
                 BitmapFactory.decodeResource(resourcesForDraw, R.drawable.chess_field_4x4), widthDisplay, widthDisplay, true);
@@ -91,7 +91,7 @@ public class ResourcesBitmap {
     }
 
 
-    public static void createBitmapForStoneField() {
+    public void createBitmapForStoneField() {
         //create stone field 4x4
         stoneField4x4Bitmap = Bitmap.createScaledBitmap(
                 BitmapFactory.decodeResource(resourcesForDraw, R.drawable.stone_field_4x4), widthDisplay, widthDisplay, true);

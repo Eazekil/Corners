@@ -5,9 +5,9 @@
     android:id="@+id/ConstrainLayoutLevels"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_blue"
+    android:background="@drawable/bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
-    tools:context=".levels.ActivityLevels" >
+    tools:context=".levels.ActivityLevels">
 
     <FrameLayout
         android:id="@+id/frameLayoutLevel"

@@ -23,11 +23,6 @@ public class ActivityStart extends AppCompatActivity {
 
         //this all for make full screen
         setContentView(R.layout.activity_start);
-        /*//public static Button buttonLevel;
-    public static Button buttonClassic;
-    public static Button buttonMultiPlayer;
-    public static int widthDisplay;
-    public static int heightDisplay;*/
         View startLayout = findViewById(R.id.ConstrainLayoutStart);
         startLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -53,19 +48,19 @@ public class ActivityStart extends AppCompatActivity {
         buttonLevel.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityLevels.class);
             startActivity(intent);
-            finish();
+            //finish();
         });
         //go to classic game activity
         buttonClassic.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityClassic.class);
             startActivity(intent);
-            finish();
+            //finish();
         });
         //go to activity for play with friends
         buttonMultiPlayer.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityCreatePlayer.class);
             startActivity(intent);
-            finish();
+            //finish();
         });
 
 

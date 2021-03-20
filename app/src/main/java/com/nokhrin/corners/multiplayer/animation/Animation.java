@@ -9,17 +9,19 @@ import android.view.View;
 
 import androidx.annotation.RequiresApi;
 
-import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.drawView;
-import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.indentTop;
-import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.ivChecker;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checkersPositions;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizeOfField;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.stepOnField;
+
+import com.nokhrin.corners.game.StepsForAnimation;
+import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
+import com.nokhrin.corners.multiplayer.game.GameOver;
+
+import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.JUMP_BOTTOM;
 import static com.nokhrin.corners.resources.Constants.JUMP_LEFT;
 import static com.nokhrin.corners.resources.Constants.JUMP_RIGHT;
 import static com.nokhrin.corners.resources.Constants.JUMP_TOP;
+import static com.nokhrin.corners.resources.Constants.ROLE_GUEST;
+import static com.nokhrin.corners.resources.Constants.ROLE_HOST;
 import static com.nokhrin.corners.resources.Constants.STEP_BOTTOM;
 import static com.nokhrin.corners.resources.Constants.STEP_LEFT;
 import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
@@ -27,24 +29,41 @@ import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class Animation {
+    private ActivityMultiplayerGame activity;
+
+    public Animation(ActivityMultiplayerGame activity) {
+        this.activity = activity;
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void step(int x, int y, int endX, int endY) {
+    public void step(int startJ, int startI, int endJ, int endI, int checker) {
 
         //get steps for animate checker
-        StepsForAnimation stepsForAnimation = new StepsForAnimation(checkersPositions, y, x, endY, endX, sizeOfField);
+        StepsForAnimation stepsForAnimation = new StepsForAnimation(activity.startGame.getCheckersPositions(), startI, startJ, endI, endJ);
         int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker
-        checkersPositions[y][x] = FREE_POSITION_ON_FIELD;
-        drawView.invalidate();
+        activity.startGame.getCheckersPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
+        activity.drawView.invalidate();
+
+        int stepOnField = activity.startGame.getStepOnField();
 
         //add checker on start position and set visible
-        ivChecker.layout((x - 2) * stepOnField,
-                (y - 1) * stepOnField + indentTop,
-                (x - 2) * stepOnField + stepOnField,
-                (y - 1) * stepOnField + stepOnField + indentTop);
-        ivChecker.setVisibility(View.VISIBLE);
+        if(checker == WHITE_CHECKER){
+            activity.ivChecker.layout((startJ - 2) * stepOnField,
+                    (startI - 1) * stepOnField + activity.indentTop,
+                    (startJ - 2) * stepOnField + stepOnField,
+                    (startI - 1) * stepOnField + stepOnField + activity.indentTop);
+            activity.ivChecker.setVisibility(View.VISIBLE);
+        }else{
+            activity.ivCheckerBlack.layout((startJ - 2) * stepOnField,
+                    (startI - 1) * stepOnField + activity.indentTop,
+                    (startJ - 2) * stepOnField + stepOnField,
+                    (startI - 1) * stepOnField + stepOnField + activity.indentTop);
+            activity.ivCheckerBlack.setVisibility(View.VISIBLE);
+        }
+
 
         //create animation
         int mX = stepOnField;
@@ -64,18 +83,39 @@ public class Animation {
 
             path.lineTo(mX, mY);
         }
-        objectAnimator = ObjectAnimator.ofFloat(ivChecker, "translationX", "translationY", path);
+        if(checker == WHITE_CHECKER){
+            objectAnimator = ObjectAnimator.ofFloat(activity.ivChecker, "translationX", "translationY", path);
+        }else {
+            objectAnimator = ObjectAnimator.ofFloat(activity.ivCheckerBlack, "translationX", "translationY", path);
+        }
+
+        //set time of animation
         objectAnimator.setDuration(600*steps.length);
         objectAnimator.start();
-
 
         //after end of animation draw checker on field and set invisible view
         objectAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation, boolean isReverse) {
-                checkersPositions[endY][endX] = WHITE_CHECKER;
-                drawView.invalidate();
-                ivChecker.setVisibility(View.INVISIBLE);
+                activity.startGame.getCheckersPositions()[endI][endJ] = checker;
+                activity.ivChecker.setVisibility(View.INVISIBLE);
+                activity.ivCheckerBlack.setVisibility(View.INVISIBLE);
+
+                //check player move before animation
+                if(activity.role == ROLE_HOST && checker == BLACK_CHECKER){
+                    activity.startGame.setPlayerMove(true);
+                }
+                if(activity.role == ROLE_GUEST && checker == WHITE_CHECKER){
+                    activity.startGame.setPlayerMove(true);
+                }
+
+                //check game is over
+                GameOver game = new GameOver(activity);
+                if (game.isOver()) {
+                    activity.startGame.setPlayerMove(false);
+                }
+
+                activity.drawView.invalidate();
             }
         });
 

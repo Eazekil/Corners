@@ -45,6 +45,7 @@ public class ActivityCreatePlayer extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ActivityRooms.class);
                 intent.putExtra(PLAYER_NAME, playerName);
                 startActivity(intent);
+                finish();
             }else{
                 Toast.makeText(this, "Пожалуйста введите Имя", Toast.LENGTH_SHORT).show();
             }

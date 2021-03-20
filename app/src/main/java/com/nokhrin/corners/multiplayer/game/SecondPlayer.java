@@ -1,16 +1,25 @@
 package com.nokhrin.corners.multiplayer.game;
 
 
-import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.drawView;
-import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.playerMove;
-import static com.nokhrin.corners.multiplayer.game.GameOver.gameIsOver;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checkersPositions;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizeOfField;
+import android.app.Activity;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
+import com.nokhrin.corners.multiplayer.animation.Animation;
+
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 
 public class SecondPlayer {
+    ActivityMultiplayerGame activity;
 
-    public static void updatePosition(String moveIn) {
+    public SecondPlayer(Activity activity) {
+        this.activity = (ActivityMultiplayerGame) activity;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void updatePosition(String moveIn) {
         String[] str = moveIn.split(" ");
         int startI;
         int startJ;
@@ -21,27 +30,17 @@ public class SecondPlayer {
         andI = Integer.parseInt(str[2]);
         andJ = Integer.parseInt(str[3]);
 
+        int sizeOfField = activity.startGame.getCheckersPositions().length;
+
         //convert start and end positions
         startI = sizeOfField - startI;
         startJ = sizeOfField - startJ;
         andI = sizeOfField - andI;
         andJ = sizeOfField - andJ;
 
-
-        //update checkers positions on field
-        checkersPositions[andI][andJ] = checkersPositions[startI][startJ];
-        checkersPositions[startI][startJ] = FREE_POSITION_ON_FIELD;
-
-        //check game is over
-        gameIsOver();
-
-        //update draw field
-        drawView.invalidate();
-
-        //player can move
-        if (!gameIsOver()) {
-            playerMove = true;
-        }
+        //animate this move
+        Animation animation = new Animation(activity);
+        animation.step(startJ, startI, andJ, andI, activity.startGame.getCheckersPositions()[startI][startJ]);
 
     }
 }

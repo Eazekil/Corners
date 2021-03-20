@@ -154,7 +154,7 @@ public class ActivityRooms extends AppCompatActivity {
                 }
 
                 startActivity(intent);
-                //finish();
+                finish();
             }
 
             @Override

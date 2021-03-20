@@ -1,13 +1,11 @@
 package com.nokhrin.corners.classical;
 
 
-import com.nokhrin.corners.resources.ResourcesBitmap;
-
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
-public class StartClassic {
+public class StartGame extends com.nokhrin.corners.game.StartGame {
     private int sizeOfField = 9; //size of field +1
     private int countTargetPoint = 12; //count of checker
     private int stepOnField; // step on chess field and size of checkers
@@ -17,17 +15,11 @@ public class StartClassic {
 
 
 
-    public void addStartParameters(int widthDisplay, int heightDisplay, int indentTop, ResourcesBitmap resourcesBitmap) {
+    public void addStartParameters(int widthDisplay) {
         //update variables for this game
         stepOnField = widthDisplay / (sizeOfField - 1);
         int sizePoint = stepOnField / 3;
         playerMove = true;
-
-        //set variables for create bitmap
-
-        resourcesBitmap.setStepOnField(stepOnField);
-        resourcesBitmap.setWidthDisplay(widthDisplay);
-        resourcesBitmap.setSizePoint(sizePoint);
 
         //create matrix
         checkersPositions = new int[sizeOfField][sizeOfField];
@@ -100,5 +92,9 @@ public class StartClassic {
 
     public void setPlayerMove(boolean playerMove) {
         this.playerMove = playerMove;
+    }
+
+    public void setWin(int win) {
+        this.win = win;
     }
 }

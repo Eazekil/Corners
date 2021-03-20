@@ -2,50 +2,91 @@ package com.nokhrin.corners.multiplayer.game;
 
 
 
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checkersPositions;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.countPointInLevel;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.marksPositions;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.sizeOfField;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.playerWin;
+
+import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
+
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
-import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_BLACK_CHECKER;
-import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.BOT_WIN;
+import static com.nokhrin.corners.resources.Constants.PLAYER_WIN;
+import static com.nokhrin.corners.resources.Constants.ROLE_HOST;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.WIN_WIN;
 
 
 public class GameOver {
+    private ActivityMultiplayerGame activity;
 
+    public GameOver(ActivityMultiplayerGame activity) {
+        this.activity = activity;
+    }
 
-    public static boolean gameIsOver(){
-        boolean result = false;
+    public boolean isOver() {
 
-        int countWhite = 0;
-        int countBlack = 0;
-        for (int i = 1; i < sizeOfField; i++) {
-            for (int j = 1; j < sizeOfField; j++) {
-                if(marksPositions[i][j] == TARGET_POINT_FOR_WHITE_CHECKER && checkersPositions[i][j] == WHITE_CHECKER){
-                    countWhite++;
+        int sizeOfField = activity.startGame.getCheckersPositions().length;
+        int countPointWhite = 0;
+        int countPointBlack = 0;
+
+        if(activity.role == ROLE_HOST){
+            //sum white checker in home
+            for (int i = 1; i < 4; i++) {
+                for (int j = 5; j < sizeOfField; j++) {
+                    if (activity.startGame.getCheckersPositions()[i][j] == WHITE_CHECKER) {
+                        countPointWhite++;
+                    }
                 }
-                if(marksPositions[i][j] == TARGET_POINT_FOR_BLACK_CHECKER && checkersPositions[i][j] == BLACK_CHECKER){
-                    countBlack++;
+            }
+
+            //sum black checker in home
+            for (int i = 6; i < sizeOfField; i++) {
+                for (int j = 1; j < 5; j++) {
+                    if (activity.startGame.getCheckersPositions()[i][j] == BLACK_CHECKER) {
+                        countPointBlack++;
+                    }
+                }
+            }
+        }else{
+            //sum white checker in home
+            for (int i = 1; i < 4; i++) {
+                for (int j = 5; j < sizeOfField; j++) {
+                    if (activity.startGame.getCheckersPositions()[i][j] == BLACK_CHECKER) {
+                        countPointBlack++;
+                    }
+                }
+            }
+
+            //sum black checker in home
+            for (int i = 6; i < sizeOfField; i++) {
+                for (int j = 1; j < 5; j++) {
+                    if (activity.startGame.getCheckersPositions()[i][j] == WHITE_CHECKER) {
+                        countPointWhite++;
+                    }
                 }
             }
         }
 
-        if(countWhite == countPointInLevel){
-            result = true;
-            playerWin = true;
-            String s = "Вы победили";
-            //countMoveView.setVisibility(View.VISIBLE);
-            //countMoveView.setText(s);
-        }else if(countBlack == countPointInLevel){
-            result = true;
-            playerWin = false;
-            String s = "Увы и ах, вы проиграли";
-            //countMoveView.setVisibility(View.VISIBLE);
-            //countMoveView.setText(s);
-        }
 
-        return result;
+
+        if (countPointWhite == activity.startGame.getCountTargetPoint()
+                && countPointBlack == activity.startGame.getCountTargetPoint()) {
+            activity.startGame.setWin(WIN_WIN);
+            return true;
+        } else if (countPointWhite == activity.startGame.getCountTargetPoint()) {
+            if (activity.role == ROLE_HOST) {
+                activity.startGame.setWin(PLAYER_WIN);
+            } else {
+                activity.startGame.setWin(BOT_WIN);
+            }
+            return true;
+        } else if (countPointBlack == activity.startGame.getCountTargetPoint()) {
+            if (activity.role == ROLE_HOST) {
+                activity.startGame.setWin(BOT_WIN);
+            } else {
+                activity.startGame.setWin(PLAYER_WIN);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
+
 }

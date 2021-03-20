@@ -8,95 +8,101 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.nokhrin.corners.game.PossibleMoves;
+import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
 import com.nokhrin.corners.multiplayer.animation.Animation;
 
-import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.drawView;
-import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.makeStep;
-import static com.nokhrin.corners.multiplayer.ActivityMultiplayerGame.playerMove;
-import static com.nokhrin.corners.multiplayer.game.GameOver.gameIsOver;
-import static com.nokhrin.corners.multiplayer.game.PossibleMoves.possibleMoves;
-import static com.nokhrin.corners.multiplayer.game.PossibleMoves.possibleStep;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.checkersPositions;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.choiceI;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.choiceJ;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.touchI;
-import static com.nokhrin.corners.multiplayer.start.StartMultiplayerGame.touchJ;
-import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
+import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
+import static com.nokhrin.corners.resources.Constants.MARK_ON_BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.ROLE_HOST;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 
 public class PlayerMove {
+    private int choiceI;
+    private int choiceJ;
+    ActivityMultiplayerGame activity;
+    int touchI;
+    int touchJ;
+    int checker;
+    int choiceChecker;
 
-    //start move on the field
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void touchOnField() {
+    public PlayerMove(int touchI, int touchJ, ActivityMultiplayerGame activity) {
+        this.touchI = touchI;
+        this.touchJ = touchJ;
+        this.activity = activity;
 
-        //check can player move
-        if (!gameIsOver() && playerMove) {
+        if(activity.role == ROLE_HOST){
+            checker = WHITE_CHECKER;
+            choiceChecker = MARK_ON_WHITE_CHECKER;
+        }else{
+            checker = BLACK_CHECKER;
+            choiceChecker = MARK_ON_BLACK_CHECKER;
+        }
 
-            //check player choice checker
-            if (choiceI != FREE_POSITION_ON_FIELD && choiceJ != FREE_POSITION_ON_FIELD) {
+        startPlayerMove();
+    }
 
-                //check player update chosen checker
-                if (checkersPositions[touchI][touchJ] == WHITE_CHECKER) {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void startPlayerMove(){
+        if (haveChoiceChecker()) {
+            //check touch position it white checker
+            if (activity.startGame.getCheckersPositions()[touchI][touchJ] == checker) {
+                //update mark
+                activity.startGame.getCheckersPositions()[touchI][touchJ] = choiceChecker;
+                activity.startGame.getCheckersPositions()[choiceI][choiceJ] = checker;
 
-                    //update chosen checker
-                    checkersPositions[touchI][touchJ] = MARK_ON_WHITE_CHECKER;
+                //update draw field
+                activity.drawView.invalidate();
 
-                    //update old chosen
-                    checkersPositions[choiceI][choiceJ] = WHITE_CHECKER;
+            } else {
+                //check can move on touch coordinate
+                PossibleMoves move = new PossibleMoves(activity.startGame.getCheckersPositions(), choiceI, choiceJ);
+                if (move.isPossible(touchI, touchJ)) {
 
-                    //update chosen coordinate
-                    choiceI = touchI;
-                    choiceJ = touchJ;
+                    //mark player can't move more
+                    activity.startGame.setPlayerMove(false);
 
-                    //find all move for choice checker
-                    possibleStep();
-                } else {
+                    //animate this move
+                    Animation animation = new Animation(activity);
+                    animation.step(choiceJ, choiceI, touchJ, touchI, checker);
 
-                    //check can move on touch coordinate
-                    if (possibleMoves(touchI, touchJ)) {
-                        //update checkers positions on field
-                        //checkersPositions[touchI][touchJ] = WHITE_CHECKER;
-                        //checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
+                    //send this move to database
+                    @SuppressLint("DefaultLocale") String s =String.format("%d %d %d %d",choiceI, choiceJ, touchI, touchJ);
+                    activity.makeStep(s);
 
-                        Animation.step(choiceJ,choiceI,touchJ,touchI);
-
-                        playerMove = false;
-                        //send this move to database
-                        @SuppressLint("DefaultLocale") String s =String.format("%d %d %d %d",choiceI, choiceJ, touchI, touchJ);
-                        makeStep(s);
-
-                        //clear chosen coordinate
-                        choiceI = FREE_POSITION_ON_FIELD;
-                        choiceJ = FREE_POSITION_ON_FIELD;
-
-
-                        /*String s = "Ходов осталось : "+(--countToMove);
-                        countMoveView.setVisibility(View.VISIBLE);
-                        countMoveView.setText(s);*/
-
-                    }
 
                 }
-
-
-            } else if (checkersPositions[touchI][touchJ] == WHITE_CHECKER) {
-                //mark chosen checker
-                checkersPositions[touchI][touchJ] = MARK_ON_WHITE_CHECKER;
-
-                //update chosen coordinate
-                choiceI = touchI;
-                choiceJ = touchJ;
-
-                //find all move for choice checker
-                possibleStep();
             }
 
-            //update draw field
-            drawView.invalidate();
+        } else {
+            //check touch position it white checker
+            if (activity.startGame.getCheckersPositions()[touchI][touchJ] == checker) {
+                //update mark
+                activity.startGame.getCheckersPositions()[touchI][touchJ] = choiceChecker;
 
+                //update draw field
+                activity.drawView.invalidate();
+            }
         }
+    }
+
+    private boolean haveChoiceChecker() {
+        int sizeOfField = activity.startGame.getCheckersPositions().length;
+
+        for (int i = 1; i < sizeOfField; i++) {
+            for (int j = 1; j < sizeOfField; j++) {
+                if (activity.startGame.getCheckersPositions()[i][j] == choiceChecker) {
+                    choiceI = i;
+                    choiceJ = j;
+                }
+            }
+        }
+
+        //check we have choice checker
+        return choiceI != 0;
     }
 }

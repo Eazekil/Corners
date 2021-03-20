@@ -14,6 +14,7 @@ import static com.nokhrin.corners.levels.ActivityLevels.marksPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.sizeOfField;
 import static com.nokhrin.corners.levels.ActivityLevels.sizePoint;
 import static com.nokhrin.corners.levels.ActivityLevels.stepOnField;
+import static com.nokhrin.corners.levels.ActivityLevels.widthDisplay;
 import static com.nokhrin.corners.levels.DrawView.resourcesForDraw;
 import static com.nokhrin.corners.levels.PlayerMove.choiceI;
 import static com.nokhrin.corners.levels.PlayerMove.choiceJ;
@@ -38,12 +39,12 @@ public class StartForLevel {
         stepOnField = widthDisplay / (sizeOfField - 1);
         sizePoint = stepOnField / 3;
 
-        //set variables for create bitmap
+        /*//set variables for create bitmap
         ResourcesBitmap.setStepOnField(stepOnField);
         ResourcesBitmap.setWidthDisplay(widthDisplay);
         ResourcesBitmap.setSizePoint(sizePoint);
         ResourcesBitmap.setResourcesForDraw(resourcesForDraw);
-        ResourcesBitmap.createBitmapForStoneField();
+        ResourcesBitmap.createBitmapForStoneField();*/
 
         //add text
         String s = "Ходов осталось : " + countToMove;

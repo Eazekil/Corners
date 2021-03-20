@@ -1,4 +1,4 @@
-package com.nokhrin.corners.classical.animation;
+package com.nokhrin.corners.game;
 
 
 import java.util.ArrayList;
@@ -23,13 +23,13 @@ public class StepsForAnimation {
     private boolean[][] lastPlayerPositions;
     private ArrayList<Integer> steps;
 
-    public StepsForAnimation(int[][] checkersPositions, int startI, int startJ, int endI, int endJ, int sizeOfField) {
+    public StepsForAnimation(int[][] checkersPositions, int startI, int startJ, int endI, int endJ) {
         this.checkersPositions = checkersPositions;
         this.startI = startI;
         this.startJ = startJ;
         this.endI = endI;
         this.endJ = endJ;
-        this.sizeOfField = sizeOfField;
+        sizeOfField = checkersPositions.length;
     }
 
     public int[] steps() {

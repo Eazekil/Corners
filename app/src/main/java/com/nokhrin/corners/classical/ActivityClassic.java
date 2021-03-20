@@ -19,17 +19,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.draw.DrawView;
-import com.nokhrin.corners.resources.ResourcesBitmap;
 
 
 public class ActivityClassic extends AppCompatActivity implements View.OnTouchListener {
-    //public static DrawView drawView;
-    //public static int indentTop;
-    //public static ImageView ivChecker;
-    //public static ImageView ivCheckerBlack;
-    private StartClassic startClassic;
-    private DrawView drawView;
-    private ResourcesBitmap resourcesBitmap;
+    public StartGame startGame;
+    public DrawView drawView;
+    //public ResourcesBitmap resourcesBitmap;
+    public ImageView ivChecker;
+    public ImageView ivCheckerBlack;
+    public int indentTop;
+    public int widthDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +46,8 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
         //find element
         View flClassic = findViewById(R.id.frameLayoutClassic);
-        ImageView ivChecker = findViewById(R.id.imageViewCheckerWhite);
-        ImageView ivCheckerBlack = findViewById(R.id.imageViewCheckerBlack);
+        ivChecker = findViewById(R.id.imageViewCheckerWhite);
+        ivCheckerBlack = findViewById(R.id.imageViewCheckerBlack);
         Button buttonMenu = findViewById(R.id.buttonMenu);
         Button buttonRestart = findViewById(R.id.buttonRestart);
 
@@ -56,9 +55,9 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int widthDisplay = size.x;
+        widthDisplay = size.x;
         int heightDisplay = size.y;
-        int indentTop = (heightDisplay - widthDisplay) / 2;
+        indentTop = (heightDisplay - widthDisplay) / 2;
 
         //set indent of top
         FrameLayout flIntent = findViewById(R.id.frameLayoutIndentClassic);
@@ -67,40 +66,31 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         params.height = indentTop;
         flIntent.setLayoutParams(params);
 
-
-        resourcesBitmap = new ResourcesBitmap();
-
         //add start parameters for game field
-        startClassic = new StartClassic();
-        startClassic.addStartParameters(widthDisplay, heightDisplay, indentTop, resourcesBitmap);
-
+        startGame = new StartGame();
+        startGame.addStartParameters(widthDisplay);
 
         //create view for draw and add in layout
-        drawView = new DrawView(getApplicationContext(),resourcesBitmap);
+        drawView = new DrawView(getApplicationContext(), this);
         ((ViewGroup) flClassic).addView(drawView);
-
-
-
-
-        //set parameters for bitmap
-        drawView.setSizeOfField(startClassic.getSizeOfField());
-        drawView.setStepOnField(startClassic.getStepOnField());
-        drawView.setCheckersPositions(startClassic.getCheckersPositions());
 
         //set on touch listener
         flClassic.setOnTouchListener(this);
 
-
         //button return to Menu
         buttonMenu.setOnClickListener(v -> {
+            //resourcesBitmap.recycle();
             Intent intent = new Intent(ActivityClassic.this, ActivityStart.class);
             startActivity(intent);
+            finish();
         });
 
         //button restart this game
         buttonRestart.setOnClickListener(v -> {
+            //resourcesBitmap.recycle();
             Intent intent = new Intent(ActivityClassic.this, ActivityClassic.class);
             startActivity(intent);
+            finish();
         });
 
 
@@ -114,18 +104,20 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         int touchY = (int) event.getY();
 
         //convert coordinates X,Y in step on chess field
-        int touchI = touchY / startClassic.getStepOnField() + 1;
-        int touchJ = touchX / startClassic.getStepOnField() + 1;
+        int touchI = touchY / startGame.getStepOnField() + 1;
+        int touchJ = touchX / startGame.getStepOnField() + 1;
 
         System.out.println("_______________________ " + touchI + "," + touchJ);
 
         //check game is over
-        if(startClassic.getWin() == 0 && startClassic.isPlayerMove()){
+        if(startGame.getWin() == 0 && startGame.isPlayerMove()){
             //start move on the field
-            new PlayerMove(touchI, touchJ, startClassic, drawView);
+            new PlayerMove(touchI, touchJ,this);
         }
-
 
         return false;
     }
+
+
+
 }

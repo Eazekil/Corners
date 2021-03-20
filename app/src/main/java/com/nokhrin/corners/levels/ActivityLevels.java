@@ -1,7 +1,9 @@
 package com.nokhrin.corners.levels;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -41,6 +43,7 @@ public class ActivityLevels extends AppCompatActivity {
     public static ArrayList<View> elementSetVisibleList = new ArrayList<>();
     public static TextView countMoveView;
     public int numberLevel;
+    public static int widthDisplay;
 
 
     @Override
@@ -104,6 +107,13 @@ public class ActivityLevels extends AppCompatActivity {
         elementSetVisibleList.add(frameLayoutLevels);
         elementSetVisibleList.add(buttonReturnLevels);
         elementSetVisibleList.add(buttonRestartLevel);
+
+        //discover size of the display
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+         widthDisplay = size.x;
+        int heightDisplay = size.y;
 
 
         //button return to Menu

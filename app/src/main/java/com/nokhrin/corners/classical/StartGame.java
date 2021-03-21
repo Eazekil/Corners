@@ -6,13 +6,12 @@ import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class StartGame extends com.nokhrin.corners.game.StartGame {
-    private int sizeOfField = 9; //size of field +1
-    private int countTargetPoint = 12; //count of checker
-    private int stepOnField; // step on chess field and size of checkers
-    private int[][] checkersPositions; //positions all checkers on field
-    private int win;
-    private boolean playerMove;
-
+    int sizeOfField = 9; //size of field +1
+    int countTargetPoint = 12; //count of checker
+    int stepOnField; // step on chess field and size of checkers
+    int[][] checkersPositions; //positions all checkers on field
+    int win;
+    boolean playerMove;
 
 
     public void addStartParameters(int widthDisplay) {
@@ -96,5 +95,9 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
 
     public void setWin(int win) {
         this.win = win;
+    }
+
+    public void setCheckersPositions(int[][] checkersPositions) {
+        this.checkersPositions = checkersPositions;
     }
 }

@@ -1,27 +1,28 @@
 package com.nokhrin.corners.classical.bots.bot1;
 
 
+import com.nokhrin.corners.classical.ActivityClassic;
 import com.nokhrin.corners.game.PossibleMoves;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 
 public class BotMitya /*extends Thread*/ {
-    private int startI;
-    private int startJ;
-    private int endI;
-    private int endJ;
+    ActivityClassic activity;
+    int startI;
+    int startJ;
+    int endI;
+    int endJ;
+    int[][] checkersPositions;
+    EvaluationFunction evaluationFunction;
 
-    /*@Override
-    public void run() {
-        //create game pause
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }*/
+    public BotMitya(ActivityClassic activity) {
+        this.activity = activity;
+        evaluationFunction = new EvaluationFunction(activity);
+    }
 
-    public void moveMitya(int[][] checkersPositions) {
+    public void moveMitya() {
+        checkersPositions = activity.startGame.getCheckersPositions();
+
         int sizeOfField = checkersPositions.length;
         int targetPositionI = 8;
         int targetPositionJ = 1;
@@ -40,7 +41,7 @@ public class BotMitya /*extends Thread*/ {
         }
 
         //create new function
-        EvaluationFunction evaluationFunction = new EvaluationFunction(checkersPositions, targetPositionI, targetPositionJ);
+        evaluationFunction.setStartParameters(targetPositionI, targetPositionJ);
 
         //find positions all black checkers
         for (int i = 1; i < sizeOfField; i++) {

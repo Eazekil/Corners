@@ -13,7 +13,7 @@
             android:name=".multiplayer.ActivityMultiplayerGame"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_multi3_game"
-            android:theme="@style/Theme.Corners.Fullscreen"></activity>
+            android:theme="@style/Theme.Corners.Fullscreen" />
         <activity
             android:name=".multiplayer.ActivityRooms"
             android:configChanges="orientation|keyboardHidden|screenSize"

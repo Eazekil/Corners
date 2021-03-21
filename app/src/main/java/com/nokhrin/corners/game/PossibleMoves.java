@@ -4,12 +4,12 @@ package com.nokhrin.corners.game;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 
 public class PossibleMoves {
-    private boolean[][] resultPossibleMoves;
-    private boolean[][] lastPlayerPositions;
-    private int[][] checkersPositions;
-    private int choiceI;
-    private int choiceJ;
-    private int sizeOfField;
+    boolean[][] resultPossibleMoves;
+    boolean[][] lastPlayerPositions;
+    int[][] checkersPositions;
+    int choiceI;
+    int choiceJ;
+    int sizeOfField;
 
     public PossibleMoves(int[][] checkersPositions, int choiceI, int choiceJ) {
         this.checkersPositions = checkersPositions;

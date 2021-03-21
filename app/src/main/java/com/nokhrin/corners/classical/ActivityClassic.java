@@ -18,18 +18,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
+import com.nokhrin.corners.classical.animation.Animation;
 import com.nokhrin.corners.draw.DrawView;
 
 
 public class ActivityClassic extends AppCompatActivity implements View.OnTouchListener {
     public StartGame startGame;
     public DrawView drawView;
-    //public ResourcesBitmap resourcesBitmap;
     public ImageView ivChecker;
     public ImageView ivCheckerBlack;
+    public PlayerMove playerMove;
+    public Animation animation;
     public int indentTop;
     public int widthDisplay;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,12 +77,14 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         drawView = new DrawView(getApplicationContext(), this);
         ((ViewGroup) flClassic).addView(drawView);
 
+        playerMove = new PlayerMove(this);
+        animation = new Animation(this);
+
         //set on touch listener
         flClassic.setOnTouchListener(this);
 
         //button return to Menu
         buttonMenu.setOnClickListener(v -> {
-            //resourcesBitmap.recycle();
             Intent intent = new Intent(ActivityClassic.this, ActivityStart.class);
             startActivity(intent);
             finish();
@@ -87,7 +92,6 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
         //button restart this game
         buttonRestart.setOnClickListener(v -> {
-            //resourcesBitmap.recycle();
             Intent intent = new Intent(ActivityClassic.this, ActivityClassic.class);
             startActivity(intent);
             finish();
@@ -112,7 +116,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
         //check game is over
         if(startGame.getWin() == 0 && startGame.isPlayerMove()){
             //start move on the field
-            new PlayerMove(touchI, touchJ,this);
+            playerMove.startPlayerMove(touchI, touchJ);
         }
 
         return false;

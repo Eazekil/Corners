@@ -29,10 +29,12 @@ import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class Animation {
-    private ActivityMultiplayerGame activity;
+     ActivityMultiplayerGame activity;
+    StepsForAnimation stepsForAnimation;
 
     public Animation(ActivityMultiplayerGame activity) {
         this.activity = activity;
+        stepsForAnimation = new StepsForAnimation(activity);
     }
 
 
@@ -40,7 +42,7 @@ public class Animation {
     public void step(int startJ, int startI, int endJ, int endI, int checker) {
 
         //get steps for animate checker
-        StepsForAnimation stepsForAnimation = new StepsForAnimation(activity.startGame.getCheckersPositions(), startI, startJ, endI, endJ);
+        //StepsForAnimation stepsForAnimation = new StepsForAnimation(activity.startGame.getCheckersPositions(), startI, startJ, endI, endJ);
         int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker

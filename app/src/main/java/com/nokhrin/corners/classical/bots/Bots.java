@@ -4,22 +4,27 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+
 import com.nokhrin.corners.classical.ActivityClassic;
-import com.nokhrin.corners.classical.animation.Animation;
 import com.nokhrin.corners.classical.bots.bot1.BotMitya;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 
 public class Bots {
+    ActivityClassic activity;
+    BotMitya botMitya;
+
+    public Bots(ActivityClassic activity) {
+        this.activity = activity;
+        botMitya = new BotMitya(activity);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void botMove(ActivityClassic activity){
+    public void botMove(){
         //create new bot end he start move
-        BotMitya bot = new BotMitya();
-        bot.moveMitya(activity.startGame.getCheckersPositions());
+        botMitya.moveMitya();
 
         //animate bot move
-        Animation animation = new Animation(activity);
-        animation.step(bot.getStartJ(), bot.getStartI(), bot.getEndJ(), bot.getEndI(), BLACK_CHECKER);
-
+        activity.animation.step(botMitya.getStartJ(), botMitya.getStartI(), botMitya.getEndJ(), botMitya.getEndI(), BLACK_CHECKER);
     }
 }

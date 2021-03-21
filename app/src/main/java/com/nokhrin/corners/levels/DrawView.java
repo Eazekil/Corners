@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.resources.ResourcesBitmap;
 
 import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
 import static com.nokhrin.corners.levels.ActivityLevels.marksPositions;

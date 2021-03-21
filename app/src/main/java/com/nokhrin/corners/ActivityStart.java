@@ -48,19 +48,19 @@ public class ActivityStart extends AppCompatActivity {
         buttonLevel.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityLevels.class);
             startActivity(intent);
-            //finish();
+            finish();
         });
         //go to classic game activity
         buttonClassic.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityClassic.class);
             startActivity(intent);
-            //finish();
+            finish();
         });
         //go to activity for play with friends
         buttonMultiPlayer.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityCreatePlayer.class);
             startActivity(intent);
-            //finish();
+            finish();
         });
 
 

@@ -1,6 +1,11 @@
 package com.nokhrin.corners.game;
 
 
+import android.app.Activity;
+
+import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
+
 import java.util.ArrayList;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
@@ -14,22 +19,34 @@ import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
 import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 
 public class StepsForAnimation {
-    private int[][] checkersPositions;
-    private int startI;
-    private int startJ;
-    private int endI;
-    private int endJ;
-    private int sizeOfField;
-    private boolean[][] lastPlayerPositions;
-    private ArrayList<Integer> steps;
+    Activity activity;
+    int[][] checkersPositions;
+    int startI;
+    int startJ;
+    int endI;
+    int endJ;
+    int sizeOfField;
+    boolean[][] lastPlayerPositions;
+    ArrayList<Integer> steps;
 
-    public StepsForAnimation(int[][] checkersPositions, int startI, int startJ, int endI, int endJ) {
-        this.checkersPositions = checkersPositions;
+    public StepsForAnimation(Activity Activity) {
+        if(Activity instanceof ActivityClassic){
+            this.activity =(ActivityClassic) Activity;
+            checkersPositions = ((ActivityClassic)activity).startGame.getCheckersPositions();
+        }
+        if(Activity instanceof ActivityMultiplayerGame){
+            this.activity =(ActivityMultiplayerGame) Activity;
+            checkersPositions = ((ActivityMultiplayerGame)activity).startGame.getCheckersPositions();
+        }
+
+        sizeOfField = checkersPositions.length;
+    }
+
+    public void setStartParameters(int startI, int startJ, int endI, int endJ){
         this.startI = startI;
         this.startJ = startJ;
         this.endI = endI;
         this.endJ = endJ;
-        sizeOfField = checkersPositions.length;
     }
 
     public int[] steps() {
@@ -75,7 +92,7 @@ public class StepsForAnimation {
         int[] stepsResult = new int[steps.size()];
         if (reverse) {
             for (int i = 0; i < steps.size(); i++) {
-                stepsResult[i] = steps.get(steps.size() - 1- i);
+                stepsResult[i] = steps.get(steps.size() - 1 - i);
             }
         } else {
             for (int i = 0; i < steps.size(); i++) {

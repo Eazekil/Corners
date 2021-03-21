@@ -25,17 +25,24 @@ import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class Animation {
-    private ActivityClassic activity;
+    ActivityClassic activity;
+    StepsForAnimation stepsForAnimation;
+    Bots bot;
+    GameOver game;
 
     public Animation(ActivityClassic activity) {
         this.activity = activity;
+        stepsForAnimation = new StepsForAnimation(activity);
+        bot = new Bots(activity);
+        game = new GameOver(activity);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startJ, int startI, int endJ, int endI, int checker) {
 
+        stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
+
         //get steps for animate checker
-        StepsForAnimation stepsForAnimation = new StepsForAnimation(activity.startGame.getCheckersPositions(), startI, startJ, endI, endJ);
         int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker
@@ -106,11 +113,10 @@ public class Animation {
                 }
 
                 if(checker == WHITE_CHECKER){
-                    Bots bot = new Bots();
-                    bot.botMove(activity);
+                    //bot can move
+                    bot.botMove();
 
                     //check game is over
-                    GameOver game = new GameOver(activity);
                     if (game.isOver()) {
                         //set winner and update draw field
                         activity.drawView.invalidate();

@@ -4,6 +4,7 @@ package com.nokhrin.corners.game;
 import android.app.Activity;
 
 import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.levels.ActivityLevels;
 import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
 import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 
 public class StepsForAnimation {
-    Activity activity;
+    //Activity activity;
     int[][] checkersPositions;
     int startI;
     int startJ;
@@ -30,23 +31,26 @@ public class StepsForAnimation {
     ArrayList<Integer> steps;
 
     public StepsForAnimation(Activity activity) {
-        if(activity instanceof ActivityClassic){
-            this.activity =(ActivityClassic) activity;
-            checkersPositions = ((ActivityClassic)activity).startGame.getCheckersPositions();
+        if (activity instanceof ActivityClassic) {
+            //this.activity = (ActivityClassic) activity;
+            checkersPositions = ((ActivityClassic) activity).startGame.getCheckersPositions();
         }
-        if(activity instanceof ActivityMultiplayerGame){
-            this.activity =(ActivityMultiplayerGame) activity;
-            checkersPositions = ((ActivityMultiplayerGame)activity).startGame.getCheckersPositions();
+        if (activity instanceof ActivityMultiplayerGame) {
+            //this.activity = (ActivityMultiplayerGame) activity;
+            checkersPositions = ((ActivityMultiplayerGame) activity).startGame.getCheckersPositions();
         }
-
-        sizeOfField = checkersPositions.length;
+        if (activity instanceof ActivityLevels) {
+            //this.activity = (ActivityLevels) activity;
+            checkersPositions = ((ActivityLevels) activity).startGame.getCheckersPositions();
+        }
     }
 
-    public void setStartParameters(int startI, int startJ, int endI, int endJ){
+    public void setStartParameters(int startI, int startJ, int endI, int endJ) {
         this.startI = startI;
         this.startJ = startJ;
         this.endI = endI;
         this.endJ = endJ;
+        sizeOfField = checkersPositions.length;
     }
 
     public int[] steps() {

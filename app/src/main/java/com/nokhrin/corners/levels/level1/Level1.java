@@ -1,36 +1,45 @@
 package com.nokhrin.corners.levels.level1;
 
 
-import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
-import static com.nokhrin.corners.levels.ActivityLevels.countPointInLevel;
-import static com.nokhrin.corners.levels.ActivityLevels.countToMove;
-import static com.nokhrin.corners.levels.ActivityLevels.marksPositions;
-import static com.nokhrin.corners.levels.ActivityLevels.sizeOfField;
-import static com.nokhrin.corners.levels.PlayerMove.playerStartMove;
-import static com.nokhrin.corners.levels.start.StartForLevel.addStartParameters;
+import com.nokhrin.corners.levels.ActivityLevels;
+
+import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
+import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHECKER;
+import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
+
 
 public class Level1 {
 
-    public static void startLevel() {
+    public void startLevel(ActivityLevels activity) {
         //add start parameters
-        sizeOfField = 5; //size field + 1
-        countToMove = 9; //count of move player can
-        countPointInLevel = 2; //count target point
+        int sizeOfField = 5; //size field + 1
+        int countToMove = 9; //count of move player can
+        int countPointInLevel = 2; //count target point
 
-        //add start parameters
-        addStartParameters();
+        int[][] checkersPositions = new int[sizeOfField][sizeOfField];
+        int[][] marksPositions = new int[sizeOfField][sizeOfField];
+        //clear field
+        for (int i = 1; i < sizeOfField; i++) {
+            for (int j = 1; j < sizeOfField; j++) {
+                checkersPositions[i][j] = FREE_POSITION_ON_FIELD;
+            }
+        }
 
         //add checkers on start positions
         //for white checkers
-        checkersPositions[4][1] = 1;
-        checkersPositions[4][2] = 1;
+        checkersPositions[4][1] = WOODMAN_CHECKER;
+        checkersPositions[4][2] = WOODMAN_CHECKER;
         //for target points
-        marksPositions[1][3] = 31;
-        marksPositions[1][4] = 31;
+        marksPositions[1][3] = TARGET_POINT_FOR_WHITE_CHECKER;
+        marksPositions[1][4] = TARGET_POINT_FOR_WHITE_CHECKER;
+
+        //add start parameters
+        activity.startGame.addStartParameters(sizeOfField, countToMove, countPointInLevel, checkersPositions, marksPositions);
 
 
-        //start game
-        playerStartMove();
+
+        /*activity.startGame.setPlayerMove(true);
+        activity.drawView.invalidate();*/
+
     }
-
 }

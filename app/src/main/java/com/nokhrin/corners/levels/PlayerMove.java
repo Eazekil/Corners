@@ -1,96 +1,91 @@
 package com.nokhrin.corners.levels;
 
-
+import android.os.Build;
 import android.view.View;
 
-import static com.nokhrin.corners.levels.ActivityLevels.checkersPositions;
-import static com.nokhrin.corners.levels.ActivityLevels.countMoveView;
-import static com.nokhrin.corners.levels.ActivityLevels.countToMove;
-import static com.nokhrin.corners.levels.ActivityLevels.drawView;
-import static com.nokhrin.corners.levels.ActivityLevels.touchI;
-import static com.nokhrin.corners.levels.ActivityLevels.touchJ;
-import static com.nokhrin.corners.levels.GameOver.gameIsOver;
-import static com.nokhrin.corners.levels.PossibleMoves.possibleMoves;
-import static com.nokhrin.corners.levels.PossibleMoves.possibleStep;
-import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
-import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
-import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
+import androidx.annotation.RequiresApi;
+
+import com.nokhrin.corners.game.PossibleMoves;
+
+import static com.nokhrin.corners.resources.Constants.SELECT_WOODMAN_CHECKER;
+import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 public class PlayerMove {
-    public static boolean playerMove;//can player to move
-    public static int choiceI;//coordinate I of player's chosen checker
-    public static int choiceJ;//coordinate J of player's chosen checker
+    int choiceI;//coordinate I of player's chosen checker
+    int choiceJ;//coordinate J of player's chosen checker
+    int[][] checkersPositions;
+    ActivityLevels activity;
+    Animation animation;
 
-
-    //add checkers on a start positions
-    public static void playerStartMove() {
-        //player can move
-        playerMove = true;
+    public PlayerMove(ActivityLevels activity) {
+        this.activity = activity;
+        animation = new Animation(activity);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void startPlayerMove(int touchI, int touchJ) {
+        checkersPositions = activity.startGame.getCheckersPositions();
 
-    //start move on the field
-    public static void touchOnField() {
+        if (haveChoiceChecker()) {
+            //check touch position it white checker
+            if (checkersPositions[touchI][touchJ] == WOODMAN_CHECKER) {
+                //update mark
+                checkersPositions[touchI][touchJ] = SELECT_WOODMAN_CHECKER;
+                checkersPositions[choiceI][choiceJ] = WOODMAN_CHECKER;
 
-        //check can player move
-        if (!gameIsOver()) {
+                //update draw field
+                activity.drawView.invalidate();
 
-            //check player choice checker
-            if (choiceI != 0 && choiceJ != 0) {
+            } else {
+                //check can move on touch coordinate
+                PossibleMoves move = new PossibleMoves(checkersPositions, choiceI, choiceJ);
+                if (move.isPossible(touchI, touchJ)) {
 
-                //check player update chosen checker
-                if (checkersPositions[touchI][touchJ] == WHITE_CHECKER) {
+                    //mark player can't move more
+                    activity.startGame.setPlayerMove(false);
 
-                    //update chosen checker
-                    checkersPositions[touchI][touchJ] = MARK_ON_WHITE_CHECKER;
+                    //animate this move
+                    animation.step(choiceJ, choiceI, touchJ, touchI, WOODMAN_CHECKER);
 
-                    //update old chosen
-                    checkersPositions[choiceI][choiceJ] = WHITE_CHECKER;
+                    int count = activity.startGame.getCountToMove() - 1;
+                    String s = "Ходов осталось : " + count;
+                    activity.countMoveView.setVisibility(View.VISIBLE);
+                    activity.countMoveView.setText(s);
+                    activity.startGame.setCountToMove(count);
 
-                    //update chosen coordinate
-                    choiceI = touchI;
-                    choiceJ = touchJ;
-
-                    //find all move for choice checker
-                    possibleStep();
-                } else {
-
-                    //check can move on touch coordinate
-                    if (possibleMoves(touchI, touchJ)) {
-                        //update checkers positions on field
-                        checkersPositions[touchI][touchJ] = WHITE_CHECKER;
-                        checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
-
-                        //clear chosen coordinate
-                        choiceI = 0;
-                        choiceJ = 0;
-
-
-                        //
-                        String s = "Ходов осталось : " + (--countToMove);
-                        countMoveView.setVisibility(View.VISIBLE);
-                        countMoveView.setText(s);
-
-                    }
 
                 }
-
-
-            } else if (checkersPositions[touchI][touchJ] == WHITE_CHECKER) {
-                //mark chosen checker
-                checkersPositions[touchI][touchJ] = MARK_ON_WHITE_CHECKER;
-
-                //update chosen coordinate
-                choiceI = touchI;
-                choiceJ = touchJ;
-
-                //find all move for choice checker
-                possibleStep();
             }
 
-            //update draw field
-            drawView.invalidate();
+        } else {
+            //check touch position it white checker
+            if (checkersPositions[touchI][touchJ] == WOODMAN_CHECKER) {
+                //update mark
+                checkersPositions[touchI][touchJ] = SELECT_WOODMAN_CHECKER;
 
+                //update draw field
+                activity.drawView.invalidate();
+            }
         }
     }
+
+    private boolean haveChoiceChecker() {
+        int sizeOfField = checkersPositions.length;
+
+        choiceI = 0;
+        choiceJ = 0;
+
+        for (int i = 1; i < sizeOfField; i++) {
+            for (int j = 1; j < sizeOfField; j++) {
+                if (checkersPositions[i][j] == SELECT_WOODMAN_CHECKER) {
+                    choiceI = i;
+                    choiceJ = j;
+                }
+            }
+        }
+
+        //check we have choice checker
+        return choiceI != 0;
+    }
+
 }

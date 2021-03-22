@@ -9,18 +9,35 @@
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".levels.ActivityLevels">
 
+
+    <FrameLayout
+        android:id="@+id/frameLayoutIndentLevels"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <FrameLayout
         android:id="@+id/frameLayoutLevel"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndentLevels" >
 
+        <ImageView
+            android:id="@+id/imageViewCheckerWoodman"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/todo1"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/woodman" />
     </FrameLayout>
+
 
     <Button
         android:id="@+id/buttonLevel3"
@@ -385,14 +402,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/comfortaa_bold"
-        android:textColor="#2150AC"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRestartLevel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutLevel" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,17 +1,22 @@
 package com.nokhrin.corners.levels;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
@@ -27,27 +32,26 @@ import com.nokhrin.corners.levels.level6.Level6;
 import com.nokhrin.corners.levels.level7.Level7;
 import com.nokhrin.corners.levels.level8.Level8;
 import com.nokhrin.corners.levels.level9.Level9;
+import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.levels.start.StartGame;
 
 import java.util.ArrayList;
 
-public class ActivityLevels extends AppCompatActivity {
-    public static int sizeOfField;
-    public static int stepOnField; // step on chess field and size of checkers
-    public static int touchI;//coordinates of touch on chess field
-    public static int touchJ;//coordinates of touch on chess field
-    public static int countToMove;
-    public static int[][] checkersPositions; //= new int[sizeOfField][sizeOfField];//positions all checkers on field
-    public static int[][] marksPositions; // = new int[sizeOfField][sizeOfField];//positions all marks on field
-    public static DrawView drawView; //view for game field
-    public static int sizePoint;
-    public static int countPointInLevel;
-    public static ArrayList<Button> buttonSetInvisibleList = new ArrayList<>();
-    public static ArrayList<View> elementSetVisibleList = new ArrayList<>();
-    public static TextView countMoveView;
-    public int numberLevel;
-    public static int widthDisplay;
+public class ActivityLevels extends AppCompatActivity implements View.OnTouchListener{
+    public TextView countMoveView;
+    public DrawView drawView; //view for game field
+    public int widthDisplay;
+    public int indentTop;
+    public StartGame startGame;
+    public PlayerMove playerMove;
+   // public Animation animation;
+    public ImageView ivWoodman;
+    public FrameLayout frameLayoutLevels;
+    int numberLevel;
+    ArrayList<View> elementSetVisibleList = new ArrayList<>();
+    ArrayList<Button> buttonSetInvisibleList = new ArrayList<>();
 
-
+    @SuppressLint({"UseCompatLoadingForDrawables", "ClickableViewAccessibility"})
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +72,43 @@ public class ActivityLevels extends AppCompatActivity {
         Button buttonMenu = findViewById(R.id.buttonMenu);
         Button buttonReturnLevels = findViewById(R.id.buttonReturnLevel);
         Button buttonRestartLevel = findViewById(R.id.buttonRestartLevel);
-        ViewGroup frameLayoutLevels = findViewById(R.id.frameLayoutLevel);
+        frameLayoutLevels = findViewById(R.id.frameLayoutLevel);
         countMoveView = findViewById(R.id.textViewCountMove);
+        ivWoodman = findViewById(R.id.imageViewCheckerWoodman);
+
+        
+
+        //discover size of the display
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        widthDisplay = size.x;
+        int heightDisplay = size.y;
+        indentTop = (heightDisplay - widthDisplay) / 2;
+
+        //set indent of top
+        FrameLayout flIntent = findViewById(R.id.frameLayoutIndentLevels);
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.height = indentTop;
+        flIntent.setLayoutParams(params);
+
+
+        //add start parameters for game field
+        startGame = new StartGame(this);
+        //add start null parameters
+        /*startGame.addStartParameters(5,5,5);
+        countMoveView.setVisibility(View.INVISIBLE);*/
+
 
         //create view for draw
-        drawView = new DrawView(getApplicationContext());
-        frameLayoutLevels.addView(drawView);
+
+
+        //set on touch listener
+        frameLayoutLevels.setOnTouchListener(this);
+
+
+
 
         //add levels
         Button buttonLevel1 = findViewById(R.id.buttonLevel1);
@@ -111,12 +146,7 @@ public class ActivityLevels extends AppCompatActivity {
         elementSetVisibleList.add(buttonReturnLevels);
         elementSetVisibleList.add(buttonRestartLevel);
 
-        //discover size of the display
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-         widthDisplay = size.x;
-        int heightDisplay = size.y;
+
 
 
         //button return to Menu
@@ -135,96 +165,201 @@ public class ActivityLevels extends AppCompatActivity {
 
         //button restart level
         buttonRestartLevel.setOnClickListener(v -> {
-
             if (numberLevel == 1) {
-                Level1.startLevel();
+                Level1 level = new Level1();
+                level.startLevel(this);
             } else if (numberLevel == 2) {
-                Level2.startLevel();
+                Level2 level = new Level2();
+                level.startLevel(this);
             } else if (numberLevel == 3) {
-                Level3.startLevel();
+                Level3 level = new Level3();
+                level.startLevel(this);
             } else if (numberLevel == 4) {
-                Level4.startLevel();
+                Level4 level = new Level4();
+                level.startLevel(this);
             } else if (numberLevel == 5) {
-                Level5.startLevel();
+                Level5 level = new Level5();
+                level.startLevel(this);
             } else if (numberLevel == 6) {
-                Level6.startLevel();
+                Level6 level = new Level6();
+                level.startLevel(this);
             } else if (numberLevel == 7) {
-                Level7.startLevel();
+                Level7 level = new Level7();
+                level.startLevel(this);
             } else if (numberLevel == 8) {
-                Level8.startLevel();
+                Level8 level = new Level8();
+                level.startLevel(this);
             } else if (numberLevel == 9) {
-                Level9.startLevel();
+                Level9 level = new Level9();
+                level.startLevel(this);
             } else if (numberLevel == 10) {
-                Level10.startLevel();
+                Level10 level = new Level10();
+                level.startLevel(this);
             } else if (numberLevel == 11) {
-                Level11.startLevel();
+                Level11 level = new Level11();
+                level.startLevel(this);
             } else if (numberLevel == 12) {
-                Level12.startLevel();
+                Level12 level = new Level12();
+                level.startLevel(this);
             }
             drawView.invalidate();
         });
 
         //level 1
         buttonLevel1.setOnClickListener(v -> {
-            numberLevel = 1;
-            Level1.startLevel();
+            numberLevel =1;
+            Level1 level = new Level1();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 2
         buttonLevel2.setOnClickListener(v -> {
             numberLevel = 2;
-            Level2.startLevel();
+            Level2 level = new Level2();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 3
         buttonLevel3.setOnClickListener(v -> {
             numberLevel = 3;
-            Level3.startLevel();
+            Level3 level = new Level3();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 4
         buttonLevel4.setOnClickListener(v -> {
             numberLevel = 4;
-            Level4.startLevel();
+            Level4 level = new Level4();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 5
         buttonLevel5.setOnClickListener(v -> {
             numberLevel = 5;
-            Level5.startLevel();
+            Level5 level = new Level5();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 6
         buttonLevel6.setOnClickListener(v -> {
             numberLevel = 6;
-            Level6.startLevel();
+            Level6 level = new Level6();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 7
         buttonLevel7.setOnClickListener(v -> {
             numberLevel = 7;
-            Level7.startLevel();
+            Level7 level = new Level7();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 8
         buttonLevel8.setOnClickListener(v -> {
             numberLevel = 8;
-            Level8.startLevel();
+            Level8 level = new Level8();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 9
         buttonLevel9.setOnClickListener(v -> {
             numberLevel = 9;
-            Level9.startLevel();
+            Level9 level = new Level9();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 10
         buttonLevel10.setOnClickListener(v -> {
             numberLevel = 10;
-            Level10.startLevel();
+            Level10 level = new Level10();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 11
         buttonLevel11.setOnClickListener(v -> {
             numberLevel = 11;
-            Level11.startLevel();
+            Level11 level = new Level11();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
         //level 12
         buttonLevel12.setOnClickListener(v -> {
             numberLevel = 12;
-            Level12.startLevel();
+            Level12 level = new Level12();
+            level.startLevel(this);
+            drawView = new DrawView(getApplicationContext(), this);
+            frameLayoutLevels.addView(drawView);
+            playerMove = new PlayerMove(this);
+            visible();
         });
 
 
     }
+
+    //set visible and invisible element on view
+    private void visible(){
+        for (View view : elementSetVisibleList) {
+            view.setVisibility(View.VISIBLE);
+        }
+        for (Button button : buttonSetInvisibleList) {
+            button.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        //get coordinates of touch
+        int touchX = (int) event.getX();
+        int touchY = (int) event.getY();
+
+        //convert coordinates X,Y in step on chess field
+        int touchI = touchY / startGame.getStepOnField() + 1;
+        int touchJ = touchX / startGame.getStepOnField() + 1;
+
+        System.out.println("_______________________ " + touchI + "," + touchJ);
+
+        //check game is over
+        if(startGame.getWin() == 0 && startGame.isPlayerMove()){
+            //start move on the field
+            playerMove.startPlayerMove(touchI, touchJ);
+        }
+
+        return false;
+    }
+
 }

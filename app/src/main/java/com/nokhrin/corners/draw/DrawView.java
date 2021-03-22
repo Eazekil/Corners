@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.levels.ActivityLevels;
 import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
 import com.nokhrin.corners.game.StartGame;
 
@@ -23,9 +24,13 @@ import static com.nokhrin.corners.resources.Constants.BOT_WIN;
 import static com.nokhrin.corners.resources.Constants.MARK_ON_BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.PLAYER_WIN;
+import static com.nokhrin.corners.resources.Constants.SELECT_WOODMAN_CHECKER;
+import static com.nokhrin.corners.resources.Constants.STONE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_BLACK_CHECKER;
+import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WIN_WIN;
+import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 
 @SuppressLint("ViewConstructor")
@@ -33,12 +38,14 @@ public class DrawView extends View {
     Paint mPaint = new Paint();
     ActivityClassic activityClassic;
     ActivityMultiplayerGame activityMultiplayerGame;
+    ActivityLevels activityLevels;
     Resources resourcesForDraw;
     StartGame startGame;
     int widthDisplay;
     int sizeOfField;
     int stepOnField;
     int[][] checkerPositions;
+    int[][] marksPositions;
 
 
     public DrawView(Context context, AppCompatActivity appCompatActivity) {
@@ -59,12 +66,19 @@ public class DrawView extends View {
             stepOnField = activityMultiplayerGame.startGame.getStepOnField();
         }
 
+        if (appCompatActivity instanceof ActivityLevels) {
+            this.activityLevels = (ActivityLevels) appCompatActivity;
+            startGame = activityLevels.startGame;
+            widthDisplay = activityLevels.widthDisplay;
+            sizeOfField = activityLevels.startGame.getSizeOfField();
+            stepOnField = activityLevels.startGame.getStepOnField();
+            marksPositions = activityLevels.startGame.getMarksPositions();
+        }
+
         resourcesForDraw = this.getResources();
-
-
     }
 
-    public static Bitmap drawableToBitmap (Drawable drawable) {
+    /*public static Bitmap drawableToBitmap (Drawable drawable) {
 
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable)drawable).getBitmap();
@@ -76,7 +90,7 @@ public class DrawView extends View {
         drawable.draw(canvas);
 
         return bitmap;
-    }
+    }*/
 
     @Override
     @SuppressLint({"DrawAllocation", "UseCompatLoadingForDrawables"})
@@ -124,6 +138,17 @@ public class DrawView extends View {
         //draw checkers and marks
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
+                //target point
+                if(marksPositions != null){
+                    if (marksPositions[i][j] == TARGET_POINT_FOR_WHITE_CHECKER) {
+                        Bitmap targetPointBitmap = Bitmap.createScaledBitmap(
+                                BitmapFactory.decodeResource(resourcesForDraw, R.drawable.target_point), stepOnField, stepOnField, true);
+                        canvas.drawBitmap(targetPointBitmap, (j - 1) * stepOnField , (i - 1) * stepOnField , mPaint);
+                        targetPointBitmap.recycle();
+                    }
+                }
+
+
                 //white checkers
                 if (checkerPositions[i][j] == WHITE_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
@@ -163,6 +188,33 @@ public class DrawView extends View {
                     blackCheckerBitmap.recycle();
                     checkMarkBitmap.recycle();
                 }
+
+                //woodman checkers
+                if (checkerPositions[i][j] == WOODMAN_CHECKER) {
+                    Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.woodman), stepOnField, stepOnField, true);
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    whiteCheckerBitmap.recycle();
+                }
+
+                //woodman select checkers
+                if (checkerPositions[i][j] == SELECT_WOODMAN_CHECKER) {
+                    Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.woodman_select), stepOnField, stepOnField, true);
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    whiteCheckerBitmap.recycle();
+                }
+
+                //stone checkers
+                if (checkerPositions[i][j] == STONE_CHECKER) {
+                    Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.stone), stepOnField, stepOnField, true);
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    whiteCheckerBitmap.recycle();
+                }
+
+
+
 
                 //target point
                 if (checkerPositions[i][j] == TARGET_POINT_FOR_BLACK_CHECKER) {

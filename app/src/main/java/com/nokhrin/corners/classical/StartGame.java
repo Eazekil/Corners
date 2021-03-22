@@ -31,7 +31,7 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
         }
 
         //add checker on start positions
-       /* //start white checkers position
+        //start white checkers position
         for (int i = 6; i < sizeOfField; i++) {
             for (int j = 1; j < 5; j++) {
                 checkersPositions[i][j] = WHITE_CHECKER;
@@ -43,12 +43,12 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
             for (int j = 5; j < sizeOfField; j++) {
                 checkersPositions[i][j] = BLACK_CHECKER;
             }
-        }*/
+        }
 
 
         //////////////////////////////////////////////////////////////////////////////
         //start white checkers position
-        for (int i = 5; i < sizeOfField - 1; i++) {
+       /* for (int i = 5; i < sizeOfField - 1; i++) {
             for (int j = 1; j < 5; j++) {
                 checkersPositions[i][j] = BLACK_CHECKER;
             }
@@ -60,7 +60,7 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
             for (int j = 4; j < sizeOfField - 1; j++) {
                 checkersPositions[i][j] = WHITE_CHECKER;
             }
-        }
+        }*/
         //////////////////////////////////////////////////////////////////////////////
 
     }

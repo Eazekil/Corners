@@ -100,7 +100,6 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
             finish();
         });
 
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -124,7 +123,5 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
         return false;
     }
-
-
 
 }

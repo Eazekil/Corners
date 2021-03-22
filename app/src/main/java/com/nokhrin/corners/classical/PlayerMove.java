@@ -25,15 +25,10 @@ public class PlayerMove {
 
         if (haveChoiceChecker()) {
             //check touch position it white checker
-
-
             if (checkersPositions[touchI][touchJ] == WHITE_CHECKER) {
                 //update mark
                 checkersPositions[touchI][touchJ] = MARK_ON_WHITE_CHECKER;
                 checkersPositions[choiceI][choiceJ] = WHITE_CHECKER;
-                System.out.println("***************************************************** we  ");
-
-
 
                 //update draw field
                 activity.drawView.invalidate();

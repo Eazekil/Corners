@@ -179,7 +179,7 @@ public class ActivityRooms extends AppCompatActivity {
                     if (dataSnapshot.child(PLAYER_2).getValue() == null) {
                         roomsList.add(dataSnapshot.getKey());
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(ActivityRooms.this,
-                                android.R.layout.simple_list_item_1, roomsList);
+                                R.layout.my_list_item, roomsList);
                         lvRooms.setAdapter(adapter);
                     }
 

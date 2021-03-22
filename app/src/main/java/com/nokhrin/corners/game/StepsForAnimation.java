@@ -29,13 +29,13 @@ public class StepsForAnimation {
     boolean[][] lastPlayerPositions;
     ArrayList<Integer> steps;
 
-    public StepsForAnimation(Activity Activity) {
-        if(Activity instanceof ActivityClassic){
-            this.activity =(ActivityClassic) Activity;
+    public StepsForAnimation(Activity activity) {
+        if(activity instanceof ActivityClassic){
+            this.activity =(ActivityClassic) activity;
             checkersPositions = ((ActivityClassic)activity).startGame.getCheckersPositions();
         }
-        if(Activity instanceof ActivityMultiplayerGame){
-            this.activity =(ActivityMultiplayerGame) Activity;
+        if(activity instanceof ActivityMultiplayerGame){
+            this.activity =(ActivityMultiplayerGame) activity;
             checkersPositions = ((ActivityMultiplayerGame)activity).startGame.getCheckersPositions();
         }
 

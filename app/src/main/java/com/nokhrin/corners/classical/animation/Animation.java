@@ -48,6 +48,9 @@ public class Animation {
         //draw field without move checker
         activity.startGame.getCheckersPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
         activity.drawView.invalidate();
+        ///////////////////////////////////////////////////////////////////////////////////////// this for do not animation
+        /*activity.startGame.getCheckersPositions()[endI][endJ] = checker;
+        activity.drawView.invalidate();*/
 
         int stepOnField = activity.startGame.getStepOnField();
 
@@ -106,11 +109,11 @@ public class Animation {
                 activity.ivCheckerBlack.setVisibility(View.INVISIBLE);
 
                 //after player move bot can move
-                try {
+                /*try {
                     Thread.sleep(400);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 if(checker == WHITE_CHECKER){
                     //bot can move
@@ -128,6 +131,9 @@ public class Animation {
 
             }
         });
+
+
+
 
     }
 }

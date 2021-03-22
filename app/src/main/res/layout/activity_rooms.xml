@@ -5,57 +5,85 @@
     android:id="@+id/ConstrainLayoutRooms"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#249E4D"
+    android:background="@drawable/bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
-    tools:context=".multiplayer.ActivityRooms" >
+    tools:context=".multiplayer.ActivityRooms">
 
     <Button
         android:id="@+id/buttonCreateRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="199dp"
+        android:layout_height="53dp"
+        android:background="@drawable/button_wood_1"
+        android:fontFamily="@font/comfortaa_bold"
+        android:hapticFeedbackEnabled="false"
         android:text="@string/button_create_room"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
 
-    <Button
-        android:id="@+id/buttonJoinRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_join_room"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.376" />
+
+    <Button
+        android:id="@+id/buttonJoinRoom"
+        android:layout_width="247dp"
+        android:layout_height="66dp"
+        android:background="@drawable/button_wood_1"
+
+        android:fontFamily="@font/comfortaa_bold"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_join_room"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132" />
 
     <ListView
         android:id="@+id/listViewRooms"
-        android:layout_width="283dp"
-        android:layout_height="528dp"
+        android:layout_width="280dp"
+        android:layout_height="394dp"
+        android:cacheColorHint="#FFFFFF"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
-
-    <EditText
-        android:id="@+id/editTextCreateRoom"
-        android:layout_width="294dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="@string/edit_text_create_room"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.801" />
+        app:layout_constraintVertical_bias="0.887"
+        tools:listitem="@layout/my_list_item" />
+
+    <EditText
+        android:id="@+id/editTextCreateRoom"
+        android:layout_width="294dp"
+        android:layout_height="45dp"
+        android:background="#8525AEED"
+        android:ems="10"
+        android:hint="@string/edit_text_create_room"
+        android:inputType="textPersonName"
+        android:textColor="#2150AC"
+        android:textColorHighlight="#D61010"
+        android:textColorHint="#ABFDFDFD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.255" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

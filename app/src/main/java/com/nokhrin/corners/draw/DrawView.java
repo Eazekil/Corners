@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,7 @@ public class DrawView extends View {
     int widthDisplay;
     int sizeOfField;
     int stepOnField;
+    int[][] checkerPositions;
 
 
     public DrawView(Context context, AppCompatActivity appCompatActivity) {
@@ -61,31 +64,68 @@ public class DrawView extends View {
 
     }
 
+    public static Bitmap drawableToBitmap (Drawable drawable) {
+
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable)drawable).getBitmap();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
 
     @Override
-    @SuppressLint("DrawAllocation")
+    @SuppressLint({"DrawAllocation", "UseCompatLoadingForDrawables"})
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        checkerPositions = startGame.getCheckersPositions();
+
         /*sizeOfField = activity.startGame.getSizeOfField();
         //ResourcesBitmap resourcesBitmap =  new ResourcesBitmap();
         int stepOnField = activity.startGame.getStepOnField();*/
 
         //draw chess field
-        if (sizeOfField == 9) {
+       /* if (sizeOfField == 9) {
+
             //create stone field 8x8
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            Bitmap bitmap = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.stone_field_8x8, options);
+
+
+            *//*System.out.println("****************************************************************************");
+            System.out.println(resourcesForDraw == null);
+            System.out.println(R.mipmap.stone_field_8x8 == 0);
+            System.out.println(activityClassic == null);
+            System.out.println(activityClassic.getResources() == null);
+            System.out.println(activityClassic.getResources().getDrawable(R.drawable.checker_white) == null);
+
+
+
+
+            activityClassic.getResources().getDrawable(R.mipmap.stone_field_8x8);
+
+
+            Bitmap bitmap = drawableToBitmap(activityClassic.getResources().getDrawable(R.mipmap.stone_field_8x8));
 
             Bitmap stoneField8x8Bitmap = Bitmap.createScaledBitmap(
-                    BitmapFactory.decodeResource(resourcesForDraw, R.drawable.stone_field_8x8),
-                    widthDisplay, widthDisplay, true);
-            canvas.drawBitmap(stoneField8x8Bitmap, 0, 0, mPaint);
-            stoneField8x8Bitmap.recycle();
-        }
+                    bitmap,
+                    widthDisplay, widthDisplay, true);*//*
+
+            canvas.drawBitmap(bitmap, 0, 0, mPaint);
+            bitmap.recycle();
+        }*/
 
         //draw checkers and marks
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
                 //white checkers
-                if (startGame.getCheckersPositions()[i][j] == WHITE_CHECKER) {
+                if (checkerPositions[i][j] == WHITE_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_white), stepOnField, stepOnField, true);
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
@@ -93,7 +133,7 @@ public class DrawView extends View {
                 }
 
                 //black checkers
-                if (startGame.getCheckersPositions()[i][j] == BLACK_CHECKER) {
+                if (checkerPositions[i][j] == BLACK_CHECKER) {
                     Bitmap blackCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_black), stepOnField, stepOnField, true);
                     canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
@@ -101,7 +141,7 @@ public class DrawView extends View {
                 }
 
                 //white checkers with mark
-                if (startGame.getCheckersPositions()[i][j] == MARK_ON_WHITE_CHECKER) {
+                if (checkerPositions[i][j] == MARK_ON_WHITE_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_white), stepOnField, stepOnField, true);
                     Bitmap checkMarkBitmap = Bitmap.createScaledBitmap(
@@ -113,7 +153,7 @@ public class DrawView extends View {
                 }
 
                 //black checkers with mark
-                if (startGame.getCheckersPositions()[i][j] == MARK_ON_BLACK_CHECKER) {
+                if (checkerPositions[i][j] == MARK_ON_BLACK_CHECKER) {
                     Bitmap blackCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_black), stepOnField, stepOnField, true);
                     Bitmap checkMarkBitmap = Bitmap.createScaledBitmap(
@@ -125,7 +165,7 @@ public class DrawView extends View {
                 }
 
                 //target point
-                if (startGame.getCheckersPositions()[i][j] == TARGET_POINT_FOR_BLACK_CHECKER) {
+                if (checkerPositions[i][j] == TARGET_POINT_FOR_BLACK_CHECKER) {
                     Bitmap targetPointBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.target_point), stepOnField, stepOnField, true);
                     canvas.drawBitmap(targetPointBitmap, (j - 1) * stepOnField + 50, (i - 1) * stepOnField + 50, mPaint);

@@ -5,17 +5,18 @@
     android:id="@+id/ConstrainLayoutCreatePlayer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue_900"
+    android:background="@drawable/bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
-    tools:context=".multiplayer.ActivityCreatePlayer" >
+    tools:context=".multiplayer.ActivityCreatePlayer">
 
     <TextView
         android:id="@+id/textViewMulti1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_multi_1"
-        android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textColor="#2150AC"
+        android:textSize="24sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,28 +25,39 @@
 
     <Button
         android:id="@+id/buttonCreatePlayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="248dp"
+        android:layout_height="54dp"
+        android:background="@drawable/button_wood_1"
+        android:fontFamily="@font/comfortaa_bold"
+        android:hapticFeedbackEnabled="false"
         android:text="@string/button_create_player"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintVertical_bias="0.281" />
 
     <EditText
         android:id="@+id/editTextPlayerName"
         android:layout_width="268dp"
-        android:layout_height="39dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:hint="введите свое имя"
         android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
+        android:textColor="#2150AC"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="0.182" />
 </androidx.constraintlayout.widget.ConstraintLayout>

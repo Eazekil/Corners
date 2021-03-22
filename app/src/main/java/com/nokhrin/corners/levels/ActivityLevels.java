@@ -123,12 +123,14 @@ public class ActivityLevels extends AppCompatActivity {
         buttonMenu.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityLevels.this, ActivityStart.class);
             startActivity(intent);
+            finish();
         });
 
         //button return to menu levels
         buttonReturnLevels.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityLevels.this, ActivityLevels.class);
             startActivity(intent);
+            finish();
         });
 
         //button restart level

@@ -41,8 +41,10 @@ public class Animation {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startJ, int startI, int endJ, int endI, int checker) {
 
+        stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
+
         //get steps for animate checker
-        //StepsForAnimation stepsForAnimation = new StepsForAnimation(activity.startGame.getCheckersPositions(), startI, startJ, endI, endJ);
+        //stepsForAnimation = new StepsForAnimation(activity.startGame.getCheckersPositions(), startI, startJ, endI, endJ);
         int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker

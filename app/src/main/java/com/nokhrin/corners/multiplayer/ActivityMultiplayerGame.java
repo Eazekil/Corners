@@ -1,5 +1,6 @@
 package com.nokhrin.corners.multiplayer;
 
+import android.annotation.SuppressLint;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -68,6 +69,7 @@ ActivityMultiplayerGame extends AppCompatActivity implements View.OnTouchListene
     public View ivChecker;
     public View ivCheckerBlack;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +137,7 @@ ActivityMultiplayerGame extends AppCompatActivity implements View.OnTouchListene
 
         //set on touch listener
         flMultiplayerGame.setOnTouchListener(this);
+        flMultiplayerGame.setBackground(getResources().getDrawable(R.drawable.stone_field_8x8));
 
         act = this;
 

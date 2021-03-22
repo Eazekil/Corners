@@ -45,7 +45,7 @@
     <string name="button_create_player">Создать игрока</string>
     <string name="button_create_room">Создать игру</string>
     <string name="button_join_room">Присоединиться к игре</string>
-    <string name="edit_text_create_room">придумайте имя для игры</string>
+    <string name="edit_text_create_room">  придумайте имя для игры</string>
     <string name="button_multi_3">Мульти 3</string>
     <string name="title_activity_multiplayer">FullscreenActivity</string>
     <string name="title_activity_multi2">FullscreenActivity</string>

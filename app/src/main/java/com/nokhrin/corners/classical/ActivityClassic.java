@@ -1,5 +1,6 @@
 package com.nokhrin.corners.classical;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Build;
@@ -32,6 +33,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
     public int indentTop;
     public int widthDisplay;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class ActivityClassic extends AppCompatActivity implements View.OnTouchLi
 
         //set on touch listener
         flClassic.setOnTouchListener(this);
+        flClassic.setBackground(getResources().getDrawable(R.drawable.stone_field_8x8));
 
         //button return to Menu
         buttonMenu.setOnClickListener(v -> {

@@ -16,7 +16,9 @@
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/frameLayoutLevel"
@@ -29,13 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndentLevels" >
 
-        <ImageView
-            android:id="@+id/imageViewCheckerWoodman"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/todo1"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/woodman" />
     </FrameLayout>
 
 
@@ -411,6 +406,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayoutLevel" />
 
+    <FrameLayout
+        android:id="@+id/frameLayoutForWoodman"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewCheckerWoodman"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/todo1"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/woodman" />
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

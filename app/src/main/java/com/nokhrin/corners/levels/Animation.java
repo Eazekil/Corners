@@ -50,9 +50,9 @@ public class Animation {
         //add checker on start position and set visible
         if (checker == WOODMAN_CHECKER) {
             activity.ivWoodman.layout((startJ - 2) * stepOnField,
-                    (startI - 1) * stepOnField,
+                    (startI - 1) * stepOnField+ stepOnField*2,
                     (startJ - 2) * stepOnField + stepOnField,
-                    (startI - 1) * stepOnField + stepOnField);
+                    (startI - 1) * stepOnField + stepOnField+ stepOnField*2);
             activity.ivWoodman.setVisibility(View.VISIBLE);
         }
 

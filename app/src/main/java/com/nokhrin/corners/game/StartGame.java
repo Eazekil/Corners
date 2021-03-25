@@ -1,12 +1,15 @@
 package com.nokhrin.corners.game;
 
-public class StartGame {
-    private int sizeOfField; //size of field +1
-    private int countTargetPoint; //count of checker
-    private int stepOnField; // step on chess field and size of checkers
-    private int[][] checkersPositions; //positions all checkers on field
-    private int win = 0;
-    private boolean playerMove;
+public abstract class StartGame {
+    protected int sizeOfField; //size of field +1
+    protected int countTargetPoint; //count of checker
+    protected int stepOnField; // step on chess field and size of checkers
+    protected int[][] checkersPositions; //positions all checkers on field
+    protected int win;
+    protected boolean playerMove;
+
+    public StartGame(){
+    }
 
     public int getSizeOfField() {
         return sizeOfField;

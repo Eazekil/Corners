@@ -2,6 +2,7 @@ package com.nokhrin.corners.levels;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,9 +34,12 @@ import com.nokhrin.corners.levels.level7.Level7;
 import com.nokhrin.corners.levels.level8.Level8;
 import com.nokhrin.corners.levels.level9.Level9;
 import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.levels.start.PlayerProgress;
 import com.nokhrin.corners.levels.start.StartGame;
 
 import java.util.ArrayList;
+
+import static com.nokhrin.corners.resources.Constants.START_LEVELS;
 
 public class ActivityLevels extends AppCompatActivity implements View.OnTouchListener{
     public TextView countMoveView;
@@ -44,12 +48,12 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
     public int indentTop;
     public StartGame startGame;
     public PlayerMove playerMove;
-   // public Animation animation;
     public ImageView ivWoodman;
     public FrameLayout frameLayoutLevels;
-    int numberLevel;
+    public int numberLevel;
     ArrayList<View> elementSetVisibleList = new ArrayList<>();
-    ArrayList<Button> buttonSetInvisibleList = new ArrayList<>();
+    public ArrayList<Button> buttonSetInvisibleList = new ArrayList<>();
+    public SharedPreferences preferences;
 
     @SuppressLint({"UseCompatLoadingForDrawables", "ClickableViewAccessibility"})
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -93,19 +97,26 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         params.height = indentTop;
         flIntent.setLayoutParams(params);
 
-
         //add start parameters for game field
         startGame = new StartGame(this);
-        //add start null parameters
-        /*startGame.addStartParameters(5,5,5);
-        countMoveView.setVisibility(View.INVISIBLE);*/
-
-
-        //create view for draw
-
-
         //set on touch listener
         frameLayoutLevels.setOnTouchListener(this);
+
+        //find preferences
+        preferences = getPreferences(MODE_PRIVATE);
+        PlayerProgress playerProgress = new PlayerProgress(this);
+
+        //check preferences for levels game already exist
+        if(preferences.getBoolean(START_LEVELS, false)){
+            //start update background for buttons
+            playerProgress.checkLevels();
+            System.out.println("111111111111111111111111111111111111111111111111111111");
+        }else{
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean(START_LEVELS, true);
+            editor.apply();
+        }
+
 
 
 

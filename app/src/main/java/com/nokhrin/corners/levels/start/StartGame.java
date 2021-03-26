@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.levels.ActivityLevels;
 
-import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 
 public class StartGame extends com.nokhrin.corners.game.StartGame{
     int stepOnField; // step on chess field and size of checkers
@@ -60,18 +59,6 @@ public class StartGame extends com.nokhrin.corners.game.StartGame{
         String s = "Ходов осталось : " + countToMove;
         countMoveView.setVisibility(View.VISIBLE);
         countMoveView.setText(s);
-
-        /*//create matrix
-        checkersPositions = new int[sizeOfField][sizeOfField];
-        marksPositions = new int[sizeOfField][sizeOfField];
-
-        //clear field
-        for (int i = 1; i < sizeOfField; i++) {
-            for (int j = 1; j < sizeOfField; j++) {
-                checkersPositions[i][j] = FREE_POSITION_ON_FIELD;
-            }
-        }*/
-
 
     }
 

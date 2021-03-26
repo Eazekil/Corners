@@ -15,9 +15,11 @@ public class Level1 {
         int sizeOfField = 5; //size field + 1
         int countToMove = 9; //count of move player can
         int countPointInLevel = 2; //count target point
+        int minCountMove = 7;
 
         int[][] checkersPositions = new int[sizeOfField][sizeOfField];
         int[][] marksPositions = new int[sizeOfField][sizeOfField];
+
         //clear field
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
@@ -35,11 +37,7 @@ public class Level1 {
 
         //add start parameters
         activity.startGame.addStartParameters(sizeOfField, countToMove, countPointInLevel, checkersPositions, marksPositions);
-
-
-
-        /*activity.startGame.setPlayerMove(true);
-        activity.drawView.invalidate();*/
-
     }
+
+
 }

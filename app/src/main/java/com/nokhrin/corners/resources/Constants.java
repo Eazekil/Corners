@@ -26,6 +26,9 @@ public class Constants {
     public static final int PLAYER_WIN = 1;
     public static final int BOT_WIN = 2;
     public static final int WIN_WIN = 3;
+    public static final int ONE_STAR = 1;
+    public static final int TWO_STAR = 2;
+    public static final int THREE_STAR = 3;
     public static final String ROLE = "role";
     public static final String PLAYER_NAME = "playerName";
     public static final String ROOM_NAME = "roomName";
@@ -33,6 +36,8 @@ public class Constants {
     public static final String PLAYER_1 = "player1";
     public static final String PLAYER_2 = "player2";
     public static final String MESSAGE = "messageMoveTo";
+    public static final String START_LEVELS = "start_levels";
+    public static final String LEVEL_PROGRESS = "level_progress_";
 
 
 }

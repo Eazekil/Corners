@@ -153,7 +153,6 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         if(preferences.getBoolean(START_LEVELS, false)){
             //start update background for buttons
             playerProgress.checkLevels();
-            System.out.println("111111111111111111111111111111111111111111111111111111");
         }else{
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean(START_LEVELS, true);

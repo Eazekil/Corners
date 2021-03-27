@@ -29,6 +29,7 @@ public class Constants {
     public static final int ONE_STAR = 1;
     public static final int TWO_STAR = 2;
     public static final int THREE_STAR = 3;
+    public static final int NONE_STAR = 10;
     public static final String ROLE = "role";
     public static final String PLAYER_NAME = "playerName";
     public static final String ROOM_NAME = "roomName";

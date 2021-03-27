@@ -102,20 +102,7 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         //set on touch listener
         frameLayoutLevels.setOnTouchListener(this);
 
-        //find preferences
-        preferences = getPreferences(MODE_PRIVATE);
-        PlayerProgress playerProgress = new PlayerProgress(this);
 
-        //check preferences for levels game already exist
-        if(preferences.getBoolean(START_LEVELS, false)){
-            //start update background for buttons
-            playerProgress.checkLevels();
-            System.out.println("111111111111111111111111111111111111111111111111111111");
-        }else{
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean(START_LEVELS, true);
-            editor.apply();
-        }
 
 
 
@@ -156,6 +143,22 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         elementSetVisibleList.add(frameLayoutLevels);
         elementSetVisibleList.add(buttonReturnLevels);
         elementSetVisibleList.add(buttonRestartLevel);
+
+
+        //find preferences
+        preferences = getPreferences(MODE_PRIVATE);
+        PlayerProgress playerProgress = new PlayerProgress(this);
+
+        //check preferences for levels game already exist
+        if(preferences.getBoolean(START_LEVELS, false)){
+            //start update background for buttons
+            playerProgress.checkLevels();
+            System.out.println("111111111111111111111111111111111111111111111111111111");
+        }else{
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean(START_LEVELS, true);
+            editor.apply();
+        }
 
 
 

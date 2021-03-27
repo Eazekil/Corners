@@ -10,6 +10,7 @@ import com.nokhrin.corners.levels.ActivityLevels;
 import java.util.ArrayList;
 
 import static com.nokhrin.corners.resources.Constants.LEVEL_PROGRESS;
+import static com.nokhrin.corners.resources.Constants.NONE_STAR;
 import static com.nokhrin.corners.resources.Constants.ONE_STAR;
 import static com.nokhrin.corners.resources.Constants.THREE_STAR;
 import static com.nokhrin.corners.resources.Constants.TWO_STAR;
@@ -24,7 +25,6 @@ public class PlayerProgress {
     public void checkLevels() {
         ArrayList<Button> buttons = activity.buttonSetInvisibleList;
         SharedPreferences preferences = activity.preferences;
-        System.out.println("222222222222222222222222222222222222222222222222222");
         for (int i = 1; i < buttons.size(); i++) {
             String key = LEVEL_PROGRESS + i;
             int progress = preferences.getInt(key, 0);
@@ -36,14 +36,14 @@ public class PlayerProgress {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void setBackground(Button button, int progress) {
-        System.out.println("3333333333333333333333333333333333333333333333333");
         if (progress == ONE_STAR) {
             button.setBackground(activity.getResources().getDrawable(R.drawable.button_star_1));
         } else if (progress == TWO_STAR) {
             button.setBackground(activity.getResources().getDrawable(R.drawable.button_star_2));
         } else if (progress == THREE_STAR) {
-            System.out.println("4444444444444444444444444444444444444444444444444444");
             button.setBackground(activity.getResources().getDrawable(R.drawable.button_star_3));
+        } else if (progress == NONE_STAR) {
+            button.setBackground(activity.getResources().getDrawable(R.drawable.button_star_0));
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.nokhrin.corners.classical.bots.bot1;
+package com.nokhrin.corners.classical.model.bots.bot1;
 
 
 import com.nokhrin.corners.classical.view.ActivityClassic;

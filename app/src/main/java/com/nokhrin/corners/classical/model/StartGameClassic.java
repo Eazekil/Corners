@@ -2,15 +2,11 @@ package com.nokhrin.corners.classical.model;
 
 
 import com.nokhrin.corners.classical.GameOver;
-import com.nokhrin.corners.classical.bots.Bots;
+import com.nokhrin.corners.classical.model.bots.Bots;
 import com.nokhrin.corners.classical.model.update.UpdateAnimation;
 import com.nokhrin.corners.classical.model.update.UpdateView;
 import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.game.StartGame;
-
-import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
-import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
-import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class StartGameClassic extends StartGame {
     private PlayerMoving playerMoving;
@@ -38,6 +34,10 @@ public class StartGameClassic extends StartGame {
 
         updateView = new UpdateView();
         updateView.setDrawView(activity.getViewParameters().getDrawView());
+
+        bot = new Bots();
+
+        game = new GameOver();
     }
 
     public PlayerMoving getPlayerMoving() {

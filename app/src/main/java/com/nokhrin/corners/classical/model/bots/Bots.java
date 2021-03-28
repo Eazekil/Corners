@@ -1,21 +1,18 @@
-package com.nokhrin.corners.classical.bots;
+package com.nokhrin.corners.classical.model.bots;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-
-import com.nokhrin.corners.classical.view.ActivityClassic;
-import com.nokhrin.corners.classical.bots.bot1.BotMitya;
+import com.nokhrin.corners.classical.model.bots.bot1.BotMitya;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 
 public class Bots {
-    ActivityClassic activity;
-    BotMitya botMitya;
+    private BotMitya botMitya;
+    private int[][] checkersPositions;
 
-    public Bots(ActivityClassic activity) {
-        this.activity = activity;
+    public Bots() {
         botMitya = new BotMitya(activity);
     }
 

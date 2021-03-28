@@ -1,6 +1,8 @@
 package com.nokhrin.corners.classical;
 
 
+import com.nokhrin.corners.classical.view.ActivityClassic;
+
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.BOT_WIN;
 import static com.nokhrin.corners.resources.Constants.PLAYER_WIN;

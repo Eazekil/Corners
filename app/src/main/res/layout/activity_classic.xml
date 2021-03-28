@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
-    tools:context=".classical.ActivityClassic">
+    tools:context=".classical.view.ActivityClassic">
 
     <FrameLayout
         android:id="@+id/frameLayoutIndentClassic"

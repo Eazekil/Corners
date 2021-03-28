@@ -1,4 +1,4 @@
-package com.nokhrin.corners.classical;
+package com.nokhrin.corners.classical.model;
 
 import android.os.Build;
 
@@ -6,24 +6,36 @@ import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.game.PossibleMoves;
 
+import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
-public class PlayerMove {
-    int choiceI;
-    int choiceJ;
-    ActivityClassic activity;
-    int[][] checkersPositions;
+public class PlayerMoving {
+    private int[][] checkersPositions;
+    private StartGameClassic startGame;
+    private HaveChecker haveChecker;
 
-    public PlayerMove(ActivityClassic activity) {
-        this.activity = activity;
+    public void setStartGame(StartGameClassic startGame) {
+        this.startGame = startGame;
+        this.checkersPositions = startGame.getCheckersPositions();
+        haveChecker = new HaveChecker();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startPlayerMove(int touchI, int touchJ) {
-        checkersPositions = activity.startGame.getCheckersPositions();
 
-        if (haveChoiceChecker()) {
+        //check game is over
+        if (!startGame.getCheckMove().isCanMove()) {
+            return;
+        }
+
+
+        if (haveChecker.haveChoiceChecker()) {
+
+            //update
+            int choiceI = haveChecker.getChoiceI();
+            int choiceJ = haveChecker.getChoiceJ();
+
             //check touch position it white checker
             if (checkersPositions[touchI][touchJ] == WHITE_CHECKER) {
                 //update mark
@@ -31,7 +43,7 @@ public class PlayerMove {
                 checkersPositions[choiceI][choiceJ] = WHITE_CHECKER;
 
                 //update draw field
-                activity.drawView.invalidate();
+                startGame.getUpdateView().updateDrawView();
 
             } else {
                 //check can move on touch coordinate
@@ -39,10 +51,14 @@ public class PlayerMove {
                 if (move.isPossible(touchI, touchJ)) {
 
                     //mark player can't move more
-                    activity.startGame.setPlayerMove(false);
+                    startGame.setPlayerMove(false);
 
                     //animate this move
-                    activity.animation.step(choiceJ, choiceI, touchJ, touchI, WHITE_CHECKER);
+                    startGame.getUpdateAnimation().setStep(choiceJ, choiceI, touchJ, touchI, WHITE_CHECKER);
+
+                    //update checker position
+                    checkersPositions[touchI][touchJ] = WHITE_CHECKER;
+                    checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
                 }
             }
 
@@ -53,27 +69,10 @@ public class PlayerMove {
                 checkersPositions[touchI][touchJ] = MARK_ON_WHITE_CHECKER;
 
                 //update draw field
-                activity.drawView.invalidate();
+                startGame.getUpdateView().updateDrawView();
             }
         }
     }
 
-    private boolean haveChoiceChecker() {
-        int sizeOfField = checkersPositions.length;
 
-        choiceI = 0;
-        choiceJ = 0;
-
-        for (int i = 1; i < sizeOfField; i++) {
-            for (int j = 1; j < sizeOfField; j++) {
-                if (checkersPositions[i][j] == MARK_ON_WHITE_CHECKER) {
-                    choiceI = i;
-                    choiceJ = j;
-                }
-            }
-        }
-
-        //check we have choice checker
-        return choiceI != 0;
-    }
 }

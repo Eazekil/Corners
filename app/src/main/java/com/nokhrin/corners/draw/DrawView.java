@@ -7,14 +7,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.levels.ActivityLevels;
 import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
 import com.nokhrin.corners.game.StartGame;

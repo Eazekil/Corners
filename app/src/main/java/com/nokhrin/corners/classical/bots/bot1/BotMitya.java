@@ -1,7 +1,7 @@
 package com.nokhrin.corners.classical.bots.bot1;
 
 
-import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.game.PossibleMoves;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;

@@ -5,7 +5,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 
-import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.classical.bots.bot1.BotMitya;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;

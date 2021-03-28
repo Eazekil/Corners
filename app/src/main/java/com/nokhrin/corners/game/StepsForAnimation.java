@@ -3,7 +3,7 @@ package com.nokhrin.corners.game;
 
 import android.app.Activity;
 
-import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.levels.ActivityLevels;
 import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
 

@@ -1,6 +1,6 @@
 package com.nokhrin.corners.classical.bots.bot1;
 
-import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.classical.view.ActivityClassic;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;

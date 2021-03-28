@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.nokhrin.corners.classical.ActivityClassic;
+import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.levels.ActivityLevels;
 import com.nokhrin.corners.multiplayer.ActivityCreatePlayer;
 

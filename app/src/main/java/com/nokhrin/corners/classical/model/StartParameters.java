@@ -1,25 +1,24 @@
-package com.nokhrin.corners.classical;
-
+package com.nokhrin.corners.classical.model;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
-public class StartGame extends com.nokhrin.corners.game.StartGame {
+public class StartParameters {
+    private StartGameClassic startGame;
 
-    public StartGame(){
-        sizeOfField = 9;
-        countTargetPoint = 12;
+    public void setStartGame(StartGameClassic startGame) {
+        this.startGame = startGame;
+
+        updateStartParameters();
     }
 
-    public void addStartParameters(int widthDisplay) {
-        //update variables for this game
-        stepOnField = widthDisplay / (sizeOfField - 1);
-        int sizePoint = stepOnField / 3;
-        playerMove = true;
+    private void updateStartParameters(){
+        startGame.setPlayerMove(true);
 
+        int sizeOfField = startGame.getSizeOfField();
         //create matrix
-        checkersPositions = new int[sizeOfField][sizeOfField];
+        int[][] checkersPositions = new int[sizeOfField][sizeOfField];
 
         //clear field
         for (int i = 1; i < sizeOfField; i++) {
@@ -43,6 +42,7 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
             }
         }
 
+        startGame.setCheckersPositions(checkersPositions);
 
         //////////////////////////////////////////////////////////////////////////////
         //start white checkers position
@@ -51,8 +51,6 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
                 checkersPositions[i][j] = BLACK_CHECKER;
             }
         }
-
-
         //start black checkers position
         for (int i = 1; i < 4; i++) {
             for (int j = 4; j < sizeOfField - 1; j++) {
@@ -60,7 +58,5 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
             }
         }*/
         //////////////////////////////////////////////////////////////////////////////
-
     }
-
 }

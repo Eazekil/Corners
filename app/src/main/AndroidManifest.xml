@@ -25,7 +25,7 @@
             android:label="@string/title_activity_multiplayer"
             android:theme="@style/Theme.Corners.Fullscreen" />
         <activity
-            android:name=".classical.ActivityClassic"
+            android:name=".classical.view.ActivityClassic"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_classic"
             android:theme="@style/Theme.Corners.Fullscreen" />

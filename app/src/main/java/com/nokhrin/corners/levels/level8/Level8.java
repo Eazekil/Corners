@@ -2,13 +2,14 @@ package com.nokhrin.corners.levels.level8;
 
 
 import com.nokhrin.corners.levels.ActivityLevels;
+import com.nokhrin.corners.levels.Level;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.STONE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
-public class Level8 {
+public class Level8 implements Level {
     public void startLevel(ActivityLevels activity) {
         //add start parameters
         int sizeOfField = 6; //size field + 1

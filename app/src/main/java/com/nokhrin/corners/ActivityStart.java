@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.view.animation.Animation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +23,9 @@ public class ActivityStart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //find animation for buttons
+        final Animation alphaChangeAnimation = AnimationUtils.loadAnimation(this, R.anim.button_change_alpha_on_click);
 
         //this all for make full screen
         setContentView(R.layout.activity_start);
@@ -47,18 +53,21 @@ public class ActivityStart extends AppCompatActivity {
         //go to choice level activity
         buttonLevel.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityLevels.class);
+            v.startAnimation(alphaChangeAnimation);
             startActivity(intent);
             finish();
         });
         //go to classic game activity
         buttonClassic.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityClassic.class);
+            v.startAnimation(alphaChangeAnimation);
             startActivity(intent);
             finish();
         });
         //go to activity for play with friends
         buttonMultiPlayer.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityStart.this, ActivityCreatePlayer.class);
+            v.startAnimation(alphaChangeAnimation);
             startActivity(intent);
             finish();
         });

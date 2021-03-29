@@ -1,27 +1,23 @@
 package com.nokhrin.corners.classical.model.bots.bot1;
 
-import com.nokhrin.corners.classical.view.ActivityClassic;
-
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 
 public class EvaluationFunction {
-    ActivityClassic activity;
-    int minOfFunction;
-    int sizeOfField;
-    int[][] checkersPositions;
-    int targetPositionI;
-    int targetPositionJ;
-    int[] result;
+    private int minOfFunction;
+    private int sizeOfField;
+    private int[][] checkersPositions;
+    private int targetPositionI;
+    private int targetPositionJ;
+    private int[] result;
 
-    public EvaluationFunction(ActivityClassic activity) {
-        this.activity = activity;
+    public void setCheckersPositions(int[][] checkersPositions) {
+        this.checkersPositions = checkersPositions;
     }
 
     public void setStartParameters(int targetPositionI, int targetPositionJ){
         this.targetPositionI = targetPositionI;
         this.targetPositionJ = targetPositionJ;
-        checkersPositions = activity.startGame.getCheckersPositions();
         sizeOfField = checkersPositions.length;
         minOfFunction = 999;
         result = new int[5];

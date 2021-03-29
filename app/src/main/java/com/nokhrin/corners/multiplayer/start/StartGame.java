@@ -22,12 +22,12 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
         stepOnField = activity.widthDisplay / (sizeOfField - 1);
 
         //create matrix
-        checkersPositions = new int[sizeOfField][sizeOfField];
+        checkerPositions = new int[sizeOfField][sizeOfField];
 
         //clear field
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
-                checkersPositions[i][j] = FREE_POSITION_ON_FIELD;
+                checkerPositions[i][j] = FREE_POSITION_ON_FIELD;
             }
         }
 
@@ -36,14 +36,14 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
         if(activity.role == ROLE_HOST){
             for (int i = 6; i < sizeOfField; i++) {
                 for (int j = 1; j < 5; j++) {
-                    checkersPositions[i][j] = WHITE_CHECKER;
+                    checkerPositions[i][j] = WHITE_CHECKER;
                 }
             }
 
             //and target position for white checkers
             for (int i = 1; i < 4; i++) {
                 for (int j = 5; j < sizeOfField; j++) {
-                    checkersPositions[i][j] = BLACK_CHECKER;
+                    checkerPositions[i][j] = BLACK_CHECKER;
                 }
             }
 
@@ -52,14 +52,14 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
         }else{
             for (int i = 6; i < sizeOfField; i++) {
                 for (int j = 1; j < 5; j++) {
-                    checkersPositions[i][j] = BLACK_CHECKER;
+                    checkerPositions[i][j] = BLACK_CHECKER;
                 }
             }
 
             //start white checkers position
             for (int i = 1; i < 4; i++) {
                 for (int j = 5; j < sizeOfField; j++) {
-                    checkersPositions[i][j] = WHITE_CHECKER;
+                    checkerPositions[i][j] = WHITE_CHECKER;
                 }
             }
             //mark player can move

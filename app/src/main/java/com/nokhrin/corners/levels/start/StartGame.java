@@ -70,7 +70,7 @@ public class StartGame extends com.nokhrin.corners.game.StartGame{
         return stepOnField;
     }
 
-    public int[][] getCheckersPositions() {
+    public int[][] getCheckerPositions() {
         return checkersPositions;
     }
 

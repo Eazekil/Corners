@@ -50,17 +50,17 @@ public class PlayerMove {
     private void startPlayerMove(){
         if (haveChoiceChecker()) {
             //check touch position it white checker
-            if (activity.startGame.getCheckersPositions()[touchI][touchJ] == checker) {
+            if (activity.startGame.getCheckerPositions()[touchI][touchJ] == checker) {
                 //update mark
-                activity.startGame.getCheckersPositions()[touchI][touchJ] = choiceChecker;
-                activity.startGame.getCheckersPositions()[choiceI][choiceJ] = checker;
+                activity.startGame.getCheckerPositions()[touchI][touchJ] = choiceChecker;
+                activity.startGame.getCheckerPositions()[choiceI][choiceJ] = checker;
 
                 //update draw field
                 activity.drawView.invalidate();
 
             } else {
                 //check can move on touch coordinate
-                PossibleMoves move = new PossibleMoves(activity.startGame.getCheckersPositions(), choiceI, choiceJ);
+                PossibleMoves move = new PossibleMoves(activity.startGame.getCheckerPositions(), choiceI, choiceJ);
                 if (move.isPossible(touchI, touchJ)) {
 
                     //mark player can't move more
@@ -80,9 +80,9 @@ public class PlayerMove {
 
         } else {
             //check touch position it white checker
-            if (activity.startGame.getCheckersPositions()[touchI][touchJ] == checker) {
+            if (activity.startGame.getCheckerPositions()[touchI][touchJ] == checker) {
                 //update mark
-                activity.startGame.getCheckersPositions()[touchI][touchJ] = choiceChecker;
+                activity.startGame.getCheckerPositions()[touchI][touchJ] = choiceChecker;
 
                 //update draw field
                 activity.drawView.invalidate();
@@ -91,11 +91,11 @@ public class PlayerMove {
     }
 
     private boolean haveChoiceChecker() {
-        int sizeOfField = activity.startGame.getCheckersPositions().length;
+        int sizeOfField = activity.startGame.getCheckerPositions().length;
 
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
-                if (activity.startGame.getCheckersPositions()[i][j] == choiceChecker) {
+                if (activity.startGame.getCheckerPositions()[i][j] == choiceChecker) {
                     choiceI = i;
                     choiceJ = j;
                 }

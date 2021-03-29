@@ -26,17 +26,17 @@ public class OnTouchListener implements View.OnTouchListener {
     }
 
     private void setTouch() {
-        activity.getViewElements().getFrameLayout().setOnTouchListener(this);
+        activity.getViewParameters().getViewElements().getFrameLayout().setOnTouchListener(this);
 
         //button return to Menu
-        activity.getViewElements().getButtonMenu().setOnClickListener(v -> {
+        activity.getViewParameters().getViewElements().getButtonMenu().setOnClickListener(v -> {
             Intent intent = new Intent(activity, ActivityStart.class);
             activity.startActivity(intent);
             activity.finish();
         });
 
         //button restart this game
-        activity.getViewElements().getButtonRestart().setOnClickListener(v -> {
+        activity.getViewParameters().getViewElements().getButtonRestart().setOnClickListener(v -> {
             Intent intent = new Intent(activity, ActivityClassic.class);
             activity.startActivity(intent);
             activity.finish();

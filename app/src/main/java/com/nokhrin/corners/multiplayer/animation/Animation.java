@@ -34,7 +34,7 @@ public class Animation {
 
     public Animation(ActivityMultiplayerGame activity) {
         this.activity = activity;
-        stepsForAnimation = new StepsForAnimation(activity);
+        //stepsForAnimation = new StepsForAnimation(activity);
     }
 
 
@@ -48,7 +48,7 @@ public class Animation {
         int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker
-        activity.startGame.getCheckersPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
+        activity.startGame.getCheckerPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
         activity.drawView.invalidate();
 
         int stepOnField = activity.startGame.getStepOnField();
@@ -101,7 +101,7 @@ public class Animation {
         objectAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation, boolean isReverse) {
-                activity.startGame.getCheckersPositions()[endI][endJ] = checker;
+                activity.startGame.getCheckerPositions()[endI][endJ] = checker;
                 activity.ivChecker.setVisibility(View.INVISIBLE);
                 activity.ivCheckerBlack.setVisibility(View.INVISIBLE);
 

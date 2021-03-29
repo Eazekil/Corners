@@ -1,4 +1,4 @@
-package com.nokhrin.corners.classical.model.update;
+package com.nokhrin.corners.classical.view;
 
 import com.nokhrin.corners.draw.DrawView;
 

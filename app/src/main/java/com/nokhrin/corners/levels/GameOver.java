@@ -24,7 +24,7 @@ public class GameOver {
 
     public boolean isOver() {
         boolean result = false;
-        checkersPositions = activity.startGame.getCheckersPositions();
+        checkersPositions = activity.startGame.getCheckerPositions();
         marksPositions = activity.startGame.getMarksPositions();
         int sizeOfField = checkersPositions.length;
         int countPointWhite = 0;

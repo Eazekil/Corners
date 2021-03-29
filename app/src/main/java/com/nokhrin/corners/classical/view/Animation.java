@@ -1,4 +1,4 @@
-package com.nokhrin.corners.classical.animation;
+package com.nokhrin.corners.classical.view;
 
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -25,17 +25,29 @@ import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class Animation {
     private StepsForAnimation stepsForAnimation;
-    private int[][] checkersPositions;
+    private int[][] checkerPositions;
     private DrawView drawView;
     private ImageView imageView;
     private int stepOnField;
     private int indentTop;
-    private int widthDisplay;
+    private StartAnimation startAnimation;
 
-    public void setCheckersPositions(int[][] checkersPositions) {
-        this.checkersPositions = checkersPositions;
+    public void setStartAnimation(StartAnimation startAnimation) {
+        this.startAnimation = startAnimation;
+    }
 
+    public void setCheckerPositions(int[][] checkerPositions) {
+        this.checkerPositions = new int[checkerPositions.length][checkerPositions.length];
+        for (int i = 1; i < checkerPositions.length; i++) {
+            for (int j = 1; j < checkerPositions.length; j++) {
+                this.checkerPositions[i][j] = checkerPositions[i][j];
+            }
+        }
+
+        //update checker positions in other object
+        drawView.setCheckerPositions(checkerPositions);
         stepsForAnimation = new StepsForAnimation();
+        stepsForAnimation.setCheckersPositions(checkerPositions);
     }
 
     public void setDrawView(DrawView drawView) {
@@ -47,8 +59,8 @@ public class Animation {
     }
 
     public void setWidthDisplay(int widthDisplay) {
-        this.widthDisplay = widthDisplay;
-        stepOnField = widthDisplay / (checkersPositions.length - 1);
+        stepOnField = widthDisplay / (checkerPositions.length - 1);
+
     }
 
     public void setIndentTop(int indentTop) {
@@ -56,18 +68,15 @@ public class Animation {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void step(int startJ, int startI, int endJ, int endI) {
-
+    public void step(int startI, int startJ, int endI, int endJ, int checker) {
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
 
         //get steps for animate checker
         int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker
-        checkersPositions[startI][startJ] = FREE_POSITION_ON_FIELD;
+        checkerPositions[startI][startJ] = FREE_POSITION_ON_FIELD;
         drawView.invalidate();
-
-        //int stepOnField = activity.startGame.getStepOnField();
 
         //add checker on start position and set visible
         imageView.layout((startJ - 2) * stepOnField,
@@ -75,7 +84,6 @@ public class Animation {
                 (startJ - 2) * stepOnField + stepOnField,
                 (startI - 1) * stepOnField + stepOnField + indentTop);
         imageView.setVisibility(View.VISIBLE);
-
 
         //create animation
         int mX = stepOnField;
@@ -100,46 +108,16 @@ public class Animation {
         objectAnimator.setDuration(600*steps.length);
         objectAnimator.start();
 
-
         //after end of animation draw checker on field and set invisible view
         objectAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(android.animation.Animator animation, boolean isReverse) {
-
-
-
-
-                checkersPositions[endI][endJ] = checker;
-                activity.drawView.invalidate();
-                activity.ivChecker.setVisibility(View.INVISIBLE);
-                activity.ivCheckerBlack.setVisibility(View.INVISIBLE);
-
-                //after player move bot can move
-                /*try {
-                    Thread.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
-
-                if(checker == WHITE_CHECKER){
-                    //bot can move
-                    bot.botMove();
-
-                    //check game is over
-                    if (game.isOver()) {
-                        //set winner and update draw field
-                        activity.drawView.invalidate();
-                        activity.startGame.setPlayerMove(false);
-                    }
-                }else {
-                    activity.startGame.setPlayerMove(true);
-                }
-
+                checkerPositions[endI][endJ] = checker;
+                drawView.invalidate();
+                startAnimation.setNumberAnimation(startAnimation.getNumberAnimation()+1);
+                startAnimation.animate();
             }
         });
-
-
-
 
     }
 }

@@ -38,22 +38,41 @@ public class DrawView extends View {
     ActivityMultiplayerGame activityMultiplayerGame;
     ActivityLevels activityLevels;
     Resources resourcesForDraw;
-    StartGame startGame;
-    int widthDisplay;
-    int sizeOfField;
-    int stepOnField;
-    int[][] checkerPositions;
-    int[][] marksPositions;
+    private StartGame startGame;
+    private int widthDisplay;
+    private int sizeOfField;
+    private int stepOnField;
+    private int[][] checkerPositions;
+    private int[][] marksPositions;
+    private int win;
 
+    public void setWin(int win) {
+        this.win = win;
+    }
+
+    public void setCheckerPositions(int[][] checkerPositions) {
+        this.checkerPositions = new int[checkerPositions.length][checkerPositions.length];
+        for (int i = 1; i < checkerPositions.length; i++) {
+            for (int j = 1; j < checkerPositions.length; j++) {
+                this.checkerPositions[i][j] = checkerPositions[i][j];
+            }
+        }
+        this.sizeOfField = checkerPositions.length;
+    }
+
+    public void setWidthDisplay(int widthDisplay) {
+        this.widthDisplay = widthDisplay;
+        this.stepOnField = widthDisplay / (checkerPositions.length - 1);
+    }
 
     public DrawView(Context context, AppCompatActivity appCompatActivity) {
         super(context);
         if (appCompatActivity instanceof ActivityClassic) {
             this.activityClassic = (ActivityClassic) appCompatActivity;
-            widthDisplay = activityClassic.widthDisplay;
+            /*widthDisplay = activityClassic.widthDisplay;
             sizeOfField = activityClassic.startGame.getSizeOfField();
             stepOnField = activityClassic.startGame.getStepOnField();
-            startGame = activityClassic.startGame;
+            startGame = activityClassic.startGame;*/
         }
 
         if (appCompatActivity instanceof ActivityMultiplayerGame) {
@@ -95,7 +114,7 @@ public class DrawView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        checkerPositions = startGame.getCheckersPositions();
+        /*checkerPositions = startGame.getCheckersPositions();*/
 
         /*sizeOfField = activity.startGame.getSizeOfField();
         //ResourcesBitmap resourcesBitmap =  new ResourcesBitmap();
@@ -225,7 +244,6 @@ public class DrawView extends View {
         }
 
         //check we have winner
-        int win = startGame.getWin();
         if (win != 0) {
             if (win == PLAYER_WIN) {
                 Bitmap playerWinBitmap = Bitmap.createScaledBitmap(

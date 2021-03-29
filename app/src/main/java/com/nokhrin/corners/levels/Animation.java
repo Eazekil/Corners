@@ -29,7 +29,7 @@ public class Animation {
 
     public Animation(ActivityLevels activity) {
         this.activity = activity;
-        stepsForAnimation = new StepsForAnimation(activity);
+        //stepsForAnimation = new StepsForAnimation(activity);
         game = new GameOver(activity);
     }
 
@@ -42,7 +42,7 @@ public class Animation {
         int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker
-        activity.startGame.getCheckersPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
+        activity.startGame.getCheckerPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
         activity.drawView.invalidate();
 
         int stepOnField = activity.startGame.getStepOnField();
@@ -88,7 +88,7 @@ public class Animation {
         objectAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(android.animation.Animator animation, boolean isReverse) {
-                activity.startGame.getCheckersPositions()[endI][endJ] = checker;
+                activity.startGame.getCheckerPositions()[endI][endJ] = checker;
                 activity.drawView.invalidate();
                 activity.ivWoodman.setVisibility(View.INVISIBLE);
 

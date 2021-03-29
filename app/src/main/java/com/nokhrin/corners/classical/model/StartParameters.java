@@ -15,10 +15,8 @@ public class StartParameters {
 
     private void updateStartParameters(){
         startGame.setPlayerMove(true);
-
-        int sizeOfField = startGame.getSizeOfField();
-        //create matrix
-        int[][] checkersPositions = new int[sizeOfField][sizeOfField];
+        int sizeOfField = 9;//set size
+        int[][] checkersPositions = new int[sizeOfField][sizeOfField];//create matrix
 
         //clear field
         for (int i = 1; i < sizeOfField; i++) {
@@ -42,7 +40,7 @@ public class StartParameters {
             }
         }
 
-        startGame.setCheckersPositions(checkersPositions);
+        startGame.setCheckerPositions(checkersPositions);
 
         //////////////////////////////////////////////////////////////////////////////
         //start white checkers position

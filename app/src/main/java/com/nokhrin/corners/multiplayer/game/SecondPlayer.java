@@ -9,8 +9,6 @@ import androidx.annotation.RequiresApi;
 import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
 import com.nokhrin.corners.multiplayer.animation.Animation;
 
-import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
-
 public class SecondPlayer {
     ActivityMultiplayerGame activity;
 
@@ -30,7 +28,7 @@ public class SecondPlayer {
         andI = Integer.parseInt(str[2]);
         andJ = Integer.parseInt(str[3]);
 
-        int sizeOfField = activity.startGame.getCheckersPositions().length;
+        int sizeOfField = activity.startGame.getCheckerPositions().length;
 
         //convert start and end positions
         startI = sizeOfField - startI;
@@ -40,7 +38,7 @@ public class SecondPlayer {
 
         //animate this move
         Animation animation = new Animation(activity);
-        animation.step(startJ, startI, andJ, andI, activity.startGame.getCheckersPositions()[startI][startJ]);
+        animation.step(startJ, startI, andJ, andI, activity.startGame.getCheckerPositions()[startI][startJ]);
 
     }
 }

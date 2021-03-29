@@ -22,7 +22,7 @@ public class GameOver {
 
     public boolean isOver() {
 
-        int sizeOfField = activity.startGame.getCheckersPositions().length;
+        int sizeOfField = activity.startGame.getCheckerPositions().length;
         int countPointWhite = 0;
         int countPointBlack = 0;
 
@@ -30,7 +30,7 @@ public class GameOver {
             //sum white checker in home
             for (int i = 1; i < 4; i++) {
                 for (int j = 5; j < sizeOfField; j++) {
-                    if (activity.startGame.getCheckersPositions()[i][j] == WHITE_CHECKER) {
+                    if (activity.startGame.getCheckerPositions()[i][j] == WHITE_CHECKER) {
                         countPointWhite++;
                     }
                 }
@@ -39,7 +39,7 @@ public class GameOver {
             //sum black checker in home
             for (int i = 6; i < sizeOfField; i++) {
                 for (int j = 1; j < 5; j++) {
-                    if (activity.startGame.getCheckersPositions()[i][j] == BLACK_CHECKER) {
+                    if (activity.startGame.getCheckerPositions()[i][j] == BLACK_CHECKER) {
                         countPointBlack++;
                     }
                 }
@@ -48,7 +48,7 @@ public class GameOver {
             //sum white checker in home
             for (int i = 1; i < 4; i++) {
                 for (int j = 5; j < sizeOfField; j++) {
-                    if (activity.startGame.getCheckersPositions()[i][j] == BLACK_CHECKER) {
+                    if (activity.startGame.getCheckerPositions()[i][j] == BLACK_CHECKER) {
                         countPointBlack++;
                     }
                 }
@@ -57,7 +57,7 @@ public class GameOver {
             //sum black checker in home
             for (int i = 6; i < sizeOfField; i++) {
                 for (int j = 1; j < 5; j++) {
-                    if (activity.startGame.getCheckersPositions()[i][j] == WHITE_CHECKER) {
+                    if (activity.startGame.getCheckerPositions()[i][j] == WHITE_CHECKER) {
                         countPointWhite++;
                     }
                 }

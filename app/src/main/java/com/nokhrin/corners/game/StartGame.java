@@ -1,11 +1,13 @@
 package com.nokhrin.corners.game;
 
 
+import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
+
 public abstract class StartGame {
     protected int sizeOfField; //size of field +1
     protected int countTargetPoint; //count of checker
-    //protected int stepOnField; // step on chess field and size of checkers
-    protected int[][] checkersPositions; //positions all checkers on field
+    protected int stepOnField; // step on chess field and size of checkers
+    protected int[][] checkerPositions; //positions all checkers on field
     protected int win;
     protected boolean playerMove;
 
@@ -16,12 +18,16 @@ public abstract class StartGame {
         return sizeOfField;
     }
 
-    public int[][] getCheckersPositions() {
-        return checkersPositions;
+    public int[][] getCheckerPositions() {
+        return checkerPositions;
     }
 
     public int getCountTargetPoint() {
         return countTargetPoint;
+    }
+
+    public int getStepOnField() {
+        return stepOnField;
     }
 
     public int getWin() {
@@ -36,12 +42,22 @@ public abstract class StartGame {
         this.playerMove = playerMove;
     }
 
-    public void setCheckersPositions(int[][] checkersPositions) {
-        for (int i = 1; i < checkersPositions.length; i++) {
-            for (int j = 1; j < checkersPositions.length; j++) {
-                this.checkersPositions[i][j] = checkersPositions[i][j];
+    public void setCheckerPositions(int[][] checkerPositions) {
+        this.checkerPositions = new int[checkerPositions.length][checkerPositions.length];
+        this.sizeOfField = checkerPositions.length;
+
+        int count = 0;
+        for (int i = 1; i < sizeOfField; i++) {
+            for (int j = 1; j < sizeOfField; j++) {
+                this.checkerPositions[i][j] = checkerPositions[i][j];
+
+                if(checkerPositions[i][j] == WHITE_CHECKER){
+                    count++;
+                }
             }
         }
+
+        this.countTargetPoint = count;
     }
 
     public void setWin(int win) {

@@ -1,35 +1,31 @@
 package com.nokhrin.corners.classical.model.bots.bot1;
 
 
-import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.game.PossibleMoves;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 
-public class BotMitya /*extends Thread*/ {
-    ActivityClassic activity;
-    int startI;
-    int startJ;
-    int endI;
-    int endJ;
-    int[][] checkersPositions;
-    EvaluationFunction evaluationFunction;
+public class BotMitya {
+    private int startI;
+    private int startJ;
+    private int endI;
+    private int endJ;
+    private int[][] checkersPositions;
+    private EvaluationFunction evaluationFunction;
 
-    public BotMitya(ActivityClassic activity) {
-        this.activity = activity;
-        evaluationFunction = new EvaluationFunction(activity);
+    public void setCheckersPositions(int[][] checkersPositions) {
+        this.checkersPositions = checkersPositions;
+        evaluationFunction = new EvaluationFunction();
+        evaluationFunction.setCheckersPositions(checkersPositions);
     }
 
     public void moveMitya() {
-        checkersPositions = activity.startGame.getCheckersPositions();
-
         int sizeOfField = checkersPositions.length;
         int targetPositionI = 8;
         int targetPositionJ = 1;
 
         //check target position and mark
         if (checkersPositions[8][1] == BLACK_CHECKER) {
-            //checkersPositions[8][1] = TARGET_POINT_FOR_BLACK_CHECKER;
             for (int i = 6; i < sizeOfField; i++) {
                 for (int j = 1; j < 5; j++) {
                     if (checkersPositions[i][j] != BLACK_CHECKER) {

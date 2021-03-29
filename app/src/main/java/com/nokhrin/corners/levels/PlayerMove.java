@@ -24,7 +24,7 @@ public class PlayerMove {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startPlayerMove(int touchI, int touchJ) {
-        checkersPositions = activity.startGame.getCheckersPositions();
+        checkersPositions = activity.startGame.getCheckerPositions();
 
         if (haveChoiceChecker()) {
             //check touch position it white checker

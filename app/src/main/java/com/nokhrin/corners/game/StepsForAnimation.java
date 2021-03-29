@@ -1,12 +1,5 @@
 package com.nokhrin.corners.game;
 
-
-import android.app.Activity;
-
-import com.nokhrin.corners.classical.view.ActivityClassic;
-import com.nokhrin.corners.levels.ActivityLevels;
-import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
-
 import java.util.ArrayList;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
@@ -20,29 +13,18 @@ import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
 import static com.nokhrin.corners.resources.Constants.STEP_TOP;
 
 public class StepsForAnimation {
-    //Activity activity;
-    int[][] checkersPositions;
-    int startI;
-    int startJ;
-    int endI;
-    int endJ;
-    int sizeOfField;
-    boolean[][] lastPlayerPositions;
-    ArrayList<Integer> steps;
+    private int[][] checkersPositions;
+    private int startI;
+    private int startJ;
+    private int endI;
+    private int endJ;
+    private int sizeOfField;
+    private boolean[][] lastPlayerPositions;
+    private ArrayList<Integer> steps;
 
-    public StepsForAnimation(Activity activity) {
-        if (activity instanceof ActivityClassic) {
-            //this.activity = (ActivityClassic) activity;
-            checkersPositions = ((ActivityClassic) activity).startGame.getCheckersPositions();
-        }
-        if (activity instanceof ActivityMultiplayerGame) {
-            //this.activity = (ActivityMultiplayerGame) activity;
-            checkersPositions = ((ActivityMultiplayerGame) activity).startGame.getCheckersPositions();
-        }
-        if (activity instanceof ActivityLevels) {
-            //this.activity = (ActivityLevels) activity;
-            checkersPositions = ((ActivityLevels) activity).startGame.getCheckersPositions();
-        }
+
+    public void setCheckersPositions(int[][] checkersPositions) {
+        this.checkersPositions = checkersPositions;
     }
 
     public void setStartParameters(int startI, int startJ, int endI, int endJ) {

@@ -9,12 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.classical.controller.OnTouchListener;
+import com.nokhrin.corners.classical.model.ResultMoves;
 import com.nokhrin.corners.classical.model.StartGameClassic;
 
 
-public class ActivityClassic extends AppCompatActivity /*implements View.OnTouchListener*/ {
+public class ActivityClassic extends AppCompatActivity {
     private StartGameClassic startGame;
     private ViewParameters viewParameters;
+    private ResultMoves resultMoves;
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -23,15 +25,23 @@ public class ActivityClassic extends AppCompatActivity /*implements View.OnTouch
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classic);
 
+        //add result for save moves
+        resultMoves = new ResultMoves();
+
         //create new game
         startGame = new StartGameClassic();
-        startGame.setActivity(this);
+        startGame.setResultMoves(resultMoves);
+        startGame.createGameObject();
+
 
         //set start parameters for View
         viewParameters = new ViewParameters();
         viewParameters.setActivity(this);
 
-        startGame.setDrawView(viewParameters.getDrawView());
+
+
+
+
 
 
 
@@ -46,5 +56,9 @@ public class ActivityClassic extends AppCompatActivity /*implements View.OnTouch
 
     public StartGameClassic getStartGame() {
         return startGame;
+    }
+
+    public ResultMoves getResultMoves() {
+        return resultMoves;
     }
 }

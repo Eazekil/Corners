@@ -29,6 +29,7 @@ public class ViewParameters {
 
         //create view for draw and add in layout
         drawView = new DrawView(activity.getApplicationContext(), (AppCompatActivity) activity);
+        activity.getResultMoves().setDrawView(drawView);
         ((ViewGroup) viewElements.getFrameLayout()).addView(drawView);
         drawView.setCheckerPositions(activity.getStartGame().getCheckerPositions());
         drawView.setWidthDisplay(displaySettings.getWidthDisplay());

@@ -13,11 +13,9 @@ import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 public class StartAnimation {
     private ResultMoves resultMoves;
     private Animation animation;
-    private StartGameClassic startGameClassic;
     private int numberAnimation;
 
-    public void setStartGameClassic(StartGameClassic startGameClassic) {
-        this.startGameClassic = startGameClassic;
+    public void setStartGameClassic() {
         animation = new Animation();
         animation.setStartAnimation(this);
         animation.setDrawView(startGameClassic.getActivity().getViewParameters().getDrawView());

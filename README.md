@@ -1,7 +1,7 @@
 # Corners
 ![w](https://github.com/Eazekil/Corners/blob/UpdateLikeMVC/app/src/main/res/drawable/screen1.png)
 
-![](https://github.com/Eazekil/Corners/blob/UpdateLikeMVC/app/src/main/res/drawable/53pf0g.gif) ![](https://github.com/Eazekil/Corners/blob/UpdateLikeMVC/app/src/main/res/drawable/53pfgv.gif)
+![](https://github.com/Eazekil/Corners/blob/UpdateLikeMVC/53pf0g.gif) ![](https://github.com/Eazekil/Corners/blob/UpdateLikeMVC/53pfgv.gif)
 
 Description
 -----------

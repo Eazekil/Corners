@@ -34,7 +34,6 @@ import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 @SuppressLint("ViewConstructor")
 public class DrawView extends View {
     Paint mPaint = new Paint();
-    ActivityClassic activityClassic;
     ActivityMultiplayerGame activityMultiplayerGame;
     ActivityLevels activityLevels;
     Resources resourcesForDraw;
@@ -68,11 +67,6 @@ public class DrawView extends View {
     public DrawView(Context context, AppCompatActivity appCompatActivity) {
         super(context);
         if (appCompatActivity instanceof ActivityClassic) {
-            this.activityClassic = (ActivityClassic) appCompatActivity;
-            /*widthDisplay = activityClassic.widthDisplay;
-            sizeOfField = activityClassic.startGame.getSizeOfField();
-            stepOnField = activityClassic.startGame.getStepOnField();
-            startGame = activityClassic.startGame;*/
         }
 
         if (appCompatActivity instanceof ActivityMultiplayerGame) {
@@ -94,20 +88,6 @@ public class DrawView extends View {
 
         resourcesForDraw = this.getResources();
     }
-
-    /*public static Bitmap drawableToBitmap (Drawable drawable) {
-
-        if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable)drawable).getBitmap();
-        }
-
-        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-
-        return bitmap;
-    }*/
 
     @Override
     @SuppressLint({"DrawAllocation", "UseCompatLoadingForDrawables"})

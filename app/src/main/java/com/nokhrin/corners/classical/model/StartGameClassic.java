@@ -25,6 +25,7 @@ public class StartGameClassic extends StartGame {
         startParameters.setStartGame(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void createGameObject() {
         positions = new Positions();
         positions.setCheckersPositions(checkerPositions);
@@ -39,13 +40,15 @@ public class StartGameClassic extends StartGame {
 
         bot = new Bots();
         bot.setPositions(positions);
+        bot.setCheckerPositions(checkerPositions);
 
         game = new GameOver();
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void botMove(){
-        bot.setCheckerPositions(checkerPositions);
+        bot.botMove();
 
         //check game is over
         game.setCheckerPositions(checkerPositions);

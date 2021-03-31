@@ -16,7 +16,7 @@ public class BotMitya {
     public void setCheckersPositions(int[][] checkersPositions) {
         this.checkersPositions = checkersPositions;
         evaluationFunction = new EvaluationFunction();
-        evaluationFunction.setCheckersPositions(checkersPositions);
+        evaluationFunction.setCheckerPositions(checkersPositions);
     }
 
     public void moveMitya() {

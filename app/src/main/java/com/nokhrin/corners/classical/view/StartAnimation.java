@@ -14,14 +14,15 @@ public class StartAnimation {
     private ResultMoves resultMoves;
     private Animation animation;
     private int numberAnimation;
+    private ActivityClassic activityClassic;
 
-    public void setStartGameClassic() {
+    public void setStartParameters() {
         animation = new Animation();
         animation.setStartAnimation(this);
-        animation.setDrawView(startGameClassic.getActivity().getViewParameters().getDrawView());
-        animation.setIndentTop(startGameClassic.getActivity().getViewParameters().getDisplaySettings().getIndentTop());
-        animation.setCheckerPositions(startGameClassic.getCheckerPositions());
-        animation.setWidthDisplay(startGameClassic.getActivity().getViewParameters().getDisplaySettings().getWidthDisplay());
+        animation.setDrawView(activityClassic.getViewParameters().getDrawView());
+        animation.setIndentTop(activityClassic.getViewParameters().getDisplaySettings().getIndentTop());
+        animation.setCheckerPositions(activityClassic.getResultMoves().getCheckerPositions());
+        animation.setWidthDisplay(activityClassic.getViewParameters().getDisplaySettings().getWidthDisplay());
 
     }
 
@@ -35,20 +36,24 @@ public class StartAnimation {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void animate(){
         if(numberAnimation == 1){
-            animation.setImageView(startGameClassic.getActivity().getViewParameters().getViewElements().getIvChecker());
+            animation.setImageView(activityClassic.getViewParameters().getViewElements().getIvChecker());
             animation.step(resultMoves.getPlayerMoves()[0], resultMoves.getPlayerMoves()[1], resultMoves.getPlayerMoves()[2], resultMoves.getPlayerMoves()[3], WHITE_CHECKER);
         }else if(numberAnimation == 2){
-            animation.setImageView(startGameClassic.getActivity().getViewParameters().getViewElements().getIvCheckerBlack());
+            animation.setImageView(activityClassic.getViewParameters().getViewElements().getIvCheckerBlack());
             animation.step(resultMoves.getBotMoves()[0], resultMoves.getBotMoves()[1], resultMoves.getBotMoves()[2], resultMoves.getBotMoves()[3], BLACK_CHECKER);
         }else if(numberAnimation == 3){
             if(resultMoves.getGame() == 0){
                 //продолжить игру, разрешить игроку ходить
-                startGameClassic.setPlayerMove(true);
+                activityClassic.getStartGame().setPlayerMove(true);
             }else {
-                startGameClassic.getActivity().getViewParameters().getDrawView().setWin(resultMoves.getGame());
+                activityClassic.getViewParameters().getDrawView().setWin(resultMoves.getGame());
             }
         }
 
+    }
+
+    public void setActivityClassic(ActivityClassic activityClassic) {
+        this.activityClassic = activityClassic;
     }
 
     public void setNumberAnimation(int numberAnimation) {

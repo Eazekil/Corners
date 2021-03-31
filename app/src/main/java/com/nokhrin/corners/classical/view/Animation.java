@@ -32,41 +32,6 @@ public class Animation {
     private int indentTop;
     private StartAnimation startAnimation;
 
-    public void setStartAnimation(StartAnimation startAnimation) {
-        this.startAnimation = startAnimation;
-    }
-
-    public void setCheckerPositions(int[][] checkerPositions) {
-        this.checkerPositions = new int[checkerPositions.length][checkerPositions.length];
-        for (int i = 1; i < checkerPositions.length; i++) {
-            for (int j = 1; j < checkerPositions.length; j++) {
-                this.checkerPositions[i][j] = checkerPositions[i][j];
-            }
-        }
-
-        //update checker positions in other object
-        drawView.setCheckerPositions(checkerPositions);
-        stepsForAnimation = new StepsForAnimation();
-        stepsForAnimation.setCheckersPositions(checkerPositions);
-    }
-
-    public void setDrawView(DrawView drawView) {
-        this.drawView = drawView;
-    }
-
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
-    }
-
-    public void setWidthDisplay(int widthDisplay) {
-        stepOnField = widthDisplay / (checkerPositions.length - 1);
-
-    }
-
-    public void setIndentTop(int indentTop) {
-        this.indentTop = indentTop;
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startI, int startJ, int endI, int endJ, int checker) {
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
@@ -76,6 +41,7 @@ public class Animation {
 
         //draw field without move checker
         checkerPositions[startI][startJ] = FREE_POSITION_ON_FIELD;
+        drawView.setCheckerPositions(checkerPositions);
         drawView.invalidate();
 
         //add checker on start position and set visible
@@ -113,11 +79,43 @@ public class Animation {
             @Override
             public void onAnimationEnd(android.animation.Animator animation, boolean isReverse) {
                 checkerPositions[endI][endJ] = checker;
+                imageView.setVisibility(View.INVISIBLE);
+                drawView.setCheckerPositions(checkerPositions);
                 drawView.invalidate();
                 startAnimation.setNumberAnimation(startAnimation.getNumberAnimation()+1);
                 startAnimation.animate();
             }
         });
 
+    }
+
+    public void setStartAnimation(StartAnimation startAnimation) {
+        this.startAnimation = startAnimation;
+    }
+
+    public void setCheckerPositions(int[][] checkerPositions) {
+        this.checkerPositions = checkerPositions;
+
+        //update checker positions in other object
+        drawView.setCheckerPositions(checkerPositions);
+        stepsForAnimation = new StepsForAnimation();
+        stepsForAnimation.setCheckersPositions(checkerPositions);
+    }
+
+    public void setDrawView(DrawView drawView) {
+        this.drawView = drawView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    public void setWidthDisplay(int widthDisplay) {
+        stepOnField = widthDisplay / (checkerPositions.length - 1);
+
+    }
+
+    public void setIndentTop(int indentTop) {
+        this.indentTop = indentTop;
     }
 }

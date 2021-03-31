@@ -1,5 +1,10 @@
 package com.nokhrin.corners.classical.model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.classical.view.StartAnimation;
 import com.nokhrin.corners.draw.DrawView;
 
@@ -8,25 +13,30 @@ public class ResultMoves {
     private int[] playerMoves;
     private int game;
     private DrawView drawView;
-    private int[][] checkersPositions;
+    private int[][] checkerPositions;
     private StartAnimation startAnimation;
+    private ActivityClassic activityClassic;
 
     public void updateView() {
+        drawView.setCheckerPositions(checkerPositions);
         drawView.invalidate();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void endMove(){
         startAnimation = new StartAnimation();
-
-
+        startAnimation.setActivityClassic(activityClassic);
+        startAnimation.setStartParameters();
+        startAnimation.setResultMoves(this);
     }
 
-
-
-
-
-    public void setCheckersPositions(int[][] checkersPositions) {
-        this.checkersPositions = checkersPositions;
+    public void setCheckerPositions(int[][] checkerPositions) {
+        this.checkerPositions = new int[checkerPositions.length][checkerPositions.length];
+        for (int i = 1; i < checkerPositions.length; i++) {
+            for (int j = 1; j < checkerPositions.length; j++) {
+                this.checkerPositions[i][j] = checkerPositions[i][j];
+            }
+        }
     }
 
     public void setBotMoves(int[] botMoves) {
@@ -45,6 +55,10 @@ public class ResultMoves {
         this.playerMoves[3] = endJ;
     }
 
+    public void setActivityClassic(ActivityClassic activityClassic) {
+        this.activityClassic = activityClassic;
+    }
+
     public int[] getBotMoves() {
         return botMoves;
     }
@@ -59,5 +73,9 @@ public class ResultMoves {
 
     public void setGame(int game) {
         this.game = game;
+    }
+
+    public int[][] getCheckerPositions() {
+        return checkerPositions;
     }
 }

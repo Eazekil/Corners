@@ -20,14 +20,14 @@ public class Positions {
         checkersPositions[endI][endJ] = MARK_ON_WHITE_CHECKER;
         checkersPositions[startI][startJ] = WHITE_CHECKER;
 
-        resultMoves.setCheckersPositions(checkersPositions);
+        resultMoves.setCheckerPositions(checkersPositions);
         resultMoves.updateView();
     }
 
     public void setMark(int i, int j){
         checkersPositions[i][j] = MARK_ON_WHITE_CHECKER;
 
-        resultMoves.setCheckersPositions(checkersPositions);
+        resultMoves.setCheckerPositions(checkersPositions);
         resultMoves.updateView();
     }
 

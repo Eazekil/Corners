@@ -6,33 +6,39 @@ import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 public class EvaluationFunction {
     private int minOfFunction;
     private int sizeOfField;
-    private int[][] checkersPositions;
+    private int[][] checkerPositions;
     private int targetPositionI;
     private int targetPositionJ;
     private int[] result;
 
-    public void setCheckersPositions(int[][] checkersPositions) {
-        this.checkersPositions = checkersPositions;
+    public void setCheckerPositions(int[][] checkerPositions) {
+        this.checkerPositions = new int[checkerPositions.length][checkerPositions.length];
+        for (int i = 1; i < checkerPositions.length; i++) {
+            for (int j = 1; j < checkerPositions.length; j++) {
+                this.checkerPositions[i][j] = checkerPositions[i][j];
+            }
+        }
+        /*this.checkersPositions = checkersPositions;*/
     }
 
     public void setStartParameters(int targetPositionI, int targetPositionJ){
         this.targetPositionI = targetPositionI;
         this.targetPositionJ = targetPositionJ;
-        sizeOfField = checkersPositions.length;
+        sizeOfField = checkerPositions.length;
         minOfFunction = 999;
         result = new int[5];
     }
 
     public void calculate(int startI, int startJ, int endI, int endJ) {
         //update position
-        checkersPositions[startI][startJ] = FREE_POSITION_ON_FIELD;
-        checkersPositions[endI][endJ] = BLACK_CHECKER;
+        checkerPositions[startI][startJ] = FREE_POSITION_ON_FIELD;
+        checkerPositions[endI][endJ] = BLACK_CHECKER;
 
         //find all black checkers
         int resultOfFunction = 0;
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
-                if (checkersPositions[i][j] == BLACK_CHECKER) {
+                if (checkerPositions[i][j] == BLACK_CHECKER) {
                     //sum of length to target position
                     resultOfFunction = resultOfFunction + Math.abs(targetPositionI - i) + Math.abs(targetPositionJ - j);
                 }
@@ -51,8 +57,8 @@ public class EvaluationFunction {
         }
 
         //return checker in old position
-        checkersPositions[startI][startJ] = BLACK_CHECKER;
-        checkersPositions[endI][endJ] = FREE_POSITION_ON_FIELD;
+        checkerPositions[startI][startJ] = BLACK_CHECKER;
+        checkerPositions[endI][endJ] = FREE_POSITION_ON_FIELD;
     }
 
     public int[] getResult() {

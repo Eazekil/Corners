@@ -5,7 +5,6 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.classical.model.Positions;
-import com.nokhrin.corners.classical.model.ResultMoves;
 import com.nokhrin.corners.classical.model.bots.bot1.BotMitya;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
@@ -18,28 +17,22 @@ public class Bots {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setCheckerPositions(int[][] checkerPositions) {
-        this.checkerPositions = new int[checkerPositions.length][checkerPositions.length];
-        for (int i = 1; i < checkerPositions.length; i++) {
-            for (int j = 1; j < checkerPositions.length; j++) {
-                this.checkerPositions[i][j] = checkerPositions[i][j];
-            }
-        }
-
+        this.checkerPositions = checkerPositions;
         botMitya = new BotMitya();
-        botMove();
+        botMitya.setCheckersPositions(checkerPositions);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void botMove(){
+    public void botMove(){
         //bot start move
-        botMitya.setCheckersPositions(checkerPositions);
+
         botMitya.moveMitya();
 
         int[] botMove = new int[4];
         botMove[0] = botMitya.getStartI();
         botMove[1] = botMitya.getStartJ();
-        botMove[1] = botMitya.getEndI();
-        botMove[1] = botMitya.getEndJ();
+        botMove[2] = botMitya.getEndI();
+        botMove[3] = botMitya.getEndJ();
 
         positions.moveChecker(botMove[0], botMove[1], botMove[2], botMove[3], BLACK_CHECKER);
         positions.getResultMoves().setBotMoves(botMove);

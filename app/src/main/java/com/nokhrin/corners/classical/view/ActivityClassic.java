@@ -27,6 +27,7 @@ public class ActivityClassic extends AppCompatActivity {
 
         //add result for save moves
         resultMoves = new ResultMoves();
+        resultMoves.setActivityClassic(this);
 
         //create new game
         startGame = new StartGameClassic();
@@ -37,13 +38,6 @@ public class ActivityClassic extends AppCompatActivity {
         //set start parameters for View
         viewParameters = new ViewParameters();
         viewParameters.setActivity(this);
-
-
-
-
-
-
-
 
         //add touchListener and buttons for this view
         OnTouchListener onTouchListener = new OnTouchListener();

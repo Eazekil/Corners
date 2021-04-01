@@ -23,7 +23,7 @@ public class Moving {
     }
 
     private void convertCoordinate(){
-        int stepOnField = widthDisplay / (sizeOfField - 1);
+        int stepOnField = (int) ((widthDisplay - 10*2.75) / (sizeOfField - 1));
         touchI = touchY / stepOnField + 1;
         touchJ = touchX / stepOnField + 1;
 

@@ -14,11 +14,16 @@ public class DisplaySettings {
     private int widthDisplay;
     private int heightDisplay;
     private int indentTop;
-    private FrameLayout flIntent;
+    private FrameLayout flIndent;
+    private FrameLayout flClassic;
 
-    public void setFlIntent(FrameLayout flIntent) {
-        this.flIntent = flIntent;
+    public void setFlIndent(FrameLayout flIndent) {
+        this.flIndent = flIndent;
         setIndentLayout();
+    }
+
+    public void setFlClassic(FrameLayout flClassic) {
+        this.flClassic = flClassic;
     }
 
     public void setLayout(View layout) {
@@ -46,14 +51,14 @@ public class DisplaySettings {
         widthDisplay = size.x;
         heightDisplay = size.y;
         indentTop = (heightDisplay - widthDisplay) / 2;
-
     }
 
     private void setIndentLayout(){
-        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+        ConstraintLayout.LayoutParams paramsTop = new ConstraintLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.height = indentTop;
-        flIntent.setLayoutParams(params);
+        paramsTop.height = indentTop;
+        flIndent.setLayoutParams(paramsTop);
+
     }
 
     public int getWidthDisplay() {

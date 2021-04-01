@@ -44,6 +44,7 @@ public class DrawView extends View {
     private int[][] checkerPositions;
     private int[][] marksPositions;
     private int win;
+    private int indentFrame;
 
     public void setWin(int win) {
         this.win = win;
@@ -61,7 +62,9 @@ public class DrawView extends View {
 
     public void setWidthDisplay(int widthDisplay) {
         this.widthDisplay = widthDisplay;
-        this.stepOnField = widthDisplay / (checkerPositions.length - 1);
+        this.indentFrame = widthDisplay * 30 / 1080;
+        this.stepOnField = (int) ((widthDisplay - indentFrame * 2) / (checkerPositions.length - 1));
+
     }
 
     public DrawView(Context context, AppCompatActivity appCompatActivity) {
@@ -136,11 +139,11 @@ public class DrawView extends View {
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
                 //target point
-                if(marksPositions != null){
+                if (marksPositions != null) {
                     if (marksPositions[i][j] == TARGET_POINT_FOR_WHITE_CHECKER) {
                         Bitmap targetPointBitmap = Bitmap.createScaledBitmap(
                                 BitmapFactory.decodeResource(resourcesForDraw, R.drawable.target_point), stepOnField, stepOnField, true);
-                        canvas.drawBitmap(targetPointBitmap, (j - 1) * stepOnField , (i - 1) * stepOnField , mPaint);
+                        canvas.drawBitmap(targetPointBitmap, (j - 1) * stepOnField + indentFrame, (i - 1) * stepOnField + indentFrame, mPaint);
                         targetPointBitmap.recycle();
                     }
                 }
@@ -150,7 +153,7 @@ public class DrawView extends View {
                 if (checkerPositions[i][j] == WHITE_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_white), stepOnField, stepOnField, true);
-                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField + indentFrame, (i - 1) * stepOnField + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
 
@@ -158,7 +161,7 @@ public class DrawView extends View {
                 if (checkerPositions[i][j] == BLACK_CHECKER) {
                     Bitmap blackCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_black), stepOnField, stepOnField, true);
-                    canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField + indentFrame, (i - 1) * stepOnField + indentFrame, mPaint);
                     blackCheckerBitmap.recycle();
                 }
 
@@ -168,8 +171,8 @@ public class DrawView extends View {
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_white), stepOnField, stepOnField, true);
                     Bitmap checkMarkBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.check_mark), stepOnField, stepOnField, true);
-                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
-                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField + indentFrame, (i - 1) * stepOnField + indentFrame, mPaint);
+                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * stepOnField + indentFrame, (i - 1) * stepOnField + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                     checkMarkBitmap.recycle();
                 }
@@ -180,8 +183,8 @@ public class DrawView extends View {
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_black), stepOnField, stepOnField, true);
                     Bitmap checkMarkBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.check_mark), stepOnField, stepOnField, true);
-                    canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
-                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
+                    canvas.drawBitmap(blackCheckerBitmap, (j - 1) * stepOnField + indentFrame, (i - 1) * stepOnField + indentFrame, mPaint);
+                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * stepOnField + indentFrame, (i - 1) * stepOnField + indentFrame, mPaint);
                     blackCheckerBitmap.recycle();
                     checkMarkBitmap.recycle();
                 }
@@ -209,8 +212,6 @@ public class DrawView extends View {
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * stepOnField, (i - 1) * stepOnField, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
-
-
 
 
                 //target point

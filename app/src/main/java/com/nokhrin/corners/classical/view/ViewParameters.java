@@ -38,7 +38,9 @@ public class ViewParameters {
     private void setParameters() {
         displaySettings.setLayout(viewElements.getConstrainLayout());
         displaySettings.setDisplay(activity.getWindowManager().getDefaultDisplay());
-        displaySettings.setFlIntent((FrameLayout) viewElements.getFrameLayoutIndent());
+        displaySettings.setFlClassic((FrameLayout) viewElements.getFrameLayout());
+        displaySettings.setFlIndent((FrameLayout) viewElements.getFrameLayoutIndent());
+
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

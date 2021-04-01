@@ -3,9 +3,12 @@ package com.nokhrin.corners.classical.view;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.classical.controller.OnTouchListener;
@@ -42,6 +45,8 @@ public class ActivityClassic extends AppCompatActivity {
         //add touchListener and buttons for this view
         OnTouchListener onTouchListener = new OnTouchListener();
         onTouchListener.setActivity(this);
+
+
     }
 
     public ViewParameters getViewParameters() {

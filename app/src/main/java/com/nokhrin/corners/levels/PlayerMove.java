@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.game.PossibleMoves;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 
 import static com.nokhrin.corners.resources.Constants.SELECT_WOODMAN_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
@@ -34,6 +35,7 @@ public class PlayerMove {
                 checkersPositions[choiceI][choiceJ] = WOODMAN_CHECKER;
 
                 //update draw field
+                activity.drawView.setCheckerPositions(checkersPositions);
                 activity.drawView.invalidate();
 
             } else {
@@ -64,6 +66,7 @@ public class PlayerMove {
                 checkersPositions[touchI][touchJ] = SELECT_WOODMAN_CHECKER;
 
                 //update draw field
+                activity.drawView.setCheckerPositions(checkersPositions);
                 activity.drawView.invalidate();
             }
         }

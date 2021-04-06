@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 
 
 import com.nokhrin.corners.game.StepsForAnimation;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.JUMP_BOTTOM;
@@ -29,13 +30,14 @@ public class Animation {
 
     public Animation(ActivityLevels activity) {
         this.activity = activity;
-        //stepsForAnimation = new StepsForAnimation(activity);
+        stepsForAnimation = new StepsForAnimation();
         game = new GameOver(activity);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startJ, int startI, int endJ, int endI, int checker) {
-
+        stepsForAnimation.setCheckersPositions(activity.startGame.getCheckerPositions());
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
 
         //get steps for animate checker
@@ -43,6 +45,7 @@ public class Animation {
 
         //draw field without move checker
         activity.startGame.getCheckerPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
+        activity.drawView.setCheckerPositions(activity.startGame.getCheckerPositions());
         activity.drawView.invalidate();
 
         int stepOnField = activity.startGame.getStepOnField();
@@ -95,7 +98,9 @@ public class Animation {
                 //check game is over
                 if (game.isOver()) {
                     //set winner and update draw field
+                    activity.drawView.setCheckerPositions(activity.startGame.getCheckerPositions());
                     activity.drawView.invalidate();
+
                     activity.startGame.setPlayerMove(false);
                 } else {
                     activity.startGame.setPlayerMove(true);

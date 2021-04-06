@@ -22,8 +22,8 @@ public class Moving {
         this.widthDisplay = widthDisplay;
     }
 
-    private void convertCoordinate(){
-        int stepOnField = (int) ((widthDisplay - 10*2.75) / (sizeOfField - 1));
+    private void convertCoordinate() {
+        int stepOnField = widthDisplay / (sizeOfField - 1);
         touchI = touchY / stepOnField + 1;
         touchJ = touchX / stepOnField + 1;
 

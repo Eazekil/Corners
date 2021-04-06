@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.levels.ActivityLevels;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 
 
 public class StartGame extends com.nokhrin.corners.game.StartGame{

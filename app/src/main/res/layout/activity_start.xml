@@ -66,6 +66,24 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonMultiPlayer" />
 
     <Button
+        android:id="@+id/buttonCreateLevel"
+        android:layout_width="218dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/button_wood_2"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/button_create_level"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStartClassic" />
+
+    <Button
         android:id="@+id/buttonShop"
         android:layout_width="218dp"
         android:layout_height="53dp"

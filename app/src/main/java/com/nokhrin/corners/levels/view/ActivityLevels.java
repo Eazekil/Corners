@@ -1,8 +1,10 @@
-package com.nokhrin.corners.levels;
+package com.nokhrin.corners.levels.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,17 +12,24 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
+import com.nokhrin.corners.levels.PlayerMove;
+import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.level1.Level1;
 import com.nokhrin.corners.levels.level10.Level10;
 import com.nokhrin.corners.levels.level11.Level11;
@@ -41,7 +50,7 @@ import java.util.ArrayList;
 
 import static com.nokhrin.corners.resources.Constants.START_LEVELS;
 
-public class ActivityLevels extends AppCompatActivity implements View.OnTouchListener{
+public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchListener*/ {
     public TextView countMoveView;
     public DrawView drawView; //view for game field
     public int widthDisplay;
@@ -54,13 +63,23 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
     ArrayList<View> elementSetVisibleList = new ArrayList<>();
     public ArrayList<Button> buttonSetInvisibleList = new ArrayList<>();
     public SharedPreferences preferences;
+    private LevelsDb levelsDb;
+    private SQLiteDatabase database;
+    private Cursor cursor;
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        database.close();
+        cursor.close();
+    }
 
     @SuppressLint({"UseCompatLoadingForDrawables", "ClickableViewAccessibility"})
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //this all for make full screen
         setContentView(R.layout.activity_levels);
         View levelsLayout = findViewById(R.id.ConstrainLayoutLevels);
@@ -73,14 +92,43 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
 
 
         //find all element and save in variables
-        Button buttonMenu = findViewById(R.id.buttonMenu);
+        /*Button buttonMenu = findViewById(R.id.buttonMenu);
         Button buttonReturnLevels = findViewById(R.id.buttonReturnLevel);
         Button buttonRestartLevel = findViewById(R.id.buttonRestartLevel);
         frameLayoutLevels = findViewById(R.id.frameLayoutLevel);
         countMoveView = findViewById(R.id.textViewCountMove);
-        ivWoodman = findViewById(R.id.imageViewCheckerWoodman);
+        ivWoodman = findViewById(R.id.imageViewCheckerWoodman);*/
 
-        
+        ArrayList<ButtonLevel> buttonLevels = new ArrayList<ButtonLevel>();
+        ListView productList = (ListView) findViewById(R.id.buttonList);
+        /*productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("__________________________________");
+               *//* System.out.println(position + finalAdapter.getNumber());
+                String s = "___________"+position + finalAdapter.getNumber();*//*
+                Toast.makeText(ActivityLevels.this, "sfddsfsd", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+        if (buttonLevels.size() == 0) {
+
+        }
+        buttonLevels.add(new ButtonLevel(1, 2));
+        buttonLevels.add(new ButtonLevel(4, 2));
+        buttonLevels.add(new ButtonLevel(7, 2));
+        buttonLevels.add(new ButtonLevel(10, 2));
+        buttonLevels.add(new ButtonLevel(13, 2));
+        buttonLevels.add(new ButtonLevel(16, 2));
+        buttonLevels.add(new ButtonLevel(19, 2));
+        buttonLevels.add(new ButtonLevel(22, 2));
+        buttonLevels.add(new ButtonLevel(25, 2));
+        buttonLevels.add(new ButtonLevel(28, 2));
+        buttonLevels.add(new ButtonLevel(31, 2));
+        buttonLevels.add(new ButtonLevel(34, 2));
+        ButtonsAdapter adapter = new ButtonsAdapter(this, R.layout.list_buttons, buttonLevels);
+        productList.setAdapter(adapter);
+
+
 
         //discover size of the display
         Display display = getWindowManager().getDefaultDisplay();
@@ -91,25 +139,52 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         indentTop = (heightDisplay - widthDisplay) / 2;
 
         //set indent of top
-        FrameLayout flIntent = findViewById(R.id.frameLayoutIndentLevels);
+        /*FrameLayout flIntent = findViewById(R.id.frameLayoutIndentLevels);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.height = indentTop;
-        flIntent.setLayoutParams(params);
+        flIntent.setLayoutParams(params);*/
 
         //add start parameters for game field
         startGame = new StartGame(this);
         //set on touch listener
-        frameLayoutLevels.setOnTouchListener(this);
+        //frameLayoutLevels.setOnTouchListener(this);
 
 
 
 
 
+
+
+       /* levelsDb = new LevelsDb(this);
+        levelsDb.createDB();
+        // открываем подключение
+        database = levelsDb.open();
+        //получаем данные из бд в виде курсора
+        //cursor = database.rawQuery("select * from " + LevelsDb.TABLE_LEVELS, null);
+        cursor = database.query(LevelsDb.TABLE_LEVELS,null,null,null,null,null,null);
+        // определяем, какие столбцы из курсора будут выводиться в ListView
+        String[] headers = new String[]{LevelsDb.COLUMN_SIZE_FIELD, LevelsDb.COLUMN_COUNT_MOVE, LevelsDb.COLUMN_COUNT_POINT};
+        // создаем адаптер, передаем в него курсор
+        *//*SimpleCursorAdapter userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
+                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
+        userList.setAdapter(userAdapter);*//*
+        System.out.println("***********************");
+        System.out.println(headers[0]);
+        System.out.println(headers[1]);
+        System.out.println(headers[2]);*/
+
+
+
+
+        /*SQLiteDatabase database = levelsDb.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LevelsDb.KEY_FIELD, 4);
+        database.insert(LevelsDb.TABLE_LEVELS, null, contentValues);*/
 
 
         //add levels
-        Button buttonLevel1 = findViewById(R.id.buttonLevel1);
+        /*Button buttonLevel1 = findViewById(R.id.buttonLevel1);
         Button buttonLevel2 = findViewById(R.id.buttonLevel2);
         Button buttonLevel3 = findViewById(R.id.buttonLevel3);
         Button buttonLevel4 = findViewById(R.id.buttonLevel4);
@@ -150,16 +225,14 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         PlayerProgress playerProgress = new PlayerProgress(this);
 
         //check preferences for levels game already exist
-        if(preferences.getBoolean(START_LEVELS, false)){
+        if (preferences.getBoolean(START_LEVELS, false)) {
             //start update background for buttons
             playerProgress.checkLevels();
-        }else{
+        } else {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean(START_LEVELS, true);
             editor.apply();
         }
-
-
 
 
         //button return to Menu
@@ -215,15 +288,18 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
                 Level12 level = new Level12();
                 level.startLevel(this);
             }
+            drawView.setCheckerPositions(startGame.getCheckerPositions());
             drawView.invalidate();
         });
 
         //level 1
         buttonLevel1.setOnClickListener(v -> {
-            numberLevel =1;
+            numberLevel = 1;
             Level1 level = new Level1();
             level.startLevel(this);
             drawView = new DrawView(getApplicationContext(), this);
+            drawView.setCheckerPositions(startGame.getCheckerPositions());
+            drawView.setWidthDisplay(widthDisplay);
             frameLayoutLevels.addView(drawView);
             playerMove = new PlayerMove(this);
             visible();
@@ -338,12 +414,12 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
             playerMove = new PlayerMove(this);
             visible();
         });
-
+*/
 
     }
 
     //set visible and invisible element on view
-    private void visible(){
+    private void visible() {
         for (View view : elementSetVisibleList) {
             view.setVisibility(View.VISIBLE);
         }
@@ -352,7 +428,7 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+   /* @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -367,12 +443,14 @@ public class ActivityLevels extends AppCompatActivity implements View.OnTouchLis
         System.out.println("_______________________ " + touchI + "," + touchJ);
 
         //check game is over
-        if(startGame.getWin() == 0 && startGame.isPlayerMove()){
+        if (startGame.getWin() == 0 && startGame.isPlayerMove()) {
             //start move on the field
             playerMove.startPlayerMove(touchI, touchJ);
         }
 
         return false;
-    }
+    }*/
+
+
 
 }

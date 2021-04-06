@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.view.View;
 
 
+import com.nokhrin.corners.levels.view.ActivityLevels;
+
 import static com.nokhrin.corners.resources.Constants.BOT_WIN;
 import static com.nokhrin.corners.resources.Constants.LEVEL_PROGRESS;
 import static com.nokhrin.corners.resources.Constants.NONE_STAR;
@@ -46,6 +48,7 @@ public class GameOver {
 
         if (countPointWhite == activity.startGame.getCountPointInLevel()) {
             activity.startGame.setWin(PLAYER_WIN);
+            activity.drawView.setWin(PLAYER_WIN);
             int countStar;
             if(activity.startGame.getCountToMove() >0){
                 editor.putInt(key, THREE_STAR);
@@ -60,6 +63,7 @@ public class GameOver {
             result = true;
         } else if (activity.startGame.getCountToMove() == 0) {
             activity.startGame.setWin(BOT_WIN);
+            activity.drawView.setWin(BOT_WIN);
             s = "Увы и ах, ходы кончились";
             activity.countMoveView.setVisibility(View.VISIBLE);
             activity.countMoveView.setText(s);

@@ -1,7 +1,7 @@
 package com.nokhrin.corners.levels.level11;
 
 
-import com.nokhrin.corners.levels.ActivityLevels;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.STONE_CHECKER;

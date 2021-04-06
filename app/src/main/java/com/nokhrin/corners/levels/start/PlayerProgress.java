@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.widget.Button;
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.levels.ActivityLevels;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 
 import java.util.ArrayList;
 

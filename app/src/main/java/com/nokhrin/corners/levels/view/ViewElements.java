@@ -20,12 +20,12 @@ public class ViewElements {
     }
 
     private void findView() {
-        /*frameLayoutLevels = activity.findViewById(R.id.frameLayoutLevel);
+        frameLayoutLevels = activity.findViewById(R.id.frameLayoutLevel);
         countMoveView = activity.findViewById(R.id.textViewCountMove);
         ivWoodman = activity.findViewById(R.id.imageViewCheckerWoodman);
         buttonMenu = activity.findViewById(R.id.buttonMenu);
         buttonReturnLevels = activity.findViewById(R.id.buttonReturnLevel);
-        buttonRestartLevel = activity.findViewById(R.id.buttonRestartLevel);*/
+        buttonRestartLevel = activity.findViewById(R.id.buttonRestartLevel);
     }
 
     public TextView getCountMoveView() {

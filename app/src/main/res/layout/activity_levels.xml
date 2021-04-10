@@ -10,7 +10,7 @@
     tools:context=".levels.view.ActivityLevels">
 
 
-    <!--<FrameLayout
+    <FrameLayout
         android:id="@+id/frameLayoutIndentLevels"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
@@ -34,7 +34,7 @@
     </FrameLayout>
 
 
-    <Button
+    <!--<Button
         android:id="@+id/buttonLevel3"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -323,6 +323,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.917" />
 
+
+
+    <Button
+        android:id="@+id/buttonLevel1"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/button_wood_2"
+        android:fontFamily="@font/aclonica"
+        android:freezesText="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_number_level1"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="45sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />-->
     <Button
         android:id="@+id/buttonReturnLevel"
         android:layout_width="141dp"
@@ -367,30 +392,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.917" />
 
-    <Button
-        android:id="@+id/buttonLevel1"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level1"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
-
 
     <TextView
         android:id="@+id/textViewCountMove"
@@ -422,7 +423,7 @@
             android:contentDescription="@string/todo1"
             android:visibility="invisible"
             app:srcCompat="@drawable/woodman" />
-    </FrameLayout>-->
+    </FrameLayout>
 
     <ListView
         android:id="@+id/buttonList"

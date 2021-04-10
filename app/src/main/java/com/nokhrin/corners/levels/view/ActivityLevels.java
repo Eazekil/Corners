@@ -1,7 +1,6 @@
 package com.nokhrin.corners.levels.view;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,46 +8,24 @@ import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.levels.PlayerMove;
+import com.nokhrin.corners.levels.controller.ButtonsAdapter;
 import com.nokhrin.corners.levels.database.LevelsDb;
-import com.nokhrin.corners.levels.level1.Level1;
-import com.nokhrin.corners.levels.level10.Level10;
-import com.nokhrin.corners.levels.level11.Level11;
-import com.nokhrin.corners.levels.level12.Level12;
-import com.nokhrin.corners.levels.level2.Level2;
-import com.nokhrin.corners.levels.level3.Level3;
-import com.nokhrin.corners.levels.level4.Level4;
-import com.nokhrin.corners.levels.level5.Level5;
-import com.nokhrin.corners.levels.level6.Level6;
-import com.nokhrin.corners.levels.level7.Level7;
-import com.nokhrin.corners.levels.level8.Level8;
-import com.nokhrin.corners.levels.level9.Level9;
 import com.nokhrin.corners.draw.DrawView;
-import com.nokhrin.corners.levels.start.PlayerProgress;
 import com.nokhrin.corners.levels.start.StartGame;
 
 import java.util.ArrayList;
-
-import static com.nokhrin.corners.resources.Constants.START_LEVELS;
 
 public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchListener*/ {
     public TextView countMoveView;

@@ -1,4 +1,4 @@
-package com.nokhrin.corners.levels.view;
+package com.nokhrin.corners.levels.controller;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,16 +11,17 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.nokhrin.corners.R;
+import com.nokhrin.corners.levels.view.ButtonLevel;
 
 import java.util.ArrayList;
 
-class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
+public class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
     private LayoutInflater inflater;
     private int layout;
     private ArrayList<ButtonLevel> buttonsList;
     private int number;
 
-    ButtonsAdapter(Context context, int resource, ArrayList<ButtonLevel> products) {
+    public ButtonsAdapter(Context context, int resource, ArrayList<ButtonLevel> products) {
         super(context, resource, products);
         this.buttonsList = products;
         this.layout = resource;

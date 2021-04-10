@@ -46,16 +46,6 @@ public class ReadDb {
             sizeField = cursor.getInt(cursor.getColumnIndex("size_field"));
             countMove= cursor.getInt(cursor.getColumnIndex("count_move"));
             countPoint = cursor.getInt(cursor.getColumnIndex("count_point"));
-
-            do {
-                System.out.println("__________________________________");
-                System.out.println(level);
-                System.out.println(sizeField);
-                System.out.println(countMove);
-                System.out.println(countPoint);
-                System.out.println("__________________________________");
-
-            } while (cursor.moveToNext());
         }
         cursor.close();
 
@@ -64,14 +54,12 @@ public class ReadDb {
         cursor =database.query(table2, columns2, selection, selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
 
-
             /*stoneI = cursor.getInt(cursor.getColumnIndex("stone_i"));
             stoneJ = cursor.getInt(cursor.getColumnIndex("stone_j"));
             pointI = cursor.getInt(cursor.getColumnIndex("point_i"));
             pointJ = cursor.getInt(cursor.getColumnIndex("point_j"));*/
 
             do {
-
                 whiteI.add(cursor.getInt(cursor.getColumnIndex("white_i")));
                 whiteJ.add(cursor.getInt(cursor.getColumnIndex("white_j")));
                 stoneI.add(cursor.getInt(cursor.getColumnIndex("stone_i")));

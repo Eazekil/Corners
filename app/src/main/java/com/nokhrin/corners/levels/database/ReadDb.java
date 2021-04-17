@@ -5,6 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_POINT_I;
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_POINT_J;
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_STONE_I;
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_STONE_J;
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_WHITE_I;
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_WHITE_J;
+import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_LEVELS;
+import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_POSITIONS;
+
 public class ReadDb {
     private LevelsDb levelsDb;
     private SQLiteDatabase database;
@@ -35,11 +44,11 @@ public class ReadDb {
         //String table = "levels as LV inner join positions as PS on LV.number_level = PS.number_level";
         //String[] columns = {"LV.number_level as level", "LV.size_field as field", "LV.count_move as move", "LV.count_point as point", "PS.white_i as Y", "PS.white_j as X", "PS.stone_i", "PS.stone_j", "PS.point_i", "PS.point_j"};
 
-        String table ="levels";
+
         String[] columns = {"number_level", "size_field", "count_move", "count_point"};
         String selection = "number_level =?";
         String[] selectionArgs = {Integer.toString(numberLevel)};
-        Cursor cursor = database.query(table, columns, selection, selectionArgs, null, null, null);
+        Cursor cursor = database.query(TABLE_LEVELS, columns, selection, selectionArgs, null, null, null);
 
         if (cursor.moveToFirst()) {
             level = cursor.getInt(cursor.getColumnIndex("number_level"));
@@ -49,9 +58,8 @@ public class ReadDb {
         }
         cursor.close();
 
-        String table2 ="positions";
-        String[] columns2 = {"white_i", "white_j"};
-        cursor =database.query(table2, columns2, selection, selectionArgs, null, null, null);
+        String[] columns2 = {KEY_WHITE_I, KEY_WHITE_J, KEY_STONE_I, KEY_STONE_J, KEY_POINT_I,KEY_POINT_J};
+        cursor =database.query(TABLE_POSITIONS, columns2, selection, selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
 
             /*stoneI = cursor.getInt(cursor.getColumnIndex("stone_i"));
@@ -60,12 +68,24 @@ public class ReadDb {
             pointJ = cursor.getInt(cursor.getColumnIndex("point_j"));*/
 
             do {
-                whiteI.add(cursor.getInt(cursor.getColumnIndex("white_i")));
-                whiteJ.add(cursor.getInt(cursor.getColumnIndex("white_j")));
-                stoneI.add(cursor.getInt(cursor.getColumnIndex("stone_i")));
-                stoneJ.add(cursor.getInt(cursor.getColumnIndex("stone_j")));
-                pointI.add(cursor.getInt(cursor.getColumnIndex("point_i")));
-                pointJ.add(cursor.getInt(cursor.getColumnIndex("point_j")));
+                if(cursor.getColumnIndex(KEY_WHITE_I) >0){
+                    whiteI.add(cursor.getInt(cursor.getColumnIndex(KEY_WHITE_I)));
+                }
+                if(cursor.getColumnIndex(KEY_WHITE_J) >0){
+                    whiteJ.add(cursor.getInt(cursor.getColumnIndex(KEY_WHITE_J)));
+                }
+                if(cursor.getColumnIndex(KEY_STONE_I) >0){
+                    stoneI.add(cursor.getInt(cursor.getColumnIndex(KEY_STONE_I)));
+                }
+                if(cursor.getColumnIndex(KEY_STONE_J) >0){
+                    stoneJ.add(cursor.getInt(cursor.getColumnIndex(KEY_STONE_J)));
+                }
+                if(cursor.getColumnIndex(KEY_POINT_I) >0){
+                    pointI.add(cursor.getInt(cursor.getColumnIndex(KEY_POINT_I)));
+                }
+                if(cursor.getColumnIndex(KEY_POINT_J) >0){
+                    pointJ.add(cursor.getInt(cursor.getColumnIndex(KEY_POINT_J)));
+                }
                 /*System.out.println("***************************************");
                 System.out.println(whiteI);
                 System.out.println(whiteJ);
@@ -74,6 +94,8 @@ public class ReadDb {
             } while (cursor.moveToNext());
 
         }
+        cursor.close();
+        database.close();
 
     }
 

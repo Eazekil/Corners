@@ -24,7 +24,7 @@ public class PlayerMove {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void startPlayerMove(int touchI, int touchJ) {
+   /* public void startPlayerMove(int touchI, int touchJ) {
         checkersPositions = activity.startGame.getCheckerPositions();
 
         if (haveChoiceChecker()) {
@@ -70,7 +70,7 @@ public class PlayerMove {
                 activity.drawView.invalidate();
             }
         }
-    }
+    }*/
 
     private boolean haveChoiceChecker() {
         int sizeOfField = checkersPositions.length;

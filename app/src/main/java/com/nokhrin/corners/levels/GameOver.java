@@ -24,7 +24,7 @@ public class GameOver {
         this.activity = activity;
     }
 
-    public boolean isOver() {
+    /*public boolean isOver() {
         boolean result = false;
         checkersPositions = activity.startGame.getCheckerPositions();
         marksPositions = activity.startGame.getMarksPositions();
@@ -74,5 +74,5 @@ public class GameOver {
 
 
         return result;
-    }
+    }*/
 }

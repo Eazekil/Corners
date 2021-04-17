@@ -25,8 +25,8 @@ public class StartGame extends com.nokhrin.corners.game.StartGame{
 
     public StartGame(ActivityLevels activity) {
         this.activity = activity;
-        this.widthDisplay = activity.widthDisplay;
-        this.countMoveView = activity.countMoveView;
+        //this.widthDisplay = activity.widthDisplay;
+        //this.countMoveView = activity.countMoveView;
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -42,13 +42,13 @@ public class StartGame extends com.nokhrin.corners.game.StartGame{
 
         //set field like background
         if(sizeOfField == 5){
-            activity.frameLayoutLevels.setBackground(activity.getResources().getDrawable(R.drawable.stone_field_4x4));
+            //activity.frameLayoutLevels.setBackground(activity.getResources().getDrawable(R.drawable.stone_field_4x4));
         }
         if(sizeOfField == 6){
-            activity.frameLayoutLevels.setBackground(activity.getResources().getDrawable(R.drawable.stone_field_5x5));
+            //activity.frameLayoutLevels.setBackground(activity.getResources().getDrawable(R.drawable.stone_field_5x5));
         }
         if(sizeOfField == 7){
-            activity.frameLayoutLevels.setBackground(activity.getResources().getDrawable(R.drawable.stone_field_6x6));
+            //activity.frameLayoutLevels.setBackground(activity.getResources().getDrawable(R.drawable.stone_field_6x6));
         }
 
         //update variables for this level

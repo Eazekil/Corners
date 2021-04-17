@@ -15,6 +15,8 @@ import com.nokhrin.corners.multiplayer.ActivityCreatePlayer;
 
 
 public class ActivityStart extends AppCompatActivity {
+    //public static int widthDisplay;
+    //public static int heightDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,11 @@ public class ActivityStart extends AppCompatActivity {
 
         //this all for make full screen
         setContentView(R.layout.activity_start);
+        /*//public static Button buttonLevel;
+    public static Button buttonClassic;
+    public static Button buttonMultiPlayer;
+    public static int widthDisplay;
+    public static int heightDisplay;*/
         View startLayout = findViewById(R.id.ConstrainLayoutStart);
         startLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN

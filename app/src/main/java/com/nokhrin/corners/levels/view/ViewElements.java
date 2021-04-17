@@ -1,5 +1,6 @@
 package com.nokhrin.corners.levels.view;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -12,6 +13,8 @@ public class ViewElements {
     private TextView countMoveView;
     private ImageView ivWoodman;
     private FrameLayout frameLayoutLevels;
+    private View constrainLayout;
+    private View frameLayoutIndent;
     private Button buttonMenu, buttonReturnLevels, buttonRestartLevel;
 
     public void setActivity(ActivityLevels activity) {
@@ -21,11 +24,13 @@ public class ViewElements {
 
     private void findView() {
         frameLayoutLevels = activity.findViewById(R.id.frameLayoutLevel);
+        frameLayoutIndent = activity.findViewById(R.id.frameLayoutIndentLevels);
         countMoveView = activity.findViewById(R.id.textViewCountMove);
         ivWoodman = activity.findViewById(R.id.imageViewCheckerWoodman);
         buttonMenu = activity.findViewById(R.id.buttonMenu);
         buttonReturnLevels = activity.findViewById(R.id.buttonReturnLevel);
         buttonRestartLevel = activity.findViewById(R.id.buttonRestartLevel);
+        constrainLayout = activity.findViewById(R.id.ConstrainLayoutLevels);
     }
 
     public TextView getCountMoveView() {
@@ -50,5 +55,13 @@ public class ViewElements {
 
     public Button getButtonRestartLevel() {
         return buttonRestartLevel;
+    }
+
+    public View getConstrainLayout() {
+        return constrainLayout;
+    }
+
+    public View getFrameLayoutIndent() {
+        return frameLayoutIndent;
     }
 }

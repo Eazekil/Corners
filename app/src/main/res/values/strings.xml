@@ -63,5 +63,6 @@
     <string name="stone_j">Позиция камня X</string>
     <string name="point_i">Позиция целевой точки Y</string>
     <string name="point_j">Позиция целевой точки X</string>
+    <string name="title_activity_game_level">FullscreenActivity</string>
 
 </resources>

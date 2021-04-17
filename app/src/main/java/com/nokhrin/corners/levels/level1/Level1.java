@@ -36,7 +36,7 @@ public class Level1 {
         marksPositions[1][4] = TARGET_POINT_FOR_WHITE_CHECKER;
 
         //add start parameters
-        activity.startGame.addStartParameters(sizeOfField, countToMove, countPointInLevel, checkersPositions, marksPositions);
+        //activity.startGame.addStartParameters(sizeOfField, countToMove, countPointInLevel, checkersPositions, marksPositions);
     }
 
 

@@ -15,15 +15,15 @@ public class DisplaySettings {
     private int heightDisplay;
     private int indentTop;
     private FrameLayout flIndent;
-    private FrameLayout flClassic;
+    private FrameLayout frameLayout;
 
     public void setFlIndent(FrameLayout flIndent) {
         this.flIndent = flIndent;
         setIndentLayout();
     }
 
-    public void setFlClassic(FrameLayout flClassic) {
-        this.flClassic = flClassic;
+    public void setFrameLayout(FrameLayout frameLayout) {
+        this.frameLayout = frameLayout;
     }
 
     public void setLayout(View layout) {

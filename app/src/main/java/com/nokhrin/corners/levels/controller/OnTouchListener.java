@@ -1,6 +1,7 @@
 package com.nokhrin.corners.levels.controller;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -12,14 +13,17 @@ import androidx.annotation.RequiresApi;
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.classical.controller.Moving;
 import com.nokhrin.corners.classical.view.ActivityClassic;
+import com.nokhrin.corners.levels.database.ReadDb;
+import com.nokhrin.corners.levels.model.CreateGame;
 import com.nokhrin.corners.levels.view.ActivityLevels;
 import com.nokhrin.corners.levels.view.ViewElements;
 
-public class OnTouchListener /*implements View.OnTouchListener*/ {
+public class OnTouchListener implements View.OnTouchListener {
     private ActivityLevels activity;
-    private ViewElements viewElements;
+    //private CreateGame createGame;
+    private Moving moving;
 
-   /* public void setActivity(ActivityLevels activity) {
+    public void setActivity(ActivityLevels activity) {
         this.activity = activity;
 
         //create and set parameters for convert pixel coordinates in coordinates of game field
@@ -29,11 +33,9 @@ public class OnTouchListener /*implements View.OnTouchListener*/ {
         setTouch();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setTouch() {
-
-
-
-        activity.getViewParameters().getViewElements().getFrameLayout().setOnTouchListener(this);
+        activity.getViewParameters().getViewElements().getFrameLayoutLevels().setOnTouchListener(this);
 
         //button return to Menu
         activity.getViewParameters().getViewElements().getButtonMenu().setOnClickListener(v -> {
@@ -42,11 +44,19 @@ public class OnTouchListener /*implements View.OnTouchListener*/ {
             activity.finish();
         });
 
-        //button restart this game
-        activity.getViewParameters().getViewElements().getButtonRestart().setOnClickListener(v -> {
-            Intent intent = new Intent(activity, ActivityClassic.class);
+        //button return to menu levels
+        activity.getViewParameters().getViewElements().getButtonReturnLevels().setOnClickListener(v -> {
+            Intent intent = new Intent(activity, ActivityLevels.class);
             activity.startActivity(intent);
             activity.finish();
+        });
+
+        //button restart level
+        activity.getViewParameters().getViewElements().getButtonRestartLevel().setOnClickListener(v -> {
+            /*Intent intent = new Intent(activity, ActivityLevels.class);
+            activity.startActivity(intent);
+            activity.finish();*/
+            System.out.println("********************** restart");
         });
     }
 
@@ -59,8 +69,14 @@ public class OnTouchListener /*implements View.OnTouchListener*/ {
         moving.setTouchXY(touchX, touchY);
 
         //inform of touch coordinate
-        activity.getStartGame().getPlayerMoving().startPlayerMove(moving.getTouchI(), moving.getTouchJ());
+        //activity.getStartGame().getPlayerMoving().startPlayerMove(moving.getTouchI(), moving.getTouchJ());
 
         return false;
-    }*/
+    }
+
+    public void setNumberLevel(int numberLevel) {
+        activity.getStartGame().setNumberLevel(numberLevel);
+        activity.getViewParameters().setActivity(activity);
+    }
+
 }

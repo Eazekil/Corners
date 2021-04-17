@@ -299,29 +299,7 @@
         app:layout_constraintVertical_bias="0.115" />
 
 
-    <Button
-        android:id="@+id/buttonMenu"
-        android:layout_width="146dp"
-        android:layout_height="55dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/comfortaa_bold"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_menu"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="24sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
+
 
 
 
@@ -366,6 +344,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.917" />
+
+    <Button
+        android:id="@+id/buttonMenu"
+        android:layout_width="146dp"
+        android:layout_height="55dp"
+        android:background="@drawable/button_wood_2"
+        android:fontFamily="@font/comfortaa_bold"
+        android:freezesText="false"
+        android:hapticFeedbackEnabled="false"
+        android:text="@string/button_menu"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.917" />
@@ -428,7 +430,9 @@
     <ListView
         android:id="@+id/buttonList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMenu"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--<ListView
         android:id="@+id/buttonList"

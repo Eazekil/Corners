@@ -1,6 +1,8 @@
 package com.nokhrin.corners.levels.view;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -17,40 +20,25 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
+import com.nokhrin.corners.levels.ActivityGameLevel;
 import com.nokhrin.corners.levels.PlayerMove;
 import com.nokhrin.corners.levels.controller.ButtonsAdapter;
+import com.nokhrin.corners.levels.controller.OnTouchListener;
+import com.nokhrin.corners.levels.database.CreateDb;
 import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.draw.DrawView;
-import com.nokhrin.corners.levels.start.StartGame;
+import com.nokhrin.corners.levels.database.ReadDb;
+import com.nokhrin.corners.levels.model.CreateGame;
+import com.nokhrin.corners.levels.model.StartGameLevel;
 
 import java.util.ArrayList;
 
 public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchListener*/ {
-    public TextView countMoveView;
-    public DrawView drawView; //view for game field
-    public int widthDisplay;
-    public int indentTop;
-    public StartGame startGame;
-    public PlayerMove playerMove;
-    public ImageView ivWoodman;
-    public FrameLayout frameLayoutLevels;
-    public int numberLevel;
-    ArrayList<View> elementSetVisibleList = new ArrayList<>();
-    public ArrayList<Button> buttonSetInvisibleList = new ArrayList<>();
-    public SharedPreferences preferences;
     private LevelsDb levelsDb;
-    private SQLiteDatabase database;
-    private Cursor cursor;
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        database.close();
-        cursor.close();
-    }
 
     @SuppressLint({"UseCompatLoadingForDrawables", "ClickableViewAccessibility"})
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -68,16 +56,8 @@ public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchL
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
 
-        //find all element and save in variables
-        /*Button buttonMenu = findViewById(R.id.buttonMenu);
-        Button buttonReturnLevels = findViewById(R.id.buttonReturnLevel);
-        Button buttonRestartLevel = findViewById(R.id.buttonRestartLevel);
-        frameLayoutLevels = findViewById(R.id.frameLayoutLevel);
-        countMoveView = findViewById(R.id.textViewCountMove);
-        ivWoodman = findViewById(R.id.imageViewCheckerWoodman);*/
-
         ArrayList<ButtonLevel> buttonLevels = new ArrayList<ButtonLevel>();
-        ListView productList = (ListView) findViewById(R.id.buttonList);
+        ListView lvLevels = (ListView) findViewById(R.id.buttonList);
         /*productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -102,34 +82,92 @@ public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchL
         buttonLevels.add(new ButtonLevel(28, 2));
         buttonLevels.add(new ButtonLevel(31, 2));
         buttonLevels.add(new ButtonLevel(34, 2));
+
+        //button return to Menu
+        Button btMenu = findViewById(R.id.buttonMenu);
+        btMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ActivityStart.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+
+        /*levelsDb = new LevelsDb(this);
+       *//* SQLiteDatabase database = levelsDb.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String table = "levels as LV";
+        String[] columns = {"LV.number_level as level"};
+        Cursor cursor = database.query(table, columns, null, null, null, null, null);
+        int levelIndex = -1;
+        if (cursor.moveToFirst()){
+            levelIndex = cursor.getColumnIndex("level");
+            *//**//*cursor.moveToNext();
+            levelIndex = cursor.getColumnIndex("level");*//**//*
+        }
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(cursor.getInt(levelIndex));
+        if (cursor.getInt(levelIndex)<0){
+            CreateDb createDb = new CreateDb();
+            createDb.setLevelsDb(levelsDb);
+        }
+        cursor.close();
+        levelsDb.close();*//*
+
+        startGame = new StartGameLevel();
+        startGame.setLevelsDb(levelsDb);
+
+        //set start parameters for View
+        viewParameters = new ViewParameters();
+        viewParameters.setActivity(this);
+
+        onTouchListener =new OnTouchListener();
+        onTouchListener.setActivity(this);*/
+
         ButtonsAdapter adapter = new ButtonsAdapter(this, R.layout.list_buttons, buttonLevels);
-        productList.setAdapter(adapter);
+        //adapter.setOnTouchListener(onTouchListener);
+        lvLevels.setAdapter(adapter);
+
+        /*drawView = new DrawView(getApplicationContext(), this);
+        frameLayoutLevels.addView(drawView);
+        playerMove = new PlayerMove(this);*/
 
 
-
-        //discover size of the display
+        /*//discover size of the display
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         widthDisplay = size.x;
         int heightDisplay = size.y;
-        indentTop = (heightDisplay - widthDisplay) / 2;
+        indentTop = (heightDisplay - widthDisplay) / 2;*/
 
-        //set indent of top
-        /*FrameLayout flIntent = findViewById(R.id.frameLayoutIndentLevels);
+       /* //set indent of top
+        FrameLayout flIntent = findViewById(R.id.frameLayoutIndentLevels);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.height = indentTop;
-        flIntent.setLayoutParams(params);*/
+        flIntent.setLayoutParams(params);
 
         //add start parameters for game field
         startGame = new StartGame(this);
         //set on touch listener
-        //frameLayoutLevels.setOnTouchListener(this);
+        //frameLayoutLevels.setOnTouchListener(this);*/
 
 
 
+/*//button return to Menu
+        buttonMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityLevels.this, ActivityStart.class);
+            startActivity(intent);
+            finish();
+        });
 
+        //button return to menu levels
+        buttonReturnLevels.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityLevels.this, ActivityLevels.class);
+            startActivity(intent);
+            finish();
+        });*/
 
 
 
@@ -396,14 +434,14 @@ public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchL
     }
 
     //set visible and invisible element on view
-    private void visible() {
+    /*private void visible() {
         for (View view : elementSetVisibleList) {
             view.setVisibility(View.VISIBLE);
         }
         for (Button button : buttonSetInvisibleList) {
             button.setVisibility(View.INVISIBLE);
         }
-    }
+    }*/
 
    /* @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -428,6 +466,21 @@ public class ActivityLevels extends AppCompatActivity /*implements View.OnTouchL
         return false;
     }*/
 
+    public void setCreateNumberLevel(int createNumberLevel) {
+        Intent intent = new Intent(this, ActivityGameLevel.class);
+        startActivity(intent);
+        finish();
+    }
 
+    public LevelsDb getLevelsDb() {
+        return levelsDb;
+    }
 
+    public StartGameLevel getStartGame() {
+        return startGame;
+    }
+
+    public ViewParameters getViewParameters() {
+        return viewParameters;
+    }
 }

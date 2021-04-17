@@ -35,7 +35,7 @@ public class Animation {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+   /* @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startJ, int startI, int endJ, int endI, int checker) {
         stepsForAnimation.setCheckersPositions(activity.startGame.getCheckerPositions());
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
@@ -111,5 +111,5 @@ public class Animation {
         });
 
 
-    }
+    }*/
 }

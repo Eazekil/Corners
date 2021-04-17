@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.nokhrin.corners.R;
+import com.nokhrin.corners.levels.database.ReadDb;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 import com.nokhrin.corners.levels.view.ButtonLevel;
 
 import java.util.ArrayList;
@@ -19,10 +19,13 @@ public class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
     private LayoutInflater inflater;
     private int layout;
     private ArrayList<ButtonLevel> buttonsList;
-    private int number;
+    private int numberLevel;
+    //private OnTouchListener onTouchListener;
+    private ActivityLevels activity;
 
     public ButtonsAdapter(Context context, int resource, ArrayList<ButtonLevel> products) {
         super(context, resource, products);
+        activity = (ActivityLevels) context;
         this.buttonsList = products;
         this.layout = resource;
         this.inflater = LayoutInflater.from(context);
@@ -50,22 +53,25 @@ public class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
         viewHolder.btLevelLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                number = position*3+1;
-                System.out.println(number);
+                numberLevel = position*3+1;
+                System.out.println(numberLevel);
+                returnLevel();
             }
         });
         viewHolder.btLevelCenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                number = position*3+2;
-                System.out.println(number);
+                numberLevel = position*3+2;
+                System.out.println(numberLevel);
+                returnLevel();
             }
         });
         viewHolder.btLevelRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                number = position*3+3;
-                System.out.println(number);
+                numberLevel = position*3+3;
+                System.out.println(numberLevel);
+                returnLevel();
             }
         });
 
@@ -94,7 +100,12 @@ public class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
 
     }
 
-    public int getNumber() {
-        return number;
+    private void returnLevel(){
+        activity.setCreateNumberLevel(numberLevel);
+        //onTouchListener.setNumberLevel(numberLevel);
     }
+
+   /* public void setOnTouchListener(OnTouchListener onTouchListener) {
+        this.onTouchListener = onTouchListener;
+    }*/
 }

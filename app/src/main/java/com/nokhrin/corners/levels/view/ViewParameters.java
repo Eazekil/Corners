@@ -13,12 +13,13 @@ import com.nokhrin.corners.view.DisplaySettings;
 public class ViewParameters {
     private DisplaySettings displaySettings;
     private DrawView drawView;
-    private ActivityLevels activity;
+    private ActivityGameLevel activity;
     private ViewElements viewElements;
 
-    public void setActivity(ActivityLevels activity) {
+    public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
         displaySettings = new DisplaySettings();
+
 
         //find all views for this activity
         viewElements = new ViewElements();

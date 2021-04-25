@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Corners">
         <activity
-            android:name=".levels.ActivityGameLevel"
+            android:name=".levels.view.ActivityGameLevel"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_game_level"
             android:theme="@style/Theme.Corners.Fullscreen"></activity>

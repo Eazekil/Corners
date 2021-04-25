@@ -20,7 +20,6 @@ public class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
     private int layout;
     private ArrayList<ButtonLevel> buttonsList;
     private int numberLevel;
-    //private OnTouchListener onTouchListener;
     private ActivityLevels activity;
 
     public ButtonsAdapter(Context context, int resource, ArrayList<ButtonLevel> products) {
@@ -41,22 +40,19 @@ public class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        final ButtonLevel product = buttonsList.get(position);
+        final ButtonLevel buttonLevel = buttonsList.get(position);
 
-        String s1 = Integer.toString(product.getNumberLevel());
-        String s2 = Integer.toString(product.getNumberLevel() + 1);
-        String s3 = Integer.toString(product.getNumberLevel() + 2);
+        String s1 = Integer.toString(buttonLevel.getNumberLevel());
+        String s2 = Integer.toString(buttonLevel.getNumberLevel() + 1);
+        String s3 = Integer.toString(buttonLevel.getNumberLevel() + 2);
         viewHolder.btLevelLeft.setText(s1);
         viewHolder.btLevelCenter.setText(s2);
         viewHolder.btLevelRight.setText(s3);
 
-        viewHolder.btLevelLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberLevel = position*3+1;
-                System.out.println(numberLevel);
-                returnLevel();
-            }
+        viewHolder.btLevelLeft.setOnClickListener(v -> {
+            numberLevel = position*3+1;
+            System.out.println(numberLevel);
+            returnLevel();
         });
         viewHolder.btLevelCenter.setOnClickListener(new View.OnClickListener() {
             @Override

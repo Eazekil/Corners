@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.nokhrin.corners.R;
 
 public class ViewElements {
-    private ActivityLevels activity;
+    private ActivityGameLevel activity;
     private TextView countMoveView;
     private ImageView ivWoodman;
     private FrameLayout frameLayoutLevels;
@@ -17,7 +17,7 @@ public class ViewElements {
     private View frameLayoutIndent;
     private Button buttonMenu, buttonReturnLevels, buttonRestartLevel;
 
-    public void setActivity(ActivityLevels activity) {
+    public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
         findView();
     }
@@ -30,7 +30,7 @@ public class ViewElements {
         buttonMenu = activity.findViewById(R.id.buttonMenu);
         buttonReturnLevels = activity.findViewById(R.id.buttonReturnLevel);
         buttonRestartLevel = activity.findViewById(R.id.buttonRestartLevel);
-        constrainLayout = activity.findViewById(R.id.ConstrainLayoutLevels);
+        constrainLayout = activity.findViewById(R.id.constrainLayout);
     }
 
     public TextView getCountMoveView() {

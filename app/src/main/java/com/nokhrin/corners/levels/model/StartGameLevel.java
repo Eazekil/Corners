@@ -18,11 +18,6 @@ import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHE
 import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 public class StartGameLevel extends StartGame {
-    /*private PlayerMoving playerMoving;
-    private CheckMove checkMove;
-    private Bots bot;
-    private GameOver game;
-    private Positions positions;*/
     private int numberLevel;
     private LevelsDb levelsDb;
     private ReadDb readDb;

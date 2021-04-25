@@ -39,6 +39,7 @@ public class Constants {
     public static final String MESSAGE = "messageMoveTo";
     public static final String START_LEVELS = "start_levels";
     public static final String LEVEL_PROGRESS = "level_progress_";
+    public static final String CREATE_NUMBER_LEVEL = "number_level";
 
 
 }

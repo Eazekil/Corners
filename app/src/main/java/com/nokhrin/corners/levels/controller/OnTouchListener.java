@@ -2,7 +2,6 @@ package com.nokhrin.corners.levels.controller;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.view.MotionEvent;
@@ -12,18 +11,15 @@ import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.classical.controller.Moving;
-import com.nokhrin.corners.classical.view.ActivityClassic;
-import com.nokhrin.corners.levels.database.ReadDb;
-import com.nokhrin.corners.levels.model.CreateGame;
+import com.nokhrin.corners.levels.view.ActivityGameLevel;
 import com.nokhrin.corners.levels.view.ActivityLevels;
-import com.nokhrin.corners.levels.view.ViewElements;
 
 public class OnTouchListener implements View.OnTouchListener {
-    private ActivityLevels activity;
+    private ActivityGameLevel activity;
     //private CreateGame createGame;
     private Moving moving;
 
-    public void setActivity(ActivityLevels activity) {
+    public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
 
         //create and set parameters for convert pixel coordinates in coordinates of game field

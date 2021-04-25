@@ -1,4 +1,4 @@
-package com.nokhrin.corners.levels;
+package com.nokhrin.corners.levels.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,28 +11,30 @@ import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.model.StartGameLevel;
 import com.nokhrin.corners.levels.view.ViewParameters;
 
+import static com.nokhrin.corners.resources.Constants.CREATE_NUMBER_LEVEL;
+import static com.nokhrin.corners.resources.Constants.PLAYER_NAME;
+
 public class ActivityGameLevel extends AppCompatActivity {
     private OnTouchListener onTouchListener;
     private ViewParameters viewParameters;
     private StartGameLevel startGame;
     private LevelsDb levelsDb;
+    private int numberLevel;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //this all for make full screen
-        setContentView(R.layout.activity_levels);
-        View levelsLayout = findViewById(R.id.ConstrainLayoutLevels);
-        levelsLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        setContentView(R.layout.activity_game_level);
 
+        //get number level
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            numberLevel = extras.getInt(CREATE_NUMBER_LEVEL);
+        }
 
         levelsDb = new LevelsDb(this);
         startGame = new StartGameLevel();
         startGame.setLevelsDb(levelsDb);
+        startGame.setNumberLevel(numberLevel);
 
         //set start parameters for View
         viewParameters = new ViewParameters();
@@ -40,5 +42,21 @@ public class ActivityGameLevel extends AppCompatActivity {
 
         onTouchListener =new OnTouchListener();
         onTouchListener.setActivity(this);
+    }
+
+    public OnTouchListener getOnTouchListener() {
+        return onTouchListener;
+    }
+
+    public ViewParameters getViewParameters() {
+        return viewParameters;
+    }
+
+    public StartGameLevel getStartGame() {
+        return startGame;
+    }
+
+    public LevelsDb getLevelsDb() {
+        return levelsDb;
     }
 }

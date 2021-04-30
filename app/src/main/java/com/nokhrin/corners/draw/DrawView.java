@@ -35,7 +35,6 @@ import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 public class DrawView extends View {
     Paint mPaint = new Paint();
     ActivityMultiplayerGame activityMultiplayerGame;
-    //ActivityLevels activityLevels;
     Resources resourcesForDraw;
     private StartGame startGame;
     private int widthDisplay;
@@ -138,6 +137,7 @@ public class DrawView extends View {
         //draw checkers and marks
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
+                System.out.println("ssss  "+checkerPositions[i][j]);
                 //target point
                 if (marksPositions != null) {
                     if (marksPositions[i][j] == TARGET_POINT_FOR_WHITE_CHECKER) {

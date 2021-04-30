@@ -71,7 +71,7 @@ public class LevelsDb extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + TABLE_LEVELS);
         onCreate(db);
     }
-
+create level there
     /*public void createDB(){
         try(InputStream myInput =myContext.getAssets().open(DB_NAME);
             OutputStream myOutput =new FileOutputStream(DB_PATH);) {

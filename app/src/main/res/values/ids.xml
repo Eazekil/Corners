@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="frameLayoutIndentLevels" type="id" />
-    <item name="frameLayoutLevel" type="id" />
+    <item name="frameLayoutLevelA" type="id" />
 </resources>

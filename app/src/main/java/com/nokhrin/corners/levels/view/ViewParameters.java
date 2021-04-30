@@ -48,6 +48,7 @@ public class ViewParameters {
     private void setBackground() {
         //draw game field like background
         int sizeOfField = activity.getStartGame().getSizeOfField();
+        System.out.println("**********************  "+ sizeOfField);
         if(sizeOfField == 5){
             viewElements.getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.stone_field_4x4));
         }

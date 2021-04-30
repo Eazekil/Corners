@@ -20,8 +20,8 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayoutLevel"
+    <!--<FrameLayout
+        android:id="@+id/frameLayoutLevelA"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="invisible"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndentLevels" >
 
-    </FrameLayout>
+    </FrameLayout>-->
 
 
 
@@ -116,7 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayoutLevel" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutLevelA" />
 
     <FrameLayout
         android:id="@+id/frameLayoutForWoodman"

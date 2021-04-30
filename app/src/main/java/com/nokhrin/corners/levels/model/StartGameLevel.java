@@ -63,10 +63,6 @@ public class StartGameLevel extends StartGame {
 
         win = 0;
         playerMove = true;
-
-        /*//set start parameters this game
-        StartParameters startParameters = new StartParameters();
-        startParameters.setStartGame(this);*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.classical.view.ActivityClassic;
+import com.nokhrin.corners.levels.view.ActivityGameLevel;
 import com.nokhrin.corners.levels.view.ActivityLevels;
 import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
 import com.nokhrin.corners.game.StartGame;
@@ -79,7 +80,8 @@ public class DrawView extends View {
             stepOnField = activityMultiplayerGame.startGame.getStepOnField();
         }
 
-        if (appCompatActivity instanceof ActivityLevels) {
+        if (appCompatActivity instanceof ActivityGameLevel) {
+            marksPositions = ((ActivityGameLevel)appCompatActivity).getStartGame().getMarksPositions();
            /* this.activityLevels = (ActivityLevels) appCompatActivity;
             startGame = activityLevels.startGame;
             widthDisplay = activityLevels.widthDisplay;

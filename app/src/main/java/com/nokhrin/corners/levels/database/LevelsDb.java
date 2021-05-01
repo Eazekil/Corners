@@ -64,6 +64,7 @@ public class LevelsDb extends SQLiteOpenHelper {
                 KEY_STONE_J + " integer," +
                 KEY_POINT_I + " integer," +
                 KEY_POINT_J + " integer" + ")");
+
     }
 
     @Override
@@ -71,28 +72,28 @@ public class LevelsDb extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + TABLE_LEVELS);
         onCreate(db);
     }
-create level there
-    /*public void createDB(){
-        try(InputStream myInput =myContext.getAssets().open(DB_NAME);
-            OutputStream myOutput =new FileOutputStream(DB_PATH);) {
-            File file = new File(DB_PATH);
-            System.out.println("111111111111111111111111111111111111111");
-            if (true) {
-                System.out.println("111111111111111111111111111111111111111");
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = myInput.read(buffer)) > 0) {
-                    myOutput.write(buffer, 0, length);
-                }
 
-                myOutput.flush();
-            }
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    public SQLiteDatabase open()throws SQLException {
-        return SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READWRITE);
-    }*/
+//    public void createDB(){
+//        try(InputStream myInput =myContext.getAssets().open(DB_NAME);
+//            OutputStream myOutput =new FileOutputStream(DB_PATH);) {
+//            File file = new File(DB_PATH);
+//            System.out.println("111111111111111111111111111111111111111");
+//            if (true) {
+//                System.out.println("111111111111111111111111111111111111111");
+//                byte[] buffer = new byte[1024];
+//                int length;
+//                while ((length = myInput.read(buffer)) > 0) {
+//                    myOutput.write(buffer, 0, length);
+//                }
+//
+//                myOutput.flush();
+//            }
+//        }
+//        catch(IOException e){
+//            e.printStackTrace();
+//        }
+//    }
+//    public SQLiteDatabase open()throws SQLException {
+//        return SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READWRITE);
+//    }
 }

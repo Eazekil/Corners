@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.levels.controller.OnTouchListener;
+import com.nokhrin.corners.levels.database.CreateDb;
 import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.model.StartGameLevel;
 import com.nokhrin.corners.levels.view.ViewParameters;
@@ -32,6 +33,8 @@ public class ActivityGameLevel extends AppCompatActivity {
         }
 
         levelsDb = new LevelsDb(this);
+        CreateDb createDb = new CreateDb();
+        createDb.setLevelsDb(levelsDb);
         startGame = new StartGameLevel();
         startGame.setLevelsDb(levelsDb);
         startGame.setNumberLevel(numberLevel);

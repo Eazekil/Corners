@@ -9,6 +9,7 @@ public class CreateDb {
     private ContentValues contentValues;
 
     public void createDbLevels(){
+        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
         addLevel(1, 5,9,2);
         addChecker(1,4,1);
         addChecker(1,4,2);
@@ -16,56 +17,59 @@ public class CreateDb {
         addPoint(1,1,4);
 
         addLevel(2, 5,10,3);
-        addChecker(1,4,1);
-        addChecker(1,4,2);
-        addChecker(1,3,1);
-        addPoint(1,1,3);
-        addPoint(1,1,4);
-        addPoint(1,2,4);
+        addChecker(2,4,1);
+        addChecker(2,4,2);
+        addChecker(2,3,1);
+        addPoint(2,1,3);
+        addPoint(2,1,4);
+        addPoint(2,2,4);
+
+        levelsDb.close();
     }
 
     private void addLevel(int numberLevel, int sizeField, int countMove, int countPoint){
-        database = levelsDb.getWritableDatabase();
+
         contentValues.put(LevelsDb.KEY_SIZE_FIELD, sizeField);
         contentValues.put(LevelsDb.KEY_COUNT_MOVE, countMove);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
         contentValues.put(LevelsDb.KEY_COUNT_POINT, countPoint);
         database.insert(LevelsDb.TABLE_LEVELS, null, contentValues);
         contentValues.clear();
-        levelsDb.close();
+
     }
 
     private void addChecker(int numberLevel, int i, int j){
-        database = levelsDb.getWritableDatabase();
+        //database = levelsDb.getWritableDatabase();
         contentValues.put(LevelsDb.KEY_WHITE_I, i);
         contentValues.put(LevelsDb.KEY_WHITE_J, j);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
         database.insert(LevelsDb.TABLE_POSITIONS, null, contentValues);
         contentValues.clear();
-        levelsDb.close();
+        //levelsDb.close();
     }
 
     private void addStone(int numberLevel, int i, int j){
-        database = levelsDb.getWritableDatabase();
+        //database = levelsDb.getWritableDatabase();
         contentValues.put(LevelsDb.KEY_STONE_I, i);
         contentValues.put(LevelsDb.KEY_STONE_J, j);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
         contentValues.clear();
-        levelsDb.close();
+        //levelsDb.close();
     }
 
     private void addPoint(int numberLevel, int i, int j){
-        database = levelsDb.getWritableDatabase();
+        //database = levelsDb.getWritableDatabase();
         contentValues.put(LevelsDb.KEY_POINT_I, i);
         contentValues.put(LevelsDb.KEY_POINT_J, j);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
         contentValues.clear();
-        levelsDb.close();
+        //levelsDb.close();
     }
 
     public void setLevelsDb(LevelsDb levelsDb) {
         this.levelsDb = levelsDb;
         contentValues = new ContentValues();
+        database = levelsDb.getWritableDatabase();
         createDbLevels();
     }
 }

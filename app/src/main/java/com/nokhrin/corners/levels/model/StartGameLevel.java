@@ -2,6 +2,7 @@ package com.nokhrin.corners.levels.model;
 
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -18,6 +19,7 @@ import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHE
 import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 public class StartGameLevel extends StartGame {
+    private static final String TAG = "myTaG";
     private int numberLevel;
     private LevelsDb levelsDb;
     private ReadDb readDb;
@@ -51,6 +53,7 @@ public class StartGameLevel extends StartGame {
             }
         }
 
+        Log.d(TAG, "addParameters: whiteI.size() "+ whiteI.size());
         for(int i=0;i<whiteI.size();i++){
             checkerPositions[whiteI.get(i)][whiteJ.get(i)] = WOODMAN_CHECKER;
         }
@@ -58,7 +61,17 @@ public class StartGameLevel extends StartGame {
             checkerPositions[stoneI.get(i)][stoneJ.get(i)] = STONE_CHECKER;
         }
         for(int i=0;i<pointI.size();i++){
+            Log.d(TAG, "addParameters: point I "+ pointI.get(i));
+            Log.d(TAG, "addParameters: point J "+ pointJ.get(i));
             marksPositions[pointI.get(i)][pointJ.get(i)] = TARGET_POINT_FOR_WHITE_CHECKER;
+        }
+
+        for (int i = 1; i < sizeOfField; i++) {
+            for (int j = 1; j < sizeOfField; j++) {
+                String ss="";
+                ss =ss+" "+checkerPositions[i][j];
+                Log.d(TAG, ss);
+            }
         }
 
         win = 0;
@@ -119,6 +132,9 @@ public class StartGameLevel extends StartGame {
 
     public void setLevelsDb(LevelsDb levelsDb) {
         this.levelsDb = levelsDb;
-        checkerPositions = new int[2][2];
+    }
+
+    public int[][] getMarksPositions() {
+        return marksPositions;
     }
 }

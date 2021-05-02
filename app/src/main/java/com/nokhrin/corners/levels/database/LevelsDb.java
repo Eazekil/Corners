@@ -4,14 +4,12 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import static com.nokhrin.corners.resources.Constants.TAG;
+
 
 public class LevelsDb extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
@@ -29,6 +27,8 @@ public class LevelsDb extends SQLiteOpenHelper {
     public static final String KEY_STONE_J = "stone_j";
     public static final String KEY_POINT_I = "point_i";
     public static final String KEY_POINT_J = "point_j";
+    public boolean isExist = true;
+
 
 
     /*public static final String COLUMN_SIZE_FIELD = "size_field";
@@ -48,6 +48,11 @@ public class LevelsDb extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        isExist = false;
+//        Log.d(TAG, "onCreate: in LevelsDB isExist = "+isExist);
+//        CreateDb createDb = new CreateDb();
+//        createDb.setLevelsDb(this);
+
         db.execSQL("create table " + TABLE_LEVELS + "(" +
                 KEY_ID + " integer primary key," +
                 KEY_NUMBER_LEVEL + " integer," +
@@ -64,14 +69,21 @@ public class LevelsDb extends SQLiteOpenHelper {
                 KEY_STONE_J + " integer," +
                 KEY_POINT_I + " integer," +
                 KEY_POINT_J + " integer" + ")");
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists " + TABLE_LEVELS);
         onCreate(db);
+        Log.d(TAG, "onUpgrade: '''''''''''''''''''''''''''''''''''''''''''''''''");
     }
+
+    public void putDb(){
+        if(isExist)return;
+        CreateDb createDb = new CreateDb();
+        createDb.setLevelsDb(this);
+    }
+
 
 //    public void createDB(){
 //        try(InputStream myInput =myContext.getAssets().open(DB_NAME);

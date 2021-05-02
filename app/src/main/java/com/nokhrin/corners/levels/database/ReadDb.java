@@ -20,7 +20,6 @@ import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_LEVELS;
 import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_POSITIONS;
 
 public class ReadDb {
-    private static final String TAG = "myTaG";
     private LevelsDb levelsDb;
     private SQLiteDatabase database;
     private int level;
@@ -61,7 +60,6 @@ public class ReadDb {
             sizeField = cursor.getInt(cursor.getColumnIndex("size_field"));
             countMove = cursor.getInt(cursor.getColumnIndex("count_move"));
             countPoint = cursor.getInt(cursor.getColumnIndex("count_point"));
-            System.out.println("sdsdffsdfnms  " + level + " " + sizeField + " " + countMove + " " + countPoint);
         }
         cursor.close();
 
@@ -89,7 +87,6 @@ public class ReadDb {
                 }
                 if (cursor.getColumnIndex(KEY_POINT_I) > 0) {
                     int ss =cursor.getInt(cursor.getColumnIndex(KEY_POINT_I));
-                    Log.d(TAG, "read: ss = "+ss);
                     pointI.add(ss);
                 }
                 if (cursor.getColumnIndex(KEY_POINT_J) > 0) {

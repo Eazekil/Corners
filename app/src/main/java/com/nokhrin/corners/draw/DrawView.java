@@ -82,12 +82,6 @@ public class DrawView extends View {
 
         if (appCompatActivity instanceof ActivityGameLevel) {
             marksPositions = ((ActivityGameLevel)appCompatActivity).getStartGame().getMarksPositions();
-           /* this.activityLevels = (ActivityLevels) appCompatActivity;
-            startGame = activityLevels.startGame;
-            widthDisplay = activityLevels.widthDisplay;
-            sizeOfField = activityLevels.startGame.getSizeOfField();
-            stepOnField = activityLevels.startGame.getStepOnField();
-            marksPositions = activityLevels.startGame.getMarksPositions();*/
         }
 
         resourcesForDraw = this.getResources();

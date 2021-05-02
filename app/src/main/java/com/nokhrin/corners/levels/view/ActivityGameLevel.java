@@ -1,6 +1,7 @@
 package com.nokhrin.corners.levels.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,11 @@ import com.nokhrin.corners.levels.database.CreateDb;
 import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.model.StartGameLevel;
 import com.nokhrin.corners.levels.view.ViewParameters;
+import com.nokhrin.corners.resources.Constants;
 
+import java.io.File;
+
+import static com.nokhrin.corners.levels.database.LevelsDb.DATABASE_NAME;
 import static com.nokhrin.corners.resources.Constants.CREATE_NUMBER_LEVEL;
 import static com.nokhrin.corners.resources.Constants.PLAYER_NAME;
 
@@ -33,8 +38,9 @@ public class ActivityGameLevel extends AppCompatActivity {
         }
 
         levelsDb = new LevelsDb(this);
-        CreateDb createDb = new CreateDb();
-        createDb.setLevelsDb(levelsDb);
+        levelsDb.getReadableDatabase();
+        levelsDb.putDb();
+
         startGame = new StartGameLevel();
         startGame.setLevelsDb(levelsDb);
         startGame.setNumberLevel(numberLevel);

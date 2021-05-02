@@ -2,6 +2,9 @@ package com.nokhrin.corners.levels.database;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import static com.nokhrin.corners.resources.Constants.TAG;
 
 public class CreateDb {
     private LevelsDb levelsDb;
@@ -9,7 +12,7 @@ public class CreateDb {
     private ContentValues contentValues;
 
     public void createDbLevels(){
-        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+        Log.d(TAG, "createDbLevels: +++++++++++++++++++++");
         addLevel(1, 5,9,2);
         addChecker(1,4,1);
         addChecker(1,4,2);
@@ -39,31 +42,27 @@ public class CreateDb {
     }
 
     private void addChecker(int numberLevel, int i, int j){
-        //database = levelsDb.getWritableDatabase();
         contentValues.put(LevelsDb.KEY_WHITE_I, i);
         contentValues.put(LevelsDb.KEY_WHITE_J, j);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
         database.insert(LevelsDb.TABLE_POSITIONS, null, contentValues);
         contentValues.clear();
-        //levelsDb.close();
     }
 
     private void addStone(int numberLevel, int i, int j){
-        //database = levelsDb.getWritableDatabase();
         contentValues.put(LevelsDb.KEY_STONE_I, i);
         contentValues.put(LevelsDb.KEY_STONE_J, j);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
+        database.insert(LevelsDb.TABLE_POSITIONS, null, contentValues);
         contentValues.clear();
-        //levelsDb.close();
     }
 
     private void addPoint(int numberLevel, int i, int j){
-        //database = levelsDb.getWritableDatabase();
         contentValues.put(LevelsDb.KEY_POINT_I, i);
         contentValues.put(LevelsDb.KEY_POINT_J, j);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
+        database.insert(LevelsDb.TABLE_POSITIONS, null, contentValues);
         contentValues.clear();
-        //levelsDb.close();
     }
 
     public void setLevelsDb(LevelsDb levelsDb) {

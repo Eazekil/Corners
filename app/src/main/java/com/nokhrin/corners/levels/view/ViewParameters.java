@@ -1,6 +1,7 @@
 package com.nokhrin.corners.levels.view;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -9,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.draw.DrawView;
 import com.nokhrin.corners.view.DisplaySettings;
+
+import static com.nokhrin.corners.resources.Constants.TAG;
 
 public class ViewParameters {
     private DisplaySettings displaySettings;
@@ -48,7 +51,7 @@ public class ViewParameters {
     private void setBackground() {
         //draw game field like background
         int sizeOfField = activity.getStartGame().getSizeOfField();
-        System.out.println("**********************  "+ sizeOfField);
+        Log.d(TAG, "setBackground: sizeOfField = "+sizeOfField);
         if(sizeOfField == 5){
             viewElements.getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.stone_field_4x4));
         }

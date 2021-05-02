@@ -2,11 +2,9 @@ package com.nokhrin.corners.levels.model;
 
 
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.nokhrin.corners.classical.model.StartParameters;
 import com.nokhrin.corners.game.StartGame;
 import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.database.ReadDb;
@@ -24,6 +22,8 @@ public class StartGameLevel extends StartGame {
     private ReadDb readDb;
     private int countToMove;
     private int[][] marksPositions;
+    private PlayerMove move;
+    private ResultMoves resultMoves;
 
     public void setNumberLevel(int numberLevel) {
         this.numberLevel = numberLevel;
@@ -63,7 +63,11 @@ public class StartGameLevel extends StartGame {
         }
 
         win = 0;
-        playerMove = true;
+        isPlayerMove = true;
+        resultMoves = new ResultMoves();
+        move = new PlayerMove();
+        move.setStartGameLevel(this);
+        move.setResultMoves(resultMoves);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -124,5 +128,9 @@ public class StartGameLevel extends StartGame {
 
     public int[][] getMarksPositions() {
         return marksPositions;
+    }
+
+    public PlayerMove getPlayerMove() {
+        return move;
     }
 }

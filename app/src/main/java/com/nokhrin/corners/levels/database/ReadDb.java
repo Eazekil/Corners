@@ -46,10 +46,6 @@ public class ReadDb {
         pointI = new ArrayList<>();
         pointJ = new ArrayList<>();
 
-        //String table = "levels as LV inner join positions as PS on LV.number_level = PS.number_level";
-        //String[] columns = {"LV.number_level as level", "LV.size_field as field", "LV.count_move as move", "LV.count_point as point", "PS.white_i as Y", "PS.white_j as X", "PS.stone_i", "PS.stone_j", "PS.point_i", "PS.point_j"};
-
-
         String[] columns = {KEY_SIZE_FIELD, KEY_COUNT_MOVE,KEY_NUMBER_LEVEL, KEY_COUNT_POINT};
         String selection = KEY_NUMBER_LEVEL+" =?";
         String[] selectionArgs = {Integer.toString(numberLevel)};
@@ -66,10 +62,6 @@ public class ReadDb {
         String[] columns2 = {KEY_NUMBER_LEVEL, KEY_WHITE_I, KEY_WHITE_J, KEY_STONE_I, KEY_STONE_J, KEY_POINT_I, KEY_POINT_J};
         cursor = database.query(TABLE_POSITIONS, columns2, selection, selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
-            /*stoneI = cursor.getInt(cursor.getColumnIndex("stone_i"));
-            stoneJ = cursor.getInt(cursor.getColumnIndex("stone_j"));
-            pointI = cursor.getInt(cursor.getColumnIndex("point_i"));
-            pointJ = cursor.getInt(cursor.getColumnIndex("point_j"));*/
 
             do {
 
@@ -92,10 +84,6 @@ public class ReadDb {
                 if (cursor.getColumnIndex(KEY_POINT_J) > 0) {
                     pointJ.add(cursor.getInt(cursor.getColumnIndex(KEY_POINT_J)));
                 }
-                /*System.out.println("***************************************");
-                System.out.println(whiteI);
-                System.out.println(whiteJ);
-                System.out.println("***************************************");*/
 
             } while (cursor.moveToNext());
 

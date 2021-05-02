@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.view.View;
 
 
+import com.nokhrin.corners.levels.view.ActivityGameLevel;
 import com.nokhrin.corners.levels.view.ActivityLevels;
 
 import static com.nokhrin.corners.resources.Constants.BOT_WIN;
@@ -16,18 +17,18 @@ import static com.nokhrin.corners.resources.Constants.THREE_STAR;
 import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 public class GameOver {
-    ActivityLevels activity;
-    int[][] checkersPositions;
-    int[][] marksPositions;
+    private ActivityGameLevel activity;
+    private int[][] checkersPositions;
+    private int[][] marksPositions;
 
-    public GameOver(ActivityLevels activity) {
+    public GameOver(ActivityGameLevel activity) {
         this.activity = activity;
     }
 
-    /*public boolean isOver() {
+    public boolean isOver() {
         boolean result = false;
-        checkersPositions = activity.startGame.getCheckerPositions();
-        marksPositions = activity.startGame.getMarksPositions();
+        checkersPositions = activity.getStartGame().getCheckerPositions();
+        marksPositions = activity.getStartGame().getMarksPositions();
         int sizeOfField = checkersPositions.length;
         int countPointWhite = 0;
 
@@ -42,15 +43,15 @@ public class GameOver {
         }
 
         //find editor
-        SharedPreferences.Editor editor = activity.preferences.edit();
-        String key = LEVEL_PROGRESS + activity.numberLevel;
-        String s = "";
+//        SharedPreferences.Editor editor = activity.preferences.edit();
+//        String key = LEVEL_PROGRESS + activity.numberLevel;
+//        String s = "";
 
-        if (countPointWhite == activity.startGame.getCountPointInLevel()) {
-            activity.startGame.setWin(PLAYER_WIN);
+        if (countPointWhite == activity.getStartGame().getCountPointInLevel()) {
+            activity.getStartGame().setWin(PLAYER_WIN);
             activity.drawView.setWin(PLAYER_WIN);
             int countStar;
-            if(activity.startGame.getCountToMove() >0){
+            if(activity.getStartGame().getCountToMove() >0){
                 editor.putInt(key, THREE_STAR);
                 countStar = THREE_STAR;
             }else{
@@ -62,7 +63,7 @@ public class GameOver {
             activity.countMoveView.setText(s);
             result = true;
         } else if (activity.startGame.getCountToMove() == 0) {
-            activity.startGame.setWin(BOT_WIN);
+            activity.getStartGame().setWin(BOT_WIN);
             activity.drawView.setWin(BOT_WIN);
             s = "Увы и ах, ходы кончились";
             activity.countMoveView.setVisibility(View.VISIBLE);
@@ -74,5 +75,5 @@ public class GameOver {
 
 
         return result;
-    }*/
+    }
 }

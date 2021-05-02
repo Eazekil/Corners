@@ -34,9 +34,9 @@ import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 @SuppressLint("ViewConstructor")
 public class DrawView extends View {
-    Paint mPaint = new Paint();
-    ActivityMultiplayerGame activityMultiplayerGame;
-    Resources resourcesForDraw;
+    private Paint mPaint = new Paint();
+    private ActivityMultiplayerGame activityMultiplayerGame;
+    private Resources resourcesForDraw;
     private StartGame startGame;
     private int widthDisplay;
     private int sizeOfField;

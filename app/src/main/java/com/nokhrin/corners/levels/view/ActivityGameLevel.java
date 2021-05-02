@@ -1,24 +1,16 @@
 package com.nokhrin.corners.levels.view;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.levels.controller.OnTouchListener;
-import com.nokhrin.corners.levels.database.CreateDb;
 import com.nokhrin.corners.levels.database.LevelsDb;
+import com.nokhrin.corners.levels.model.PlayerMove;
 import com.nokhrin.corners.levels.model.StartGameLevel;
-import com.nokhrin.corners.levels.view.ViewParameters;
-import com.nokhrin.corners.resources.Constants;
 
-import java.io.File;
-
-import static com.nokhrin.corners.levels.database.LevelsDb.DATABASE_NAME;
 import static com.nokhrin.corners.resources.Constants.CREATE_NUMBER_LEVEL;
-import static com.nokhrin.corners.resources.Constants.PLAYER_NAME;
 
 public class ActivityGameLevel extends AppCompatActivity {
     private OnTouchListener onTouchListener;
@@ -26,6 +18,8 @@ public class ActivityGameLevel extends AppCompatActivity {
     private StartGameLevel startGame;
     private LevelsDb levelsDb;
     private int numberLevel;
+    private Animation animation;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +45,9 @@ public class ActivityGameLevel extends AppCompatActivity {
 
         onTouchListener =new OnTouchListener();
         onTouchListener.setActivity(this);
+
+        animation = new Animation();
+        animation.setActivity(this);
     }
 
     public OnTouchListener getOnTouchListener() {
@@ -67,5 +64,9 @@ public class ActivityGameLevel extends AppCompatActivity {
 
     public LevelsDb getLevelsDb() {
         return levelsDb;
+    }
+
+    public Animation getAnimation() {
+        return animation;
     }
 }

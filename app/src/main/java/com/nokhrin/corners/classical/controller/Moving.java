@@ -1,5 +1,9 @@
 package com.nokhrin.corners.classical.controller;
 
+import android.util.Log;
+
+import static com.nokhrin.corners.resources.Constants.TAG;
+
 public class Moving {
     private int touchX, touchY;
     private int touchJ, touchI;
@@ -28,6 +32,7 @@ public class Moving {
         touchJ = touchX / stepOnField + 1;
 
         System.out.println("_______________________ " + touchI + "," + touchJ);
+        Log.d(TAG, "convertCoordinate: "+touchI + "," + touchJ);
     }
 
     public int getTouchJ() {

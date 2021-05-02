@@ -48,7 +48,7 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
             }
 
             //mark player can move
-            playerMove = true;
+            isPlayerMove = true;
         }else{
             for (int i = 6; i < sizeOfField; i++) {
                 for (int j = 1; j < 5; j++) {
@@ -63,7 +63,7 @@ public class StartGame extends com.nokhrin.corners.game.StartGame {
                 }
             }
             //mark player can move
-            playerMove = false;
+            isPlayerMove = false;
         }
 
     }

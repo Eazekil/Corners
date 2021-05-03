@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi;
 import com.nokhrin.corners.game.StartGame;
 import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.database.ReadDb;
+import com.nokhrin.corners.levels.view.ActivityGameLevel;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class StartGameLevel extends StartGame {
     private int[][] marksPositions;
     private PlayerMove move;
     private ResultMoves resultMoves;
+    private ActivityGameLevel activity;
 
     public void setNumberLevel(int numberLevel) {
         this.numberLevel = numberLevel;
@@ -65,6 +67,7 @@ public class StartGameLevel extends StartGame {
         win = 0;
         isPlayerMove = true;
         resultMoves = new ResultMoves();
+        resultMoves.setActivity(activity);
         move = new PlayerMove();
         move.setStartGameLevel(this);
         move.setResultMoves(resultMoves);
@@ -132,5 +135,9 @@ public class StartGameLevel extends StartGame {
 
     public PlayerMove getPlayerMove() {
         return move;
+    }
+
+    public void setActivity(ActivityGameLevel activity) {
+        this.activity = activity;
     }
 }

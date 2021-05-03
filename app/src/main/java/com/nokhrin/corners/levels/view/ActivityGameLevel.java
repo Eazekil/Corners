@@ -36,6 +36,7 @@ public class ActivityGameLevel extends AppCompatActivity {
         levelsDb.putDb();
 
         startGame = new StartGameLevel();
+        startGame.setActivity(this);
         startGame.setLevelsDb(levelsDb);
         startGame.setNumberLevel(numberLevel);
 

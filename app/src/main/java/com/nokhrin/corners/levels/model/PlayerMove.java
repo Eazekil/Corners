@@ -9,6 +9,7 @@ import com.nokhrin.corners.game.PossibleMoves;
 import com.nokhrin.corners.levels.view.Animation;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;
 
+import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.SELECT_WOODMAN_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
@@ -47,13 +48,16 @@ public class PlayerMove {
                     resultMoves.setCheckerPositions(checkersPositions);
                     resultMoves.setPlayerMoves(choiceJ, choiceI, touchJ, touchI);
 
-                    animation.step(choiceJ, choiceI, touchJ, touchI, WOODMAN_CHECKER);
+                    checkersPositions[touchI][touchJ] = WOODMAN_CHECKER;
+                    checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
 
-                    int count = activity.startGame.getCountToMove() - 1;
-                    String s = "Ходов осталось : " + count;
-                    activity.countMoveView.setVisibility(View.VISIBLE);
-                    activity.countMoveView.setText(s);
-                    activity.startGame.setCountToMove(count);
+//                    animation.step(choiceJ, choiceI, touchJ, touchI, WOODMAN_CHECKER);
+//
+//                    int count = activity.startGame.getCountToMove() - 1;
+//                    String s = "Ходов осталось : " + count;
+//                    activity.countMoveView.setVisibility(View.VISIBLE);
+//                    activity.countMoveView.setText(s);
+//                    activity.startGame.setCountToMove(count);
 
 
                 }
@@ -64,10 +68,8 @@ public class PlayerMove {
             if (checkersPositions[touchI][touchJ] == WOODMAN_CHECKER) {
                 //update mark
                 checkersPositions[touchI][touchJ] = SELECT_WOODMAN_CHECKER;
-
-                //update draw field
-                activity.getViewParameters().getDrawView().setCheckerPositions(checkersPositions);
-                activity.getViewParameters().getDrawView().invalidate();
+                resultMoves.setCheckerPositions(checkersPositions);
+                resultMoves.choiceChecker(touchI,touchJ);
             }
         }
     }

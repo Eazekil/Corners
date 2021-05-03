@@ -65,7 +65,7 @@ public class OnTouchListener implements View.OnTouchListener {
         moving.setTouchXY(touchX, touchY);
 
         //inform of touch coordinate
-        activity.getPlayerMove().startPlayerMove(moving.getTouchI(), moving.getTouchJ());
+        activity.getStartGame().getPlayerMove().startPlayerMove(moving.getTouchI(), moving.getTouchJ());
         return false;
     }
 

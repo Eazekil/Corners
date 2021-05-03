@@ -28,32 +28,30 @@ import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 public class Animation {
     private ActivityGameLevel activity;
     private StepsForAnimation stepsForAnimation;
-    private GameOver game;
+    private int[][] checkerPositions;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void step(int startJ, int startI, int endJ, int endI, int checker) {
-        stepsForAnimation.setCheckersPositions(activity.getStartGame().getCheckerPositions());
+    public void step(int startI, int startJ, int endI, int endJ) {
+        stepsForAnimation.setCheckersPositions(checkerPositions);
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
 
         //get steps for animate checker
         int[] steps = stepsForAnimation.steps();
 
         //draw field without move checker
-        activity.getStartGame().getCheckerPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
-        activity.getViewParameters().getDrawView().setCheckerPositions(activity.getStartGame().getCheckerPositions());
+        checkerPositions[startI][startJ] = FREE_POSITION_ON_FIELD;
+        activity.getViewParameters().getDrawView().setCheckerPositions(checkerPositions);
         activity.getViewParameters().getDrawView().invalidate();
 
         int stepOnField = activity.getStartGame().getStepOnField();
 
         //add checker on start position and set visible
-        if (checker == WOODMAN_CHECKER) {
-            activity.getViewParameters().getViewElements().getIvWoodman().layout((startJ - 2) * stepOnField,
-                    (startI - 1) * stepOnField+ stepOnField*2,
-                    (startJ - 2) * stepOnField + stepOnField,
-                    (startI - 1) * stepOnField + stepOnField+ stepOnField*2);
-            activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.VISIBLE);
-        }
-
+        //if (checker == WOODMAN_CHECKER) { }
+        activity.getViewParameters().getViewElements().getIvWoodman().layout((startJ - 2) * stepOnField,
+                (startI - 1) * stepOnField+ stepOnField*2,
+                (startJ - 2) * stepOnField + stepOnField,
+                (startI - 1) * stepOnField + stepOnField+ stepOnField*2);
+        activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.VISIBLE);
 
         //create animation
         int mX = stepOnField;
@@ -74,9 +72,7 @@ public class Animation {
             path.lineTo(mX, mY);
         }
 
-        if (checker == WOODMAN_CHECKER) {
-            objectAnimator = ObjectAnimator.ofFloat(activity.getViewParameters().getViewElements().getIvWoodman(), "translationX", "translationY", path);
-        }
+        objectAnimator = ObjectAnimator.ofFloat(activity.getViewParameters().getViewElements().getIvWoodman(), "translationX", "translationY", path);
 
         objectAnimator.setDuration(600 * steps.length);
         objectAnimator.start();
@@ -86,20 +82,20 @@ public class Animation {
         objectAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(android.animation.Animator animation, boolean isReverse) {
-                activity.getStartGame().getCheckerPositions()[endI][endJ] = checker;
+                checkerPositions[endI][endJ] = WOODMAN_CHECKER;
                 activity.getViewParameters().getDrawView().invalidate();
                 activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.INVISIBLE);
 
                 //check game is over
-                if (game.isOver()) {
-                    //set winner and update draw field
-                    activity.getViewParameters().getDrawView().setCheckerPositions(activity.getStartGame().getCheckerPositions());
-                    activity.getViewParameters().getDrawView().invalidate();
-
-                    activity.getStartGame().setPlayerMove(false);
-                } else {
-                    activity.getStartGame().setPlayerMove(true);
-                }
+//                if (game.isOver()) {
+//                    //set winner and update draw field
+//                    activity.getViewParameters().getDrawView().setCheckerPositions(activity.getStartGame().getCheckerPositions());
+//                    activity.getViewParameters().getDrawView().invalidate();
+//
+//                    activity.getStartGame().setPlayerMove(false);
+//                } else {
+//                    activity.getStartGame().setPlayerMove(true);
+//                }
 
 
             }
@@ -111,6 +107,9 @@ public class Animation {
     public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
         stepsForAnimation = new StepsForAnimation();
-        game = new GameOver(activity);
+    }
+
+    public void setCheckerPositions(int[][] checkerPositions) {
+        this.checkerPositions = checkerPositions;
     }
 }

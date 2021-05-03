@@ -7,29 +7,25 @@ import androidx.annotation.RequiresApi;
 import com.nokhrin.corners.draw.DrawView;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;
 
-import static com.nokhrin.corners.resources.Constants.SELECT_WOODMAN_CHECKER;
-import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
-
 public class ResultMoves {
-    private int[] botMoves;
     private int[] playerMoves;
     private int game;
     private DrawView drawView;
     private int[][] checkerPositions;
-    private StartAnimation startAnimation;
     private ActivityGameLevel activity;
 
     private void updateView() {
+        if(drawView == null) drawView = activity.getViewParameters().getDrawView();
         drawView.setCheckerPositions(checkerPositions);
         drawView.invalidate();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void endMove(){
-        startAnimation = new StartAnimation();
-        startAnimation.setActivityClassic(activityClassic);
-        startAnimation.setStartParameters();
-        startAnimation.setResultMoves(this);
+//        startAnimation = new StartAnimation();
+//        startAnimation.setActivityClassic(activityClassic);
+//        startAnimation.setStartParameters();
+//        startAnimation.setResultMoves(this);
     }
 
     public void setCheckerPositions(int[][] checkerPositions) {
@@ -41,20 +37,15 @@ public class ResultMoves {
         }
     }
 
-    public void setBotMoves(int[] botMoves) {
-        this.botMoves = botMoves;
-    }
-
-    public void setDrawView(DrawView drawView) {
-        this.drawView = drawView;
-    }
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setPlayerMoves(int startI, int startJ, int endI, int endJ) {
         this.playerMoves = new int[4];
         this.playerMoves[0] = startI;
         this.playerMoves[1] = startJ;
         this.playerMoves[2] = endI;
         this.playerMoves[3] = endJ;
+        activity.getAnimation().setCheckerPositions(checkerPositions);
+        activity.getAnimation().step(startI,startJ,endI,endJ);
     }
 
     public void changeChoice(int startI, int startJ, int endI, int endJ){
@@ -63,12 +54,8 @@ public class ResultMoves {
         updateView();
     }
 
-    public void setActivityClassic(ActivityClassic activityClassic) {
-        this.activityClassic = activityClassic;
-    }
-
-    public int[] getBotMoves() {
-        return botMoves;
+    public void choiceChecker(int i, int j){
+        updateView();
     }
 
     public int[] getPlayerMoves() {
@@ -85,5 +72,9 @@ public class ResultMoves {
 
     public int[][] getCheckerPositions() {
         return checkerPositions;
+    }
+
+    public void setActivity(ActivityGameLevel activity) {
+        this.activity = activity;
     }
 }

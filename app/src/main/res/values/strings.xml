@@ -12,6 +12,7 @@
     <string name="button_level">Выбор уровня</string>
     <string name="button_multi_player">Совместная игра</string>
     <string name="button_corners">Классические уголки</string>
+    <string name="button_create_level">Создать уровень</string>
     <string name="button_shop">Магазин</string>
     <string name="button_settings">Настройки</string>
     <string name="button_menu">Меню</string>
@@ -51,5 +52,17 @@
     <string name="title_activity_multi2">FullscreenActivity</string>
     <string name="title_activity_multi3_game">FullscreenActivity</string>
     <string name="todo1">TODO1</string>
+    <string name="title_activity_create_level">FullscreenActivity</string>
+    <string name="number_level">Номер уровня</string>
+    <string name="size_of_field">Размер поля + 1</string>
+    <string name="count_move">Доступных ходов</string>
+    <string name="count_point">Количество целевых точек</string>
+    <string name="white_i">Позиция пешки Y</string>
+    <string name="white_j">Позиция пешки X</string>
+    <string name="stone_i">Позиция камня Y</string>
+    <string name="stone_j">Позиция камня X</string>
+    <string name="point_i">Позиция целевой точки Y</string>
+    <string name="point_j">Позиция целевой точки X</string>
+    <string name="title_activity_game_level">FullscreenActivity</string>
 
 </resources>

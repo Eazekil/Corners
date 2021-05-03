@@ -25,6 +25,9 @@ public class StartParameters {
             }
         }
 
+
+
+
         //add checker on start positions
         //start white checkers position
         for (int i = 6; i < sizeOfField; i++) {

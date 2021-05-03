@@ -1,7 +1,7 @@
 package com.nokhrin.corners.levels.level1;
 
 
-import com.nokhrin.corners.levels.ActivityLevels;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHECKER;
@@ -36,7 +36,7 @@ public class Level1 {
         marksPositions[1][4] = TARGET_POINT_FOR_WHITE_CHECKER;
 
         //add start parameters
-        activity.startGame.addStartParameters(sizeOfField, countToMove, countPointInLevel, checkersPositions, marksPositions);
+        //activity.startGame.addStartParameters(sizeOfField, countToMove, countPointInLevel, checkersPositions, marksPositions);
     }
 
 

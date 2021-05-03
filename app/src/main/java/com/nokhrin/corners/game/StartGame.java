@@ -9,7 +9,7 @@ public abstract class StartGame {
     protected int stepOnField; // step on chess field and size of checkers
     protected int[][] checkerPositions; //positions all checkers on field
     protected int win;
-    protected boolean playerMove;
+    protected boolean isPlayerMove;
 
     public StartGame(){
     }
@@ -35,11 +35,11 @@ public abstract class StartGame {
     }
 
     public boolean isPlayerMove() {
-        return playerMove;
+        return isPlayerMove;
     }
 
     public void setPlayerMove(boolean playerMove) {
-        this.playerMove = playerMove;
+        this.isPlayerMove = playerMove;
     }
 
     public void setCheckerPositions(int[][] checkerPositions) {

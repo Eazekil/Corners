@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.widget.Button;
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.levels.ActivityLevels;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class PlayerProgress {
         this.activity = activity;
     }
 
-    public void checkLevels() {
+    /*public void checkLevels() {
         ArrayList<Button> buttons = activity.buttonSetInvisibleList;
         SharedPreferences preferences = activity.preferences;
         for (int i = 1; i < buttons.size(); i++) {
@@ -32,7 +32,7 @@ public class PlayerProgress {
                 setBackground(buttons.get(i), progress);
             }
         }
-    }
+    }*/
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void setBackground(Button button, int progress) {

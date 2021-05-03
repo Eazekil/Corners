@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
-    tools:context=".levels.ActivityLevels">
+    tools:context=".levels.view.ActivityLevels">
 
 
     <FrameLayout
@@ -20,8 +20,8 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayoutLevel"
+    <!--<FrameLayout
+        android:id="@+id/frameLayoutLevelA"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="invisible"
@@ -31,273 +31,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndentLevels" >
 
-    </FrameLayout>
+    </FrameLayout>-->
+
 
 
     <Button
-        android:id="@+id/buttonLevel3"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:id="@+id/buttonReturnLevel"
+        android:layout_width="141dp"
+        android:layout_height="64dp"
         android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level3"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="center_horizontal|bottom"
+        android:text="@string/button_return_levels"
         android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFFFF"
         android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
+        android:textSize="18sp"
+        android:visibility="invisible"
         app:backgroundTint="@color/white"
         app:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
-
-    <Button
-        android:id="@+id/buttonLevel4"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level4"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
-
-    <Button
-        android:id="@+id/buttonLevel5"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level5"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
-
-    <Button
-        android:id="@+id/buttonLevel6"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level6"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
-
-    <Button
-        android:id="@+id/buttonLevel7"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level7"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <Button
-        android:id="@+id/buttonLevel8"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level8"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <Button
-        android:id="@+id/buttonLevel9"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level9"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <Button
-        android:id="@+id/buttonLevel10"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level10"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697" />
-
-    <Button
-        android:id="@+id/buttonLevel11"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level11"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697" />
-
-    <Button
-        android:id="@+id/buttonLevel12"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level12"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697" />
-
-    <Button
-        android:id="@+id/buttonLevel2"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level2"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
-
+        app:layout_constraintVertical_bias="0.917" />
 
     <Button
         android:id="@+id/buttonMenu"
@@ -324,28 +82,6 @@
         app:layout_constraintVertical_bias="0.917" />
 
     <Button
-        android:id="@+id/buttonReturnLevel"
-        android:layout_width="141dp"
-        android:layout_height="64dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/comfortaa_bold"
-        android:gravity="center_horizontal|bottom"
-        android:text="@string/button_return_levels"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
-
-    <Button
         android:id="@+id/buttonRestartLevel"
         android:layout_width="152dp"
         android:layout_height="64dp"
@@ -367,30 +103,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.917" />
 
-    <Button
-        android:id="@+id/buttonLevel1"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/button_wood_2"
-        android:fontFamily="@font/aclonica"
-        android:freezesText="false"
-        android:hapticFeedbackEnabled="false"
-        android:text="@string/button_number_level1"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="45sp"
-        android:visibility="visible"
-        app:backgroundTint="@color/white"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
-
 
     <TextView
         android:id="@+id/textViewCountMove"
@@ -404,7 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayoutLevel" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutLevelA" />
 
     <FrameLayout
         android:id="@+id/frameLayoutForWoodman"
@@ -423,6 +135,23 @@
             android:visibility="invisible"
             app:srcCompat="@drawable/woodman" />
     </FrameLayout>
+
+    <ListView
+        android:id="@+id/buttonList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMenu"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--<ListView
+        android:id="@+id/buttonList"
+        android:layout_width="397dp"
+        android:layout_height="557dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

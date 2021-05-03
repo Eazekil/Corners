@@ -10,6 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Corners">
         <activity
+            android:name=".levels.view.ActivityGameLevel"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_game_level"
+            android:theme="@style/Theme.Corners.Fullscreen"></activity>
+        <activity
+            android:name=".levels.database.ActivityCreateLevel"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_create_level"
+            android:theme="@style/Theme.Corners.Fullscreen" />
+        <activity
             android:name=".multiplayer.ActivityMultiplayerGame"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_multi3_game"
@@ -30,7 +40,7 @@
             android:label="@string/title_activity_classic"
             android:theme="@style/Theme.Corners.Fullscreen" />
         <activity
-            android:name=".levels.ActivityLevels"
+            android:name=".levels.view.ActivityLevels"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_levels"
             android:theme="@style/Theme.Corners.Fullscreen" />

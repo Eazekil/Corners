@@ -1,5 +1,9 @@
 package com.nokhrin.corners.classical.controller;
 
+import android.util.Log;
+
+import static com.nokhrin.corners.resources.Constants.TAG;
+
 public class Moving {
     private int touchX, touchY;
     private int touchJ, touchI;
@@ -22,12 +26,13 @@ public class Moving {
         this.widthDisplay = widthDisplay;
     }
 
-    private void convertCoordinate(){
-        int stepOnField = (int) ((widthDisplay - 10*2.75) / (sizeOfField - 1));
+    private void convertCoordinate() {
+        int stepOnField = widthDisplay / (sizeOfField - 1);
         touchI = touchY / stepOnField + 1;
         touchJ = touchX / stepOnField + 1;
 
         System.out.println("_______________________ " + touchI + "," + touchJ);
+        Log.d(TAG, "convertCoordinate: "+touchI + "," + touchJ);
     }
 
     public int getTouchJ() {

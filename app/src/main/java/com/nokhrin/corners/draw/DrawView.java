@@ -13,7 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.classical.view.ActivityClassic;
-import com.nokhrin.corners.levels.ActivityLevels;
+import com.nokhrin.corners.levels.view.ActivityGameLevel;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
 import com.nokhrin.corners.game.StartGame;
 
@@ -33,10 +34,9 @@ import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 @SuppressLint("ViewConstructor")
 public class DrawView extends View {
-    Paint mPaint = new Paint();
-    ActivityMultiplayerGame activityMultiplayerGame;
-    ActivityLevels activityLevels;
-    Resources resourcesForDraw;
+    private Paint mPaint = new Paint();
+    private ActivityMultiplayerGame activityMultiplayerGame;
+    private Resources resourcesForDraw;
     private StartGame startGame;
     private int widthDisplay;
     private int sizeOfField;
@@ -80,13 +80,8 @@ public class DrawView extends View {
             stepOnField = activityMultiplayerGame.startGame.getStepOnField();
         }
 
-        if (appCompatActivity instanceof ActivityLevels) {
-            this.activityLevels = (ActivityLevels) appCompatActivity;
-            startGame = activityLevels.startGame;
-            widthDisplay = activityLevels.widthDisplay;
-            sizeOfField = activityLevels.startGame.getSizeOfField();
-            stepOnField = activityLevels.startGame.getStepOnField();
-            marksPositions = activityLevels.startGame.getMarksPositions();
+        if (appCompatActivity instanceof ActivityGameLevel) {
+            marksPositions = ((ActivityGameLevel)appCompatActivity).getStartGame().getMarksPositions();
         }
 
         resourcesForDraw = this.getResources();
@@ -138,6 +133,7 @@ public class DrawView extends View {
         //draw checkers and marks
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
+                System.out.println("ssss  "+checkerPositions[i][j]);
                 //target point
                 if (marksPositions != null) {
                     if (marksPositions[i][j] == TARGET_POINT_FOR_WHITE_CHECKER) {

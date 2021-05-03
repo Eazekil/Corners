@@ -38,7 +38,7 @@ public class ViewParameters {
     private void setParameters() {
         displaySettings.setLayout(viewElements.getConstrainLayout());
         displaySettings.setDisplay(activity.getWindowManager().getDefaultDisplay());
-        displaySettings.setFlClassic((FrameLayout) viewElements.getFrameLayout());
+        displaySettings.setFrameLayout((FrameLayout) viewElements.getFrameLayout());
         displaySettings.setFlIndent((FrameLayout) viewElements.getFrameLayoutIndent());
 
     }

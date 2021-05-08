@@ -29,9 +29,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndentLevels" >
-
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/imageViewCheckerWoodman"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/todo1"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayoutLevel"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayoutLevel"
+        app:layout_constraintStart_toStartOf="@+id/frameLayoutLevel"
+        app:layout_constraintTop_toTopOf="@+id/frameLayoutLevel"
+
+        app:srcCompat="@drawable/woodman" />
 
 
     <Button
@@ -126,13 +137,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageViewCheckerWoodman"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/todo1"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/woodman" />
+
     </FrameLayout>
 
 

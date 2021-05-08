@@ -26,6 +26,7 @@ public class PlayerMove {
 
 
         if (haveChoiceChecker()) {
+            System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
             //check touch position it white checker
             if (checkersPositions[touchI][touchJ] == WOODMAN_CHECKER) {
 
@@ -46,7 +47,7 @@ public class PlayerMove {
 
                     //animate this move
                     resultMoves.setCheckerPositions(checkersPositions);
-                    resultMoves.setPlayerMoves(choiceJ, choiceI, touchJ, touchI);
+                    resultMoves.setPlayerMoves(choiceI, choiceJ, touchI, touchJ);
 
                     checkersPositions[touchI][touchJ] = WOODMAN_CHECKER;
                     checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;

@@ -1,11 +1,14 @@
 package com.nokhrin.corners.levels.model;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.draw.DrawView;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;
+
+import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 public class ResultMoves {
     private int[] playerMoves;
@@ -44,6 +47,9 @@ public class ResultMoves {
         this.playerMoves[1] = startJ;
         this.playerMoves[2] = endI;
         this.playerMoves[3] = endJ;
+        @SuppressLint("DefaultLocale") String ss= String.format("_____===-______ %d %d %d %d",startI,startJ,endI,endJ );
+        System.out.println(ss);
+        //checkerPositions[startI][startJ] = WOODMAN_CHECKER;
         activity.getAnimation().setCheckerPositions(checkerPositions);
         activity.getAnimation().step(startI,startJ,endI,endJ);
     }

@@ -27,12 +27,12 @@ public class Animation {
     private ActivityGameLevel activity;
     private StepsForAnimation stepsForAnimation;
     private int[][] checkerPositions;
-    private int stepOnField;
+    private int sizeOfStep;
     private int indentTop;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startI, int startJ, int endI, int endJ) {
-        Log.d(TAG, "setActivity: stepOnField_____++" + stepOnField);
+        Log.d(TAG, "setActivity: stepOnField_____++" + sizeOfStep);
         stepsForAnimation.setCheckersPositions(checkerPositions);
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
 
@@ -45,27 +45,28 @@ public class Animation {
         activity.getViewParameters().getDrawView().invalidate();
 
         //add checker on start position and set visible
-        activity.getViewParameters().getViewElements().getIvWoodman().layout((startJ - 2) * stepOnField,
-                (startI - 1) * stepOnField + indentTop,
-                (startJ - 2) * stepOnField + stepOnField,
-                (startI - 1) * stepOnField + stepOnField + indentTop);
+        activity.getViewParameters().getViewElements().getIvWoodman().layout((startJ - 2) * sizeOfStep,
+                (startI - 1) * sizeOfStep + indentTop,
+                (startJ - 2) * sizeOfStep + sizeOfStep,
+                (startI - 1) * sizeOfStep + sizeOfStep + indentTop
+        );
         activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.VISIBLE);
 
         //create animation
-        int mX = stepOnField;
+        int mX = sizeOfStep;
         int mY = 0;
         ObjectAnimator objectAnimator;
         Path path = new Path();
         path.moveTo(mX, mY);
         for (int step : steps) {
-            if (step == STEP_RIGHT) mX += stepOnField;
-            if (step == STEP_LEFT) mX -= stepOnField;
-            if (step == STEP_BOTTOM) mY += stepOnField;
-            if (step == STEP_TOP) mY -= stepOnField;
-            if (step == JUMP_RIGHT) mX += stepOnField * 2;
-            if (step == JUMP_LEFT) mX -= stepOnField * 2;
-            if (step == JUMP_BOTTOM) mY += stepOnField * 2;
-            if (step == JUMP_TOP) mY -= stepOnField * 2;
+            if (step == STEP_RIGHT) mX += sizeOfStep;
+            if (step == STEP_LEFT) mX -= sizeOfStep;
+            if (step == STEP_BOTTOM) mY += sizeOfStep;
+            if (step == STEP_TOP) mY -= sizeOfStep;
+            if (step == JUMP_RIGHT) mX += sizeOfStep * 2;
+            if (step == JUMP_LEFT) mX -= sizeOfStep * 2;
+            if (step == JUMP_BOTTOM) mY += sizeOfStep * 2;
+            if (step == JUMP_TOP) mY -= sizeOfStep * 2;
 
             path.lineTo(mX, mY);
         }
@@ -84,7 +85,7 @@ public class Animation {
                 activity.getViewParameters().getDrawView().setCheckerPositions(checkerPositions);
                 activity.getViewParameters().getDrawView().invalidate();
                 Log.d(TAG, "onAnimationEnd: invalidateDrawView");
-                activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.INVISIBLE);
+                //activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.INVISIBLE);
 
                 //check game is over
 //                if (game.isOver()) {
@@ -107,8 +108,9 @@ public class Animation {
     public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
         stepsForAnimation = new StepsForAnimation();
-        stepOnField = activity.getViewParameters().getDisplaySettings().getWidthDisplay() / (activity.getStartGame().getCheckerPositions().length-1);
-        Log.d(TAG, "setActivity: stepOnField_____" + stepOnField);
+        int indentFrame = activity.getViewParameters().getDisplaySettings().getWidthDisplay() * 30 / 1080;
+        sizeOfStep = ((activity.getViewParameters().getDisplaySettings().getWidthDisplay() - indentFrame * 2) / (activity.getStartGame().getCheckerPositions().length - 1));
+        Log.d(TAG, "setActivity: stepOnField_____" + sizeOfStep);
         indentTop = activity.getViewParameters().getDisplaySettings().getIndentTop();
     }
 

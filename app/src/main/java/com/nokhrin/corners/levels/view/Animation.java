@@ -41,6 +41,8 @@ public class Animation {
             @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
             String message = String.format(activity.getString(R.string.count_move_level), countMove);
             activity.getViewParameters().getViewElements().getTvCountMove().setText(message);
+            activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.VISIBLE);
+
         }else{
             activity.getViewParameters().getViewElements().getTvCountMove().setText(R.string.moves_over);
         }

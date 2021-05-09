@@ -6,6 +6,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.game.StartGame;
+import com.nokhrin.corners.levels.GameOver;
 import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.database.ReadDb;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;
@@ -26,6 +27,7 @@ public class StartGameLevel extends StartGame {
     private PlayerMove move;
     private ResultMoves resultMoves;
     private ActivityGameLevel activity;
+    private GameOver gameOver;
 
     public void setNumberLevel(int numberLevel) {
         this.numberLevel = numberLevel;
@@ -62,15 +64,21 @@ public class StartGameLevel extends StartGame {
         }
         for(int i=0;i<pointI.size();i++){
             marksPositions[pointI.get(i)][pointJ.get(i)] = TARGET_POINT_FOR_WHITE_CHECKER;
+
         }
 
         win = 0;
         isPlayerMove = true;
+
         resultMoves = new ResultMoves();
         resultMoves.setActivity(activity);
+
         move = new PlayerMove();
         move.setStartGameLevel(this);
         move.setResultMoves(resultMoves);
+
+        gameOver = new GameOver();
+        gameOver.setActivity(activity);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -139,5 +147,17 @@ public class StartGameLevel extends StartGame {
 
     public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
+    }
+
+    public GameOver getGameOver() {
+        return gameOver;
+    }
+
+    public int getCountToMove() {
+        return countToMove;
+    }
+
+    public void setCountToMove(int countToMove) {
+        this.countToMove = countToMove;
     }
 }

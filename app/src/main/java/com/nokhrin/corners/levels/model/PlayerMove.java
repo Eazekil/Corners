@@ -1,13 +1,10 @@
 package com.nokhrin.corners.levels.model;
 
 import android.os.Build;
-import android.view.View;
 
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.game.PossibleMoves;
-import com.nokhrin.corners.levels.view.Animation;
-import com.nokhrin.corners.levels.view.ActivityGameLevel;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
 import static com.nokhrin.corners.resources.Constants.SELECT_WOODMAN_CHECKER;
@@ -23,7 +20,7 @@ public class PlayerMove {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startPlayerMove(int touchI, int touchJ) {
         checkersPositions = startGameLevel.getCheckerPositions();
-
+        if (startGameLevel.getWin() != 0) return;
 
         if (haveChoiceChecker()) {
             System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
@@ -35,7 +32,7 @@ public class PlayerMove {
                 checkersPositions[choiceI][choiceJ] = WOODMAN_CHECKER;
                 resultMoves.setCheckerPositions(checkersPositions);
 
-                resultMoves.changeChoice(choiceI,choiceJ,touchI,touchJ);
+                resultMoves.changeChoice(choiceI, choiceJ, touchI, touchJ);
 
             } else {
                 //check can move on touch coordinate
@@ -44,13 +41,16 @@ public class PlayerMove {
 
                     //mark player can't move more
                     //startGameLevel.setPlayerMove(false);
+                    startGameLevel.setCountToMove(startGameLevel.getCountToMove()-1);
 
                     //animate this move
                     resultMoves.setCheckerPositions(checkersPositions);
-                    resultMoves.setPlayerMoves(choiceI, choiceJ, touchI, touchJ);
+
 
                     checkersPositions[touchI][touchJ] = WOODMAN_CHECKER;
                     checkersPositions[choiceI][choiceJ] = FREE_POSITION_ON_FIELD;
+
+                    resultMoves.setPlayerMoves(choiceI, choiceJ, touchI, touchJ);
 
 //                    animation.step(choiceJ, choiceI, touchJ, touchI, WOODMAN_CHECKER);
 //
@@ -70,7 +70,7 @@ public class PlayerMove {
                 //update mark
                 checkersPositions[touchI][touchJ] = SELECT_WOODMAN_CHECKER;
                 resultMoves.setCheckerPositions(checkersPositions);
-                resultMoves.choiceChecker(touchI,touchJ);
+                resultMoves.choiceChecker(touchI, touchJ);
             }
         }
     }

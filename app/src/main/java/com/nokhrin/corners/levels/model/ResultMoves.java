@@ -50,6 +50,9 @@ public class ResultMoves {
         @SuppressLint("DefaultLocale") String ss= String.format("_____===-______ %d %d %d %d",startI,startJ,endI,endJ );
         System.out.println(ss);
         //checkerPositions[startI][startJ] = WOODMAN_CHECKER;
+        if(activity.getStartGame().getGameOver().isOver()){
+            activity.getAnimation().setWin(activity.getStartGame().getWin());
+        }
         activity.getAnimation().setCheckerPositions(checkerPositions);
         activity.getAnimation().step(startI,startJ,endI,endJ);
     }

@@ -10,7 +10,7 @@ import com.nokhrin.corners.R;
 
 public class ViewElements {
     private ActivityGameLevel activity;
-    private TextView countMoveView;
+    private TextView tvCountMove;
     private ImageView ivWoodman;
     private FrameLayout frameLayoutLevels;
     private View constrainLayout;
@@ -25,7 +25,7 @@ public class ViewElements {
     private void findView() {
         frameLayoutLevels = activity.findViewById(R.id.frameLayoutLevel);
         frameLayoutIndent = activity.findViewById(R.id.frameLayoutIndentLevels);
-        countMoveView = activity.findViewById(R.id.textViewCountMove);
+        tvCountMove = activity.findViewById(R.id.textViewCountMove);
         ivWoodman = activity.findViewById(R.id.imageViewCheckerWoodman);
         buttonMenu = activity.findViewById(R.id.buttonMenu);
         buttonReturnLevels = activity.findViewById(R.id.buttonReturnLevel);
@@ -33,8 +33,8 @@ public class ViewElements {
         constrainLayout = activity.findViewById(R.id.constrainLayout);
     }
 
-    public TextView getCountMoveView() {
-        return countMoveView;
+    public TextView getTvCountMove() {
+        return tvCountMove;
     }
 
     public ImageView getIvWoodman() {

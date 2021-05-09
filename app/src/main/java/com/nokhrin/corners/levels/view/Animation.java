@@ -2,6 +2,7 @@ package com.nokhrin.corners.levels.view;
 
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.graphics.Path;
 import android.os.Build;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 
 import androidx.annotation.RequiresApi;
 
+import com.nokhrin.corners.R;
 import com.nokhrin.corners.game.StepsForAnimation;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
@@ -29,10 +31,20 @@ public class Animation {
     private int[][] checkerPositions;
     private int sizeOfStep;
     private int indentTop;
+    private int win = 0;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startI, int startJ, int endI, int endJ) {
         Log.d(TAG, "setActivity: stepOnField_____++" + sizeOfStep);
+        int countMove =activity.getStartGame().getCountToMove();
+        if(countMove > 0){
+            @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
+            String message = String.format(activity.getString(R.string.count_move_level), countMove);
+            activity.getViewParameters().getViewElements().getTvCountMove().setText(message);
+        }else{
+            activity.getViewParameters().getViewElements().getTvCountMove().setText(R.string.moves_over);
+        }
+
         stepsForAnimation.setCheckersPositions(checkerPositions);
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
 
@@ -85,20 +97,10 @@ public class Animation {
                 activity.getViewParameters().getDrawView().setCheckerPositions(checkerPositions);
                 activity.getViewParameters().getDrawView().invalidate();
                 Log.d(TAG, "onAnimationEnd: invalidateDrawView");
-                //activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.INVISIBLE);
-
-                //check game is over
-//                if (game.isOver()) {
-//                    //set winner and update draw field
-//                    activity.getViewParameters().getDrawView().setCheckerPositions(activity.getStartGame().getCheckerPositions());
-//                    activity.getViewParameters().getDrawView().invalidate();
-//
-//                    activity.getStartGame().setPlayerMove(false);
-//                } else {
-//                    activity.getStartGame().setPlayerMove(true);
-//                }
-
-
+                activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.INVISIBLE);
+                if(win >0){
+                    activity.getViewParameters().getDrawView().setWin(win);
+                }
             }
         });
 
@@ -116,5 +118,9 @@ public class Animation {
 
     public void setCheckerPositions(int[][] checkerPositions) {
         this.checkerPositions = checkerPositions;
+    }
+
+    public void setWin(int win) {
+        this.win = win;
     }
 }

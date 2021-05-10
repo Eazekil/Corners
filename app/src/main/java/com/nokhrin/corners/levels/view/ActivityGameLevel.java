@@ -17,7 +17,6 @@ import static com.nokhrin.corners.resources.Constants.CREATE_NUMBER_LEVEL;
 public class ActivityGameLevel extends AppCompatActivity {
     private ViewParameters viewParameters;
     private StartGameLevel startGame;
-    private LevelsDb levelsDb;
     private int numberLevel;
     private Animation animation;
 
@@ -33,7 +32,7 @@ public class ActivityGameLevel extends AppCompatActivity {
             numberLevel = extras.getInt(CREATE_NUMBER_LEVEL);
         }
 
-        levelsDb = new LevelsDb(this);
+        LevelsDb levelsDb = new LevelsDb(this);
         levelsDb.getReadableDatabase();
         levelsDb.putDb();
 
@@ -63,10 +62,6 @@ public class ActivityGameLevel extends AppCompatActivity {
 
     public StartGameLevel getStartGame() {
         return startGame;
-    }
-
-    public LevelsDb getLevelsDb() {
-        return levelsDb;
     }
 
     public Animation getAnimation() {

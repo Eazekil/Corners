@@ -27,6 +27,8 @@ public class CreateDb {
         addPoint(2,1,4);
         addPoint(2,2,4);
 
+        addProgress();
+
         levelsDb.close();
     }
 
@@ -70,5 +72,14 @@ public class CreateDb {
         contentValues = new ContentValues();
         database = levelsDb.getWritableDatabase();
         createDbLevels();
+    }
+
+    private void addProgress(){
+        for(int i=1;i<25;i++){
+            contentValues.put(LevelsDb.KEY_COUNT_STARS, 0);
+            contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, i);
+            database.insert(LevelsDb.TABLE_PROGRESS, null, contentValues);
+            contentValues.clear();
+        }
     }
 }

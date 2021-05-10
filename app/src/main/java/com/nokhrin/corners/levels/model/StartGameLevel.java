@@ -6,7 +6,6 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.game.StartGame;
-import com.nokhrin.corners.levels.GameOver;
 import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.database.ReadDb;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;

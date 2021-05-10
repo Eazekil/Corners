@@ -1,4 +1,4 @@
-package com.nokhrin.corners.levels
+package com.nokhrin.corners.levels.model
 
 import android.util.Log
 import com.nokhrin.corners.levels.view.ActivityGameLevel

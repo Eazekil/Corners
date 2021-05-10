@@ -12,10 +12,11 @@ import static com.nokhrin.corners.resources.Constants.TAG;
 
 
 public class LevelsDb extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "levelsDb";
     public static final String TABLE_LEVELS = "levels";
     public static final String TABLE_POSITIONS = "positions";
+    public static final String TABLE_PROGRESS = "progress";
     public static final String KEY_ID = "_id";
     public static final String KEY_NUMBER_LEVEL = "number_level";
     public static final String KEY_SIZE_FIELD = "size_field";
@@ -27,6 +28,7 @@ public class LevelsDb extends SQLiteOpenHelper {
     public static final String KEY_STONE_J = "stone_j";
     public static final String KEY_POINT_I = "point_i";
     public static final String KEY_POINT_J = "point_j";
+    public static final String KEY_COUNT_STARS = "count_of_stars";
     public boolean isExist = true;
 
 
@@ -69,6 +71,11 @@ public class LevelsDb extends SQLiteOpenHelper {
                 KEY_STONE_J + " integer," +
                 KEY_POINT_I + " integer," +
                 KEY_POINT_J + " integer" + ")");
+
+        db.execSQL("create table " + TABLE_PROGRESS + "(" +
+                KEY_ID + " integer primary key," +
+                KEY_NUMBER_LEVEL + " integer," +
+                KEY_COUNT_STARS + " integer" + ")");
     }
 
     @Override

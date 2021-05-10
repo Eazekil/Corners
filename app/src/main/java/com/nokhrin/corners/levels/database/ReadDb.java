@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_COUNT_MOVE;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_COUNT_POINT;
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_COUNT_STARS;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_NUMBER_LEVEL;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_POINT_I;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_POINT_J;
@@ -18,6 +19,8 @@ import static com.nokhrin.corners.levels.database.LevelsDb.KEY_WHITE_I;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_WHITE_J;
 import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_LEVELS;
 import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_POSITIONS;
+import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_PROGRESS;
+import static com.nokhrin.corners.resources.Constants.TAG;
 
 public class ReadDb {
     private LevelsDb levelsDb;
@@ -32,6 +35,7 @@ public class ReadDb {
     private ArrayList<Integer> stoneJ;
     private ArrayList<Integer> pointI;
     private ArrayList<Integer> pointJ;
+    private ArrayList<Integer> progress;
 
     public void setLevelsDb(LevelsDb levelsDb) {
         this.levelsDb = levelsDb;
@@ -52,10 +56,10 @@ public class ReadDb {
         Cursor cursor = database.query(TABLE_LEVELS, columns, selection, selectionArgs, null, null, null);
 
         if (cursor.moveToFirst()) {
-            level = cursor.getInt(cursor.getColumnIndex("number_level"));
-            sizeField = cursor.getInt(cursor.getColumnIndex("size_field"));
-            countMove = cursor.getInt(cursor.getColumnIndex("count_move"));
-            countPoint = cursor.getInt(cursor.getColumnIndex("count_point"));
+            level = cursor.getInt(cursor.getColumnIndex(KEY_NUMBER_LEVEL));
+            sizeField = cursor.getInt(cursor.getColumnIndex(KEY_SIZE_FIELD));
+            countMove = cursor.getInt(cursor.getColumnIndex(KEY_COUNT_MOVE));
+            countPoint = cursor.getInt(cursor.getColumnIndex(KEY_COUNT_POINT));
         }
         cursor.close();
 
@@ -90,7 +94,23 @@ public class ReadDb {
         }
         cursor.close();
         database.close();
+    }
 
+    public ArrayList<Integer> readCountStars(){
+        database = levelsDb.getWritableDatabase();
+        progress = new ArrayList<>();
+        String[] columns = {KEY_NUMBER_LEVEL, KEY_COUNT_STARS};
+        //String selection = KEY_NUMBER_LEVEL+" =?";
+        //String[] selectionArgs = {Integer.toString(numberLevel)};
+        Cursor cursor = database.query(TABLE_PROGRESS, columns, null, null, null, null, null);
+        Log.d(TAG, "readCountStars: ");
+        while (cursor.moveToNext()) {
+            Log.d(TAG, "readCountStars: ++1");
+            progress.add(cursor.getInt(cursor.getColumnIndex(KEY_COUNT_STARS)));
+        }
+        cursor.close();
+        database.close();
+        return progress;
     }
 
     public int getSizeField() {

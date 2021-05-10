@@ -223,17 +223,17 @@ public class DrawView extends View {
         if (win != 0) {
             if (win == PLAYER_WIN) {
                 Bitmap playerWinBitmap = Bitmap.createScaledBitmap(
-                        BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer), widthDisplay, widthDisplay, true);
+                        BitmapFactory.decodeResource(resourcesForDraw, R.drawable.shield_win), widthDisplay, widthDisplay, true);
                 canvas.drawBitmap(playerWinBitmap, 0, 0, mPaint);
                 playerWinBitmap.recycle();
             } else if (win == BOT_WIN) {
                 Bitmap playerLoseBitmap = Bitmap.createScaledBitmap(
-                        BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer_lose), widthDisplay, widthDisplay, true);
+                        BitmapFactory.decodeResource(resourcesForDraw, R.drawable.shield_lose), widthDisplay, widthDisplay, true);
                 canvas.drawBitmap(playerLoseBitmap, 0, 0, mPaint);
                 playerLoseBitmap.recycle();
             } else if (win == WIN_WIN) {
                 Bitmap winWinBitmap = Bitmap.createScaledBitmap(
-                        BitmapFactory.decodeResource(resourcesForDraw, R.drawable.homer), widthDisplay, widthDisplay, true);
+                        BitmapFactory.decodeResource(resourcesForDraw, R.drawable.shield_win), widthDisplay, widthDisplay, true);
                 canvas.drawBitmap(winWinBitmap, 0, 0, mPaint);
                 winWinBitmap.recycle();
             }

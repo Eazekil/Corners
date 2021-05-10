@@ -1,22 +1,20 @@
 package com.nokhrin.corners.levels.view;
 
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.levels.controller.OnTouchListener;
 import com.nokhrin.corners.levels.database.LevelsDb;
-import com.nokhrin.corners.levels.model.PlayerMove;
 import com.nokhrin.corners.levels.model.StartGameLevel;
 
 import static com.nokhrin.corners.resources.Constants.CREATE_NUMBER_LEVEL;
 
 public class ActivityGameLevel extends AppCompatActivity {
-    private OnTouchListener onTouchListener;
     private ViewParameters viewParameters;
     private StartGameLevel startGame;
     private LevelsDb levelsDb;
@@ -24,6 +22,7 @@ public class ActivityGameLevel extends AppCompatActivity {
     private Animation animation;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_level);
@@ -47,7 +46,7 @@ public class ActivityGameLevel extends AppCompatActivity {
         viewParameters = new ViewParameters();
         viewParameters.setActivity(this);
 
-        onTouchListener =new OnTouchListener();
+        OnTouchListener onTouchListener = new OnTouchListener();
         onTouchListener.setActivity(this);
 
         animation = new Animation();
@@ -56,16 +55,6 @@ public class ActivityGameLevel extends AppCompatActivity {
         viewParameters.getViewElements().getButtonMenu().setVisibility(View.INVISIBLE);
         viewParameters.getViewElements().getButtonRestartLevel().setVisibility(View.VISIBLE);
         viewParameters.getViewElements().getButtonReturnLevels().setVisibility(View.VISIBLE);
-        viewParameters.getViewElements().getButtonReturnLevels().setOnClickListener(v -> {
-            Intent intent = new Intent(this, ActivityLevels.class);
-            startActivity(intent);
-            finish();
-        });
-
-    }
-
-    public OnTouchListener getOnTouchListener() {
-        return onTouchListener;
     }
 
     public ViewParameters getViewParameters() {
@@ -82,5 +71,9 @@ public class ActivityGameLevel extends AppCompatActivity {
 
     public Animation getAnimation() {
         return animation;
+    }
+
+    public int getNumberLevel() {
+        return numberLevel;
     }
 }

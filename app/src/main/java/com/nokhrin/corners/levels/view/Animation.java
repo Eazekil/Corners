@@ -37,15 +37,7 @@ public class Animation {
     public void step(int startI, int startJ, int endI, int endJ) {
         Log.d(TAG, "setActivity: stepOnField_____++" + sizeOfStep);
         int countMove =activity.getStartGame().getCountToMove();
-        if(countMove > 0){
-            @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
-            String message = String.format(activity.getString(R.string.count_move_level), countMove);
-            activity.getViewParameters().getViewElements().getTvCountMove().setText(message);
-            activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.VISIBLE);
 
-        }else{
-            activity.getViewParameters().getViewElements().getTvCountMove().setText(R.string.moves_over);
-        }
 
         stepsForAnimation.setCheckersPositions(checkerPositions);
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
@@ -103,6 +95,13 @@ public class Animation {
                 if(win >0){
                     activity.getViewParameters().getDrawView().setWin(win);
                 }
+                if(countMove > 0){
+                    @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
+                    String message = String.format(activity.getString(R.string.count_move_level), countMove);
+                    activity.getViewParameters().getViewElements().getTvCountMove().setText(message);
+                }else{
+                    activity.getViewParameters().getViewElements().getTvCountMove().setText(R.string.moves_over);
+                }
             }
         });
 
@@ -116,6 +115,10 @@ public class Animation {
         sizeOfStep = ((activity.getViewParameters().getDisplaySettings().getWidthDisplay() - indentFrame * 2) / (activity.getStartGame().getCheckerPositions().length - 1));
         Log.d(TAG, "setActivity: stepOnField_____" + sizeOfStep);
         indentTop = activity.getViewParameters().getDisplaySettings().getIndentTop();
+        activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.VISIBLE);
+        @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
+        String message = String.format(activity.getString(R.string.count_move_level), activity.getStartGame().getCountToMove());
+        activity.getViewParameters().getViewElements().getTvCountMove().setText(message);
     }
 
     public void setCheckerPositions(int[][] checkerPositions) {

@@ -16,9 +16,9 @@ import com.nokhrin.corners.levels.view.ActivityLevels;
 
 public class OnTouchListener implements View.OnTouchListener {
     private ActivityGameLevel activity;
-    //private CreateGame createGame;
     private Moving moving;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
 
@@ -29,6 +29,7 @@ public class OnTouchListener implements View.OnTouchListener {
         setTouch();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ClickableViewAccessibility")
     private void setTouch() {
         activity.getViewParameters().getViewElements().getFrameLayoutLevels().setOnTouchListener(this);
@@ -49,13 +50,14 @@ public class OnTouchListener implements View.OnTouchListener {
 
         //button restart level
         activity.getViewParameters().getViewElements().getButtonRestartLevel().setOnClickListener(v -> {
-            /*Intent intent = new Intent(activity, ActivityLevels.class);
-            activity.startActivity(intent);
-            activity.finish();*/
-            System.out.println("********************** restart");
+            activity.getStartGame().setNumberLevel(activity.getNumberLevel());
+            activity.getAnimation().setCheckerPositions(activity.getStartGame().getCheckerPositions());
+            activity.getAnimation().step(0,0,0,0);
+            //activity.getViewParameters().getDrawView().invalidate();
         });
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onTouch(View v, MotionEvent event) {

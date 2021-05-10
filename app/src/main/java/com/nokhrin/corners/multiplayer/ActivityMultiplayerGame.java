@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.view.DrawView;
 import com.nokhrin.corners.multiplayer.game.PlayerMove;
 import com.nokhrin.corners.multiplayer.game.SecondPlayer;
 import com.nokhrin.corners.multiplayer.start.StartGame;

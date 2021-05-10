@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.view.DrawView;
 import com.nokhrin.corners.view.DisplaySettings;
 
 public class ViewParameters {

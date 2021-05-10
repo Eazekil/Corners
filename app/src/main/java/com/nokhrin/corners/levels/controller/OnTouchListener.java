@@ -51,6 +51,10 @@ public class OnTouchListener implements View.OnTouchListener {
         //button restart level
         activity.getViewParameters().getViewElements().getButtonRestartLevel().setOnClickListener(v -> {
             activity.getStartGame().setNumberLevel(activity.getNumberLevel());
+            activity.getStartGame().setWin(0);
+            activity.getViewParameters().getDrawView().setWin(0);
+            activity.getAnimation().setWin(0);
+            activity.getViewParameters().setBackground();
             activity.getAnimation().setCheckerPositions(activity.getStartGame().getCheckerPositions());
             activity.getAnimation().step(0,0,0,0);
             //activity.getViewParameters().getDrawView().invalidate();

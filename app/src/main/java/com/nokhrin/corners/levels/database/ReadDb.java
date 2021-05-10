@@ -103,11 +103,12 @@ public class ReadDb {
         //String selection = KEY_NUMBER_LEVEL+" =?";
         //String[] selectionArgs = {Integer.toString(numberLevel)};
         Cursor cursor = database.query(TABLE_PROGRESS, columns, null, null, null, null, null);
-        Log.d(TAG, "readCountStars: ");
-        while (cursor.moveToNext()) {
-            Log.d(TAG, "readCountStars: ++1");
+
+        if (cursor.moveToFirst()) progress.add(cursor.getInt(cursor.getColumnIndex(KEY_COUNT_STARS)));
+        do {
             progress.add(cursor.getInt(cursor.getColumnIndex(KEY_COUNT_STARS)));
-        }
+        }while (cursor.moveToNext());
+
         cursor.close();
         database.close();
         return progress;

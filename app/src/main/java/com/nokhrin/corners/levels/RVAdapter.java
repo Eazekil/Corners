@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nokhrin.corners.R;
+import com.nokhrin.corners.levels.view.ActivityLevels;
 
 import java.util.List;
 
@@ -26,11 +27,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.LevelViewHolder> {
             super(itemView);
             cardView = (CardView) itemView.findViewById(R.id.emptyLayout);
             numberLevel =(TextView) itemView.findViewById(R.id.tvNumberLevel);
-            ivButtonsLevel = (ImageView) itemView.findViewById(R.id.person_photo);
+            ivButtonsLevel = (ImageView) itemView.findViewById(R.id.iv_buttons_level);
         }
     }
 
     List<Level> levels;
+    private ActivityLevels activity;
 
     public RVAdapter(List<Level> levels) {
         this.levels = levels;
@@ -58,10 +60,21 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.LevelViewHolder> {
         if(stars == 1) levelViewHolder.ivButtonsLevel.setImageResource(R.drawable.button_star_1);
         if(stars == 2) levelViewHolder.ivButtonsLevel.setImageResource(R.drawable.button_star_2);
         if(stars == 3) levelViewHolder.ivButtonsLevel.setImageResource(R.drawable.button_star_3);
+
+        levelViewHolder.ivButtonsLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.setCreateNumberLevel(levels.get(i).getNumberLevel());
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return levels.size();
+    }
+
+    public void setActivity(ActivityLevels activity) {
+        this.activity = activity;
     }
 }

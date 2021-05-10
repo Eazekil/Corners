@@ -2,14 +2,11 @@ package com.nokhrin.corners.levels.model;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
-import android.view.View;
 
 import androidx.annotation.RequiresApi;
 
-import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.view.DrawView;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;
-
-import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 public class ResultMoves {
     private int[] playerMoves;

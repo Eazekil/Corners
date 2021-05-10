@@ -6,7 +6,7 @@ import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.classical.view.StartAnimation;
-import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.view.DrawView;
 
 public class ResultMoves {
     private int[] botMoves;

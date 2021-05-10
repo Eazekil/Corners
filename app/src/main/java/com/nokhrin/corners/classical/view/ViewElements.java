@@ -2,14 +2,10 @@ package com.nokhrin.corners.classical.view;
 
 import android.app.Activity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.draw.DrawView;
 
 public class ViewElements {
     private View frameLayout;

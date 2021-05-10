@@ -115,8 +115,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/buttonlistCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMenu"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMenu"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <!--<ListView
         android:id="@+id/buttonList"

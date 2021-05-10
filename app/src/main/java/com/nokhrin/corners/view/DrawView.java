@@ -1,4 +1,4 @@
-package com.nokhrin.corners.draw;
+package com.nokhrin.corners.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

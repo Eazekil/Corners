@@ -89,8 +89,9 @@ public class ActivityLevels extends AppCompatActivity {
             Log.d(Constants.TAG, "onCreate: in levAc"+i);
             levels.add(new Level(i, progress.get(i)));
         }
-        RVAdapter ada = new RVAdapter(levels);
-        rv.setAdapter(ada);
+        RVAdapter adapter = new RVAdapter(levels);
+        adapter.setActivity(this);
+        rv.setAdapter(adapter);
 
 
     }

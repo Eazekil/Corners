@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.view.DrawView;
 import com.nokhrin.corners.view.DisplaySettings;
 
 import static com.nokhrin.corners.resources.Constants.TAG;
@@ -48,7 +48,7 @@ public class ViewParameters {
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void setBackground() {
+    public void setBackground() {
         //draw game field like background
         int sizeOfField = activity.getStartGame().getSizeOfField();
         Log.d(TAG, "setBackground: sizeOfField = "+sizeOfField);

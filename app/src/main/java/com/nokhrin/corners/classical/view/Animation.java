@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.RequiresApi;
 
-import com.nokhrin.corners.draw.DrawView;
+import com.nokhrin.corners.view.DrawView;
 import com.nokhrin.corners.game.StepsForAnimation;
 
 import static com.nokhrin.corners.resources.Constants.FREE_POSITION_ON_FIELD;
@@ -21,7 +21,6 @@ import static com.nokhrin.corners.resources.Constants.STEP_BOTTOM;
 import static com.nokhrin.corners.resources.Constants.STEP_LEFT;
 import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
 import static com.nokhrin.corners.resources.Constants.STEP_TOP;
-import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 
 public class Animation {
     private StepsForAnimation stepsForAnimation;

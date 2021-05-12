@@ -13,13 +13,13 @@ public class CreateDb {
 
     public void createDbLevels(){
         Log.d(TAG, "createDbLevels: +++++++++++++++++++++");
-        addLevel(1, 5,9,2);
+        addLevel(1, 5,9,2,1,2);
         addChecker(1,4,1);
         addChecker(1,4,2);
         addPoint(1,1,3);
         addPoint(1,1,4);
 
-        addLevel(2, 5,10,3);
+        addLevel(2, 5,10,3,1,2);
         addChecker(2,4,1);
         addChecker(2,4,2);
         addChecker(2,3,1);
@@ -32,12 +32,14 @@ public class CreateDb {
         levelsDb.close();
     }
 
-    private void addLevel(int numberLevel, int sizeField, int countMove, int countPoint){
+    private void addLevel(int numberLevel, int sizeField, int countMove, int countPoint, int countSilver, int countGold){
 
         contentValues.put(LevelsDb.KEY_SIZE_FIELD, sizeField);
         contentValues.put(LevelsDb.KEY_COUNT_MOVE, countMove);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
         contentValues.put(LevelsDb.KEY_COUNT_POINT, countPoint);
+        contentValues.put(LevelsDb.KEY_COUNT_SILVER, countSilver);
+        contentValues.put(LevelsDb.KEY_COUNT_GOLD, countGold);
         database.insert(LevelsDb.TABLE_LEVELS, null, contentValues);
         contentValues.clear();
 

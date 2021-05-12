@@ -77,7 +77,10 @@ public class ActivityLevels extends AppCompatActivity {
         levelsDb.putDb();
         ReadDb readDb = new ReadDb();
         readDb.setLevelsDb(levelsDb);
-        ArrayList<Integer> progress = readDb.readCountStars();
+        readDb.readCountStars();
+        ArrayList<Integer> progress = readDb.getProgress();
+//        ArrayList<Integer> countBronzeList = readDb.getCountBronzeList();
+//        ArrayList<Integer> countGoldList = readDb.getCountGoldList();
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.buttonlistCard);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);

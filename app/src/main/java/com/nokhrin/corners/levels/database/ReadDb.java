@@ -2,12 +2,13 @@ package com.nokhrin.corners.levels.database;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_COUNT_GOLD;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_COUNT_MOVE;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_COUNT_POINT;
+import static com.nokhrin.corners.levels.database.LevelsDb.KEY_COUNT_SILVER;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_COUNT_STARS;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_NUMBER_LEVEL;
 import static com.nokhrin.corners.levels.database.LevelsDb.KEY_POINT_I;
@@ -20,7 +21,6 @@ import static com.nokhrin.corners.levels.database.LevelsDb.KEY_WHITE_J;
 import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_LEVELS;
 import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_POSITIONS;
 import static com.nokhrin.corners.levels.database.LevelsDb.TABLE_PROGRESS;
-import static com.nokhrin.corners.resources.Constants.TAG;
 
 public class ReadDb {
     private LevelsDb levelsDb;
@@ -36,6 +36,8 @@ public class ReadDb {
     private ArrayList<Integer> pointI;
     private ArrayList<Integer> pointJ;
     private ArrayList<Integer> progress;
+    private int countSilver;
+    private int countGold;
 
     public void setLevelsDb(LevelsDb levelsDb) {
         this.levelsDb = levelsDb;
@@ -60,6 +62,8 @@ public class ReadDb {
             sizeField = cursor.getInt(cursor.getColumnIndex(KEY_SIZE_FIELD));
             countMove = cursor.getInt(cursor.getColumnIndex(KEY_COUNT_MOVE));
             countPoint = cursor.getInt(cursor.getColumnIndex(KEY_COUNT_POINT));
+            countSilver = cursor.getInt(cursor.getColumnIndex(KEY_COUNT_SILVER));
+            countGold = cursor.getInt(cursor.getColumnIndex(KEY_COUNT_GOLD));
         }
         cursor.close();
 
@@ -96,7 +100,7 @@ public class ReadDb {
         database.close();
     }
 
-    public ArrayList<Integer> readCountStars(){
+    public void readCountStars(){
         database = levelsDb.getWritableDatabase();
         progress = new ArrayList<>();
         String[] columns = {KEY_NUMBER_LEVEL, KEY_COUNT_STARS};
@@ -111,6 +115,9 @@ public class ReadDb {
 
         cursor.close();
         database.close();
+    }
+
+    public ArrayList<Integer> getProgress() {
         return progress;
     }
 
@@ -148,6 +155,14 @@ public class ReadDb {
 
     public ArrayList<Integer> getPointJ() {
         return pointJ;
+    }
+
+    public int getCountSilver() {
+        return countSilver;
+    }
+
+    public int getCountGold() {
+        return countGold;
     }
 }
 

@@ -1,10 +1,6 @@
 package com.nokhrin.corners.levels.model;
 
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.nokhrin.corners.game.StartGame;
 import com.nokhrin.corners.levels.database.LevelsDb;
 import com.nokhrin.corners.levels.database.ReadDb;
@@ -18,18 +14,18 @@ import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHE
 import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 public class StartGameLevel extends StartGame {
-    private int numberLevel;
     private LevelsDb levelsDb;
     private ReadDb readDb;
     private int countToMove;
+    private int countBronze;
+    private int countSilver;
+    private int countGold;
     private int[][] marksPositions;
     private PlayerMove move;
-    private ResultMoves resultMoves;
     private ActivityGameLevel activity;
     private GameOver gameOver;
 
     public void setNumberLevel(int numberLevel) {
-        this.numberLevel = numberLevel;
         readDb = new ReadDb();
         readDb.setLevelsDb(levelsDb);
         readDb.read(numberLevel);
@@ -40,6 +36,9 @@ public class StartGameLevel extends StartGame {
         sizeOfField = readDb.getSizeField();
         countToMove = readDb.getCountMove();
         countTargetPoint = readDb.getCountPoint();
+        countBronze = countToMove;
+        countSilver = readDb.getCountSilver();
+        countGold = readDb.getCountGold();
         ArrayList<Integer> whiteI = readDb.getWhiteI();
         ArrayList<Integer> whiteJ = readDb.getWhiteJ();
         ArrayList<Integer> stoneI = readDb.getStoneI();
@@ -69,7 +68,7 @@ public class StartGameLevel extends StartGame {
         win = 0;
         isPlayerMove = true;
 
-        resultMoves = new ResultMoves();
+        ResultMoves resultMoves = new ResultMoves();
         resultMoves.setActivity(activity);
 
         move = new PlayerMove();
@@ -79,58 +78,6 @@ public class StartGameLevel extends StartGame {
         gameOver = new GameOver();
         gameOver.setActivity(activity);
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void createGameObject() {
-        /*checkerPositions = new int[readDb.getSizeField()][readDb.getSizeField()];
-        
-
-        positions = new Positions();
-        positions.setCheckersPositions(checkerPositions);
-        positions.setResultMoves(resultMoves);
-
-        playerMoving = new PlayerMoving();
-        playerMoving.setStartGame(this);
-
-        checkMove = new CheckMove();
-        checkMove.setStartGame(this);
-        
-
-        bot = new Bots();
-        bot.setPositions(positions);
-        bot.setCheckerPositions(checkerPositions);
-
-        game = new GameOver();*/
-    }
-
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void botMove(){
-        /*bot.botMove();
-
-        //check game is over
-        game.setCheckerPositions(checkerPositions);
-        //add result
-        resultMoves.setGame(game.getResultGame());
-
-        resultMoves.endMove();*/
-    }
-
-    /*public PlayerMoving getPlayerMoving() {
-        return playerMoving;
-    }
-
-    public CheckMove getCheckMove() {
-        return checkMove;
-    }
-
-    public Positions getPositions() {
-        return positions;
-    }
-
-    public ResultMoves getMoves() {
-        return resultMoves;
-    }*/
 
     public void setLevelsDb(LevelsDb levelsDb) {
         this.levelsDb = levelsDb;
@@ -158,5 +105,17 @@ public class StartGameLevel extends StartGame {
 
     public void setCountToMove(int countToMove) {
         this.countToMove = countToMove;
+    }
+
+    public int getCountSilver() {
+        return countSilver;
+    }
+
+    public int getCountGold() {
+        return countGold;
+    }
+
+    public int getCountBronze() {
+        return countBronze;
     }
 }

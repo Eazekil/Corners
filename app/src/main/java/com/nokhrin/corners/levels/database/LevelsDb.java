@@ -29,6 +29,8 @@ public class LevelsDb extends SQLiteOpenHelper {
     public static final String KEY_POINT_I = "point_i";
     public static final String KEY_POINT_J = "point_j";
     public static final String KEY_COUNT_STARS = "count_of_stars";
+    public static final String KEY_COUNT_SILVER = "count_silver";
+    public static final String KEY_COUNT_GOLD = "count_gold";
     public boolean isExist = true;
 
 
@@ -60,7 +62,9 @@ public class LevelsDb extends SQLiteOpenHelper {
                 KEY_NUMBER_LEVEL + " integer," +
                 KEY_SIZE_FIELD + " integer," +
                 KEY_COUNT_MOVE + " integer," +
-                KEY_COUNT_POINT + " integer" + ")");
+                KEY_COUNT_POINT + " integer," +
+                KEY_COUNT_SILVER + " integer," +
+                KEY_COUNT_GOLD + " integer" +")");
 
         db.execSQL("create table " + TABLE_POSITIONS + "(" +
                 KEY_ID + " integer primary key," +

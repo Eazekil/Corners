@@ -19,6 +19,7 @@ public class ActivityGameLevel extends AppCompatActivity {
     private StartGameLevel startGame;
     private int numberLevel;
     private Animation animation;
+    private LevelsDb levelsDb;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -32,7 +33,7 @@ public class ActivityGameLevel extends AppCompatActivity {
             numberLevel = extras.getInt(CREATE_NUMBER_LEVEL);
         }
 
-        LevelsDb levelsDb = new LevelsDb(this);
+        levelsDb = new LevelsDb(this);
         levelsDb.getReadableDatabase();
         levelsDb.putDb();
 
@@ -70,5 +71,9 @@ public class ActivityGameLevel extends AppCompatActivity {
 
     public int getNumberLevel() {
         return numberLevel;
+    }
+
+    public LevelsDb getLevelsDb() {
+        return levelsDb;
     }
 }

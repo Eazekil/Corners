@@ -52,7 +52,7 @@ public class ReadDb {
         pointI = new ArrayList<>();
         pointJ = new ArrayList<>();
 
-        String[] columns = {KEY_SIZE_FIELD, KEY_COUNT_MOVE,KEY_NUMBER_LEVEL, KEY_COUNT_POINT};
+        String[] columns = {KEY_SIZE_FIELD, KEY_COUNT_MOVE,KEY_NUMBER_LEVEL, KEY_COUNT_POINT,KEY_COUNT_SILVER,KEY_COUNT_GOLD};
         String selection = KEY_NUMBER_LEVEL+" =?";
         String[] selectionArgs = {Integer.toString(numberLevel)};
         Cursor cursor = database.query(TABLE_LEVELS, columns, selection, selectionArgs, null, null, null);

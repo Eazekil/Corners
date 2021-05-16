@@ -77,7 +77,6 @@ public class ActivityLevels extends AppCompatActivity {
         levelsDb.putDb();
         ReadDb readDb = new ReadDb();
         readDb.setLevelsDb(levelsDb);
-        readDb.readCountStars();
         ArrayList<Integer> progress = readDb.getProgress();
 //        ArrayList<Integer> countBronzeList = readDb.getCountBronzeList();
 //        ArrayList<Integer> countGoldList = readDb.getCountGoldList();
@@ -89,7 +88,11 @@ public class ActivityLevels extends AppCompatActivity {
         List<Level> levels;
         levels = new ArrayList<>();
         for(int i=1;i<progress.size();i++){
-            Log.d(Constants.TAG, "onCreate: in levAc"+i);
+            if(progress.get(i)>0){
+                Log.d(Constants.TAG, "onCreate: in levAc level "+i);
+                Log.d(Constants.TAG, "onCreate: in levAc stars "+progress.get(i));
+            }
+
             levels.add(new Level(i, progress.get(i)));
         }
         RVAdapter adapter = new RVAdapter(levels);

@@ -100,7 +100,7 @@ public class ReadDb {
         database.close();
     }
 
-    public void readCountStars(){
+    private void readCountStars(){
         database = levelsDb.getWritableDatabase();
         progress = new ArrayList<>();
         String[] columns = {KEY_NUMBER_LEVEL, KEY_COUNT_STARS};
@@ -110,7 +110,7 @@ public class ReadDb {
 
         if (cursor.moveToFirst()) progress.add(cursor.getInt(cursor.getColumnIndex(KEY_COUNT_STARS)));
         do {
-            progress.add(cursor.getInt(cursor.getColumnIndex(KEY_COUNT_STARS)));
+            progress.add(cursor.getInt(cursor.getColumnIndex(KEY_NUMBER_LEVEL)), cursor.getInt(cursor.getColumnIndex(KEY_COUNT_STARS)));
         }while (cursor.moveToNext());
 
         cursor.close();
@@ -118,6 +118,7 @@ public class ReadDb {
     }
 
     public ArrayList<Integer> getProgress() {
+        readCountStars();
         return progress;
     }
 

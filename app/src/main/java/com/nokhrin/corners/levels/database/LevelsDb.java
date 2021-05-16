@@ -77,8 +77,7 @@ public class LevelsDb extends SQLiteOpenHelper {
                 KEY_POINT_J + " integer" + ")");
 
         db.execSQL("create table " + TABLE_PROGRESS + "(" +
-                KEY_ID + " integer primary key," +
-                KEY_NUMBER_LEVEL + " integer," +
+                KEY_NUMBER_LEVEL + " integer primary key," +
                 KEY_COUNT_STARS + " integer" + ")");
     }
 

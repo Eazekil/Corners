@@ -18,6 +18,7 @@ import static com.nokhrin.corners.resources.Constants.JUMP_BOTTOM;
 import static com.nokhrin.corners.resources.Constants.JUMP_LEFT;
 import static com.nokhrin.corners.resources.Constants.JUMP_RIGHT;
 import static com.nokhrin.corners.resources.Constants.JUMP_TOP;
+import static com.nokhrin.corners.resources.Constants.PLAYER_WIN;
 import static com.nokhrin.corners.resources.Constants.STEP_BOTTOM;
 import static com.nokhrin.corners.resources.Constants.STEP_LEFT;
 import static com.nokhrin.corners.resources.Constants.STEP_RIGHT;
@@ -95,7 +96,7 @@ public class Animation {
                 if(win >0){
                     activity.getViewParameters().getDrawView().setWin(win);
                 }
-                if(countMove > 0){
+                if(countMove > 0 || win == PLAYER_WIN){
                     @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
                     String message = String.format(activity.getString(R.string.count_move_level), countMove);
                     activity.getViewParameters().getViewElements().getTvCountMove().setText(message);

@@ -8,8 +8,8 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.view.DrawView;
 import com.nokhrin.corners.view.DisplaySettings;
+import com.nokhrin.corners.view.DrawView;
 
 import static com.nokhrin.corners.resources.Constants.TAG;
 
@@ -51,20 +51,20 @@ public class ViewParameters {
     public void setBackground() {
         //draw game field like background
         int sizeOfField = activity.getStartGame().getSizeOfField();
-        Log.d(TAG, "setBackground: sizeOfField = "+sizeOfField);
-        if(sizeOfField == 5){
+        Log.d(TAG, "setBackground: sizeOfField = " + sizeOfField);
+        if (sizeOfField == 5) {
             viewElements.getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.stone_field_4x4));
         }
-        if(sizeOfField == 6){
+        if (sizeOfField == 6) {
             viewElements.getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.stone_field_5x5));
         }
-        if(sizeOfField == 7){
+        if (sizeOfField == 7) {
             viewElements.getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.stone_field_6x6));
         }
-        if(sizeOfField == 8){
+        if (sizeOfField == 8) {
             viewElements.getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.stone_field_7x7));
         }
-        if(sizeOfField == 9){
+        if (sizeOfField == 9) {
             viewElements.getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.stone_field_8x8));
         }
 

@@ -68,8 +68,6 @@ public class DrawView extends View {
 
     public DrawView(Context context, AppCompatActivity appCompatActivity) {
         super(context);
-        if (appCompatActivity instanceof ActivityClassic) {
-        }
 
         if (appCompatActivity instanceof ActivityMultiplayerGame) {
             this.activityMultiplayerGame = (ActivityMultiplayerGame) appCompatActivity;
@@ -90,44 +88,6 @@ public class DrawView extends View {
     @SuppressLint({"DrawAllocation", "UseCompatLoadingForDrawables"})
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        /*checkerPositions = startGame.getCheckersPositions();*/
-
-        /*sizeOfField = activity.startGame.getSizeOfField();
-        //ResourcesBitmap resourcesBitmap =  new ResourcesBitmap();
-        int stepOnField = activity.startGame.getStepOnField();*/
-
-        //draw chess field
-       /* if (sizeOfField == 9) {
-
-            //create stone field 8x8
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeResource(resourcesForDraw, R.drawable.stone_field_8x8, options);
-
-
-            *//*System.out.println("****************************************************************************");
-            System.out.println(resourcesForDraw == null);
-            System.out.println(R.mipmap.stone_field_8x8 == 0);
-            System.out.println(activityClassic == null);
-            System.out.println(activityClassic.getResources() == null);
-            System.out.println(activityClassic.getResources().getDrawable(R.drawable.checker_white) == null);
-
-
-
-
-            activityClassic.getResources().getDrawable(R.mipmap.stone_field_8x8);
-
-
-            Bitmap bitmap = drawableToBitmap(activityClassic.getResources().getDrawable(R.mipmap.stone_field_8x8));
-
-            Bitmap stoneField8x8Bitmap = Bitmap.createScaledBitmap(
-                    bitmap,
-                    widthDisplay, widthDisplay, true);*//*
-
-            canvas.drawBitmap(bitmap, 0, 0, mPaint);
-            bitmap.recycle();
-        }*/
 
         //draw checkers and marks
         for (int i = 1; i < sizeOfField; i++) {
@@ -188,7 +148,7 @@ public class DrawView extends View {
                 if (checkerPositions[i][j] == WOODMAN_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.woodman), sizeOfStep, sizeOfStep, true);
-                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep, (i - 1) * sizeOfStep, mPaint);
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
 
@@ -196,7 +156,7 @@ public class DrawView extends View {
                 if (checkerPositions[i][j] == SELECT_WOODMAN_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.woodman_select), sizeOfStep, sizeOfStep, true);
-                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep, (i - 1) * sizeOfStep, mPaint);
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
 
@@ -204,7 +164,7 @@ public class DrawView extends View {
                 if (checkerPositions[i][j] == STONE_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
                             BitmapFactory.decodeResource(resourcesForDraw, R.drawable.stone), sizeOfStep, sizeOfStep, true);
-                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep, (i - 1) * sizeOfStep, mPaint);
+                    canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
 

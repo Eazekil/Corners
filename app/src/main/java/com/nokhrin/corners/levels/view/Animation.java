@@ -33,6 +33,7 @@ public class Animation {
     private int sizeOfStep;
     private int indentTop;
     private int win = 0;
+    private int indentFrame;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startI, int startJ, int endI, int endJ) {
@@ -52,10 +53,10 @@ public class Animation {
         activity.getViewParameters().getDrawView().invalidate();
 
         //add checker on start position and set visible
-        activity.getViewParameters().getViewElements().getIvWoodman().layout((startJ - 2) * sizeOfStep,
-                (startI - 1) * sizeOfStep + indentTop,
-                (startJ - 2) * sizeOfStep + sizeOfStep,
-                (startI - 1) * sizeOfStep + sizeOfStep + indentTop
+        activity.getViewParameters().getViewElements().getIvWoodman().layout((startJ - 2) * sizeOfStep + indentFrame,
+                (startI - 1) * sizeOfStep + indentTop + indentFrame,
+                (startJ - 2) * sizeOfStep + sizeOfStep + indentFrame,
+                (startI - 1) * sizeOfStep + sizeOfStep + indentTop+ indentFrame
         );
         activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.VISIBLE);
 
@@ -112,7 +113,7 @@ public class Animation {
     public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
         stepsForAnimation = new StepsForAnimation();
-        int indentFrame = activity.getViewParameters().getDisplaySettings().getWidthDisplay() * 30 / 1080;
+        indentFrame = activity.getViewParameters().getDisplaySettings().getWidthDisplay() * 30 / 1080;
         sizeOfStep = ((activity.getViewParameters().getDisplaySettings().getWidthDisplay() - indentFrame * 2) / (activity.getStartGame().getCheckerPositions().length - 1));
         Log.d(TAG, "setActivity: stepOnField_____" + sizeOfStep);
         indentTop = activity.getViewParameters().getDisplaySettings().getIndentTop();

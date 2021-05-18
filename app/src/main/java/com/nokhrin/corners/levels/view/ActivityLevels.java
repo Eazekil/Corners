@@ -88,11 +88,6 @@ public class ActivityLevels extends AppCompatActivity {
         List<Level> levels;
         levels = new ArrayList<>();
         for(int i=1;i<progress.size();i++){
-            if(progress.get(i)>0){
-                Log.d(Constants.TAG, "onCreate: in levAc level "+i);
-                Log.d(Constants.TAG, "onCreate: in levAc stars "+progress.get(i));
-            }
-
             levels.add(new Level(i, progress.get(i)));
         }
         RVAdapter adapter = new RVAdapter(levels);

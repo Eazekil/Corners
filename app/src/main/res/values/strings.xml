@@ -19,6 +19,7 @@
     <string name="button_restart">Рестарт</string>
     <string name="button_return_levels">Выбрать уровень</string>
     <string name="button_restart_level">Рестарт</string>
+    <string name="button_next_level">Следующий уровень</string>
     <string name="button_number_level1">1</string>
     <string name="button_number_level2">2</string>
     <string name="button_number_level3">3</string>

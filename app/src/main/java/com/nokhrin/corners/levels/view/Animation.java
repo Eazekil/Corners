@@ -96,6 +96,8 @@ public class Animation {
                 activity.getViewParameters().getViewElements().getIvWoodman().setVisibility(View.INVISIBLE);
                 if(win >0){
                     activity.getViewParameters().getDrawView().setWin(win);
+                    activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.VISIBLE);
+                    activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.INVISIBLE);
                 }
                 if(countMove > 0 || win == PLAYER_WIN){
                     @SuppressLint({"StringFormatInvalid", "LocalSuppress"})

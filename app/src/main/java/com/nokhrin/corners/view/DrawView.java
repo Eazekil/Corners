@@ -147,7 +147,7 @@ public class DrawView extends View {
                 //woodman checkers
                 if (checkerPositions[i][j] == WOODMAN_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.woodman), sizeOfStep, sizeOfStep, true);
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.drakkar_white), sizeOfStep, sizeOfStep, true);
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
@@ -155,7 +155,7 @@ public class DrawView extends View {
                 //woodman select checkers
                 if (checkerPositions[i][j] == SELECT_WOODMAN_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.woodman_select), sizeOfStep, sizeOfStep, true);
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.drakkar_white_select), sizeOfStep, sizeOfStep, true);
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
@@ -163,19 +163,19 @@ public class DrawView extends View {
                 //stone checkers
                 if (checkerPositions[i][j] == STONE_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.stone), sizeOfStep, sizeOfStep, true);
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.iceberg), sizeOfStep, sizeOfStep, true);
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
 
 
-                //target point
-                if (checkerPositions[i][j] == TARGET_POINT_FOR_BLACK_CHECKER) {
-                    Bitmap targetPointBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.target_point), sizeOfStep, sizeOfStep, true);
-                    canvas.drawBitmap(targetPointBitmap, (j - 1) * sizeOfStep + 50, (i - 1) * sizeOfStep + 50, mPaint);
-                    targetPointBitmap.recycle();
-                }
+//                //target point
+//                if (checkerPositions[i][j] == TARGET_POINT_FOR_BLACK_CHECKER) {
+//                    Bitmap targetPointBitmap = Bitmap.createScaledBitmap(
+//                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.target_point), sizeOfStep, sizeOfStep, true);
+//                    canvas.drawBitmap(targetPointBitmap, (j - 1) * sizeOfStep + 50, (i - 1) * sizeOfStep + 50, mPaint);
+//                    targetPointBitmap.recycle();
+//                }
             }
         }
 

@@ -15,7 +15,7 @@ public class ViewElements {
     private FrameLayout frameLayoutLevels;
     private View constrainLayout;
     private View frameLayoutIndent;
-    private Button buttonMenu, buttonReturnLevels, buttonRestartLevel;
+    private Button buttonMenu, buttonReturnLevels, buttonRestartLevel, bNextLevel;
 
     public void setActivity(ActivityGameLevel activity) {
         this.activity = activity;
@@ -31,6 +31,7 @@ public class ViewElements {
         buttonReturnLevels = activity.findViewById(R.id.buttonReturnLevel);
         buttonRestartLevel = activity.findViewById(R.id.buttonRestartLevel);
         constrainLayout = activity.findViewById(R.id.constrainLayout);
+        bNextLevel = activity.findViewById(R.id.bNextLevel);
     }
 
     public TextView getTvCountMove() {
@@ -63,5 +64,9 @@ public class ViewElements {
 
     public View getFrameLayoutIndent() {
         return frameLayoutIndent;
+    }
+
+    public Button getbNextLevel() {
+        return bNextLevel;
     }
 }

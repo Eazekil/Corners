@@ -77,7 +77,7 @@ public class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
 
     private class ViewHolder {
         final Button btLevelLeft, btLevelCenter, btLevelRight;
-        final ListView productList;
+        //final ListView productList;
         View view;
 
         //final TextView nameView, countView;
@@ -86,7 +86,7 @@ public class ButtonsAdapter extends ArrayAdapter<ButtonLevel> {
             btLevelLeft = (Button) view.findViewById(R.id.buttonLevelLeft);
             btLevelCenter = (Button) view.findViewById(R.id.buttonLevelCenter);
             btLevelRight = (Button) view.findViewById(R.id.buttonLevelRight);
-            productList = (ListView) view.findViewById(R.id.buttonList);/*
+            /*productList = (ListView) view.findViewById(R.id.buttonList);
             System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddd");
             System.out.println(productList == null);*/
 

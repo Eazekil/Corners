@@ -23,7 +23,7 @@
         android:text=""
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="45sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_buttons_level"
         app:layout_constraintEnd_toEndOf="@+id/iv_buttons_level"
         app:layout_constraintStart_toStartOf="@+id/iv_buttons_level"

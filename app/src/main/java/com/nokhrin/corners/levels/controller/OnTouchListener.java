@@ -14,6 +14,8 @@ import com.nokhrin.corners.classical.controller.Moving;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;
 import com.nokhrin.corners.levels.view.ActivityLevels;
 
+import static com.nokhrin.corners.resources.Constants.CREATE_NUMBER_LEVEL;
+
 public class OnTouchListener implements View.OnTouchListener {
     private ActivityGameLevel activity;
     private Moving moving;
@@ -44,6 +46,13 @@ public class OnTouchListener implements View.OnTouchListener {
         //button return to menu levels
         activity.getViewParameters().getViewElements().getButtonReturnLevels().setOnClickListener(v -> {
             Intent intent = new Intent(activity, ActivityLevels.class);
+            activity.startActivity(intent);
+            activity.finish();
+        });
+
+        activity.getViewParameters().getViewElements().getbNextLevel().setOnClickListener(v ->{
+            Intent intent = new Intent(activity, ActivityGameLevel.class);
+            intent.putExtra(CREATE_NUMBER_LEVEL, activity.getNumberLevel()+1);
             activity.startActivity(intent);
             activity.finish();
         });

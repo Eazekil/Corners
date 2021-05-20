@@ -5,69 +5,28 @@
     android:id="@+id/ConstrainLayoutLevels"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/board_bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".levels.view.ActivityLevels">
 
 
-    <FrameLayout
-        android:id="@+id/frameLayoutIndentLevels"
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-    </FrameLayout>
-
-    <!--<FrameLayout
-        android:id="@+id/frameLayoutLevelA"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="invisible"
-        app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndentLevels" >
-
-    </FrameLayout>-->
-
-
-
-<!--    <Button-->
-<!--        android:id="@+id/buttonReturnLevel"-->
-<!--        android:layout_width="141dp"-->
-<!--        android:layout_height="64dp"-->
-<!--        android:background="@drawable/button_wood_2"-->
-<!--        android:fontFamily="@font/comfortaa_bold"-->
-<!--        android:gravity="center_horizontal|bottom"-->
-<!--        android:text="@string/button_return_levels"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        android:textIsSelectable="false"-->
-<!--        android:textSize="18sp"-->
-<!--        android:visibility="invisible"-->
-<!--        app:backgroundTint="@color/white"-->
-<!--        app:backgroundTintMode="multiply"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.14"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.917" />-->
+    <!--    <ListView-->
+<!--        android:id="@+id/buttonList"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/buttonMenu"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
         android:id="@+id/buttonMenu"
         android:layout_width="146dp"
         android:layout_height="55dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:freezesText="false"
         android:hapticFeedbackEnabled="false"
         android:text="@string/button_menu"
         android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFFFF"
         android:textIsSelectable="false"
         android:textSize="24sp"
@@ -76,58 +35,19 @@
         app:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
-
-<!--    <Button-->
-<!--        android:id="@+id/buttonRestartLevel"-->
-<!--        android:layout_width="152dp"-->
-<!--        android:layout_height="64dp"-->
-<!--        android:background="@drawable/button_wood_2"-->
-<!--        android:fontFamily="@font/comfortaa_bold"-->
-<!--        android:gravity="center_horizontal|center_vertical"-->
-<!--        android:text="@string/button_restart_level"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        android:textIsSelectable="false"-->
-<!--        android:textSize="20sp"-->
-<!--        android:visibility="invisible"-->
-<!--        app:backgroundTint="@color/white"-->
-<!--        app:backgroundTintMode="multiply"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.837"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.917" />-->
-
-
-
-    <ListView
-        android:id="@+id/buttonList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMenu"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.946"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/buttonlistCard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMenu"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <!--<ListView
-        android:id="@+id/buttonList"
-        android:layout_width="397dp"
-        android:layout_height="557dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
-
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

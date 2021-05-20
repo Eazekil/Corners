@@ -5,7 +5,7 @@
     android:id="@+id/constrainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue_A400"
+    android:background="@drawable/board_bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".levels.view.ActivityGameLevel">
 
@@ -28,8 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndentLevels" >
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutIndentLevels" />
 
     <ImageView
         android:id="@+id/imageViewCheckerWoodman"
@@ -42,14 +41,14 @@
         app:layout_constraintStart_toStartOf="@+id/frameLayoutLevel"
         app:layout_constraintTop_toTopOf="@+id/frameLayoutLevel"
 
-        app:srcCompat="@drawable/woodman" />
+        app:srcCompat="@drawable/drakkar_white" />
 
 
     <Button
         android:id="@+id/buttonReturnLevel"
         android:layout_width="141dp"
         android:layout_height="64dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center_horizontal|bottom"
         android:text="@string/button_return_levels"
@@ -62,16 +61,16 @@
         app:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
+        app:layout_constraintVertical_bias="0.928" />
 
     <Button
         android:id="@+id/buttonMenu"
         android:layout_width="146dp"
         android:layout_height="55dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:freezesText="false"
         android:hapticFeedbackEnabled="false"
@@ -91,11 +90,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.917" />
 
+
     <Button
         android:id="@+id/buttonRestartLevel"
         android:layout_width="152dp"
         android:layout_height="64dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/button_restart_level"
@@ -108,11 +108,32 @@
         app:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.837"
+        app:layout_constraintHorizontal_bias="0.834"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
+        app:layout_constraintVertical_bias="0.928" />
 
+    <Button
+        android:id="@+id/bNextLevel"
+        android:layout_width="184dp"
+        android:layout_height="76dp"
+        android:background="@drawable/button_main"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/button_next_level"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:backgroundTint="@color/white"
+        app:backgroundTintMode="multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.827" />
 
     <TextView
         android:id="@+id/textViewCountMove"

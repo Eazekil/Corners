@@ -52,25 +52,6 @@ public class ActivityLevels extends AppCompatActivity {
         });
 
 
-//        ArrayList<ButtonLevel> buttonLevels = new ArrayList<ButtonLevel>();
-//        ListView lvLevels = (ListView) findViewById(R.id.buttonList);
-//        buttonLevels.add(new ButtonLevel(1, 2));
-//        buttonLevels.add(new ButtonLevel(4, 2));
-//        buttonLevels.add(new ButtonLevel(7, 2));
-//        buttonLevels.add(new ButtonLevel(10, 2));
-//        buttonLevels.add(new ButtonLevel(13, 2));
-//        buttonLevels.add(new ButtonLevel(16, 2));
-//        buttonLevels.add(new ButtonLevel(19, 2));
-//        buttonLevels.add(new ButtonLevel(22, 2));
-//        buttonLevels.add(new ButtonLevel(25, 2));
-//        buttonLevels.add(new ButtonLevel(28, 2));
-//        buttonLevels.add(new ButtonLevel(31, 2));
-//        buttonLevels.add(new ButtonLevel(34, 2));
-//
-//        ButtonsAdapter adapter = new ButtonsAdapter(this, R.layout.list_buttons, buttonLevels);
-//        //adapter.setOnTouchListener(onTouchListener);
-//        lvLevels.setAdapter(adapter);
-
 
         LevelsDb levelsDb = new LevelsDb(this);
         levelsDb.getReadableDatabase();
@@ -78,8 +59,6 @@ public class ActivityLevels extends AppCompatActivity {
         ReadDb readDb = new ReadDb();
         readDb.setLevelsDb(levelsDb);
         ArrayList<Integer> progress = readDb.getProgress();
-//        ArrayList<Integer> countBronzeList = readDb.getCountBronzeList();
-//        ArrayList<Integer> countGoldList = readDb.getCountGoldList();
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.buttonlistCard);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);

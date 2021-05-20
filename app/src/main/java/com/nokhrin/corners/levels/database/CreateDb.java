@@ -167,7 +167,7 @@ public class CreateDb {
         addStone(15,5,2);
         addStone(15,5,4);
 
-        addLevel(16,7,15,4,1,2);
+        addLevel(16,7,12,4,1,3);
         addCheck(16,5,1);
         addCheck(16,5,2);
         addCheck(16,6,1);
@@ -297,7 +297,7 @@ public class CreateDb {
         addStone(23,6,4);
         addStone(23,7,4);
 
-        addLevel(24,8,20,6,1,2);
+        addLevel(24,8,11,6,1,3);
         addCheck(24,5,1);
         addCheck(24,6,1);
         addCheck(24,7,1);
@@ -318,10 +318,196 @@ public class CreateDb {
         addStone(24,4,2);
         addStone(24,6,4);
 
+        addLevel(25,8,15,4,1,3);
+        addCheck(25,1,2);
+        addCheck(25,5,3);
+        addCheck(25,7,1);
+        addCheck(25,7,7);
+        addPoint(25,1,5);
+        addPoint(25,1,7);
+        addPoint(25,2,6);
+        addPoint(25,3,7);
+        addStone(25,2,4);
+        addStone(25,4,1);
+        addStone(25,4,3);
+        addStone(25,6,3);
+        addStone(25,7,5);
+
+        addLevel(26,8,10,1,1,3);
+        addCheck(26,7,1);
+        addPoint(26,1,7);
+        addStone(26,1,4);
+        addStone(26,1,6);
+        addStone(26,3,3);
+        addStone(26,4,4);
+        addStone(26,5,3);
+        addStone(26,6,2);
+
+        addLevel(27,8,15,3,1,3);
+        addCheck(27,7,1);
+        addCheck(27,6,2);
+        addCheck(27,5,3);
+        addPoint(27,1,6);
+        addPoint(27,1,7);
+        addPoint(27,2,7);
+        addStone(27,2,4);
+        addStone(27,3,3);
+        addStone(27,3,5);
+        addStone(27,4,4);
+        addStone(27,4,6);
+        addStone(27,5,5);
+
+        addLevel(28,9,16,9,1,3);
+        addCheck(28,1,1);
+        addCheck(28,4,1);
+        addCheck(28,5,1);
+        addCheck(28,8,1);
+        addCheck(28,1,8);
+        addCheck(28,4,8);
+        addCheck(28,5,5);
+        addCheck(28,5,8);
+        addCheck(28,8,8);
+        addPoint(28,1,4);
+        addPoint(28,2,3);
+        addPoint(28,2,4);
+        addPoint(28,3,2);
+        addPoint(28,3,3);
+        addPoint(28,3,4);
+        addPoint(28,4,5);
+        addPoint(28,5,6);
+        addPoint(28,6,7);
+        addStone(28,2,5);
+        addStone(28,2,6);
+        addStone(28,3,7);
+        addStone(28,4,7);
+        addStone(28,6,3);
+        addStone(28,6,4);
+        addStone(28,6,5);
+        addStone(28,7,3);
+        addStone(28,8,3);
+
+        addLevel(29,9,6,3,1,2);
+        addCheck(29,1,6);
+        addCheck(29,1,7);
+        addCheck(29,1,8);
+        addCheck(29,2,6);
+        addCheck(29,2,8);
+        addCheck(29,3,5);
+        addCheck(29,3,8);
+        addCheck(29,4,5);
+        addCheck(29,5,5);
+        addPoint(29,2,7);
+        addPoint(29,3,6);
+        addPoint(29,3,7);
+
+        addLevel(30,9,7,3,1,2);
+        addCheck(30,1,6);
+        addCheck(30,1,8);
+        addCheck(30,2,6);
+        addCheck(30,2,7);
+        addCheck(30,3,7);
+        addCheck(30,3,8);
+        addCheck(30,4,5);
+        addCheck(30,4,6);
+        addCheck(30,5,5);
+        addPoint(30,1,7);
+        addPoint(30,2,8);
+        addPoint(30,3,6);
+
+        addLevel(31,9,8,3,1,2);
+        addCheck(31,1,6);
+        addCheck(31,1,8);
+        addCheck(31,2,6);
+        addCheck(31,2,7);
+        addCheck(31,3,7);
+        addCheck(31,3,8);
+        addCheck(31,3,5);
+        addCheck(31,4,4);
+        addCheck(31,5,5);
+        addPoint(31,1,7);
+        addPoint(31,2,8);
+        addPoint(31,3,6);
+
+        addLevel(32,9,10,6,1,2);
+        addCheck(32,2,6);
+        addCheck(32,2,7);
+        addCheck(32,3,4);
+        addCheck(32,3,5);
+        addCheck(32,3,7);
+        addCheck(32,4,5);
+        addCheck(32,4,6);
+        addCheck(32,5,5);
+        addCheck(32,5,6);
+        addPoint(32,1,6);
+        addPoint(32,1,7);
+        addPoint(32,1,8);
+        addPoint(32,2,8);
+        addPoint(32,3,6);
+        addPoint(32,3,8);
+
+        addLevel(33,9,10,6,1,2);
+        addCheck(33,1,6);
+        addCheck(33,2,7);
+        addCheck(33,3,4);
+        addCheck(33,3,5);
+        addCheck(33,3,7);
+        addCheck(33,4,4);
+        addCheck(33,4,6);
+        addCheck(33,5,6);
+        addCheck(33,5,7);
+        addPoint(33,1,7);
+        addPoint(33,1,8);
+        addPoint(33,2,6);
+        addPoint(33,2,8);
+        addPoint(33,3,6);
+        addPoint(33,3,8);
+
+        addLevel(34,9,11,9,1,2);
+        addCheck(34,1,5);
+        addCheck(34,2,5);
+        addCheck(34,3,4);
+        addCheck(34,3,5);
+        addCheck(34,4,4);
+        addCheck(34,4,5);
+        addCheck(34,4,6);
+        addCheck(34,4,7);
+        addCheck(34,5,6);
+        addPoint(34,1,6);
+        addPoint(34,1,7);
+        addPoint(34,1,8);
+        addPoint(34,2,6);
+        addPoint(34,2,7);
+        addPoint(34,2,8);
+        addPoint(34,3,6);
+        addPoint(34,3,7);
+        addPoint(34,3,8);
+
+        addLevel(35,9,13,6,1,2);
+        addCheck(35,1,3);
+        addCheck(35,2,3);
+        addCheck(35,2,6);
+        addCheck(35,2,7);
+        addCheck(35,2,8);
+        addCheck(35,3,4);
+        addCheck(35,4,4);
+        addCheck(35,5,4);
+        addCheck(35,5,5);
+
+
 //        addLevel(,,,,,);
-//        addChecker(,,);
+//        addCheck(,,);
 //        addPoint(,,);
 //        addStone(,,);
+
+//        addCheck(31,1,6);
+//        addCheck(31,1,7);
+//        addCheck(31,1,8);
+//        addCheck(31,2,6);
+//        addCheck(31,2,7);
+//        addCheck(31,2,8);
+//        addCheck(31,3,6);
+//        addCheck(31,3,7);
+//        addCheck(31,3,8);
 
         addProgress();
 

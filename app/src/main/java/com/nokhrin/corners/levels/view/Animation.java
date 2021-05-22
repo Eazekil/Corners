@@ -87,6 +87,7 @@ public class Animation {
 
         //after end of animation draw checker on field and set invisible view
         objectAnimator.addListener(new AnimatorListenerAdapter() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onAnimationEnd(android.animation.Animator animation, boolean isReverse) {
                 checkerPositions[endI][endJ] = WOODMAN_CHECKER;
@@ -98,6 +99,17 @@ public class Animation {
                     activity.getViewParameters().getDrawView().setWin(win);
                     activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.VISIBLE);
                     activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.INVISIBLE);
+                    int stars = activity.getStartGame().getGameOver().getScore();
+                    if(stars == 0){
+                        activity.getViewParameters().getViewElements().getIvStars().setImageResource(R.drawable.star_0);
+                    }else if(stars == 1){
+                        activity.getViewParameters().getViewElements().getIvStars().setImageResource(R.drawable.star_1);
+                    }else if(stars == 2){
+                        activity.getViewParameters().getViewElements().getIvStars().setImageResource(R.drawable.star_2);
+                    }else if(stars == 3){
+                        activity.getViewParameters().getViewElements().getIvStars().setImageResource(R.drawable.star_3);
+                    }
+                    activity.getViewParameters().getViewElements().getIvStars().setVisibility(View.VISIBLE);
                 }
                 if(countMove > 0 || win == PLAYER_WIN){
                     @SuppressLint({"StringFormatInvalid", "LocalSuppress"})

@@ -12,6 +12,7 @@ public class ViewElements {
     private ActivityGameLevel activity;
     private TextView tvCountMove;
     private ImageView ivWoodman;
+    private ImageView ivStars;
     private FrameLayout frameLayoutLevels;
     private View constrainLayout;
     private View frameLayoutIndent;
@@ -27,6 +28,7 @@ public class ViewElements {
         frameLayoutIndent = activity.findViewById(R.id.frameLayoutIndentLevels);
         tvCountMove = activity.findViewById(R.id.textViewCountMove);
         ivWoodman = activity.findViewById(R.id.imageViewCheckerWoodman);
+        ivStars = activity.findViewById(R.id.ivStars);
         buttonMenu = activity.findViewById(R.id.buttonMenu);
         buttonReturnLevels = activity.findViewById(R.id.buttonReturnLevel);
         buttonRestartLevel = activity.findViewById(R.id.buttonRestartLevel);
@@ -68,5 +70,9 @@ public class ViewElements {
 
     public Button getbNextLevel() {
         return bNextLevel;
+    }
+
+    public ImageView getIvStars() {
+        return ivStars;
     }
 }

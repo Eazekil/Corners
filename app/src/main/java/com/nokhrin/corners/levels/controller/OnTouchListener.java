@@ -93,17 +93,19 @@ public class OnTouchListener implements View.OnTouchListener {
             result+=stars;
         }
         if(result >= (arrLevels.size()-1)*3){
-            activity.getViewParameters().getViewElements().getButtonRestartLevel().setVisibility(View.INVISIBLE);
-            activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.INVISIBLE);
+            activity.getViewParameters().getViewElements().getButtonRestartLevel().setVisibility(View.GONE);
+            activity.getViewParameters().getViewElements().getIvStars().setVisibility(View.GONE);
+            activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.GONE);
             activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.VISIBLE);
             activity.getViewParameters().getViewElements().getTvCountMove().setText(R.string.end_of_game);
-            activity.getViewParameters().getViewElements().getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.shield_win_old));
-
+            activity.getViewParameters().getViewElements().getFrameLayoutLevels().setVisibility(View.GONE);
         }else{
-            activity.getViewParameters().getViewElements().getButtonRestartLevel().setVisibility(View.INVISIBLE);
-            activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.INVISIBLE);
+            activity.getViewParameters().getViewElements().getButtonRestartLevel().setVisibility(View.GONE);
+            activity.getViewParameters().getViewElements().getIvStars().setVisibility(View.GONE);
+            activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.GONE);
             activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.VISIBLE);
             activity.getViewParameters().getViewElements().getTvCountMove().setText(R.string.game_continues);
+            activity.getViewParameters().getViewElements().getFrameLayoutLevels().setVisibility(View.GONE);
         }
     }
 

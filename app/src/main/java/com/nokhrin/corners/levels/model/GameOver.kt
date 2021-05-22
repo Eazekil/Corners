@@ -55,7 +55,7 @@ class GameOver {
             return result
         }
 
-    private fun getScore(): Int {
+    fun getScore(): Int {
         val resultMove = activity?.startGame?.countToMove ?: return 0
         return when {
             resultMove >= countGold -> 3

@@ -13,9 +13,10 @@
         android:id="@+id/frameLayoutIndentLevels"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
@@ -60,8 +61,7 @@
         app:backgroundTint="@color/white"
         app:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRestartLevel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.928" />
@@ -85,7 +85,6 @@
         app:backgroundTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.917" />
@@ -109,7 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.834"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonReturnLevel"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.928" />
 
@@ -146,7 +145,20 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonRestartLevel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayoutLevel" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutLevel"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/ivStars"
+        android:layout_width="243dp"
+        android:layout_height="213dp"
+        android:contentDescription="@string/todo"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star_3" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

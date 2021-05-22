@@ -4,17 +4,22 @@ package com.nokhrin.corners.levels.controller;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.RequiresApi;
 
 import com.nokhrin.corners.ActivityStart;
+import com.nokhrin.corners.R;
 import com.nokhrin.corners.classical.controller.Moving;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;
 import com.nokhrin.corners.levels.view.ActivityLevels;
 
+import java.util.ArrayList;
+
 import static com.nokhrin.corners.resources.Constants.CREATE_NUMBER_LEVEL;
+import static com.nokhrin.corners.resources.Constants.TAG;
 
 public class OnTouchListener implements View.OnTouchListener {
     private ActivityGameLevel activity;
@@ -50,9 +55,18 @@ public class OnTouchListener implements View.OnTouchListener {
             activity.finish();
         });
 
-        activity.getViewParameters().getViewElements().getbNextLevel().setOnClickListener(v ->{
+        //button next level
+        activity.getViewParameters().getViewElements().getbNextLevel().setOnClickListener(v -> {
+            ArrayList<Integer> arrLevels = activity.getStartGame().getReadDb().getProgress();
+            int currentNumberLevel = activity.getNumberLevel();
+            Log.d(TAG, "setTouch: currentNumberLevel "+currentNumberLevel);
+            Log.d(TAG, "setTouch: arrLevels.size() "+arrLevels.size());
+            if (arrLevels.size()-1 == currentNumberLevel) {
+                completeGame(arrLevels);
+                return;
+            }
             Intent intent = new Intent(activity, ActivityGameLevel.class);
-            intent.putExtra(CREATE_NUMBER_LEVEL, activity.getNumberLevel()+1);
+            intent.putExtra(CREATE_NUMBER_LEVEL, activity.getNumberLevel() + 1);
             activity.startActivity(intent);
             activity.finish();
         });
@@ -65,9 +79,32 @@ public class OnTouchListener implements View.OnTouchListener {
             activity.getAnimation().setWin(0);
             activity.getViewParameters().setBackground();
             activity.getAnimation().setCheckerPositions(activity.getStartGame().getCheckerPositions());
-            activity.getAnimation().step(0,0,0,0);
+            activity.getAnimation().step(0, 0, 0, 0);
+            activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.INVISIBLE);
+            activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.VISIBLE);
             //activity.getViewParameters().getDrawView().invalidate();
         });
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void completeGame(ArrayList<Integer> arrLevels) {
+        int result=0;
+        for(int stars: arrLevels){
+            result+=stars;
+        }
+        if(result >= (arrLevels.size()-1)*3){
+            activity.getViewParameters().getViewElements().getButtonRestartLevel().setVisibility(View.INVISIBLE);
+            activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.INVISIBLE);
+            activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.VISIBLE);
+            activity.getViewParameters().getViewElements().getTvCountMove().setText(R.string.end_of_game);
+            activity.getViewParameters().getViewElements().getFrameLayoutLevels().setBackground(activity.getResources().getDrawable(R.drawable.shield_win_old));
+
+        }else{
+            activity.getViewParameters().getViewElements().getButtonRestartLevel().setVisibility(View.INVISIBLE);
+            activity.getViewParameters().getViewElements().getbNextLevel().setVisibility(View.INVISIBLE);
+            activity.getViewParameters().getViewElements().getTvCountMove().setVisibility(View.VISIBLE);
+            activity.getViewParameters().getViewElements().getTvCountMove().setText(R.string.game_continues);
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")

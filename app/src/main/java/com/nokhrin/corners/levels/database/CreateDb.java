@@ -10,6 +10,7 @@ public class CreateDb {
     private LevelsDb levelsDb;
     private SQLiteDatabase database;
     private ContentValues contentValues;
+    private int maxNumberLevel = 0;
 
     public void createDbLevels(){
         Log.d(TAG, "createDbLevels: +++++++++++++++++++++");
@@ -94,7 +95,6 @@ public class CreateDb {
         addStone(9,2,3);
         addPoint(9,1,3);
         addPoint(9,1,4);
-        addPoint(9,2,3);
         addPoint(9,2,4);
 
         addLevel(10,5,6,2,1,2);
@@ -386,7 +386,7 @@ public class CreateDb {
         addStone(28,7,3);
         addStone(28,8,3);
 
-        addLevel(29,9,6,3,1,2);
+        addLevel(29,9,7,9,1,3);
         addCheck(29,1,6);
         addCheck(29,1,7);
         addCheck(29,1,8);
@@ -399,8 +399,14 @@ public class CreateDb {
         addPoint(29,2,7);
         addPoint(29,3,6);
         addPoint(29,3,7);
+        addPoint(29,1,6);
+        addPoint(29,1,7);
+        addPoint(29,1,8);
+        addPoint(29,2,6);
+        addPoint(29,2,8);
+        addPoint(29,3,8);
 
-        addLevel(30,9,7,3,1,2);
+        addLevel(30,9,8,9,1,3);
         addCheck(30,1,6);
         addCheck(30,1,8);
         addCheck(30,2,6);
@@ -413,8 +419,14 @@ public class CreateDb {
         addPoint(30,1,7);
         addPoint(30,2,8);
         addPoint(30,3,6);
+        addPoint(30,1,6);
+        addPoint(30,1,8);
+        addPoint(30,2,6);
+        addPoint(30,2,7);
+        addPoint(30,3,7);
+        addPoint(30,3,8);
 
-        addLevel(31,9,8,3,1,2);
+        addLevel(31,9,9,9,1,3);
         addCheck(31,1,6);
         addCheck(31,1,8);
         addCheck(31,2,6);
@@ -427,8 +439,14 @@ public class CreateDb {
         addPoint(31,1,7);
         addPoint(31,2,8);
         addPoint(31,3,6);
+        addPoint(31,1,6);
+        addPoint(31,1,8);
+        addPoint(31,2,6);
+        addPoint(31,2,7);
+        addPoint(31,3,7);
+        addPoint(31,3,8);
 
-        addLevel(32,9,10,6,1,2);
+        addLevel(32,9,11,9,1,3);
         addCheck(32,2,6);
         addCheck(32,2,7);
         addCheck(32,3,4);
@@ -444,8 +462,11 @@ public class CreateDb {
         addPoint(32,2,8);
         addPoint(32,3,6);
         addPoint(32,3,8);
+        addPoint(32,2,6);
+        addPoint(32,2,7);
+        addPoint(32,3,7);
 
-        addLevel(33,9,10,6,1,2);
+        addLevel(33,9,11,9,1,3);
         addCheck(33,1,6);
         addCheck(33,2,7);
         addCheck(33,3,4);
@@ -461,8 +482,11 @@ public class CreateDb {
         addPoint(33,2,8);
         addPoint(33,3,6);
         addPoint(33,3,8);
+        addPoint(33,1,6);
+        addPoint(33,2,7);
+        addPoint(33,3,7);
 
-        addLevel(34,9,11,9,1,2);
+        addLevel(34,9,12,9,1,3);
         addCheck(34,1,5);
         addCheck(34,2,5);
         addCheck(34,3,4);
@@ -482,7 +506,7 @@ public class CreateDb {
         addPoint(34,3,7);
         addPoint(34,3,8);
 
-        addLevel(35,9,13,6,1,2);
+        addLevel(35,9,14,9,1,3);
         addCheck(35,1,3);
         addCheck(35,2,3);
         addCheck(35,2,6);
@@ -492,13 +516,247 @@ public class CreateDb {
         addCheck(35,4,4);
         addCheck(35,5,4);
         addCheck(35,5,5);
+        addPoint(35,1,6);
+        addPoint(35,1,7);
+        addPoint(35,1,8);
+        addPoint(35,2,6);
+        addPoint(35,2,7);
+        addPoint(35,2,8);
+        addPoint(35,3,6);
+        addPoint(35,3,7);
+        addPoint(35,3,8);
 
+        //hard level http://www.gambiter.ru/ugolki/item/178-ugolki-zadachi.html
+        addLevel(36,9,15,9,5,7);
+        addCheck(36,1,3);
+        addCheck(36,2,2);
+        addCheck(36,3,2);
+        addCheck(36,3,4);
+        addCheck(36,3,5);
+        addCheck(36,4,3);
+        addCheck(36,4,5);
+        addCheck(36,5,2);
+        addCheck(36,5,3);
+        addPoint(36,1,1);
+        addPoint(36,1,2);
+        addPoint(36,1,3);
+        addPoint(36,2,1);
+        addPoint(36,2,2);
+        addPoint(36,2,3);
+        addPoint(36,3,1);
+        addPoint(36,3,2);
+        addPoint(36,3,3);
+
+        addLevel(37,9,13,9,5,7);
+        addCheck(37,1,1);
+        addCheck(37,1,3);
+        addCheck(37,2,2);
+        addCheck(37,2,3);
+        addCheck(37,3,1);
+        addCheck(37,3,2);
+        addCheck(37,3,4);
+        addCheck(37,4,5);
+        addCheck(37,5,4);
+        addPoint(37,1,1);
+        addPoint(37,1,2);
+        addPoint(37,1,3);
+        addPoint(37,2,1);
+        addPoint(37,2,2);
+        addPoint(37,2,3);
+        addPoint(37,3,1);
+        addPoint(37,3,2);
+        addPoint(37,3,3);
+
+        addLevel(38,9,7,9,1,3);
+        addCheck(38,1,1);
+        addCheck(38,1,2);
+        addCheck(38,1,3);
+        addCheck(38,2,1);
+        addCheck(38,2,3);
+        addCheck(38,3,1);
+        addCheck(38,3,4);
+        addCheck(38,4,4);
+        addCheck(38,5,4);
+        addPoint(38,1,1);
+        addPoint(38,1,2);
+        addPoint(38,1,3);
+        addPoint(38,2,1);
+        addPoint(38,2,2);
+        addPoint(38,2,3);
+        addPoint(38,3,1);
+        addPoint(38,3,2);
+        addPoint(38,3,3);
+
+        addLevel(39,9,15,9,4,7);
+        addCheck(39,1,1);
+        addCheck(39,2,1);
+        addCheck(39,3,1);
+        addCheck(39,3,2);
+        addCheck(39,3,4);
+        addCheck(39,4,3);
+        addCheck(39,4,4);
+        addCheck(39,5,4);
+        addCheck(39,6,3);
+        addPoint(39,1,1);
+        addPoint(39,1,2);
+        addPoint(39,1,3);
+        addPoint(39,2,1);
+        addPoint(39,2,2);
+        addPoint(39,2,3);
+        addPoint(39,3,1);
+        addPoint(39,3,2);
+        addPoint(39,3,3);
+
+        addLevel(40,9,15,9,4,7);
+        addCheck(40,1,2);
+        addCheck(40,2,1);
+        addCheck(40,2,2);
+        addCheck(40,3,3);
+        addCheck(40,2,4);
+        addCheck(40,3,5);
+        addCheck(40,3,6);
+        addCheck(40,5,3);
+        addCheck(40,6,3);
+        addPoint(40,1,1);
+        addPoint(40,1,2);
+        addPoint(40,1,3);
+        addPoint(40,2,1);
+        addPoint(40,2,2);
+        addPoint(40,2,3);
+        addPoint(40,3,1);
+        addPoint(40,3,2);
+        addPoint(40,3,3);
+
+        //6
+        addLevel(41,9,13,9,5,7);
+        addCheck(41,1,1);
+        addCheck(41,1,2);
+        addCheck(41,1,3);
+        addCheck(41,2,2);
+        addCheck(41,2,3);
+        addCheck(41,3,4);
+        addCheck(41,4,3);
+        addCheck(41,5,3);
+        addCheck(41,5,4);
+        addPoint(41,1,1);
+        addPoint(41,1,2);
+        addPoint(41,1,3);
+        addPoint(41,2,1);
+        addPoint(41,2,2);
+        addPoint(41,2,3);
+        addPoint(41,3,1);
+        addPoint(41,3,2);
+        addPoint(41,3,3);
+
+        addLevel(42,9,13,9,4,6);
+        addCheck(42,1,1);
+        addCheck(42,1,2);
+        addCheck(42,2,1);
+        addCheck(42,2,2);
+        addCheck(42,3,3);
+        addCheck(42,2,4);
+        addCheck(42,3,5);
+        addCheck(42,4,5);
+        addCheck(42,5,3);
+        addPoint(42,1,1);
+        addPoint(42,1,2);
+        addPoint(42,1,3);
+        addPoint(42,2,1);
+        addPoint(42,2,2);
+        addPoint(42,2,3);
+        addPoint(42,3,1);
+        addPoint(42,3,2);
+        addPoint(42,3,3);
+
+        //8
+        addLevel(43,9,14,9,5,7);
+        addCheck(43,1,3);
+        addCheck(43,2,1);
+        addCheck(43,2,2);
+        addCheck(43,3,2);
+        addCheck(43,2,4);
+        addCheck(43,2,5);
+        addCheck(43,4,2);
+        addCheck(43,5,2);
+        addCheck(43,5,3);
+        addPoint(43,1,1);
+        addPoint(43,1,2);
+        addPoint(43,1,3);
+        addPoint(43,2,1);
+        addPoint(43,2,2);
+        addPoint(43,2,3);
+        addPoint(43,3,1);
+        addPoint(43,3,2);
+        addPoint(43,3,3);
+
+        addLevel(44,9,13,9,4,6);
+        addCheck(44,1,1);
+        addCheck(44,1,3);
+        addCheck(44,2,2);
+        addCheck(44,3,1);
+        addCheck(44,2,5);
+        addCheck(44,3,5);
+        addCheck(44,4,1);
+        addCheck(44,4,4);
+        addCheck(44,4,5);
+        addPoint(44,1,1);
+        addPoint(44,1,2);
+        addPoint(44,1,3);
+        addPoint(44,2,1);
+        addPoint(44,2,2);
+        addPoint(44,2,3);
+        addPoint(44,3,1);
+        addPoint(44,3,2);
+        addPoint(44,3,3);
+
+        addLevel(45,9,17,9,5,8);
+        addCheck(45,1,2);
+        addCheck(45,2,2);
+        addCheck(45,3,1);
+        addCheck(45,2,4);
+        addCheck(45,3,5);
+        addCheck(45,4,2);
+        addCheck(45,4,4);
+        addCheck(45,4,6);
+        addCheck(45,5,5);
+        addPoint(45,1,1);
+        addPoint(45,1,2);
+        addPoint(45,1,3);
+        addPoint(45,2,1);
+        addPoint(45,2,2);
+        addPoint(45,2,3);
+        addPoint(45,3,1);
+        addPoint(45,3,2);
+        addPoint(45,3,3);
 
 //        addLevel(,,,,,);
 //        addCheck(,,);
 //        addPoint(,,);
 //        addStone(,,);
 
+        //right bottom corner
+//        addPoint(,6,6);
+//        addPoint(,6,7);
+//        addPoint(,6,8);
+//        addPoint(,7,6);
+//        addPoint(,7,7);
+//        addPoint(,7,8);
+//        addPoint(,8,6);
+//        addPoint(,8,7);
+//        addPoint(,8,8);
+
+        //left top corner
+//        addPoint(,1,1);
+//        addPoint(,1,2);
+//        addPoint(,1,3);
+//        addPoint(,2,1);
+//        addPoint(,2,2);
+//        addPoint(,2,3);
+//        addPoint(,3,1);
+//        addPoint(,3,2);
+//        addPoint(,3,3);
+
+        //right top corner
 //        addCheck(31,1,6);
 //        addCheck(31,1,7);
 //        addCheck(31,1,8);
@@ -515,7 +773,7 @@ public class CreateDb {
     }
 
     private void addLevel(int numberLevel, int sizeField, int countMove, int countPoint, int countSilver, int countGold){
-
+        if(numberLevel > maxNumberLevel)maxNumberLevel = numberLevel;
         contentValues.put(LevelsDb.KEY_SIZE_FIELD, sizeField);
         contentValues.put(LevelsDb.KEY_COUNT_MOVE, countMove);
         contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, numberLevel);
@@ -559,7 +817,7 @@ public class CreateDb {
     }
 
     private void addProgress(){
-        for(int i=1;i<25;i++){
+        for(int i=1;i<=maxNumberLevel;i++){
             contentValues.put(LevelsDb.KEY_COUNT_STARS, 0);
             contentValues.put(LevelsDb.KEY_NUMBER_LEVEL, i);
             database.insert(LevelsDb.TABLE_PROGRESS, null, contentValues);

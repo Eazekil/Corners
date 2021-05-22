@@ -44,14 +44,14 @@ class GameOver {
 
             if (countPointWhite == activity?.startGame?.countTargetPoint) {
                 activity?.startGame?.win = Constants.PLAYER_WIN
-                //rate()
+                rate()
                 result = true
             } else if (activity?.startGame?.countToMove == 0) {
                 activity?.startGame?.win = Constants.BOT_WIN
-                //rate()
+                rate()
                 result = true
             }
-            rate()
+                //rate()
             return result
         }
 

@@ -118,4 +118,8 @@ public class StartGameLevel extends StartGame {
     public int getCountBronze() {
         return countBronze;
     }
+
+    public ReadDb getReadDb() {
+        return readDb;
+    }
 }

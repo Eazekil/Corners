@@ -45,9 +45,6 @@ public class ResultMoves {
         this.playerMoves[1] = startJ;
         this.playerMoves[2] = endI;
         this.playerMoves[3] = endJ;
-        @SuppressLint("DefaultLocale") String ss= String.format("_____===-______ %d %d %d %d",startI,startJ,endI,endJ );
-        System.out.println(ss);
-        //checkerPositions[startI][startJ] = WOODMAN_CHECKER;
         if(activity.getStartGame().getGameOver().isOver()){
             activity.getAnimation().setWin(activity.getStartGame().getWin());
         }

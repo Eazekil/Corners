@@ -67,5 +67,8 @@
     <string name="title_activity_game_level">FullscreenActivity</string>
     <string name="count_move_level">Осталось ходов: %d</string>
     <string name="moves_over">Ходы кончились :(</string>
+    <string name="end_of_game">Вы прошли все уровни на отлично, спасибо что играли в мою игру,
+        вы можете оставить отзыв и пожелания на странице игры в PlayMarket</string>
+    <string name="game_continues">У вас остались не пройденные уровни)</string>
 
 </resources>

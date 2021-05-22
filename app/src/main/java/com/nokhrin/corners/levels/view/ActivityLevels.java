@@ -83,6 +83,14 @@ public class ActivityLevels extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ActivityStart.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+    }
+
     public LevelsDb getLevelsDb() {
         return levelsDb;
     }

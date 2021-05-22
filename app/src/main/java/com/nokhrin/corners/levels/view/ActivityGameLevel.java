@@ -1,5 +1,6 @@
 package com.nokhrin.corners.levels.view;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -55,6 +56,14 @@ public class ActivityGameLevel extends AppCompatActivity {
         viewParameters.getViewElements().getButtonMenu().setVisibility(View.INVISIBLE);
         viewParameters.getViewElements().getButtonRestartLevel().setVisibility(View.VISIBLE);
         viewParameters.getViewElements().getButtonReturnLevels().setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ActivityLevels.class);
+        this.startActivity(intent);
+        this.finish();
+        super.onBackPressed();
     }
 
     public ViewParameters getViewParameters() {

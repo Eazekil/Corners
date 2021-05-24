@@ -9,14 +9,6 @@
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".levels.view.ActivityLevels">
 
-
-    <!--    <ListView-->
-<!--        android:id="@+id/buttonList"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/buttonMenu"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <Button
         android:id="@+id/buttonMenu"
         android:layout_width="146dp"

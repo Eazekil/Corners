@@ -5,7 +5,7 @@
     android:id="@+id/ConstrainLayoutClassic"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/board_bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".classical.view.ActivityClassic">
 
@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="@+id/frameLayoutClassic"
         app:layout_constraintStart_toStartOf="@+id/frameLayoutClassic"
         app:layout_constraintTop_toTopOf="@+id/frameLayoutClassic"
-        app:srcCompat="@drawable/checker_white" />
+        app:srcCompat="@drawable/chips_white" />
 
     <ImageView
         android:id="@+id/imageViewCheckerBlack"
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="@+id/frameLayoutClassic"
         app:layout_constraintStart_toStartOf="@+id/frameLayoutClassic"
         app:layout_constraintTop_toTopOf="@+id/frameLayoutClassic"
-        app:srcCompat="@drawable/checker_black" />
+        app:srcCompat="@drawable/chips_black" />
 
     <Button
         android:id="@+id/buttonStartClassic"
@@ -76,7 +76,7 @@
         android:id="@+id/buttonMenu"
         android:layout_width="146dp"
         android:layout_height="55dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:hapticFeedbackEnabled="false"
         android:text="@string/button_menu"
@@ -97,7 +97,7 @@
         android:id="@+id/buttonRestart"
         android:layout_width="146dp"
         android:layout_height="55dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:hapticFeedbackEnabled="false"
         android:text="@string/button_restart"

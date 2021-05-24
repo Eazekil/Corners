@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.multiplayer.Room.Room;
 
@@ -193,5 +194,12 @@ public class ActivityRooms extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ActivityStart.class);
+        this.startActivity(intent);
+        this.finish();
+        super.onBackPressed();
+    }
 
 }

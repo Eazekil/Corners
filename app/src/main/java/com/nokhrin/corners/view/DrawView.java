@@ -12,10 +12,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nokhrin.corners.R;
-import com.nokhrin.corners.classical.view.ActivityClassic;
 import com.nokhrin.corners.levels.view.ActivityGameLevel;
 import com.nokhrin.corners.multiplayer.ActivityMultiplayerGame;
-import com.nokhrin.corners.game.StartGame;
 
 import static com.nokhrin.corners.resources.Constants.BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.BOT_WIN;
@@ -24,7 +22,6 @@ import static com.nokhrin.corners.resources.Constants.MARK_ON_WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.PLAYER_WIN;
 import static com.nokhrin.corners.resources.Constants.SELECT_WOODMAN_CHECKER;
 import static com.nokhrin.corners.resources.Constants.STONE_CHECKER;
-import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_BLACK_CHECKER;
 import static com.nokhrin.corners.resources.Constants.TARGET_POINT_FOR_WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WHITE_CHECKER;
 import static com.nokhrin.corners.resources.Constants.WIN_WIN;
@@ -33,10 +30,8 @@ import static com.nokhrin.corners.resources.Constants.WOODMAN_CHECKER;
 
 @SuppressLint("ViewConstructor")
 public class DrawView extends View {
-    private Paint mPaint = new Paint();
-    private ActivityMultiplayerGame activityMultiplayerGame;
-    private Resources resourcesForDraw;
-    private StartGame startGame;
+    private final Paint mPaint = new Paint();
+    private final Resources resourcesForDraw;
     private int widthDisplay;
     private int sizeOfField;
     private int sizeOfStep;
@@ -52,9 +47,7 @@ public class DrawView extends View {
     public void setCheckerPositions(int[][] checkerPositions) {
         this.checkerPositions = new int[checkerPositions.length][checkerPositions.length];
         for (int i = 1; i < checkerPositions.length; i++) {
-            for (int j = 1; j < checkerPositions.length; j++) {
-                this.checkerPositions[i][j] = checkerPositions[i][j];
-            }
+            System.arraycopy(checkerPositions[i], 1, this.checkerPositions[i], 1, checkerPositions.length - 1);
         }
         this.sizeOfField = checkerPositions.length;
     }
@@ -62,7 +55,7 @@ public class DrawView extends View {
     public void setWidthDisplay(int widthDisplay) {
         this.widthDisplay = widthDisplay;
         this.indentFrame = widthDisplay * 30 / 1080;
-        this.sizeOfStep = (int) ((widthDisplay - indentFrame * 2) / (checkerPositions.length - 1));
+        this.sizeOfStep = (widthDisplay - indentFrame * 2) / (checkerPositions.length - 1);
 
     }
 
@@ -70,8 +63,7 @@ public class DrawView extends View {
         super(context);
 
         if (appCompatActivity instanceof ActivityMultiplayerGame) {
-            this.activityMultiplayerGame = (ActivityMultiplayerGame) appCompatActivity;
-            startGame = activityMultiplayerGame.startGame;
+            ActivityMultiplayerGame activityMultiplayerGame = (ActivityMultiplayerGame) appCompatActivity;
             widthDisplay = activityMultiplayerGame.widthDisplay;
             sizeOfField = activityMultiplayerGame.startGame.getSizeOfField();
             sizeOfStep = activityMultiplayerGame.startGame.getStepOnField();
@@ -92,7 +84,7 @@ public class DrawView extends View {
         //draw checkers and marks
         for (int i = 1; i < sizeOfField; i++) {
             for (int j = 1; j < sizeOfField; j++) {
-                System.out.println("ssss  "+checkerPositions[i][j]);
+                //System.out.println("ssss  "+checkerPositions[i][j]);
                 //target point
                 if (marksPositions != null) {
                     if (marksPositions[i][j] == TARGET_POINT_FOR_WHITE_CHECKER) {
@@ -107,7 +99,7 @@ public class DrawView extends View {
                 //white checkers
                 if (checkerPositions[i][j] == WHITE_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_white), sizeOfStep, sizeOfStep, true);
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.chips_white), sizeOfStep, sizeOfStep, true);
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
                 }
@@ -115,7 +107,7 @@ public class DrawView extends View {
                 //black checkers
                 if (checkerPositions[i][j] == BLACK_CHECKER) {
                     Bitmap blackCheckerBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_black), sizeOfStep, sizeOfStep, true);
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.chips_black), sizeOfStep, sizeOfStep, true);
                     canvas.drawBitmap(blackCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     blackCheckerBitmap.recycle();
                 }
@@ -123,25 +115,25 @@ public class DrawView extends View {
                 //white checkers with mark
                 if (checkerPositions[i][j] == MARK_ON_WHITE_CHECKER) {
                     Bitmap whiteCheckerBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_white), sizeOfStep, sizeOfStep, true);
-                    Bitmap checkMarkBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.check_mark), sizeOfStep, sizeOfStep, true);
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.chips_white_select), sizeOfStep, sizeOfStep, true);
+//                    Bitmap checkMarkBitmap = Bitmap.createScaledBitmap(
+//                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.check_mark), sizeOfStep, sizeOfStep, true);
                     canvas.drawBitmap(whiteCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
-                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
+//                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     whiteCheckerBitmap.recycle();
-                    checkMarkBitmap.recycle();
+//                    checkMarkBitmap.recycle();
                 }
 
                 //black checkers with mark
                 if (checkerPositions[i][j] == MARK_ON_BLACK_CHECKER) {
                     Bitmap blackCheckerBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.checker_black), sizeOfStep, sizeOfStep, true);
-                    Bitmap checkMarkBitmap = Bitmap.createScaledBitmap(
-                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.check_mark), sizeOfStep, sizeOfStep, true);
+                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.chips_black_select), sizeOfStep, sizeOfStep, true);
+//                    Bitmap checkMarkBitmap = Bitmap.createScaledBitmap(
+//                            BitmapFactory.decodeResource(resourcesForDraw, R.drawable.check_mark), sizeOfStep, sizeOfStep, true);
                     canvas.drawBitmap(blackCheckerBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
-                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
+//                    canvas.drawBitmap(checkMarkBitmap, (j - 1) * sizeOfStep + indentFrame, (i - 1) * sizeOfStep + indentFrame, mPaint);
                     blackCheckerBitmap.recycle();
-                    checkMarkBitmap.recycle();
+//                    checkMarkBitmap.recycle();
                 }
 
                 //woodman checkers

@@ -12,10 +12,10 @@
 
     <Button
         android:id="@+id/buttonLevel"
-        android:layout_width="218dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="148dp"
-        android:background="@drawable/button_wood_2"
+        android:layout_width="275dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:hapticFeedbackEnabled="false"
         android:text="@string/button_level"
@@ -31,10 +31,10 @@
 
     <Button
         android:id="@+id/buttonMultiPlayer"
-        android:layout_width="218dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/button_wood_2"
+        android:layout_width="275dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:text="@string/button_multi_player"
         android:textAllCaps="false"
@@ -49,10 +49,10 @@
 
     <Button
         android:id="@+id/buttonClassic"
-        android:layout_width="218dp"
-        android:layout_height="53dp"
+        android:layout_width="275dp"
+        android:layout_height="56dp"
         android:layout_marginTop="36dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:text="@string/button_corners"
         android:textAllCaps="false"
@@ -67,15 +67,16 @@
 
     <Button
         android:id="@+id/buttonCreateLevel"
-        android:layout_width="218dp"
-        android:layout_height="53dp"
+        android:layout_width="275dp"
+        android:layout_height="56dp"
         android:layout_marginTop="36dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:text="@string/button_create_level"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
+        android:visibility="gone"
         app:backgroundTint="@color/white"
         app:backgroundTintMode="multiply"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,10 +86,10 @@
 
     <Button
         android:id="@+id/buttonShop"
-        android:layout_width="218dp"
-        android:layout_height="53dp"
+        android:layout_width="275dp"
+        android:layout_height="56dp"
         android:layout_marginTop="36dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:text="@string/button_shop"
         android:textAllCaps="false"
@@ -103,10 +104,10 @@
 
     <Button
         android:id="@+id/buttonStartClassic"
-        android:layout_width="218dp"
-        android:layout_height="53dp"
+        android:layout_width="275dp"
+        android:layout_height="56dp"
         android:layout_marginTop="36dp"
-        android:background="@drawable/button_wood_2"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:hapticFeedbackEnabled="false"
         android:text="@string/button_settings"

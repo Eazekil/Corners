@@ -1,14 +1,17 @@
 package com.nokhrin.corners.multiplayer;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 
 import static com.nokhrin.corners.resources.Constants.PLAYER_NAME;
@@ -19,6 +22,7 @@ public class ActivityCreatePlayer extends AppCompatActivity {
     EditText etPlayerName;
     String playerName;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +55,14 @@ public class ActivityCreatePlayer extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ActivityStart.class);
+        this.startActivity(intent);
+        this.finish();
+        super.onBackPressed();
     }
 
 }

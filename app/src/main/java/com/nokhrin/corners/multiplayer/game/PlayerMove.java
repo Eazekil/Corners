@@ -54,6 +54,7 @@ public class PlayerMove {
                 //update mark
                 activity.startGame.getCheckerPositions()[touchI][touchJ] = choiceChecker;
                 activity.startGame.getCheckerPositions()[choiceI][choiceJ] = checker;
+                activity.drawView.setCheckerPositions(activity.startGame.getCheckerPositions());
 
                 //update draw field
                 activity.drawView.invalidate();
@@ -83,6 +84,7 @@ public class PlayerMove {
             if (activity.startGame.getCheckerPositions()[touchI][touchJ] == checker) {
                 //update mark
                 activity.startGame.getCheckerPositions()[touchI][touchJ] = choiceChecker;
+                activity.drawView.setCheckerPositions(activity.startGame.getCheckerPositions());
 
                 //update draw field
                 activity.drawView.invalidate();

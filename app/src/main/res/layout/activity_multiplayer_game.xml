@@ -5,7 +5,7 @@
     android:id="@+id/ConstrainLayoutMultiplayerGame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/board_bg"
     android:theme="@style/ThemeOverlay.Corners.FullscreenContainer"
     tools:context=".multiplayer.ActivityMultiplayerGame">
 
@@ -16,7 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </FrameLayout>
 
     <TextView
@@ -24,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_view_room_name"
-        android:textColor="#082867"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +40,6 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.941" />
@@ -69,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="@+id/frameLayoutMultiplayerGame"
         app:layout_constraintStart_toStartOf="@+id/frameLayoutMultiplayerGame"
         app:layout_constraintTop_toTopOf="@+id/frameLayoutMultiplayerGame"
-        app:srcCompat="@drawable/checker_white" />
+        app:srcCompat="@drawable/chips_white" />
 
     <ImageView
         android:id="@+id/imageViewBlackChecker"
@@ -81,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="@+id/frameLayoutMultiplayerGame"
         app:layout_constraintStart_toStartOf="@+id/frameLayoutMultiplayerGame"
         app:layout_constraintTop_toTopOf="@+id/frameLayoutMultiplayerGame"
-        app:srcCompat="@drawable/checker_black" />
+        app:srcCompat="@drawable/chips_black" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

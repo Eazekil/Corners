@@ -13,21 +13,20 @@
         android:id="@+id/textViewMulti1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="344dp"
         android:text="@string/text_multi_1"
         android:textColor="#082867"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonCreatePlayer"
-        android:layout_width="248dp"
-        android:layout_height="54dp"
-        android:background="@drawable/button_wood_1"
+        android:layout_width="184dp"
+        android:layout_height="86dp"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:hapticFeedbackEnabled="false"
         android:text="@string/button_create_player"
@@ -40,24 +39,21 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPlayerName"
+        app:layout_constraintVertical_bias="0.079" />
 
     <EditText
         android:id="@+id/editTextPlayerName"
         android:layout_width="268dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="введите свое имя"
         android:inputType="textPersonName"
-        android:textColor="#082867"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMulti1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

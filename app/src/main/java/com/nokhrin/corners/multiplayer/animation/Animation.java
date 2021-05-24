@@ -34,13 +34,13 @@ public class Animation {
 
     public Animation(ActivityMultiplayerGame activity) {
         this.activity = activity;
-        //stepsForAnimation = new StepsForAnimation(activity);
+        stepsForAnimation = new StepsForAnimation();
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void step(int startJ, int startI, int endJ, int endI, int checker) {
-
+        stepsForAnimation.setCheckersPositions(activity.startGame.getCheckerPositions());
         stepsForAnimation.setStartParameters(startI, startJ, endI, endJ);
 
         //get steps for animate checker
@@ -49,6 +49,7 @@ public class Animation {
 
         //draw field without move checker
         activity.startGame.getCheckerPositions()[startI][startJ] = FREE_POSITION_ON_FIELD;
+        activity.drawView.setCheckerPositions(activity.startGame.getCheckerPositions());
         activity.drawView.invalidate();
 
         int stepOnField = activity.startGame.getStepOnField();
@@ -118,7 +119,7 @@ public class Animation {
                 if (game.isOver()) {
                     activity.startGame.setPlayerMove(false);
                 }
-
+                activity.drawView.setCheckerPositions(activity.startGame.getCheckerPositions());
                 activity.drawView.invalidate();
             }
         });

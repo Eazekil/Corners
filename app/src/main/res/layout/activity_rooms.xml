@@ -11,9 +11,9 @@
 
     <Button
         android:id="@+id/buttonCreateRoom"
-        android:layout_width="199dp"
-        android:layout_height="53dp"
-        android:background="@drawable/button_wood_1"
+        android:layout_width="204dp"
+        android:layout_height="55dp"
+        android:background="@drawable/button_main"
         android:fontFamily="@font/comfortaa_bold"
         android:hapticFeedbackEnabled="false"
         android:text="@string/button_create_room"
@@ -33,9 +33,9 @@
 
     <Button
         android:id="@+id/buttonJoinRoom"
-        android:layout_width="247dp"
-        android:layout_height="66dp"
-        android:background="@drawable/button_wood_1"
+        android:layout_width="242dp"
+        android:layout_height="73dp"
+        android:background="@drawable/button_main"
 
         android:fontFamily="@font/comfortaa_bold"
         android:hapticFeedbackEnabled="false"
@@ -76,7 +76,7 @@
         android:ems="10"
         android:hint="@string/edit_text_create_room"
         android:inputType="textPersonName"
-        android:textColor="#2150AC"
+        android:textColor="#062E71"
         android:textColorHighlight="#D61010"
         android:textColorHint="#ABFDFDFD"
         app:layout_constraintBottom_toBottomOf="parent"

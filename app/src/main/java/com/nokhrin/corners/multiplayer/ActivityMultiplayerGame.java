@@ -1,6 +1,7 @@
 package com.nokhrin.corners.multiplayer;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nokhrin.corners.ActivityStart;
 import com.nokhrin.corners.R;
 import com.nokhrin.corners.view.DrawView;
 import com.nokhrin.corners.multiplayer.game.PlayerMove;
@@ -40,17 +42,6 @@ import static com.nokhrin.corners.resources.Constants.ROOM_NAME;
 
 public class
 ActivityMultiplayerGame extends AppCompatActivity implements View.OnTouchListener{
-    /*public  DrawViewMG drawView; //view for game field
-    public  View ivChecker;
-    public  View flMultiplayerGame;
-    public  boolean playerMove;//can player to move
-    public  int widthDisplay; //size width of display
-    public  int heightDisplay; //size height of display
-    public  int role; //role this player
-    public  int indentTop; //role this player
-    private
-    private  DatabaseReference moveToRef; //reference to database
-    private  DatabaseReference anotherPlayerRef; //reference to name another player*/
     String moveTo; //message move to
     DatabaseReference moveToRef; //reference to database
     DatabaseReference anotherPlayerRef; //reference to name another player
@@ -134,6 +125,8 @@ ActivityMultiplayerGame extends AppCompatActivity implements View.OnTouchListene
         //create view for draw and add in layout
         drawView = new DrawView(getApplicationContext(), this);
         ((ViewGroup)flMultiplayerGame).addView(drawView);
+        drawView.setCheckerPositions(startGame.getCheckerPositions());
+        drawView.setWidthDisplay(widthDisplay);
 
         //set on touch listener
         flMultiplayerGame.setOnTouchListener(this);
@@ -234,5 +227,13 @@ ActivityMultiplayerGame extends AppCompatActivity implements View.OnTouchListene
         }
 
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ActivityRooms.class);
+        this.startActivity(intent);
+        this.finish();
+        super.onBackPressed();
     }
 }
